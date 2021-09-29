@@ -60,7 +60,8 @@ public class Match {
 				double random = rand.nextDouble() * scale;
 				// Team A Wins the game
 				if (random > 0 && random < oddsTeamAWins) {
-					teamARecord.Win(teamB);
+					teamARecord.MatchWin(teamB);
+					teamBRecord.MatchLoss(teamA);
 					System.out.println(teamA.getTag() + " Win\n");
 					
 					// Team A Wins the match
@@ -74,7 +75,8 @@ public class Match {
 					}
 				} else {
 					// Team B Wins the game
-					teamBRecord.Win(teamA);
+					teamBRecord.MatchWin(teamA);
+					teamARecord.MatchLoss(teamB);
 					System.out.println(teamB.getTag() + " Win\n");
 				
 					// Team B Wins the match

@@ -135,8 +135,8 @@ public class Group {
 						Team winner = M.getWinner();
 						Team loser = M.getLoser();
 						
-						winner.getRecord().Win(loser);
-						loser.getRecord().Lose(winner);
+						winner.getRecord().MatchWin(loser);
+						loser.getRecord().MatchLoss(winner);
 					}	
 				}
 			}
@@ -249,14 +249,14 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
+	            	&& entry.getValue().hasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().hasBeaten(entry.getKey())
 	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
+	            	&& entry.getValue().hasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().hasBeaten(entry.getKey())
             		&& entry.getValue().getTimesBeat(topRecord.getKey()) == topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		
 	            		Set<Entry<Team, Integer>> eTeamsBeaten = entry.getValue().getTimesBeatTeamMap().entrySet();
@@ -315,14 +315,14 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
+	            	&& entry.getValue().hasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().hasBeaten(entry.getKey())
 	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-        			&& entry.getValue().getHasBeaten(topRecord.getKey())
-        			&& topRecord.getValue().getHasBeaten(entry.getKey())
+        			&& entry.getValue().hasBeaten(topRecord.getKey())
+        			&& topRecord.getValue().hasBeaten(entry.getKey())
             		&& entry.getValue().getTimesBeat(topRecord.getKey()) == topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		
 	            		Set<Entry<Team, Integer>> eTeamsBeaten = entry.getValue().getTimesBeatTeamMap().entrySet();

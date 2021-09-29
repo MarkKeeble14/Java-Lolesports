@@ -18,4 +18,9 @@ public class WinLossCounter {
 	public void Lose() {
 		losses++;
 	}
+	
+	@Override
+	public String toString() {
+		return "WinLossCounter [wins=" + wins + ", losses=" + losses + "]";
+	}
 }

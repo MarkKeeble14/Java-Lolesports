@@ -9,92 +9,104 @@ import java.util.Set;
 public class Record implements Comparable<Record> {
 	private String label;
 	
-	private int wins = 0;
-	private int losses = 0;
-	
-	private Map<Team, Integer> timesBeatTeamMap = new HashMap<Team, Integer>();
-	private Map<Team, Integer> timesLostToTeamMap = new HashMap<Team, Integer>();
-	
-	private Map<Team, Integer> timesBeatInTiebreaker = new HashMap<Team, Integer>();
-	private Map<Team, Integer> timesLostToInTiebreaker = new HashMap<Team, Integer>();
+	private Map<Team, WinLossCounter> matches = new HashMap<Team, WinLossCounter>();
+	private Map<Team, WinLossCounter> tiebreakers = new HashMap<Team, WinLossCounter>();
 	
 	public Record(String label) {
 		super();
 		this.label = label;
 	}
 
-	public Record Win(Team teamBeat) {
-		wins++;
-		if (timesBeatTeamMap.containsKey(teamBeat)) {
-			timesBeatTeamMap.put(teamBeat, timesBeatTeamMap.get(teamBeat) + 1);			
-		} else {			
-			timesBeatTeamMap.put(teamBeat, 1);
+	public Record Loss(Map<Team, WinLossCounter> map, Team teamLostTo) {
+		if (map.containsKey(teamLostTo)) {
+			map.get(teamLostTo).Lose();
+		} else {
+			WinLossCounter counter = new WinLossCounter();
+			counter.Lose();
+			map.put(teamLostTo, counter);
 		}
 		return this;
 	}
 	
-	public Record Lose(Team teamLostTo) {
-		losses++;
-		if (timesLostToTeamMap.containsKey(teamLostTo)) {
-			timesLostToTeamMap.put(teamLostTo, timesLostToTeamMap.get(teamLostTo) + 1);			
-		} else {			
-			timesLostToTeamMap.put(teamLostTo, 1);
+	public Record Win(Map<Team, WinLossCounter> map, Team teamLostTo) {
+		if (map.containsKey(teamLostTo)) {
+			map.get(teamLostTo).Win();
+		} else {
+			WinLossCounter counter = new WinLossCounter();
+			counter.Win();
+			map.put(teamLostTo, counter);
 		}
 		return this;
 	}
+	
+	public Record MatchWin(Team teamBeat) {
+		return Win(matches, teamBeat);
+	}
+	
+	public Record MatchLoss(Team teamLostTo) {
+		return Loss(matches, teamLostTo);
+	}
+	
 	
 	public Record TiebreakerWin(Team teamBeat) {
-		wins++;
-		if (timesBeatInTiebreaker.containsKey(teamBeat)) {
-			timesBeatInTiebreaker.put(teamBeat, timesBeatInTiebreaker.get(teamBeat) + 1);			
-		} else {			
-			timesBeatInTiebreaker.put(teamBeat, 1);
-		}
-		return this;
+		return Win(tiebreakers, teamBeat);
 	}
 	
 	public Record TiebreakerLoss(Team teamLostTo) {
-		losses++;
-		if (timesLostToInTiebreaker.containsKey(teamLostTo)) {
-			timesLostToInTiebreaker.put(teamLostTo, timesLostToInTiebreaker.get(teamLostTo) + 1);			
-		} else {			
-			timesLostToInTiebreaker.put(teamLostTo, 1);
+		return Loss(tiebreakers, teamLostTo);
+	}
+	
+	public boolean hasBeaten(Team team) {
+		if (matches.containsKey(team)) {
+			return matches.get(team).getWins() > 0;
+		} else {
+			return false;
 		}
-		return this;
 	}
 	
 	public boolean hasBeatenInTiebreaker(Team team) {
-		return timesBeatInTiebreaker.containsKey(team);
+		if (tiebreakers.containsKey(team)) {
+			return tiebreakers.get(team).getWins() > 0;
+		} else {
+			return false;
+		}
 	}
 	
-	public Record Win() {
-		wins++;
-		return this;
-	}
-	
-	public Record Lose() {
-		losses++;
-		return this;
+	public int getTimesBeat(Team team) {
+		if (matches.containsKey(team)) {
+			return matches.get(team).getWins();
+		}
+		return 0;
 	}
 
 	public int getWins() {
-		return wins;
+		int i = 0; 
+		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
+			i += entry.getValue().getWins();
+		}
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			i += entry.getValue().getWins();
+		}
+		return i;
 	}
 
 	public int getLosses() {
-		return losses;
-	}
-	
-	public boolean getHasBeaten(Team t) {
-		return timesBeatTeamMap.containsKey(t);
-	}
-	
-	public int getTimesBeat(Team t) {
-		return timesBeatTeamMap.get(t);
+		int i = 0; 
+		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
+			i += entry.getValue().getLosses();
+		}
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			i += entry.getValue().getLosses();
+		}
+		return i;
 	}
 
-	public Map<Team, Integer> getTimesBeatTeamMap() {
-		return timesBeatTeamMap;
+	public Map<Team, WinLossCounter> getMatches() {
+		return matches;
+	}
+
+	public Map<Team, WinLossCounter> getTiebreakers() {
+		return tiebreakers;
 	}
 
 	@Override
@@ -108,10 +120,10 @@ public class Record implements Comparable<Record> {
 		}
 	}
 
-	private String StringifyMap(Map<Team, Integer> map) {
+	private <K, V> String StringifyMap(Map<K, V> map) {
 		String s = "";
-		Set<Entry<Team, Integer>> set = map.entrySet();
-		for (Entry<Team, Integer> entry : set) {
+		Set<Entry<K, V>> set = map.entrySet();
+		for (Entry<K, V> entry : set) {
 			s += entry.getKey() + ": " + entry.getValue() + "\n";
 		}
 		return s;
@@ -119,19 +131,28 @@ public class Record implements Comparable<Record> {
 	
 	@Override
 	public String toString() {
-		return "Record [label=" + label + ", wins=" + wins + ", losses=" + losses + "]";
+		return "Record [label=" + label + ", wins=" + getWins() + ", losses=" + getLosses() + "]";
 	}
 
 	public String detailedPrint() {
 		String tiebreakerData = "";
-		if (timesBeatInTiebreaker.size() > 0 || timesLostToInTiebreaker.size() > 0) {
-			tiebreakerData = "\nTimesBeatInTiebreaker:\n"+ StringifyMap(timesBeatInTiebreaker) +
-					"\nTimesLostToInTiebreaker:\n"+ StringifyMap(timesLostToInTiebreaker);
+		if (tiebreakers.size() > 0) {
+			tiebreakerData = "\nTiebreakers:\n"+ StringifyMap(tiebreakers);
 		}
-		return "\nCore Data [label=" + label + ", wins=" + wins + ", losses=" + losses + "]\n" +
-				"\nTimesBeatTeamMap:\n" + StringifyMap(timesBeatTeamMap) + 
-				"\nTimesLostToTeamMap:\n" + StringifyMap(timesLostToTeamMap) + 
+		return "\nCore Data [label=" + label + ", wins=" + getWins() + ", losses=" + getLosses() + "]\n" +
+				"\nTimesBeatTeamMap:\n" + StringifyMap(matches) + 
 				tiebreakerData +
 				"\n------------------------------------------------";
+	}
+
+	public Map<Team, Integer> getTimesBeatTeamMap() {
+		Map<Team, Integer> map = new HashMap<Team, Integer>();
+		Set<Entry<Team, WinLossCounter>> set = matches.entrySet();
+		for (Entry<Team, WinLossCounter> entry : set) {
+			if (entry.getValue().getWins() > 0) {
+				map.put(entry.getKey(), entry.getValue().getWins());
+			}
+		}
+		return map;
 	}
 }
