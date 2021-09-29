@@ -112,11 +112,11 @@ public class Group {
 		standings = MapUtil.sortByIntegerValue(standings);
 	}
 	
-	public void FullSimulate(int matchesPerTwo, boolean simulateTiebreakers) throws Exception {
+	public void FullSimulate(String stageLabel, int matchesPerTwo, boolean simulateTiebreakers) throws Exception {
 		// Make a copy of the initial Group
 		Group copy = new Group("Copy", this.getCapacity());
 		for (Team t : teams) {
-			t.setRecord(new Record());
+			t.setNewRecord(stageLabel);
 			copy.Add(t);
 		}
 		
@@ -130,13 +130,13 @@ public class Group {
 						Match M = new Match("M", t, c);
 						
 						// Assuming groups are BO1
-						M.Simulate(1);
+						M.Simulate(stageLabel, 1);
 						
 						Team winner = M.getWinner();
-						winner.getRecord().Win();
-						
 						Team loser = M.getLoser();
-						loser.getRecord().Lose();
+						
+						winner.getRecord().Win(loser);
+						loser.getRecord().Lose(winner);
 					}	
 				}
 			}
@@ -145,14 +145,14 @@ public class Group {
 		
 		// Tiebreakers
 		if (simulateTiebreakers) {
-			SimulateTiebreakers();
+			SimulateTiebreakers(stageLabel);
 		}
 		
 		// Sort into standings
 		SortMainStandings();
 	}
 	
-	private void SimulateTiebreakers() {
+	private void SimulateTiebreakers(String stageLabel) {
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
 			teamRecords.put(t, t.getRecord());
@@ -208,13 +208,13 @@ public class Group {
 					Match M = new Match("M", teamA, teamB);
 					
 					// Assuming groups are BO1
-					M.Simulate(1);
+					M.Simulate(stageLabel + ": Tiebreakers", 1);
 					
 					Team winner = M.getWinner();
 					Team loser = M.getLoser();
 					
 					winner.getRecord().TiebreakerWin(loser);
-					loser.getRecord().Lose(winner);
+					loser.getRecord().TiebreakerLoss(winner);
 					
 					prevTeam = winner;
 				}
@@ -249,25 +249,30 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().getHasBeaten(topRecord.getKey())	
+	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
 	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-        			&& entry.getValue().getHasBeaten(topRecord.getKey())
-        			&& topRecord.getValue().getHasBeaten(entry.getKey())
+	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
             		&& entry.getValue().getTimesBeat(topRecord.getKey()) == topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		
 	            		Set<Entry<Team, Integer>> eTeamsBeaten = entry.getValue().getTimesBeatTeamMap().entrySet();
 	            		int eWinsOfBeatenTeams = 0;
 	            		for (Entry<Team, Integer> ee : eTeamsBeaten) {
-	            			eWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
+	            			if (teamRecords.get(ee.getKey()) != null) {
+		            			eWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();	
+	            			}
 	            		}
 	            		
 	            		Set<Entry<Team, Integer>> trTeamsBeaten = topRecord.getValue().getTimesBeatTeamMap().entrySet();
 	            		int trWinsOfBeatenTeams = 0;
 	            		for (Entry<Team, Integer> ee : trTeamsBeaten) {
-	            			trWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
+	            			if (teamRecords.get(ee.getKey()) != null) {
+		            			trWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
+	            			}
 	            		}
 	            		
 	            		if (eWinsOfBeatenTeams > trWinsOfBeatenTeams) {
@@ -310,7 +315,8 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
 	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().getHasBeaten(topRecord.getKey())	
+	            	&& entry.getValue().getHasBeaten(topRecord.getKey())
+	            	&& topRecord.getValue().getHasBeaten(entry.getKey())
 	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
 	            		topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 

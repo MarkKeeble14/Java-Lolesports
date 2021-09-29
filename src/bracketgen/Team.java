@@ -1,11 +1,16 @@
 package bracketgen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Team implements Comparable<Team> {
 	private String tag;
 	private Region region;
 	private double rating;
-	private Record record = new Record();
-
+	
+	private List<Record> records = new ArrayList<Record>();
+	private int currentRecordIndex = -1;
+	
 	/**
 	* Constructor
 	* @param tag The teams tag, i.e., Cloud9 has C9, FNATIC has FNC, etc
@@ -41,18 +46,44 @@ public class Team implements Comparable<Team> {
 	public Region getRegion() {
 		return region;
 	}
-
-	public Record getRecord() {
-		return record;
+	
+	public int getCurrentRecordIndex() {
+		return currentRecordIndex;
 	}
 
-	public void setRecord(Record record) {
-		this.record = record;
+	public void setCurrentRecordIndex(int currentRecordIndex) {
+		this.currentRecordIndex = currentRecordIndex;
+	}
+	
+	public void bumpCurrentRecordIndex() {
+		currentRecordIndex++;
+	}
+
+	public Record getRecord() {
+		return records.get(currentRecordIndex);
+	}
+
+	public void setNewRecord(String label) {
+		currentRecordIndex++;
+		records.add(new Record(label));
 	}
 
 	@Override
 	public String toString() {
 		return "Team [tag=" + tag + ", region=" + region + ", rating=" + rating + "]";
+	}
+	
+	public String recordLog() {
+		String s = "";
+		for (int i = 0; i < records.size(); i++) {
+			Record r = records.get(i);
+			if (i == records.size() - 1) {
+				s += r.detailedPrint();					
+			} else {
+				s += r.detailedPrint() + "\n";				
+			}
+		}
+		return s;
 	}
 
 	@Override

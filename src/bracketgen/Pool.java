@@ -72,7 +72,6 @@ public class Pool {
 	*  @param p The pool of teams to draw from
 	*  @param A list of teams already attempted to be drawn; pass in an empty ArrayList<Team> if you are calling the method from outside itself
 	*  @param groups A list of the groups
-	 * @throws ImpossibleDrawException 
 	 * @throws Exception 
 	*/
 	public Team DrawWithSameRegionRule(Group startingGroup, ArrayList<Group> groups, int sizeThisDraw, ArrayList<Team> attempted) throws ImpossibleDrawException {
@@ -132,7 +131,7 @@ public class Pool {
 		teams.remove(t);
 		return t;	
 	}
-	
+
 	/**
 	* Used for knockout stage
 	* Ensures that the match is not populated with two teams from the same group

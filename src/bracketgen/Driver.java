@@ -49,6 +49,17 @@ public class Driver {
 	// LJL
 	public static Team DFM = new Team("DFM", Region.JP, 2.425);
 	
+	// Stages
+	public static String PIGS = "Play-ins Group Stage";
+	public static String PIKS = "Play-ins Knockout Stage";
+	public static String MSGS = "Main Stage Group Stage";
+	public static String MSKS = "Main Stage Knockout Stage";
+	
+	// Variables / Tuning
+	// Higher means rating matters more, i.e, Upsets are less likely
+	// A scale of 1 makes most matchups 50/50
+	public static int ELO_SCALING = 75;
+	
 	// Main
 	public static void main(String[] args) throws Exception {
 		FullSimulation();
@@ -97,9 +108,9 @@ public class Driver {
 		System.out.println("------------------------------------------------");
 		
 		// Play Out Groups
-		PA.FullSimulate(1, true); 
+		PA.FullSimulate(PIGS, 1, true); 
 	  	PA.PrintResults(); 
-	  	PB.FullSimulate(1, true);
+	  	PB.FullSimulate(PIGS, 1, true);
 	  	PB.PrintResults();
 	  	
 	  	// Summary of Play-ins groups
@@ -176,13 +187,13 @@ public class Driver {
 		System.out.println("\nSimulating Main Group Stage");
 		
 		// Play out games
-		A.FullSimulate(2, true); 
+		A.FullSimulate(MSGS, 2, true); 
 		A.PrintResults();
-		B.FullSimulate(2, true); 
+		B.FullSimulate(MSGS, 2, true); 
 		B.PrintResults();
-		C.FullSimulate(2, true); 
+		C.FullSimulate(MSGS, 2, true); 
 		C.PrintResults();
-		D.FullSimulate(2, true); 
+		D.FullSimulate(MSGS, 2, true); 
 		D.PrintResults();
 		
 		// Summary of Main Groups
@@ -207,9 +218,9 @@ public class Driver {
 		Group PA = new Group("A (Play-ins)", 5, LNG, HLE, INF, PCE, RED);
 		Group PB = new Group("B (Play-ins)", 5, C9, BYG, UOL, GS, DFM);
 		
-		PA.FullSimulate(2, true);
+		PA.FullSimulate(PIGS, 2, true);
 		PA.PrintResults();
-		PB.FullSimulate(2, true);
+		PB.FullSimulate(PIGS, 2, true);
 		PB.PrintResults();
 		
 		// Play-ins Knockout Stage
@@ -235,13 +246,13 @@ public class Driver {
 		D.Add(qualifiedThroughPlayins.DrawWithSameRegionRule(new ArrayList<Team>(), D, groups, 4));
 		*/
 		
-		A.FullSimulate(2, true); 
+		A.FullSimulate(MSGS, 2, true); 
 		A.PrintResults();
-		B.FullSimulate(2, true); 
+		B.FullSimulate(MSGS, 2, true); 
 		B.PrintResults();
-		C.FullSimulate(2, true); 
+		C.FullSimulate(MSGS, 2, true); 
 		C.PrintResults();
-		D.FullSimulate(2, true); 
+		D.FullSimulate(MSGS, 2, true); 
 		D.PrintResults();
 		
 		// Main Knockout Stage
@@ -256,13 +267,13 @@ public class Driver {
 		Team t4 = B.GetTeamFromPlacement(4);
 		Match M1 = new Match("M1", t1, t3);
 		Match M2 = new Match("M2", t2, t4);
-		M1.Simulate(5);
-		M2.Simulate(5);
+		M1.Simulate(PIKS, 5);
+		M2.Simulate(PIKS, 5);
 		
 		Match M3 = new Match("M3", B.GetTeamFromPlacement(2), M1.getWinner());
 		Match M4 = new Match("M4", A.GetTeamFromPlacement(2), M2.getWinner());
-		M3.Simulate(5);
-		M4.Simulate(5);
+		M3.Simulate(PIKS, 5);
+		M4.Simulate(PIKS, 5);
 		
 		Team[] qualified = new Team[] { A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), M3.getWinner(), M4.getWinner() };
 		return qualified;
@@ -293,22 +304,27 @@ public class Driver {
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
 				
-		M1.Simulate(5);
-		M2.Simulate(5);
-		M3.Simulate(5);
-		M4.Simulate(5);
+		M1.Simulate(MSKS, 5);
+		M2.Simulate(MSKS, 5);
+		M3.Simulate(MSKS, 5);
+		M4.Simulate(MSKS, 5);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
-		M5.Simulate(5);
-		M6.Simulate(5);
+		M5.Simulate(MSKS, 5);
+		M6.Simulate(MSKS, 5);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
-		M7.Simulate(5);
-		System.out.println("\n" + M7.getWinner() + " has Won the World Championship");
+		M7.Simulate(MSKS, 5);
+		
+		Team winner = M7.getWinner();
+		System.out.println("\n" + winner + " Records: " + winner.recordLog());
+		System.out.println("\n" + winner + " has Won the World Championship");
+		
+		// Eventually can print out some stats
 	}
 	
 	public static void SimulateCurrentPlusSecondThirdMatchesKO(Group A, Group B, Group C, Group D) throws Exception {
@@ -340,10 +356,10 @@ public class Driver {
 		M2.setTeamB(poolThree.DrawWithSameSideRule(M2, M1, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M3.setTeamB(poolThree.DrawWithSameSideRule(M3, M4, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M4.setTeamB(poolThree.DrawWithSameSideRule(M4, M3, poolThree, new ArrayList<Team>(), upperMatchups, groups));
-		M1.Simulate(3);
-		M2.Simulate(3);
-		M3.Simulate(3);
-		M4.Simulate(3);
+		M1.Simulate(MSKS, 3);
+		M2.Simulate(MSKS, 3);
+		M3.Simulate(MSKS, 3);
+		M4.Simulate(MSKS, 3);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -353,21 +369,21 @@ public class Driver {
 		M6.setTeamA(poolOne.DrawWithSameMatchRule(M6, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M7.setTeamA(poolOne.DrawWithSameMatchRule(M7, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M8.setTeamA(poolOne.DrawWithSameMatchRule(M8, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
-		M5.Simulate(5);
-		M6.Simulate(5);
-		M7.Simulate(5);
-		M8.Simulate(5);
+		M5.Simulate(MSKS, 5);
+		M6.Simulate(MSKS, 5);
+		M7.Simulate(MSKS, 5);
+		M8.Simulate(MSKS, 5);
 		
 		M9.setTeamA(M5.getWinner());
 		M9.setTeamB(M6.getWinner());
 		M10.setTeamA(M7.getWinner());
 		M10.setTeamB(M8.getWinner());
-		M9.Simulate(5);
-		M10.Simulate(5);
+		M9.Simulate(MSKS, 5);
+		M10.Simulate(MSKS, 5);
 		
 		M11.setTeamA(M9.getWinner());
 		M11.setTeamB(M10.getWinner());
-		M11.Simulate(5);
+		M11.Simulate(MSKS, 5);
 		System.out.println("\n" + M11.getWinner() + " has Won the World Championship");
 	}
 	
@@ -408,10 +424,10 @@ public class Driver {
 		M2.setTeamB(poolThree.DrawWithSameSideRule(M2, M1, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M3.setTeamB(poolThree.DrawWithSameSideRule(M3, M4, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M4.setTeamB(poolThree.DrawWithSameSideRule(M4, M3, poolThree, new ArrayList<Team>(), upperMatchups, groups));
-		M1.Simulate(3);
-		M2.Simulate(3);
-		M3.Simulate(3);
-		M4.Simulate(3);
+		M1.Simulate(MSKS, 3);
+		M2.Simulate(MSKS, 3);
+		M3.Simulate(MSKS, 3);
+		M4.Simulate(MSKS, 3);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -421,10 +437,10 @@ public class Driver {
 		M6.setTeamA(poolOne.DrawWithSameMatchRule(M6, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M7.setTeamA(poolOne.DrawWithSameMatchRule(M7, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M8.setTeamA(poolOne.DrawWithSameMatchRule(M8, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
-		M5.Simulate(5);
-		M6.Simulate(5);
-		M7.Simulate(5);
-		M8.Simulate(5);
+		M5.Simulate(MSKS, 5);
+		M6.Simulate(MSKS, 5);
+		M7.Simulate(MSKS, 5);
+		M8.Simulate(MSKS, 5);
 		
 		M9.setTeamA(M5.getLoser());
 		M9.setTeamB(M7.getLoser());
@@ -434,10 +450,10 @@ public class Driver {
 		M11.setTeamB(M6.getWinner());
 		M12.setTeamA(M7.getWinner());
 		M12.setTeamB(M8.getWinner());
-		M9.Simulate(5);
-		M10.Simulate(5);
-		M11.Simulate(5);
-		M12.Simulate(5);
+		M9.Simulate(MSKS, 5);
+		M10.Simulate(MSKS, 5);
+		M11.Simulate(MSKS, 5);
+		M12.Simulate(MSKS, 5);
 		
 		M13.setTeamA(M11.getLoser());
 		M13.setTeamB(M9.getWinner());
@@ -445,21 +461,21 @@ public class Driver {
 		M14.setTeamB(M10.getWinner());
 		M15.setTeamA(M11.getWinner());
 		M15.setTeamB(M12.getWinner());
-		M13.Simulate(5);
-		M14.Simulate(5);
-		M15.Simulate(5);
+		M13.Simulate(MSKS, 5);
+		M14.Simulate(MSKS, 5);
+		M15.Simulate(MSKS, 5);
 		
 		M16.setTeamA(M13.getWinner());
 		M16.setTeamB(M14.getWinner());
-		M16.Simulate(5);
+		M16.Simulate(MSKS, 5);
 		
 		M17.setTeamA(M15.getLoser());
 		M17.setTeamB(M16.getWinner());
-		M17.Simulate(5);
+		M17.Simulate(MSKS, 5);
 		
 		M18.setTeamA(M15.getWinner());
 		M18.setTeamB(M17.getWinner());
-		M18.Simulate(5);
+		M18.Simulate(MSKS, 5);
 		
 		System.out.println("\n" + M18.getWinner() + " has Won the World Championship");
 	}

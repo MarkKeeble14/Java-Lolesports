@@ -33,7 +33,7 @@ public class Match {
 	}
 
 	// Simulates the match playing out, the team with the higher rating wins
-	public void Simulate(int bestOf) {
+	public void Simulate(String stageLabel, int bestOf) {
 		int scale = 100;
 		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * scale;
 		double oddsTeamBWins = CalculateChance(teamB.getRating(), teamA.getRating()) * scale;
@@ -41,14 +41,20 @@ public class Match {
 		System.out.println("\nMatch Between: " + teamA + ", and: " + teamB);
 		System.out.println(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins);
 		
+		// Best of is equal to the number of games to play
 		if (bestOf > 1) {
 			System.out.println("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n");
 			
-			Record teamARecord = new Record();
-			Record teamBRecord = new Record();
+			// Set Variables
+			teamA.setNewRecord(stageLabel);
+			Record teamARecord = teamA.getRecord();
+			
+			teamB.setNewRecord(stageLabel);
+			Record teamBRecord = teamB.getRecord();
 			
 			int goal = (int) Math.ceil((double) bestOf / 2);
 			
+			// Simulate the games
 			for (int i = 1; i < bestOf + 1; i++) {
 				System.out.println("Game #" + i);
 				double random = rand.nextDouble() * scale;
@@ -128,8 +134,12 @@ public class Match {
 	// Calculates the chance of a team with rating RA beating a team with rating RB
 	private double CalculateChance(double RA, double RB) {
 		// Scale is used to bump up the ratings to a larger number so that the ELO formula would work better
-		// It essentially just exaggerates the odds/makes an actual discernable difference between teams with conventionally small elo ratings
-		int scale = 200;
+		// It essentially just exaggerates the odds/makes an actual discernable difference between teams 
+		// with conventionally small elo ratings
+		
+		// Higher means rating matters more
+		// A scale of 1 makes most matchups 50/50
+		int scale = Driver.ELO_SCALING;
 		RA = RA * scale;
 		RB = RB * scale;
 		
