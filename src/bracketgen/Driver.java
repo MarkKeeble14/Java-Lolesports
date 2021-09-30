@@ -73,14 +73,12 @@ public class Driver {
 		
 		// Play Out Groups
 		PA.FullSimulate(PIGS, 1, true); 
-	  	PA.PrintResults(); 
 	  	PB.FullSimulate(PIGS, 1, true);
-	  	PB.PrintResults();
 	  	
 	  	// Summary of Play-ins groups
 		System.out.println("\nSummary of Play-ins Group Stage");
-		PA.PrintResults();
-		PB.PrintResults();
+		PA.PrintStandings();
+		PB.PrintStandings();
 		
 		// Simulate Play-ins Knockout Stage
 		System.out.println("\nSimulating Play-ins Knockout Stage");
@@ -155,20 +153,16 @@ public class Driver {
 		
 		// Play out games
 		A.FullSimulate(MSGS, 2, true); 
-		A.PrintResults();
 		B.FullSimulate(MSGS, 2, true); 
-		B.PrintResults();
 		C.FullSimulate(MSGS, 2, true); 
-		C.PrintResults();
 		D.FullSimulate(MSGS, 2, true); 
-		D.PrintResults();
 		
 		// Summary of Main Groups
 		System.out.println("\nSummary of Main Group Stage");
-		A.PrintResults();
-		B.PrintResults();
-		C.PrintResults();
-		D.PrintResults();
+		A.PrintStandings();
+		B.PrintStandings();
+		C.PrintStandings();
+		D.PrintStandings();
 		
 		// Simulate Main Knockout Stage
 		System.out.println("\nSimulating Main Knockout Stage");
@@ -186,9 +180,7 @@ public class Driver {
 		Group PB = new Group("B (Play-ins)", 5, Teams.C9, Teams.BYG, Teams.UOL, Teams.GS, Teams.DFM);
 		
 		PA.FullSimulate(PIGS, 1, true);
-		PA.PrintResults();
 		PB.FullSimulate(PIGS, 1, true);
-		PB.PrintResults();
 		
 		// Play-ins Knockout Stage
 		System.out.println("\nSimulating Play-ins Knockout Stage");
@@ -206,22 +198,16 @@ public class Driver {
 		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(PI));
 		
 		// Draw Play-ins teams into groups
-		
-		/*
-		A.Add(PI.DrawWithSameRegionRule(A, groups, 4, new ArrayList<Team>()));
-		B.Add(PI.DrawWithSameRegionRule(B, groups, 4, new ArrayList<Team>()));
-		C.Add(PI.DrawWithSameRegionRule(C, groups, 4, new ArrayList<Team>()));
-		D.Add(PI.DrawWithSameRegionRule(D, groups, 4, new ArrayList<Team>()));
-		*/
+		A.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		B.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
+		C.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
+		D.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
+		pools.remove(0);
 		
 		A.FullSimulate(MSGS, 2, true); 
-		A.PrintResults();
 		B.FullSimulate(MSGS, 2, true); 
-		B.PrintResults();
 		C.FullSimulate(MSGS, 2, true); 
-		C.PrintResults();
 		D.FullSimulate(MSGS, 2, true); 
-		D.PrintResults();
 		
 		// Main Knockout Stage
 		System.out.println("Simulating Main Knockout Stage");

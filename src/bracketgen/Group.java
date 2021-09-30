@@ -120,6 +120,8 @@ public class Group {
 			copy.Add(t);
 		}
 		
+		System.out.println("\nGroup: " + label);
+		
 		// Simulate the actual games
 		while(copy.getSize() > 0) {
 			Team t = copy.getGroup().get(0);
@@ -144,15 +146,67 @@ public class Group {
 		}
 		
 		// Tiebreakers
-		if (simulateTiebreakers) {
+		if (simulateTiebreakers && tiebreakersRequired()) {
 			SimulateTiebreakers(stageLabel);
 		}
 		
+		System.out.println("\nGroup Standings");
+		
 		// Sort into standings
-		SortMainStandings();
+		SortStandingsPostTiebreakers();
+		
+		PrintStandings();
+	}
+	
+	private boolean tiebreakersRequired() {
+		// Create a Map consisting of teams sorted into groups based on their records
+		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
+		for (Team t : teams) {
+			teamRecords.put(t, t.getRecord());
+		}
+		
+		Map<Record, List<Team>> teamsByRecordMap = new HashMap<Record, List<Team>>();
+		Set<Entry<Team, Record>> set = teamRecords.entrySet();
+		for (Entry<Team, Record> entry : set) {
+			Set<Entry<Record, List<Team>>> alreadyAddedSet = teamsByRecordMap.entrySet();
+			if (alreadyAddedSet.size() == 0) {
+				List<Team> lst = new ArrayList<Team>();
+				lst.add(entry.getKey());
+				teamsByRecordMap.put(entry.getValue(), lst);
+			} else {
+				int i = 0;
+				for (Entry<Record, List<Team>> entry2 : alreadyAddedSet) {
+					i++;
+					
+					if (entry.getValue().getWins() == entry2.getKey().getWins()
+							&& entry.getValue().getLosses() == entry2.getKey().getLosses()) {
+						List<Team> lst = teamsByRecordMap.get(entry2.getKey());
+						lst.add(entry.getKey());
+						teamsByRecordMap.put(entry2.getKey(), lst);
+						
+						break;
+					} else if (i == alreadyAddedSet.size()) {
+						List<Team> lst = new ArrayList<Team>();
+						lst.add(entry.getKey());
+						teamsByRecordMap.put(entry.getValue(), lst);
+					}
+				}
+			}
+		}
+		
+		for (Entry<Record, List<Team>> entry : teamsByRecordMap.entrySet()) {
+			if (entry.getValue().size() > 1) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private void SimulateTiebreakers(String stageLabel) {
+		System.out.println("\nPre-Tiebreakers");
+		SortStandingsPreTiebreakers();
+		PrintStandings();
+		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
 			teamRecords.put(t, t.getRecord());
@@ -194,7 +248,7 @@ public class Group {
 			List<Team> lst = entry.getValue();
 			if (lst.size() > 1) {
 				// Sorts based on criteria you can see within the function
-				lst = SortStandings(entry.getValue());
+				lst = SortSameRecords(entry.getValue());
 				
 				Team prevTeam = lst.get(0);
 				for (int i = 0; i < lst.size() - 1; i++) {
@@ -221,8 +275,8 @@ public class Group {
 			}
 		}
 	}
-	
-	private List<Team> SortStandings(List<Team> teamsToSort) {
+		
+	private List<Team> SortSameRecords(List<Team> teamsToSort) {
 		Map<Team, Integer> tmpStandings = new HashMap<Team, Integer>();
 		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
@@ -235,53 +289,29 @@ public class Group {
 		while (tmpStandings.size() < teamRecords.size()) {
 			Map.Entry<Team, Record> topRecord = null;
 			for (Entry<Team, Record> entry : set) {
-				if (tmpStandings.containsKey(entry.getKey())) {
+				// Set Variables
+				Team eTeam = entry.getKey();
+				Record eRecord = entry.getValue();
+				
+				if (tmpStandings.containsKey(eTeam)) {
 					continue;
 				}
-	            if (topRecord == null) {
+				
+				if (topRecord == null) {
 	            	topRecord = entry;
-	            } else if (entry.getValue().hasBeatenInTiebreaker(topRecord.getKey())) {
+	            	continue;
+	            } 
+				
+				Team trTeam = topRecord.getKey();
+				Record trRecord = topRecord.getValue();
+				
+				// Sorting
+				if (eRecord.getWins() > trRecord.getWins()) {
 	            	topRecord = entry;
-	            }  else if (entry.getValue().hasBeatenTeamWhichHasBeatenTeamInTiebreaker(topRecord.getKey())) {
-	            	topRecord = entry;
-	            }  else if (entry.getValue().getWins() > topRecord.getValue().getWins()) {
-	            	topRecord = entry;
-	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins()
-	            		&& entry.getValue().getLosses() < topRecord.getValue().getLosses()) {
-	            	topRecord = entry;
-	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
-	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().hasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().hasBeaten(entry.getKey())
-	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
-	            		topRecord = entry;
-	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
-	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().hasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().hasBeaten(entry.getKey())
-            		&& entry.getValue().getTimesBeat(topRecord.getKey()) == topRecord.getValue().getTimesBeat(entry.getKey())) {
-	            		
-	            		Set<Entry<Team, Integer>> eTeamsBeaten = entry.getValue().getTimesBeatTeamMap().entrySet();
-	            		int eWinsOfBeatenTeams = 0;
-	            		for (Entry<Team, Integer> ee : eTeamsBeaten) {
-	            			if (teamRecords.get(ee.getKey()) != null) {
-		            			eWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();	
-	            			}
-	            		}
-	            		
-	            		Set<Entry<Team, Integer>> trTeamsBeaten = topRecord.getValue().getTimesBeatTeamMap().entrySet();
-	            		int trWinsOfBeatenTeams = 0;
-	            		for (Entry<Team, Integer> ee : trTeamsBeaten) {
-	            			if (teamRecords.get(ee.getKey()) != null) {
-		            			trWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
-	            			}
-	            		}
-	            		
-	            		if (eWinsOfBeatenTeams > trWinsOfBeatenTeams) {
-	            			topRecord = entry;
-	            		} else if (eWinsOfBeatenTeams == trWinsOfBeatenTeams) {
-	            			// Sucks to suck
-	            		}
+	            } else if (eRecord.getWinsOfTeamsBeat() == trRecord.getWinsOfTeamsBeat()) {
+	            	if (eRecord.getWinsOfTeamsBeat() < trRecord.getWinsOfTeamsBeat()) {
+		            	topRecord = entry;
+		            }
 	            }
 	        }
 			tmpStandings.put(topRecord.getKey(), ++place);
@@ -289,13 +319,14 @@ public class Group {
 		tmpStandings = MapUtil.sortByIntegerValue(tmpStandings);
 		List<Team> sortedList = new ArrayList<Team>();
 		for (Entry<Team, Record> entry : set) {
-			sortedList.add(entry.getKey());
+			sortedList.add(0, entry.getKey());
 		}
 		return sortedList;
 	}
 	
-	
-	private void SortMainStandings() {
+	private void SortStandingsPreTiebreakers() {
+		standings = new HashMap<Team, Integer>();
+		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
 			teamRecords.put(t, t.getRecord());
@@ -306,46 +337,87 @@ public class Group {
 		while (standings.size() < teamRecords.size()) {
 			Map.Entry<Team, Record> topRecord = null;
 			for (Entry<Team, Record> entry : set) {
-				if (standings.containsKey(entry.getKey())) {
+				// Set Variables
+				Team eTeam = entry.getKey();
+				Record eRecord = entry.getValue();
+				
+				if (standings.containsKey(eTeam)) {
 					continue;
 				}
-	            if (topRecord == null) {
+				
+				if (topRecord == null) {
 	            	topRecord = entry;
-	            } else if (entry.getValue().hasBeatenInTiebreaker(topRecord.getKey())) {
+	            	continue;
+	            } 
+				
+				Team trTeam = topRecord.getKey();
+				Record trRecord = topRecord.getValue();
+				
+				// Sorting
+            	if (eRecord.getWins() > trRecord.getWins()) {
 	            	topRecord = entry;
-	            }  else if (entry.getValue().hasBeatenTeamWhichHasBeatenTeamInTiebreaker(topRecord.getKey())) {
+	            } else if (eRecord.getWinsOfTeamsBeat() == trRecord.getWinsOfTeamsBeat()) {
+	            	if (eRecord.getWinsOfTeamsBeat() < trRecord.getWinsOfTeamsBeat()) {
+		            	topRecord = entry;
+		            }
+	            }
+	        }
+			standings.put(topRecord.getKey(), ++place);
+		}
+		standings = MapUtil.sortByIntegerValue(standings);
+	}
+	
+	private void SortStandingsPostTiebreakers() {
+		standings = new HashMap<Team, Integer>();
+		
+		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
+		for (Team t : teams) {
+			teamRecords.put(t, t.getRecord());
+		}
+		
+		int place = 0;
+		Set<Entry<Team, Record>> set = teamRecords.entrySet();
+		while (standings.size() < teamRecords.size()) {
+			Map.Entry<Team, Record> topRecord = null;
+			for (Entry<Team, Record> entry : set) {
+				// Set Variables
+				Team eTeam = entry.getKey();
+				Record eRecord = entry.getValue();
+				
+				if (standings.containsKey(eTeam)) {
+					continue;
+				}
+				
+				if (topRecord == null) {
 	            	topRecord = entry;
-	            } else if (entry.getValue().getWins() > topRecord.getValue().getWins()) {
-	            	topRecord = entry;
-	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
-	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-	            	&& entry.getValue().hasBeaten(topRecord.getKey())
-	            	&& topRecord.getValue().hasBeaten(entry.getKey())
-	            	&& entry.getValue().getTimesBeat(topRecord.getKey()) > topRecord.getValue().getTimesBeat(entry.getKey())) {
-	            		topRecord = entry;
-	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
-	            	&& entry.getValue().getLosses() == topRecord.getValue().getLosses()
-        			&& entry.getValue().hasBeaten(topRecord.getKey())
-        			&& topRecord.getValue().hasBeaten(entry.getKey())
-            		&& entry.getValue().getTimesBeat(topRecord.getKey()) == topRecord.getValue().getTimesBeat(entry.getKey())) {
-	            		
-	            		Set<Entry<Team, Integer>> eTeamsBeaten = entry.getValue().getTimesBeatTeamMap().entrySet();
-	            		int eWinsOfBeatenTeams = 0;
-	            		for (Entry<Team, Integer> ee : eTeamsBeaten) {
-	            			eWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
+	            	continue;
+	            } 
+				
+				Team trTeam = topRecord.getKey();
+				Record trRecord = topRecord.getValue();
+				
+				// Sorting
+				if (eRecord.getWins() > trRecord.getWins()) {
+					if (eRecord.getNumberOfTiebreakers() <= eRecord.getNumberOfTiebreakers()) {
+            			topRecord = entry;
+            		}
+	            } else if (eRecord.getWins() == trRecord.getWins()) {
+	            	if (trRecord.getNumberOfTiebreakers() == eRecord.getNumberOfTiebreakers()) {
+	            		if (eRecord.getWinsOfTeamsLostToInTiebreakers() > trRecord.getWinsOfTeamsLostToInTiebreakers()) {
+		            		topRecord = entry;
 	            		}
-	            		
-	            		Set<Entry<Team, Integer>> trTeamsBeaten = topRecord.getValue().getTimesBeatTeamMap().entrySet();
-	            		int trWinsOfBeatenTeams = 0;
-	            		for (Entry<Team, Integer> ee : trTeamsBeaten) {
-	            			trWinsOfBeatenTeams += teamRecords.get(ee.getKey()).getWins();
-	            		}
-	            		
-	            		if (eWinsOfBeatenTeams > trWinsOfBeatenTeams) {
-	            			topRecord = entry;
-	            		} else if (eWinsOfBeatenTeams == trWinsOfBeatenTeams) {
-	            			// Sucks to suck
-	            		}
+	            	} else if (eRecord.getWinsOfTeamsBeat() > trRecord.getWinsOfTeamsBeat()) {
+		            	topRecord = entry;
+		            }  else if (eRecord.getTimesBeat(trTeam) > trRecord.getTimesBeat(eTeam)) {
+		            	topRecord = entry;
+		            }
+	            } else if (eRecord.getWins() < trRecord.getWins()) {
+	            	if (trRecord.getNumberOfTiebreakers() > eRecord.getNumberOfTiebreakers()) {
+		            	if (eRecord.getTiebreakerWinsOfTeamsLostToInTiebreakers() > 
+		            		trRecord.getTiebreakerWinsOfTeamsLostToInTiebreakers() && 
+		            		eRecord.getLosses() >= trRecord.getLosses()) {
+		            	}	
+	            	}
 	            }
 	        }
 			standings.put(topRecord.getKey(), ++place);
@@ -404,10 +476,17 @@ public class Group {
 		return potentialDraws;
 	}
 
-	public void PrintResults() {
+	public void PrintStandings() {
 		System.out.println("\nGroup " + label);
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
 				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
+		System.out.println("\n------------------------------------------------");
+	}
+	
+	public void PrintStandingsWithRecordLogs() {
+		System.out.println("\nGroup " + label);
+		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+				+ k.getRecord().detailedPrint())));
 		System.out.println("\n------------------------------------------------");
 	}
 	

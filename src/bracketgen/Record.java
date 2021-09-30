@@ -72,6 +72,14 @@ public class Record implements Comparable<Record> {
 		}
 	}
 	
+	public boolean hasLostToInTiebreaker(Team team) {
+		if (tiebreakers.containsKey(team)) {
+			return tiebreakers.get(team).getLosses() > 0;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean hasBeatenTeamWhichHasBeatenTeamInTiebreaker(Team team) {
 		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
 			if (entry.getKey().getRecord().hasBeatenInTiebreaker(team)) {
@@ -88,6 +96,56 @@ public class Record implements Comparable<Record> {
 		return 0;
 	}
 
+	public int getNumberOfTiebreakers() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			WinLossCounter counter = entry.getValue();
+			i += counter.getWins() + counter.getLosses();
+		}
+		return i;
+	}
+	
+	public int getNumberOfTiebreakerWins() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			WinLossCounter counter = entry.getValue();
+			if (counter.getWins() > 0) {
+				i += counter.getWins();	
+			}
+		}
+		return i;
+	}
+	
+	public int getTiebreakerWinsOfTeamsLostToInTiebreakers() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			WinLossCounter counter = entry.getValue();
+			if (counter.getLosses() > 0) {
+				i += entry.getKey().getRecord().getNumberOfTiebreakerWins();	
+			}
+		}
+		return i;
+	}
+	
+	public int getWinsOfTeamsLostToInTiebreakers() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			WinLossCounter counter = entry.getValue();
+			if (counter.getLosses() > 0) {
+				i += entry.getKey().getRecord().getWins();	
+			}
+		}
+		return i;
+	}
+	
+	public int getWinsOfTeamsBeat() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
+			i += entry.getKey().getRecord().getWins();
+		}
+		return i;
+	}
+	
 	public int getWins() {
 		int i = 0; 
 		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
