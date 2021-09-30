@@ -404,7 +404,12 @@ public class Group {
             			if (eRecord.hasBeatenInTiebreaker(trTeam)) {
             				topRecord = entry;
             			} else {
-            				if (trRecord.getLosses() > eRecord.getLosses()) {
+            				if (eRecord.getTotalWinsOfTeamsLostToInTiebreakers() 
+            						> trRecord.getTotalWinsOfTeamsLostToInTiebreakers()) {
+            					topRecord = entry;
+            				} else if (trRecord.getLosses() > eRecord.getLosses()) {
+            					topRecord = entry;
+            				} else if (eRecord.getWins() > trRecord.getWins()) {
             					topRecord = entry;
             				}
             			}

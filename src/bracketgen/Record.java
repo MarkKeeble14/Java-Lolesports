@@ -127,12 +127,11 @@ public class Record implements Comparable<Record> {
 		return i;
 	}
 	
-	public int getWinsOfTeamsLostToInTiebreakers() {
+	public int getTotalWinsOfTeamsLostToInTiebreakers() {
 		int i = 0;
 		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
-			WinLossCounter counter = entry.getValue();
-			if (counter.getLosses() > 0) {
-				i += entry.getKey().getRecord().getWins();	
+			if (entry.getValue().getLosses() > 0) {
+				entry.getKey().getRecord().getWins();	
 			}
 		}
 		return i;
