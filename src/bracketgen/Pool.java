@@ -74,62 +74,74 @@ public class Pool {
 	*  @param groups A list of the groups
 	 * @throws Exception 
 	*/
-	public Team DrawWithSameRegionRule(Group startingGroup, ArrayList<Group> groups, int sizeThisDraw, ArrayList<Team> attempted) throws ImpossibleDrawException {
-		// Make a copy of the initial Pool
-		Pool copy = new Pool();
-		for (Team t : teams) {
-			copy.Add(t);
+	public Team DrawWithSameRegionRule(List<Pool> poolsToDrawFrom, int indexOfCurrentPool,
+			List<Group> groupsToDrawInto, int indexOfCurrentGroup,
+			List<Team> attempted) throws Exception {
+		// Loop indexs if needed
+		if (indexOfCurrentPool > poolsToDrawFrom.size() - 1) {
+			indexOfCurrentPool = 0;
 		}
+		if (indexOfCurrentGroup > groupsToDrawInto.size() - 1) {
+			indexOfCurrentGroup = 0;
+		}
+		
+		// Make copies of the pools & groups so we can have something to work with that won't alter
+		// outside the scope of the method
+		List<Pool> copiedPools = new ArrayList<Pool>();
+		for (Pool p : poolsToDrawFrom) {
+			Pool copy = new Pool(p);
+			copiedPools.add(copy);
+		}
+		List<Group> copiedGroups = new ArrayList<Group>();
+		for (Group g : groupsToDrawInto) {
+			Group copy = new Group(g);
+			copiedGroups.add(copy);
+		}
+		
+		Pool currentPool = copiedPools.get(indexOfCurrentPool);
+		Group currentGrp = copiedGroups.get(indexOfCurrentGroup);
 		
 		// Compare the initial pool with the list of teams that have already been attempted;
 		// Create a new pool consisting of the teams which have not been attempted.
-		Pool availableOptions = new Pool(GetElementsNotIn(copy.getPool(), attempted));
+		Pool availableOptions = new Pool(GetElementsNotIn(currentGrp.FilterRegion(currentPool), attempted));
 		
-		// If you've attempted every team in the pool and nothing works, the situation is impossible to resolve according to the rule
 		if (availableOptions.size() == 0) {
-			String teamsString = StringifyPool();
-			String groupsString = "";
-			for (Group g : groups) {
-				groupsString += g.StringifyGroup();
-			}
-			throw new ImpossibleDrawException(teamsString, groupsString, "Same Group, Same Region");
+			return null;
 		}
 		
 		// Choose a random team from the available options
 		int sizeOfPool = availableOptions.size();
 		int rand = (int) (Math.random() * sizeOfPool);
 		Team t = availableOptions.GetAt(rand);
-	
-		// Rules to determine legality of the draw
-		// First Rule, can't have two teams from the same region in the same group
-		for (Team gt : startingGroup.getGroup()) {
-			if (t.getRegion() == gt.getRegion()) {
-				attempted.add(t);
-				t = DrawWithSameRegionRule(startingGroup, groups, sizeThisDraw, attempted);
-				break;
-			}
+		
+		// Remove & Add drawn team
+		currentGrp.Add(t);
+		currentPool.Remove(t);
+		
+		// Remove Current Pool from pools to deal with if it's full
+		if (currentPool.size() == 0) {
+			copiedPools.remove(currentPool);
 		}
 		
-		// Second Rule, the first rule must not leave the bracket in an impossible situation
-		for (int i = 0; i < groups.size(); i++) {
-			Group testingGroup = groups.get(i);
-			// if the group is not already full (if it is, no need to verify that it can still draw a legal team
-			if (!(testingGroup.getSize() == sizeThisDraw)) {
-				// Create a list of potential legal draws based on the rule
-				List<Team> potentialDraws = testingGroup.FilterRegion(copy);
-				if (potentialDraws.size() == 0) {
-					attempted.add(t);
-					t = DrawWithSameRegionRule(startingGroup, groups, sizeThisDraw, attempted);
-					break;
-				} else if (potentialDraws.contains(t)) {
-					copy.Remove(t);
-				}
-			}
+		// There are no more pools to draw from, return the drawn team
+		if (copiedPools.size() == 0) {
+			return t;
 		}
 		
-		// Drawn team is legal, remove it from the true pool and return it
-		teams.remove(t);
-		return t;	
+		Team x = DrawWithSameRegionRule(copiedPools, indexOfCurrentPool, copiedGroups, ++indexOfCurrentGroup,
+				new ArrayList<Team>());
+		if (x == null) {
+			currentGrp.Remove(t);
+			currentPool.Remove(t);
+			
+			attempted.add(t);
+			
+			return DrawWithSameRegionRule(poolsToDrawFrom, indexOfCurrentPool, 
+					groupsToDrawInto, indexOfCurrentGroup, attempted);
+		} else {
+			poolsToDrawFrom.get(indexOfCurrentGroup).Remove(t);
+			return t;
+		}
 	}
 
 	/**
@@ -303,6 +315,6 @@ public class Pool {
 	
 	@Override
 	public String toString() {
-		return "Pool [pool=" + teams + "]";
+		return StringifyPool();
 	}
 }

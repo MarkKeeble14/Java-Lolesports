@@ -420,8 +420,12 @@ public class Group {
 		return potentialDraws;
 	}
 	
+	@Override
+	public String toString() {
+		return StringifyGroup();
+	}
 
-	
+	/*
 	@Override
 	public String toString() {
 		if (standings.isEmpty()) {
@@ -431,6 +435,7 @@ public class Group {
 					+ ", standings=" + standings + "]";
 		}
 	}
+	*/
 
 	// Finds the group of Team t
 	public static Group FindGroup(Team t, Group[] groups) {

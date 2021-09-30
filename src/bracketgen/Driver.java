@@ -160,11 +160,12 @@ public class Driver {
 		C.Add(P1.Draw());
 		D.Add(P1.Draw());
 		
-		A.Add(P2.DrawWithSameRegionRule(A, groups, 2, new ArrayList<Team>()));
-		B.Add(P2.DrawWithSameRegionRule(B, groups, 2, new ArrayList<Team>()));
-		C.Add(P2.DrawWithSameRegionRule(C, groups, 2, new ArrayList<Team>()));
-		D.Add(P2.DrawWithSameRegionRule(D, groups, 2, new ArrayList<Team>()));
+		A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		B.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
+		// A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		// A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
 		
+		/*
 		A.Add(P3.DrawWithSameRegionRule(A, groups, 3, new ArrayList<Team>()));
 		B.Add(P3.DrawWithSameRegionRule(B, groups, 3, new ArrayList<Team>()));
 		C.Add(P3.DrawWithSameRegionRule(C, groups, 3, new ArrayList<Team>()));
@@ -174,6 +175,7 @@ public class Driver {
 		B.Add(PI.DrawWithSameRegionRule(B, groups, 4, new ArrayList<Team>()));
 		C.Add(PI.DrawWithSameRegionRule(C, groups, 4, new ArrayList<Team>()));
 		D.Add(PI.DrawWithSameRegionRule(D, groups, 4, new ArrayList<Team>()));
+		*/
 		
 		// Printout Groups
 		System.out.println("Group A: " + A + "\n");
@@ -207,7 +209,7 @@ public class Driver {
 		System.out.println("\nSimulating Main Knockout Stage");
 		
 		// Simulate Knockout Stage
-		SimulateCurrentDrawKO(A, B, C, D);
+		// SimulateCurrentDrawKO(A, B, C, D);
 		// SimulateCurrentPlusSecondThirdMatchesKO(A, B, C, D);
 		// SimulateDoubleElimKO(A, B, C, D);
 	}
@@ -240,11 +242,12 @@ public class Driver {
 		
 		// Draw Play-ins teams into groups
 		
+		/*
 		A.Add(PI.DrawWithSameRegionRule(A, groups, 4, new ArrayList<Team>()));
 		B.Add(PI.DrawWithSameRegionRule(B, groups, 4, new ArrayList<Team>()));
 		C.Add(PI.DrawWithSameRegionRule(C, groups, 4, new ArrayList<Team>()));
 		D.Add(PI.DrawWithSameRegionRule(D, groups, 4, new ArrayList<Team>()));
-		
+		*/
 		
 		A.FullSimulate(MSGS, 2, true); 
 		A.PrintResults();
