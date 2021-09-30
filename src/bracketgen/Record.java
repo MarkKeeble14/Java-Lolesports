@@ -140,7 +140,7 @@ public class Record implements Comparable<Record> {
 			tiebreakerData = "\nTiebreakers:\n"+ StringifyMap(tiebreakers);
 		}
 		return "\nCore Data [label=" + label + ", wins=" + getWins() + ", losses=" + getLosses() + "]\n" +
-				"\nTimesBeatTeamMap:\n" + StringifyMap(matches) + 
+				"\nRecord Versus Teams:\n" + StringifyMap(matches) + 
 				tiebreakerData +
 				"\n------------------------------------------------";
 	}

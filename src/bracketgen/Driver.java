@@ -218,15 +218,15 @@ public class Driver {
 		Group PA = new Group("A (Play-ins)", 5, LNG, HLE, INF, PCE, RED);
 		Group PB = new Group("B (Play-ins)", 5, C9, BYG, UOL, GS, DFM);
 		
-		PA.FullSimulate(PIGS, 2, true);
+		PA.FullSimulate(PIGS, 1, true);
 		PA.PrintResults();
-		PB.FullSimulate(PIGS, 2, true);
+		PB.FullSimulate(PIGS, 1, true);
 		PB.PrintResults();
 		
 		// Play-ins Knockout Stage
 		System.out.println("\nSimulating Play-ins Knockout Stage");
 		Team[] qualified = SimulatePlayinsKO(PA, PB);
-		Pool qualifiedThroughPlayins = new Pool(qualified[0], qualified[1], qualified[2], qualified[3]);
+		Pool PI = new Pool(qualified[0], qualified[1], qualified[2], qualified[3]);
 		
 		// Main Group Stage
 		System.out.println("\nSimulating Main Group Stage");
@@ -236,15 +236,15 @@ public class Driver {
 		Group D = new Group("D (Main)", 4, MAD, GEN, TL);
 		
 		ArrayList<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
-		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(qualifiedThroughPlayins));
+		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(PI));
 		
 		// Draw Play-ins teams into groups
-		/*
-		A.Add(qualifiedThroughPlayins.DrawWithSameRegionRule(new ArrayList<Team>(), A, groups, 4));
-		B.Add(qualifiedThroughPlayins.DrawWithSameRegionRule(new ArrayList<Team>(), B, groups, 4));
-		C.Add(qualifiedThroughPlayins.DrawWithSameRegionRule(new ArrayList<Team>(), C, groups, 4));
-		D.Add(qualifiedThroughPlayins.DrawWithSameRegionRule(new ArrayList<Team>(), D, groups, 4));
-		*/
+		
+		A.Add(PI.DrawWithSameRegionRule(A, groups, 4, new ArrayList<Team>()));
+		B.Add(PI.DrawWithSameRegionRule(B, groups, 4, new ArrayList<Team>()));
+		C.Add(PI.DrawWithSameRegionRule(C, groups, 4, new ArrayList<Team>()));
+		D.Add(PI.DrawWithSameRegionRule(D, groups, 4, new ArrayList<Team>()));
+		
 		
 		A.FullSimulate(MSGS, 2, true); 
 		A.PrintResults();
