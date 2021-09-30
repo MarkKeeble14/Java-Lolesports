@@ -72,6 +72,15 @@ public class Record implements Comparable<Record> {
 		}
 	}
 	
+	public boolean hasBeatenTeamWhichHasBeatenTeamInTiebreaker(Team team) {
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			if (entry.getKey().getRecord().hasBeatenInTiebreaker(team)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public int getTimesBeat(Team team) {
 		if (matches.containsKey(team)) {
 			return matches.get(team).getWins();

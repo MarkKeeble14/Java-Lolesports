@@ -242,7 +242,9 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().hasBeatenInTiebreaker(topRecord.getKey())) {
 	            	topRecord = entry;
-	            } else if (entry.getValue().getWins() > topRecord.getValue().getWins()) {
+	            }  else if (entry.getValue().hasBeatenTeamWhichHasBeatenTeamInTiebreaker(topRecord.getKey())) {
+	            	topRecord = entry;
+	            }  else if (entry.getValue().getWins() > topRecord.getValue().getWins()) {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins()
 	            		&& entry.getValue().getLosses() < topRecord.getValue().getLosses()) {
@@ -311,6 +313,8 @@ public class Group {
 	            	topRecord = entry;
 	            } else if (entry.getValue().hasBeatenInTiebreaker(topRecord.getKey())) {
 	            	topRecord = entry;
+	            }  else if (entry.getValue().hasBeatenTeamWhichHasBeatenTeamInTiebreaker(topRecord.getKey())) {
+	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() > topRecord.getValue().getWins()) {
 	            	topRecord = entry;
 	            } else if (entry.getValue().getWins() == topRecord.getValue().getWins() 
@@ -347,26 +351,6 @@ public class Group {
 			standings.put(topRecord.getKey(), ++place);
 		}
 		standings = MapUtil.sortByIntegerValue(standings);
-	}
-	
-	public void PrintResults() {
-		System.out.println("\nGroup " + label);
-		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
-				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
-		System.out.println("\n------------------------------------------------");
-	}
-	
-	public String StringifyGroup() {
-		String s = "\nGroup " + label + "\n";
-		for (int i = 0; i < teams.size(); i++) {
-			Team t = teams.get(i);
-			if (i == teams.size() - 1) {
-				s += t.getTag() + ": " + t.getRegion() + "\n";
-			} else {
-				s += t.getTag() + ": " + t.getRegion() + ", ";
-			}
-		}
-		return s;
 	}
 	
 	// Returns true if there is a team from the Pool p which can be drawn into this group, given the rule that 
@@ -419,23 +403,31 @@ public class Group {
 		}
 		return potentialDraws;
 	}
+
+	public void PrintResults() {
+		System.out.println("\nGroup " + label);
+		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
+		System.out.println("\n------------------------------------------------");
+	}
+	
+	public String StringifyGroup() {
+		String s = "Group " + label + "\n";
+		for (int i = 0; i < teams.size(); i++) {
+			Team t = teams.get(i);
+			if (i == teams.size() - 1) {
+				s += t;
+			} else {
+				s += t + "\n";
+			}
+		}
+		return s;
+	}
 	
 	@Override
 	public String toString() {
 		return StringifyGroup();
 	}
-
-	/*
-	@Override
-	public String toString() {
-		if (standings.isEmpty()) {
-			return "Group [label=" + label + ", capacity=" + capacity + ", group=" + teams + "]";
-		} else {
-			return "Group [label=" + label + ", capacity=" + capacity + ", group=" + teams 
-					+ ", standings=" + standings + "]";
-		}
-	}
-	*/
 
 	// Finds the group of Team t
 	public static Group FindGroup(Team t, Group[] groups) {

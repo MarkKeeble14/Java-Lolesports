@@ -5,55 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Driver {
-	// LPL
-	public static Team EDG = new Team("EDG", Region.CN, 7.154);
-	public static Team FPX = new Team("FPX", Region.CN, 7.939);
-	public static Team RNG = new Team("RNG", Region.CN, 6.827);
-	public static Team LNG = new Team("LNG", Region.CN, 5.497);
-	
-	// PCS
-	public static Team PSG = new Team("PSG", Region.SEA, 5.131);
-	public static Team BYG = new Team("BYG", Region.SEA, 3.385);
-	
-	// LCS
-	public static Team O100T = new Team("100", Region.NA, 4.732);
-	public static Team TL = new Team("TL", Region.NA, 4.456);
-	public static Team C9 = new Team("C9", Region.NA, 4.482);
-	
-	// LCK
-	public static Team DK = new Team("DK", Region.KR, 7.775);
-	public static Team GEN = new Team("GEN", Region.KR, 5.779);
-	public static Team T1 = new Team("T1", Region.KR, 6.720);
-	public static Team HLE = new Team("HLE", Region.KR, 5.282);
-	
-	// LEC
-	public static Team MAD = new Team("MAD", Region.EU, 6.818);
-	public static Team FNC = new Team("FNC", Region.EU, 6.153);
-	public static Team RGE = new Team("RGE", Region.EU, 4.912);
-	
-	// LLA
-	public static Team INF = new Team("INF", Region.LAN, 2.425);
-	
-	// TCL
-	public static Team GS = new Team("GS", Region.TR, 2.675);
-	
-	// LCL
-	public static Team UOL = new Team("UOL", Region.RUS, 3.568);
-	
-	// LCO
-	public static Team PCE = new Team("PCE", Region.OCE, 2.368);
-	
-	// CBLOL
-	public static Team RED = new Team("RED", Region.BR, 2.297);
-	
-	// LJL
-	public static Team DFM = new Team("DFM", Region.JP, 2.425);
-	
 	// Stages
 	public static String PIGS = "Play-ins Group Stage";
 	public static String PIKS = "Play-ins Knockout Stage";
 	public static String MSGS = "Main Stage Group Stage";
 	public static String MSKS = "Main Stage Knockout Stage";
+	
+	// Pools
+	public static String PoolOne = "Pool One";
+	public static String PoolTwo = "Pool Two";
+	public static String PoolThree = "Pool Three";
+	public static String PIPoolOne = "PI - Pool One";
+	public static String PIPoolTwo = "PI - Pool Two";
+	public static String QualifiedPI = "Qualified Through PI";
 	
 	// Variables / Tuning
 	// Higher means rating matters more, i.e, Upsets are less likely
@@ -81,12 +45,12 @@ public class Driver {
 		System.out.println("Simulating Play-ins Group Draw\n"); 
 		
 		// Setting up groups
-		Group PA = new Group("A (Play-ins)", 5); 
-		Group PB = new Group("B (Play-ins)", 5);
+		Group PA = new Group("A", 5); 
+		Group PB = new Group("B", 5);
 	  
 		// Setting up pools
-		Pool playinsPoolOne = new Pool(LNG, HLE, BYG, C9); 
-		Pool playinsPoolTwo = new Pool(INF, GS, UOL, PCE, RED, DFM);
+		Pool playinsPoolOne = new Pool(PIPoolOne, Teams.LNG, Teams.HLE, Teams.BYG, Teams.C9); 
+		Pool playinsPoolTwo = new Pool(PIPoolTwo, Teams.INF, Teams.GS, Teams.UOL, Teams.PCE, Teams.RED, Teams.DFM);
 	  
 		// Draw Teams
 		PA.Add(playinsPoolOne.Draw()); 
@@ -101,9 +65,9 @@ public class Driver {
 		PB.Add(playinsPoolTwo.Draw());
 	  
 		// Print out Group A
-		System.out.println("Group A: " + PA + "\n");
+		System.out.println(PA + "\n");
 		// Print out Group B
-		System.out.println("Group B: " + PB + "\n");
+		System.out.println(PB + "\n");
 		
 		System.out.println("------------------------------------------------");
 		
@@ -133,7 +97,7 @@ public class Driver {
 			}
 		}
 		
-		Pool PI = new Pool(qualified[0], qualified[1], qualified[2], qualified[3]);
+		Pool PI = new Pool(QualifiedPI, qualified[0], qualified[1], qualified[2], qualified[3]);
 		
 		System.out.println("------------------------------------------------");
 		
@@ -141,15 +105,15 @@ public class Driver {
 		System.out.println("\nSimulating Main Group Draw\n");
 		
 		// Setting up pools
-		Pool P1 = new Pool(DK, EDG, MAD, PSG); 
-		Pool P2 = new Pool(O100T, FNC, GEN, FPX);
-		Pool P3 = new Pool(TL, T1, RGE, RNG);
+		Pool P1 = new Pool(PoolOne, Teams.DK, Teams.EDG, Teams.MAD, Teams.PSG); 
+		Pool P2 = new Pool(PoolTwo, Teams.O100T, Teams.FNC, Teams.GEN, Teams.FPX);
+		Pool P3 = new Pool(PoolThree, Teams.TL, Teams.T1, Teams.RGE, Teams.RNG);
 		
 		// Setting up groups
-		Group A = new Group("A (Main)", 4); 
-		Group B = new Group("B (Main)", 4);
-		Group C = new Group("C (Main)", 4); 
-		Group D = new Group("D (Main)", 4);
+		Group A = new Group("A", 4); 
+		Group B = new Group("B", 4);
+		Group C = new Group("C", 4); 
+		Group D = new Group("D", 4);
 		
 		ArrayList<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(P2, P3, PI));
@@ -162,26 +126,27 @@ public class Driver {
 		
 		A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
 		B.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
-		// A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
-		// A.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		C.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
+		D.Add(P2.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
+		pools.remove(0);
 		
-		/*
-		A.Add(P3.DrawWithSameRegionRule(A, groups, 3, new ArrayList<Team>()));
-		B.Add(P3.DrawWithSameRegionRule(B, groups, 3, new ArrayList<Team>()));
-		C.Add(P3.DrawWithSameRegionRule(C, groups, 3, new ArrayList<Team>()));
-		D.Add(P3.DrawWithSameRegionRule(D, groups, 3, new ArrayList<Team>()));
+		A.Add(P3.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		B.Add(P3.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
+		C.Add(P3.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
+		D.Add(P3.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
+		pools.remove(0);
 		
-		A.Add(PI.DrawWithSameRegionRule(A, groups, 4, new ArrayList<Team>()));
-		B.Add(PI.DrawWithSameRegionRule(B, groups, 4, new ArrayList<Team>()));
-		C.Add(PI.DrawWithSameRegionRule(C, groups, 4, new ArrayList<Team>()));
-		D.Add(PI.DrawWithSameRegionRule(D, groups, 4, new ArrayList<Team>()));
-		*/
+		A.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
+		B.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
+		C.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
+		D.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
+		pools.remove(0);
 		
 		// Printout Groups
-		System.out.println("Group A: " + A + "\n");
-		System.out.println("Group B: " + B + "\n");
-		System.out.println("Group C: " + C + "\n");
-		System.out.println("Group D: " + D + "\n");
+		System.out.println(A + "\n");
+		System.out.println(B + "\n");
+		System.out.println(C + "\n");
+		System.out.println(D + "\n");
 		
 		System.out.println("------------------------------------------------");
 		
@@ -209,7 +174,7 @@ public class Driver {
 		System.out.println("\nSimulating Main Knockout Stage");
 		
 		// Simulate Knockout Stage
-		// SimulateCurrentDrawKO(A, B, C, D);
+		SimulateCurrentDrawKO(A, B, C, D);
 		// SimulateCurrentPlusSecondThirdMatchesKO(A, B, C, D);
 		// SimulateDoubleElimKO(A, B, C, D);
 	}
@@ -217,8 +182,8 @@ public class Driver {
 	public static void SimulateCurrentWorldsState() throws Exception {
 		// Play-ins Group Stage
 		System.out.println("Simulating Play-ins Group Stage");
-		Group PA = new Group("A (Play-ins)", 5, LNG, HLE, INF, PCE, RED);
-		Group PB = new Group("B (Play-ins)", 5, C9, BYG, UOL, GS, DFM);
+		Group PA = new Group("A (Play-ins)", 5, Teams.LNG, Teams.HLE, Teams.INF, Teams.PCE, Teams.RED);
+		Group PB = new Group("B (Play-ins)", 5, Teams.C9, Teams.BYG, Teams.UOL, Teams.GS, Teams.DFM);
 		
 		PA.FullSimulate(PIGS, 1, true);
 		PA.PrintResults();
@@ -228,14 +193,14 @@ public class Driver {
 		// Play-ins Knockout Stage
 		System.out.println("\nSimulating Play-ins Knockout Stage");
 		Team[] qualified = SimulatePlayinsKO(PA, PB);
-		Pool PI = new Pool(qualified[0], qualified[1], qualified[2], qualified[3]);
+		Pool PI = new Pool(QualifiedPI, qualified[0], qualified[1], qualified[2], qualified[3]);
 		
 		// Main Group Stage
 		System.out.println("\nSimulating Main Group Stage");
-		Group A = new Group("A (Main)", 4, DK, FPX, RGE); 
-		Group B = new Group("B (Main)", 4, EDG, O100T, T1);
-		Group C = new Group("C (Main)", 4, PSG, FNC, RNG); 
-		Group D = new Group("D (Main)", 4, MAD, GEN, TL);
+		Group A = new Group("A (Main)", 4, Teams.DK, Teams.FPX, Teams.RGE); 
+		Group B = new Group("B (Main)", 4, Teams.EDG, Teams.O100T, Teams.T1);
+		Group C = new Group("C (Main)", 4, Teams.PSG, Teams.FNC, Teams.RNG); 
+		Group D = new Group("D (Main)", 4, Teams.MAD, Teams.GEN, Teams.TL);
 		
 		ArrayList<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(PI));
@@ -283,8 +248,8 @@ public class Driver {
 	}
 	
 	public static void SimulateCurrentDrawKO(Group A, Group B, Group C, Group D) throws Exception {
-		Pool poolOne = new Pool(A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
-		Pool poolTwo = new Pool(A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
+		Pool poolOne = new Pool(PoolOne, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
+		Pool poolTwo = new Pool(PoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
 		
 		Match M1 = new Match("M1");
 		Match M2 = new Match("M2");
@@ -331,9 +296,9 @@ public class Driver {
 	}
 	
 	public static void SimulateCurrentPlusSecondThirdMatchesKO(Group A, Group B, Group C, Group D) throws Exception {
-		Pool poolOne = new Pool(A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
-		Pool poolTwo = new Pool(A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
-		Pool poolThree = new Pool(A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
+		Pool poolOne = new Pool(PoolOne, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
+		Pool poolTwo = new Pool(PoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
+		Pool poolThree = new Pool(PoolThree, A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
 		
 		Match M1 = new Match("M1");
 		Match M2 = new Match("M2");
@@ -392,9 +357,9 @@ public class Driver {
 	
 	
 	public static void SimulateDoubleElimKO(Group A, Group B, Group C, Group D) throws Exception {
-		Pool poolOne = new Pool(A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
-		Pool poolTwo = new Pool(A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
-		Pool poolThree = new Pool(A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
+		Pool poolOne = new Pool(PoolOne, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
+		Pool poolTwo = new Pool(PoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
+		Pool poolThree = new Pool(PoolThree, A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
 		
 		Match M1 = new Match("M1");
 		Match M2 = new Match("M2");

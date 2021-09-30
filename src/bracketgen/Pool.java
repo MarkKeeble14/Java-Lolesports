@@ -8,13 +8,15 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 public class Pool {
+	private String label;
 	private List<Team> teams;
 	
 	/**
 	* Constructor
 	* @param teamsToAdd The teams in the pool as a dynamic parameter
 	*/
-	public Pool( Team ...teamsToAdd) {
+	public Pool(String label, Team ...teamsToAdd) {
+		this.label = label;
 		teams = new ArrayList<Team>();
 		for (Team t : teamsToAdd) {
 			teams.add(t);
@@ -25,7 +27,8 @@ public class Pool {
 	* Constructor
 	* @param teamsToAdd The teams in the pool as a list
 	*/
-	public Pool(List<Team> teamsToAdd) {
+	public Pool(String label, List<Team> teamsToAdd) {
+		this.label = label;
 		teams = teamsToAdd;
 	}
 	
@@ -45,22 +48,6 @@ public class Pool {
 		Team t = teams.get((int) (Math.random() * teams.size()));
 		teams.remove(t);
 		return t;
-	}
-	
-	public int size() {
-		return teams.size();
-	}
-	
-	public String StringifyPool() {
-		String s = "";
-		for (Team t : teams) {
-			if (t == teams.get(teams.size() - 1)) {
-				s += t.getTag() + ": " +  t.getRegion();
-			} else {
-				s += t.getTag() + ": " +  t.getRegion() + ", ";	
-			}
-		}
-		return s;
 	}
 	
 	/**
@@ -103,7 +90,7 @@ public class Pool {
 		
 		// Compare the initial pool with the list of teams that have already been attempted;
 		// Create a new pool consisting of the teams which have not been attempted.
-		Pool availableOptions = new Pool(GetElementsNotIn(currentGrp.FilterRegion(currentPool), attempted));
+		Pool availableOptions = new Pool(currentPool.getLabel(), GetElementsNotIn(currentGrp.FilterRegion(currentPool), attempted));
 		
 		if (availableOptions.size() == 0) {
 			return null;
@@ -120,26 +107,33 @@ public class Pool {
 		
 		// Remove Current Pool from pools to deal with if it's full
 		if (currentPool.size() == 0) {
-			copiedPools.remove(currentPool);
+			copiedPools.remove(currentPool);	
+			if (copiedPools.size() == 0) {
+				Pool poolToRemoveFrom = poolsToDrawFrom.get(indexOfCurrentPool);
+				poolToRemoveFrom.Remove(t);
+				return t;
+			}
 		}
 		
-		// There are no more pools to draw from, return the drawn team
-		if (copiedPools.size() == 0) {
-			return t;
-		}
-		
-		Team x = DrawWithSameRegionRule(copiedPools, indexOfCurrentPool, copiedGroups, ++indexOfCurrentGroup,
+		int nextGrpIndex = indexOfCurrentGroup + 1;
+		Team x = DrawWithSameRegionRule(copiedPools, indexOfCurrentPool, copiedGroups, nextGrpIndex,
 				new ArrayList<Team>());
 		if (x == null) {
 			currentGrp.Remove(t);
-			currentPool.Remove(t);
+			currentPool.Add(t);
 			
 			attempted.add(t);
 			
 			return DrawWithSameRegionRule(poolsToDrawFrom, indexOfCurrentPool, 
 					groupsToDrawInto, indexOfCurrentGroup, attempted);
 		} else {
-			poolsToDrawFrom.get(indexOfCurrentGroup).Remove(t);
+			Pool poolToRemoveFrom = null;
+			if (currentPool.size() == 0 && copiedPools.size() == 0) {
+				poolToRemoveFrom = poolsToDrawFrom.get(0);
+			} else {
+				poolToRemoveFrom = poolsToDrawFrom.get(indexOfCurrentPool);
+			}
+			poolToRemoveFrom.Remove(t);
 			return t;
 		}
 	}
@@ -162,14 +156,14 @@ public class Pool {
 		}
 		
 		// Make a copy of the initial Pool
-		Pool copy = new Pool();
+		Pool copy = new Pool(p.getLabel());
 		for (Team t : p.getPool()) {
 			copy.Add(t);
 		}
 		
 		// Compare the initial pool with the list of teams that have already been attempted;
 		// Create a new pool consisting of the teams which have not been attempted.
-		Pool availableOptions = new Pool(GetElementsNotIn(copy.getPool(), attempted));
+		Pool availableOptions = new Pool(p.getLabel(), GetElementsNotIn(copy.getPool(), attempted));
 		
 		// Choose a random team from the available options
 		int sizeOfPool = availableOptions.size();
@@ -234,14 +228,14 @@ public class Pool {
 		}
 		
 		// Make a copy of the initial Pool
-		Pool copy = new Pool();
+		Pool copy = new Pool(p.getLabel());
 		for (Team t : p.getPool()) {
 			copy.Add(t);
 		}
 		
 		// Compare the initial pool with the list of teams that have already been attempted;
 		// Create a new pool consisting of the teams which have not been attempted.
-		Pool availableOptions = new Pool(GetElementsNotIn(copy.getPool(), attempted));
+		Pool availableOptions = new Pool(p.getLabel(), GetElementsNotIn(copy.getPool(), attempted));
 		
 		// Choose a random team from the available options
 		int sizeOfPool = availableOptions.size();
@@ -302,6 +296,14 @@ public class Pool {
 		return teams.get(i);
 	}
 	
+	public String getLabel() {
+		return label;
+	}
+
+	public int size() {
+		return teams.size();
+	}
+	
 	// Compares two lists and returns the items in List A that are not present in List B
 	private List<Team> GetElementsNotIn(List<Team> A, List<Team> B) {
 		List<Team> result = new ArrayList<Team>();
@@ -311,6 +313,18 @@ public class Pool {
 			}
 		}
 		return result;
+	}
+	
+	public String StringifyPool() {
+		String s = "Label: " + label + "\n";
+		for (Team t : teams) {
+			if (t == teams.get(teams.size() - 1)) {
+				s += t.getTag() + ": " +  t.getRegion();
+			} else {
+				s += t.getTag() + ": " +  t.getRegion() + ", ";	
+			}
+		}
+		return s;
 	}
 	
 	@Override
