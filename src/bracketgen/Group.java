@@ -397,27 +397,18 @@ public class Group {
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
-				if (eRecord.getWins() > trRecord.getWins()) {
-					if (eRecord.getNumberOfTiebreakers() <= eRecord.getNumberOfTiebreakers()) {
+				if (eRecord.getWins() >= trRecord.getWins()) {
+					if (eRecord.getNumberOfTiebreakers() < trRecord.getNumberOfTiebreakers()) {
             			topRecord = entry;
+            		} else if (eRecord.getNumberOfTiebreakers() >= trRecord.getNumberOfTiebreakers()) {
+            			if (eRecord.hasBeatenInTiebreaker(trTeam)) {
+            				topRecord = entry;
+            			} else {
+            				if (trRecord.getLosses() > eRecord.getLosses()) {
+            					topRecord = entry;
+            				}
+            			}
             		}
-	            } else if (eRecord.getWins() == trRecord.getWins()) {
-	            	if (trRecord.getNumberOfTiebreakers() == eRecord.getNumberOfTiebreakers()) {
-	            		if (eRecord.getWinsOfTeamsLostToInTiebreakers() > trRecord.getWinsOfTeamsLostToInTiebreakers()) {
-		            		topRecord = entry;
-	            		}
-	            	} else if (eRecord.getWinsOfTeamsBeat() > trRecord.getWinsOfTeamsBeat()) {
-		            	topRecord = entry;
-		            }  else if (eRecord.getTimesBeat(trTeam) > trRecord.getTimesBeat(eTeam)) {
-		            	topRecord = entry;
-		            }
-	            } else if (eRecord.getWins() < trRecord.getWins()) {
-	            	if (trRecord.getNumberOfTiebreakers() > eRecord.getNumberOfTiebreakers()) {
-		            	if (eRecord.getTiebreakerWinsOfTeamsLostToInTiebreakers() > 
-		            		trRecord.getTiebreakerWinsOfTeamsLostToInTiebreakers() && 
-		            		eRecord.getLosses() >= trRecord.getLosses()) {
-		            	}	
-	            	}
 	            }
 	        }
 			standings.put(topRecord.getKey(), ++place);
