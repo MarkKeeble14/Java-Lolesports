@@ -34,16 +34,22 @@ public class Teams {
 	
 	// TCL
 	public static Team GS = new Team("GS", Region.TR, 2.675);
+	public static final Team IW = new Team("IW", Region.TR, 2.432);
 	
 	// LCL
 	public static Team UOL = new Team("UOL", Region.RUS, 3.568);
 	
 	// LCO
 	public static Team PCE = new Team("PCE", Region.OCE, 2.368);
+	public static final Team PGG = new Team("PGG", Region.OCE, 2.330);
 	
 	// CBLOL
 	public static Team RED = new Team("RED", Region.BR, 2.297);
+	public static final Team PNG = new Team("PNG", Region.BR, 2.327);
 	
 	// LJL
 	public static Team DFM = new Team("DFM", Region.JP, 2.425);
+	
+	// VCS
+	public static final Team GAM = new Team("GAM", Region.VIET, 3.542);
 }

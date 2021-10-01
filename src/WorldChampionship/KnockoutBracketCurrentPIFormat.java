@@ -1,16 +1,17 @@
-package Brackets;
+package WorldChampionship;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Team;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
-public class PIKnockoutBracket extends Bracket {
+public class KnockoutBracketCurrentPIFormat extends Bracket {
 	int requiredNumberOfGroups = 2;
 	
 	@Override
@@ -42,14 +43,13 @@ public class PIKnockoutBracket extends Bracket {
 				M3.getWinner(), M4.getWinner()));
 		
 		// Printing Out Results
-		System.out.print("\nQualified Play-ins Teams: ");
+		System.out.print("\nQualified Play-ins Teams:\n");
 		for (int i = 0; i < qualified.size(); i++) {
 			if (i == qualified.size()- 1) {
 				System.out.println(qualified.get(i));	
 			} else {
-				System.out.print(qualified.get(i) + " | ");	
+				System.out.print(qualified.get(i) + "\n");	
 			}
 		}
 	}
-
 }

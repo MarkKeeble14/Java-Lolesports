@@ -1,11 +1,7 @@
-package Brackets;
+package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Classes.Group;
-import Classes.Match;
-import Classes.Team;
 
 public abstract class Bracket {
 	private List<Match> matches = new ArrayList<Match>();
@@ -27,8 +23,8 @@ public abstract class Bracket {
 	
 	public void PrintWinnerStats() {
 		Team winner = matches.get(matches.size() - 1).getWinner();
-		System.out.println("\n" + winner + " has Won the World Championship");
+		System.out.println("\n" + winner + " has Won the Tournament!");
 		System.out.println("\n" + winner + " Records: " + winner.recordLog());
-		System.out.println("\n" + winner + " has Won the World Championship");
+		System.out.println("\n" + winner + " has Won the Tournament!");
 	}
 }

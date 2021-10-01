@@ -1,9 +1,10 @@
-package Brackets;
+package WorldChampionship;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Pool;
@@ -12,7 +13,7 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
 // 4 Group Bracket
-public class CurrentBracket extends Bracket {
+public class KnockoutBracketCurrentFormat extends Bracket {
 	int requiredNumberOfGroups = 4;
 	
 	@Override

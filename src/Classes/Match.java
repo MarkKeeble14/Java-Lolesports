@@ -2,7 +2,7 @@ package Classes;
 
 import java.util.Random;
 
-import TournamentSimulator.TournamentSimulator;
+import TournamentSimulator.Driver;
 
 public class Match {
 	private String label;
@@ -143,7 +143,7 @@ public class Match {
 		
 		// Higher means rating matters more
 		// A scale of 1 makes most matchups 50/50
-		int scale = TournamentSimulator.ELO_SCALING;
+		int scale = Driver.ELO_SCALING;
 		RA = RA * scale;
 		RB = RB * scale;
 		

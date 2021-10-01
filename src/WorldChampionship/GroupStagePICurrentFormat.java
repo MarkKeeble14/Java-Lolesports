@@ -1,12 +1,13 @@
-package GroupStageFormats;
+package WorldChampionship;
 
 import java.util.List;
 
 import Classes.Group;
+import Classes.GroupStageFormat;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
-public class CurrentPIStageGroupStage extends GroupStageFormat {
+public class GroupStagePICurrentFormat extends GroupStageFormat {
 	int requiredNumberOfGroups = 2;
 	
 	@Override

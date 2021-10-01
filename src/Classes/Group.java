@@ -48,6 +48,20 @@ public class Group {
 	}
 	
 	/**
+	* Constructor
+	* @param label A label for the group, i.e., A, B, C, D, etc
+	* @param capacity The number of teams in the group
+	*/
+	public Group(String label, List<Team> finalListOfTeams) {
+		this.label = label;
+		this.capacity = finalListOfTeams.size();
+		teams = new ArrayList<Team>();
+		for (Team t : finalListOfTeams) {
+			teams.add(t);
+		}
+	}
+	
+	/**
 	* Copy Constructor
 	* @param g The group to copy
 	*/

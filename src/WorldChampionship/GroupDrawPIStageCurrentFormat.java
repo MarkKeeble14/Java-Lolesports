@@ -1,14 +1,15 @@
-package DrawStructures;
+package WorldChampionship;
 
 import java.util.List;
 
+import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 import CustomExceptions.MismatchedSizeOfPoolException;
 
-public class CurrentPIStageGroupDrawStructure extends DrawStructure {
+public class GroupDrawPIStageCurrentFormat extends DrawStructure {
 	int requiredNumberOfGroups = 2;
 	int requiredNumberOfPools = 2;
 	int requiredSizeOfFirstPool = 4;

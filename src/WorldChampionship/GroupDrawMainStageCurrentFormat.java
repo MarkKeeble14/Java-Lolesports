@@ -1,16 +1,17 @@
-package DrawStructures;
+package WorldChampionship;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Team;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 
-public class CurrentMainStageGroupDrawStructure extends DrawStructure {
-	int requiredNumberOfGroups = 4;
+public class GroupDrawMainStageCurrentFormat extends DrawStructure {
+	int requiredNumberOfGroups = 3;
 	int requiredNumberOfPools = 4;
 	
 	@Override
