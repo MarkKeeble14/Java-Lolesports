@@ -1,4 +1,4 @@
-package bracketgen;
+package Classes;
 
 public class WinLossCounter {
 	private int wins = 0;

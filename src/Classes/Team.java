@@ -1,7 +1,9 @@
-package bracketgen;
+package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Misc.Region;
 
 public class Team implements Comparable<Team> {
 	private String tag;

@@ -1,11 +1,9 @@
-package bracketgen;
+package Classes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
+
+import CustomExceptions.ImpossibleDrawException;
 
 public class Pool {
 	private String label;
@@ -149,7 +147,7 @@ public class Pool {
 	* @param groups A list of the groups
 	*/
 	public Team DrawWithSameMatchRule(Match match, Pool p, List<Team> attempted, 
-			ArrayList<Match> matches, ArrayList<Group> groups) throws Exception {
+			List<Match> matches, List<Group> groups) throws Exception {
 		// If you've attempted every team in the pool and nothing works, the situation is impossible to resolve according to the rule
 		if (attempted.size() == p.getPool().size()) {
 			throw new ImpossibleDrawException(p.toString(), groups.toString(), "Same Match, Same Group");
@@ -221,7 +219,7 @@ public class Pool {
 	* @param groups A list of the groups
 	*/
 	public Team DrawWithSameSideRule(Match match1, Match match2, Pool p, 
-			List<Team> attempted, ArrayList<Match> matches, ArrayList<Group> groups) throws Exception {
+			List<Team> attempted, List<Match> matches, List<Group> groups) throws Exception {
 		// If you've attempted every team in the pool and nothing works, the situation is impossible to resolve according to the rule
 		if (attempted.size() == p.getPool().size()) {
 			throw new ImpossibleDrawException(p.toString(), groups.toString(), "Same Side, Same Group");

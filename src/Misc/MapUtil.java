@@ -1,9 +1,10 @@
-package bracketgen;
+package Misc;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+
+import Classes.Record;
+import Classes.Team;
 
 public class MapUtil {
 	public static Map<Team, Integer> sortByIntegerValue(Map<Team, Integer> unsortMap)

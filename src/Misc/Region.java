@@ -1,4 +1,4 @@
-package bracketgen;
+package Misc;
 
 public enum Region {
 	NA,
@@ -11,5 +11,6 @@ public enum Region {
 	JP,
 	TR,
 	RUS,
-	OCE
+	OCE,
+	VIET
 }

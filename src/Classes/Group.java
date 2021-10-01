@@ -1,14 +1,16 @@
-package bracketgen;
+package Classes;
 
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import CustomExceptions.GroupExceedingCapacityException;
+import Misc.MapUtil;
+
 import java.util.Set;
-import java.util.TreeMap;
 
 public class Group {
 	private String label;
@@ -120,7 +122,7 @@ public class Group {
 			copy.Add(t);
 		}
 		
-		System.out.println("\nGroup: " + label);
+		System.out.println("Group: " + label);
 		
 		// Simulate the actual games
 		while(copy.getSize() > 0) {
@@ -150,12 +152,13 @@ public class Group {
 			SimulateTiebreakers(stageLabel);
 		}
 		
-		System.out.println("\nGroup Standings");
-		
 		// Sort into standings
 		SortStandingsPostTiebreakers();
 		
+		System.out.println("\nFinal Standings\n");
 		PrintStandings();
+		
+		System.out.println("\n------------------------------------------------\n");
 	}
 	
 	private boolean tiebreakersRequired() {
@@ -203,7 +206,7 @@ public class Group {
 	}
 	
 	private void SimulateTiebreakers(String stageLabel) {
-		System.out.println("\nPre-Tiebreakers");
+		System.out.println("\nPre-Tiebreakers Standings\n");
 		SortStandingsPreTiebreakers();
 		PrintStandings();
 		
@@ -241,6 +244,8 @@ public class Group {
 				}
 			}
 		}
+		
+		System.out.println("\n------------------------------------------------");
 		
 		// Play out the tiebreakers
 		Set<Entry<Record, List<Team>>> sortedTeams = teamsByRecordMap.entrySet();
@@ -300,9 +305,7 @@ public class Group {
 				if (topRecord == null) {
 	            	topRecord = entry;
 	            	continue;
-	            } 
-				
-				Team trTeam = topRecord.getKey();
+	            }
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
@@ -337,6 +340,7 @@ public class Group {
 		while (standings.size() < teamRecords.size()) {
 			Map.Entry<Team, Record> topRecord = null;
 			for (Entry<Team, Record> entry : set) {
+				
 				// Set Variables
 				Team eTeam = entry.getKey();
 				Record eRecord = entry.getValue();
@@ -350,7 +354,6 @@ public class Group {
 	            	continue;
 	            } 
 				
-				Team trTeam = topRecord.getKey();
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
@@ -473,17 +476,15 @@ public class Group {
 	}
 
 	public void PrintStandings() {
-		System.out.println("\nGroup " + label);
+		System.out.println("Group " + label);
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
 				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
-		System.out.println("\n------------------------------------------------");
 	}
 	
 	public void PrintStandingsWithRecordLogs() {
-		System.out.println("\nGroup " + label);
+		System.out.println("Group " + label);
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
 				+ k.getRecord().detailedPrint())));
-		System.out.println("\n------------------------------------------------");
 	}
 	
 	public String StringifyGroup() {
@@ -515,7 +516,7 @@ public class Group {
 	}
 
 	// Finds the group of Team t
-	public static Group FindGroup(Team t, ArrayList<Group> groups) {
+	public static Group FindGroup(Team t, List<Group> groups) {
 		for (Group g : groups) {
 			if (g.Contains(t)) {
 				return g;

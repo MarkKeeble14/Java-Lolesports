@@ -1,7 +1,6 @@
-package bracketgen;
+package Classes;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;

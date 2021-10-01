@@ -1,4 +1,6 @@
-package bracketgen;
+package Misc;
+
+import Classes.Team;
 
 public class Teams {
 	// LPL
