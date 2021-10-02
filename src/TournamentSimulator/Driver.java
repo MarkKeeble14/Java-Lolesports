@@ -22,11 +22,16 @@ public class Driver {
 	// A scale of 1 makes most matchups 50/50
 	public static int ELO_SCALING = 75;
 	
+	public static boolean PRINT_OUTPUT = false;
+	public static boolean PRINT_WINNER = false;
+	
 	// Main
 	public static void main(String[] args) throws Exception {
-		SimulateCurrentWorldsFormatFromScratch();
+		// SimulateCurrentWorldsFormatFromScratch();
 		// SimulateCurrentWorldsState();
 		// SimulateCurrentMSIFormatFromScratch();
+		
+		TrackNumberOfTimesTeamWins(150);
 	}
 	
 	// Simulates an Entire Tournament
@@ -59,5 +64,21 @@ public class Driver {
 		Tournament MSI = new TournamentMSI(Strings.LMSI);
 		MSI.Simulate(pools);
 		return MSI;
+	}
+	
+	private static void TrackNumberOfTimesTeamWins(int x) throws Exception {
+		Map<Team, Integer> timesTeamWonMap = new HashMap<Team, Integer>();
+		for (int i = 0; i < x; i++) {
+			Tournament WC = SimulateCurrentWorldsFormatFromScratch();
+			Team champion = WC.getWinner();
+			if (timesTeamWonMap.containsKey(champion)) {
+				timesTeamWonMap.put(champion, timesTeamWonMap.get(champion) + 1);
+			} else {
+				timesTeamWonMap.put(champion, 1);
+			}
+		}
+		Util.PrintLargeLineBreak();
+		timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
+		Util.NicePrintResults(timesTeamWonMap, x);
 	}
 }

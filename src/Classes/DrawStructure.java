@@ -2,6 +2,8 @@ package Classes;
 
 import java.util.List;
 
+import Misc.Util;
+
 public abstract class DrawStructure {
 	private List<Group> groups;
 	
@@ -17,7 +19,7 @@ public abstract class DrawStructure {
 
 	public void PrintGroups() {
 		for (Group g : groups) {
-			System.out.println(g);
+			Util.Print(g.toString());
 		}
 	}
 }

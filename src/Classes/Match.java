@@ -41,12 +41,12 @@ public class Match {
 		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * scale;
 		double oddsTeamBWins = CalculateChance(teamB.getRating(), teamA.getRating()) * scale;
 		
-		System.out.println("\nMatch Between: " + teamA + ", and: " + teamB);
-		System.out.println(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins);
+		Util.Print("\nMatch Between: " + teamA + ", and: " + teamB);
+		Util.Print(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins);
 		
 		// Best of is equal to the number of games to play
 		if (bestOf > 1) {
-			System.out.println("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n");
+			Util.Print("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n");
 			
 			// Set Variables
 			teamA.setNewRecord(stageLabel);
@@ -59,20 +59,20 @@ public class Match {
 			
 			// Simulate the games
 			for (int i = 1; i < bestOf + 1; i++) {
-				System.out.println("Game #" + i);
+				Util.Print("Game #" + i);
 				double random = rand.nextDouble() * scale;
 				// Team A Wins the game
 				if (random > 0 && random < oddsTeamAWins) {
 					teamARecord.MatchWin(teamB);
 					teamBRecord.MatchLoss(teamA);
-					System.out.println(teamA.getTag() + " Win\n");
+					Util.Print(teamA.getTag() + " Win\n");
 					
 					// Team A Wins the match
 					if (teamARecord.getWins() == goal) { // Team A Wins
 						winner = teamA;
 						loser = teamB;
 						
-						System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
+						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
 						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins());
 						
 						if (printLineBreak) {
@@ -84,14 +84,14 @@ public class Match {
 					// Team B Wins the game
 					teamBRecord.MatchWin(teamA);
 					teamARecord.MatchLoss(teamB);
-					System.out.println(teamB.getTag() + " Win\n");
+					Util.Print(teamB.getTag() + " Win\n");
 				
 					// Team B Wins the match
 					if (teamBRecord.getWins() == goal) { // Team B wins
 						winner = teamB;
 						loser = teamA;
 						
-						System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
+						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
 						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins());
 						
 						if (printLineBreak) {
@@ -110,7 +110,7 @@ public class Match {
 				winner = teamB;
 				loser = teamA;
 			}
-			System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag());
+			Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag());
 		}
 	}
 

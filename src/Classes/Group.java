@@ -137,7 +137,7 @@ public class Group {
 			copy.Add(t);
 		}
 		
-		System.out.println(StringifyGroup());
+		Util.Print(StringifyGroup());
 		
 		// Simulate the actual games
 		while(copy.getSize() > 0) {
@@ -173,7 +173,7 @@ public class Group {
 		
 		Util.PrintSmallLineBreak();
 		
-		System.out.println("\nFinal Standings");
+		Util.Print("\nFinal Standings");
 		PrintStandings();
 		
 		Util.PrintLargeLineBreak();
@@ -225,7 +225,7 @@ public class Group {
 	
 	private void SimulateTiebreakers(String stageLabel) {
 		Util.PrintSmallLineBreak();
-		System.out.println("\nPre-Tiebreakers Standings");
+		Util.Print("\nPre-Tiebreakers Standings");
 		SortStandingsPreTiebreakers();
 		PrintStandings();
 		
@@ -278,9 +278,9 @@ public class Group {
 					Team teamB = lst.get(i + 1);
 					
 					Util.PrintSmallLineBreak();
-					System.out.println("\nTiebreaker between: " + teamA + ", and: " + teamB);
-					System.out.print(teamA + " Record: " + teamA.getRecord() + " vs ");
-					System.out.print(teamB + " Record: " + teamB.getRecord() + "\n");
+					Util.Print("\nTiebreaker between: " + teamA + ", and: " + teamB);
+					Util.Print(teamA + " Record: " + teamA.getRecord() + " vs ");
+					Util.Print(teamB + " Record: " + teamB.getRecord() + "\n");
 					
 					Match M = new Match("M", teamA, teamB);
 					
@@ -494,14 +494,14 @@ public class Group {
 	}
 
 	public void PrintStandings() {
-		System.out.println("\nGroup " + label + "\n");
-		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+		Util.Print("\nGroup " + label + "\n");
+		standings.forEach((k, v) -> Util.Print((v + " : " + k + " | Record: " 
 				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
 	}
 	
 	public void PrintStandingsWithRecordLogs() {
-		System.out.println("\nGroup " + label + "\n");
-		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+		Util.Print("\nGroup " + label + "\n");
+		standings.forEach((k, v) -> Util.Print((v + " : " + k + " | Record: " 
 				+ k.getRecord().detailedPrint())));
 	}
 	

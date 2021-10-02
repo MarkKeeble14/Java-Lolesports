@@ -28,18 +28,18 @@ public abstract class Tournament {
 		runnerUp = b.getRunnerUp();
 		
 		// Print
-		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
-		System.out.println("\n" + winner + " Records: " + winner.qdLog());
-		System.out.println("\n" + winner + " Records: " + winner.recordLog());
-		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
+		Util.PrintChampionship("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
+		Util.PrintChampionship("\n" + winner + " Records: " + winner.qdLog());
+		Util.PrintChampionship("\n" + winner + " Records: " + winner.recordLog());
+		Util.PrintChampionship("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
 	}
 	
 	public static void PrintQualified(String sectionQualifiedThrough, List<Team> qualified) {
 		Util.PrintMediumLineBreak();
-		System.out.println("\nQualified Teams Through " + sectionQualifiedThrough + ": ");
+		Util.Print("\nQualified Teams Through " + sectionQualifiedThrough + ": ");
 		for (Team t : qualified) {
 			Util.PrintSmallLineBreak();
-			System.out.println(t.getQD());
+			Util.Print(t.getQD().toString());
 		}
 	}
 
