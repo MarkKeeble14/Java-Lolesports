@@ -196,12 +196,18 @@ public class TournamentWorldChampionship extends Tournament {
 		SimulateCurrentPIGroupStage(PIGroups);
 		
 		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
+		Match M3 = PIKO.getMatch(3);
+		Match M4 = PIKO.getMatch(4);
+		List<Match> QMatches = new ArrayList<Match>(Arrays.asList(M3, M4));
 		
-		Pool PI = new Pool(Strings.LQualifiedPI, new ArrayList<Team>(
+		List<Team> Q = new ArrayList<Team>(
 				Arrays.asList(	PA.GetTeamFromPlacement(1),
-						PB.GetTeamFromPlacement(1),
-						PIKO.getMatch(3).getWinner(),
-						PIKO.getMatch(4).getWinner())));
+								PB.GetTeamFromPlacement(1),
+								M3.getWinner(),
+								M4.getWinner()));
+		Pool PI = new Pool(Strings.LQualifiedPI, Q);
+		
+		PrintQualifiedThroughPI(PIGroups, QMatches, Q);
 		
 		// Setting up Groups
 		Group A = new Group(Strings.LFirstGroup, 4, Teams.DK, Teams.FPX, Teams.RGE); 
@@ -220,6 +226,18 @@ public class TournamentWorldChampionship extends Tournament {
 		pools.remove(0);
 		
 		SimulateCurrentGroupStage(groups);
+		
+		List<Team> GSQ = new ArrayList<Team>(
+					Arrays.asList(	A.GetTeamFromPlacement(1),
+									A.GetTeamFromPlacement(2),
+									B.GetTeamFromPlacement(1),
+									B.GetTeamFromPlacement(2),
+									C.GetTeamFromPlacement(1),
+									C.GetTeamFromPlacement(2),
+									D.GetTeamFromPlacement(1),
+									D.GetTeamFromPlacement(2)));
+		
+		PrintQualifiedThroughGroups(groups, GSQ);
 		
 		// Main Knockout Stage
 		SimulateCurrentDrawKO(groups);
