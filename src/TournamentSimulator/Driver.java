@@ -22,16 +22,14 @@ public class Driver {
 	// A scale of 1 makes most matchups 50/50
 	public static int ELO_SCALING = 75;
 	
-	public static boolean PRINT_OUTPUT = false;
-	public static boolean PRINT_WINNER = false;
+	public static boolean PRINT_OUTPUT = true;
+	public static boolean PRINT_WINNER = true;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsFormatFromScratch();
-		// SimulateCurrentWorldsState();
+		SimulateCurrentWorldsState();
 		// SimulateCurrentMSIFormatFromScratch();
-		
-		TrackNumberOfTimesTeamWins(150);
 	}
 	
 	// Simulates an Entire Tournament
@@ -50,9 +48,10 @@ public class Driver {
 	}
 	
 	// Simulates the current World Championship, from it's current state (Updated Manually).
-	public static void SimulateCurrentWorldsState() throws Exception {
+	public static Tournament SimulateCurrentWorldsState() throws Exception {
 		TournamentWorldChampionship WC = new TournamentWorldChampionship(Strings.LWC);
 		WC.SimulateCurrentWorldsState();
+		return WC;
 	}
 	
 	public static Tournament SimulateCurrentMSIFormatFromScratch() throws Exception {

@@ -64,7 +64,7 @@ public class Util {
 	}
 	
 	public static void NicePrintResults(Map<Team, Integer> map, int timesRan) {
-		DecimalFormat df = new DecimalFormat("#0.00");
+		DecimalFormat df = new DecimalFormat("#0.00###");
 		Set<Entry<Team, Integer>> set = map.entrySet();
 		for (Entry<Team, Integer> e : set) {
 			float n = (float) e.getValue() / timesRan * 100;

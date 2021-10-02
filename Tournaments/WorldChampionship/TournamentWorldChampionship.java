@@ -223,5 +223,7 @@ public class TournamentWorldChampionship extends Tournament {
 		
 		// Main Knockout Stage
 		SimulateCurrentDrawKO(groups);
+		
+		super.PrintChampionStats(MKnockoutBracket);
 	}
 }
