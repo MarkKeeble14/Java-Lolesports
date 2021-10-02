@@ -18,10 +18,6 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 	
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
-		System.out.println("\n------------------------------------------------------------------------");
-		System.out.println("\nSimulating Current Knockout Bracket");
-		System.out.println("\n------------------------------------------------");
-		
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
@@ -57,25 +53,25 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
 				
-		M1.Simulate(Strings.MSKS, 5);
-		M2.Simulate(Strings.MSKS, 5);
-		M3.Simulate(Strings.MSKS, 5);
-		M4.Simulate(Strings.MSKS, 5);
+		M1.Simulate(Strings.MSKS, 5, true);
+		M2.Simulate(Strings.MSKS, 5, true);
+		M3.Simulate(Strings.MSKS, 5, true);
+		M4.Simulate(Strings.MSKS, 5, true);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
-		M5.Simulate(Strings.MSKS, 5);
-		M6.Simulate(Strings.MSKS, 5);
+		M5.Simulate(Strings.MSKS, 5, true);
+		M6.Simulate(Strings.MSKS, 5, true);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
-		M7.Simulate(Strings.MSKS, 5);
+		M7.Simulate(Strings.MSKS, 5, true);
 		
-		super.AddMatches(M1, M2, M3, M4, M5, M6, M7);
-		
-		super.PrintWinnerStats();
+		// General Tracking Stuff
+		super.addMatches(M1, M2, M3, M4, M5, M6, M7);
+		super.setChampionshipMatch(M7);
 	}
 
 }

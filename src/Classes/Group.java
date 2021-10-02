@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import CustomExceptions.GroupExceedingCapacityException;
 import Misc.MapUtil;
+import Misc.Util;
 
 import java.util.Set;
 
@@ -136,7 +137,7 @@ public class Group {
 			copy.Add(t);
 		}
 		
-		System.out.println("Group: " + label);
+		System.out.println(StringifyGroup());
 		
 		// Simulate the actual games
 		while(copy.getSize() > 0) {
@@ -145,10 +146,11 @@ public class Group {
 				Team c = copy.getGroup().get(p);
 				if (t != c) {
 					for (int q = 0; q < matchesPerTwo; q++) {
+						Util.PrintSmallLineBreak();
 						Match M = new Match("M", t, c);
 						
 						// Assuming groups are BO1
-						M.Simulate(stageLabel, 1);
+						M.Simulate(stageLabel, 1, true);
 						
 						Team winner = M.getWinner();
 						Team loser = M.getLoser();
@@ -169,10 +171,12 @@ public class Group {
 		// Sort into standings
 		SortStandingsPostTiebreakers();
 		
-		System.out.println("\nFinal Standings\n");
+		Util.PrintSmallLineBreak();
+		
+		System.out.println("\nFinal Standings");
 		PrintStandings();
 		
-		System.out.println("\n------------------------------------------------\n");
+		Util.PrintLargeLineBreak();
 	}
 	
 	private boolean tiebreakersRequired() {
@@ -220,7 +224,8 @@ public class Group {
 	}
 	
 	private void SimulateTiebreakers(String stageLabel) {
-		System.out.println("\nPre-Tiebreakers Standings\n");
+		Util.PrintSmallLineBreak();
+		System.out.println("\nPre-Tiebreakers Standings");
 		SortStandingsPreTiebreakers();
 		PrintStandings();
 		
@@ -259,8 +264,6 @@ public class Group {
 			}
 		}
 		
-		System.out.println("\n------------------------------------------------");
-		
 		// Play out the tiebreakers
 		Set<Entry<Record, List<Team>>> sortedTeams = teamsByRecordMap.entrySet();
 		for (Entry<Record, List<Team>> entry : sortedTeams) {
@@ -274,6 +277,7 @@ public class Group {
 					Team teamA = prevTeam;
 					Team teamB = lst.get(i + 1);
 					
+					Util.PrintSmallLineBreak();
 					System.out.println("\nTiebreaker between: " + teamA + ", and: " + teamB);
 					System.out.print(teamA + " Record: " + teamA.getRecord() + " vs ");
 					System.out.print(teamB + " Record: " + teamB.getRecord() + "\n");
@@ -281,7 +285,7 @@ public class Group {
 					Match M = new Match("M", teamA, teamB);
 					
 					// Assuming groups are BO1
-					M.Simulate(stageLabel + ": Tiebreakers", 1);
+					M.Simulate(stageLabel + ": Tiebreakers", 1, true);
 					
 					Team winner = M.getWinner();
 					Team loser = M.getLoser();
@@ -490,19 +494,43 @@ public class Group {
 	}
 
 	public void PrintStandings() {
-		System.out.println("Group " + label);
+		System.out.println("\nGroup " + label + "\n");
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
 				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
 	}
 	
 	public void PrintStandingsWithRecordLogs() {
-		System.out.println("Group " + label);
+		System.out.println("\nGroup " + label + "\n");
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
 				+ k.getRecord().detailedPrint())));
 	}
 	
+	public String toStandings() {
+		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
+		String s = "\nGroup " + label + "\n";
+		for (Entry<Team, Integer> entry : teamStandings) {
+			Team k = entry.getKey();
+			Integer v = entry.getValue();
+			s += v + " : " + k + " | Record: " 
+					+ k.getRecord().getWins() + "-" + k.getRecord().getLosses() + "\n";
+		}
+		return s.substring(0, s.length() - 1);
+	}
+	
+	public String toStandings(String stageLabel) {
+		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
+		String s = "\nGroup " + label + "\n";
+		for (Entry<Team, Integer> entry : teamStandings) {
+			Team k = entry.getKey();
+			Integer v = entry.getValue();
+			s += v + " : " + k + " | Record: " 
+					+ k.getRecord(stageLabel).getWins() + "-" + k.getRecord(stageLabel).getLosses() + "\n";
+		}
+		return s.substring(0, s.length() - 1);
+	}
+	
 	public String StringifyGroup() {
-		String s = "Group " + label + "\n";
+		String s = "\nGroup " + label + "\n";
 		for (int i = 0; i < teams.size(); i++) {
 			Team t = teams.get(i);
 			if (i == teams.size() - 1) {

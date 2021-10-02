@@ -220,4 +220,8 @@ public class Record implements Comparable<Record> {
 		}
 		return map;
 	}
+
+	public String getLabel() {
+		return label;
+	}
 }

@@ -7,20 +7,35 @@ import java.util.List;
 import Classes.Bracket;
 import Classes.DrawStructure;
 import Classes.Group;
-import Classes.GroupStageFormat;
+import Classes.GroupStage;
+import Classes.Match;
 import Classes.Pool;
 import Classes.Team;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
+import Misc.QualifiedThroughGroupPlacement;
+import Misc.QualifiedThroughSeriesWin;
 import Misc.Strings;
 import Misc.Teams;
-import Tournaments.TournamentFormat;
+import Misc.Util;
 
-public class TournamentWorldChampionship extends TournamentFormat {
+public class TournamentWorldChampionship extends Tournament {
 	int requiredNumberOfPools = 5;
 	
+	DrawStructure PIGroupDraw;
+	GroupStage PIGroupStage;
+	Bracket PIKnockoutBracket;
+	DrawStructure MGroupDraw;
+	GroupStage MGroupStage;
+	Bracket MKnockoutBracket;
+	
+	public TournamentWorldChampionship(String label) {
+		super(label);
+	}
+
 	@Override
 	public void Simulate(List<Pool> pools) throws Exception {
-		System.out.println("Tournament Start!");
+		super.PrintHeadline();
 		
 		if (pools.size() != requiredNumberOfPools) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
@@ -41,12 +56,19 @@ public class TournamentWorldChampionship extends TournamentFormat {
 		SimulateCurrentPIGroupStage(PIGroups);
 		
 		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
+		Match M3 = PIKO.getMatch(3);
+		Match M4 = PIKO.getMatch(4);
+		List<Match> QMatches = new ArrayList<Match>(Arrays.asList(M3, M4));
 		
-		Pool PI = new Pool(Strings.LQualifiedPI, new ArrayList<Team>(
+		List<Team> Q = new ArrayList<Team>(
 				Arrays.asList(	PA.GetTeamFromPlacement(1),
 								PB.GetTeamFromPlacement(1),
-								PIKO.GetMatch(3).getWinner(),
-								PIKO.GetMatch(4).getWinner())));
+								M3.getWinner(),
+								M4.getWinner()));
+		Pool PI = new Pool(Strings.LQualifiedPI, Q);
+		
+		PrintQualified(PIGroups, QMatches, Q);
+		
 		Pool P1 = pools.get(2);
 		Pool P2 = pools.get(3);
 		Pool P3 = pools.get(4);
@@ -65,11 +87,67 @@ public class TournamentWorldChampionship extends TournamentFormat {
 		
 		// Simulate Knockout Stage
 		SimulateCurrentDrawKO(groups);
-	}
-
-	public static void SimulateCurrentWorldsState() throws Exception {
-		System.out.println("\nSimulating Current World's State");
 		
+		super.PrintChampionStats(MKnockoutBracket);
+	}
+	
+	private void PrintQualified(List<Group> groups, List<Match> matches, List<Team> teams) {
+		Group A = groups.get(0);
+		Group B = groups.get(1);
+		
+		Match M1 = matches.get(0);
+		Match M2 = matches.get(1);
+		
+		Team Q1 = teams.get(0);
+		Q1.setNewQD(new QualifiedThroughGroupPlacement(Strings.PIGS, A, 1));
+		Team Q2 = teams.get(1);
+		Q2.setNewQD(new QualifiedThroughGroupPlacement(Strings.PIGS, B, 1));
+		Team Q3 = teams.get(2);
+		Q3.setNewQD(new QualifiedThroughSeriesWin(Strings.PIKS, M1));
+		Team Q4 = teams.get(3);
+		Q4.setNewQD(new QualifiedThroughSeriesWin(Strings.PIKS, M2));
+
+		Tournament.PrintQualified(Strings.GS, teams);
+	}
+	
+	private void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
+		Util.StartSection(Strings.PIGD);
+		PIGroupDraw = new GroupDrawPIStageCurrentFormat();
+		PIGroupDraw.Simulate(groups, pools);
+	}
+	
+	private void SimulateCurrentPIGroupStage(List<Group> groups) throws Exception {
+		Util.StartSection(Strings.PIGS);
+		PIGroupStage = new GroupStagePICurrentFormat();
+		PIGroupStage.Simulate(groups);
+	}
+	
+	private Bracket SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
+		Util.StartSection(Strings.PIKS);
+		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat();
+		PIKnockoutBracket.Simulate(groups);
+		return PIKnockoutBracket;
+	}
+	
+	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
+		Util.StartSection(Strings.MSGD);
+		MGroupDraw = new GroupDrawMainStageCurrentFormat();
+		MGroupDraw.Simulate(groups, pools);
+	}
+	
+	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
+		Util.StartSection(Strings.MSGS);
+		MGroupStage = new GroupStageMainCurrentFormat();
+		MGroupStage.Simulate(groups);
+	}
+	
+	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
+		Util.StartSection(Strings.MSKS);
+		MKnockoutBracket = new KnockoutBracketCurrentFormat();
+		MKnockoutBracket.Simulate(groups);
+	}
+	
+	public void SimulateCurrentWorldsState() throws Exception {
 		Group PA = new Group(Strings.LFirstGroup, 5, Teams.LNG, Teams.HLE, Teams.INF, Teams.PCE, Teams.RED);
 		Group PB = new Group(Strings.LSecondGroup, 5, Teams.C9, Teams.BYG, Teams.UOL, Teams.GS, Teams.DFM);
 		List<Group> PIGroups = new ArrayList<>(Arrays.asList(PA, PB));
@@ -81,8 +159,8 @@ public class TournamentWorldChampionship extends TournamentFormat {
 		Pool PI = new Pool(Strings.LQualifiedPI, new ArrayList<Team>(
 				Arrays.asList(	PA.GetTeamFromPlacement(1),
 						PB.GetTeamFromPlacement(1),
-						PIKO.GetMatch(3).getWinner(),
-						PIKO.GetMatch(4).getWinner())));
+						PIKO.getMatch(3).getWinner(),
+						PIKO.getMatch(4).getWinner())));
 		
 		// Setting up Groups
 		Group A = new Group(Strings.LFirstGroup, 4, Teams.DK, Teams.FPX, Teams.RGE); 
@@ -105,36 +183,4 @@ public class TournamentWorldChampionship extends TournamentFormat {
 		// Main Knockout Stage
 		SimulateCurrentDrawKO(groups);
 	}
-	
-	private static void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		DrawStructure draw = new GroupDrawPIStageCurrentFormat();
-		draw.Simulate(groups, pools);
-	}
-	
-	private static void SimulateCurrentPIGroupStage(List<Group> groups) throws Exception {
-		GroupStageFormat GS = new GroupStagePICurrentFormat();
-		GS.Simulate(groups);
-	}
-	
-	private static void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		DrawStructure draw = new GroupDrawMainStageCurrentFormat();
-		draw.Simulate(groups, pools);
-	}
-	
-	private static Bracket SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
-		Bracket bracket = new KnockoutBracketCurrentPIFormat();
-		bracket.Simulate(groups);
-		return bracket;
-	}
-	
-	private static void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		GroupStageFormat GS = new GroupStageMainCurrentFormat();
-		GS.Simulate(groups);
-	}
-	
-	private static void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
-		Bracket bracket = new KnockoutBracketCurrentFormat();
-		bracket.Simulate(groups);
-	}
-	
 }

@@ -1,12 +1,10 @@
 package MSI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 
@@ -16,11 +14,6 @@ public class GroupDrawGroupStageCurrentFormat extends DrawStructure {
 	
 	@Override
 	public void Simulate(List<Group> groups, List<Pool> pools) throws Exception {
-		// Simulate Main Group Draw
-		System.out.println("\n------------------------------------------------------------------------");
-		System.out.println("\nSimulating Group Stage Group Draw\n");
-		System.out.println("------------------------------------------------\n");
-		
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
@@ -59,10 +52,7 @@ public class GroupDrawGroupStageCurrentFormat extends DrawStructure {
 		C.Add(P2.Draw());
 		pools.remove(0);
 		
-		// Printout Groups
-		System.out.println(A + "\n");
-		System.out.println(B + "\n");
-		System.out.println(C);
+		super.setGroups(groups);
+		super.PrintGroups();
 	}
-
 }

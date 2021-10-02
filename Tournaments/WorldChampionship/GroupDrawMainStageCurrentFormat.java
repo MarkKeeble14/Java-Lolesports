@@ -11,16 +11,11 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 
 public class GroupDrawMainStageCurrentFormat extends DrawStructure {
-	int requiredNumberOfGroups = 3;
+	int requiredNumberOfGroups = 4;
 	int requiredNumberOfPools = 4;
 	
 	@Override
 	public void Simulate(List<Group> groups, List<Pool> pools) throws Exception {
-		// Simulate Main Group Draw
-		System.out.println("\n------------------------------------------------------------------------");
-		System.out.println("\nSimulating Main Stage Group Draw\n");
-		System.out.println("------------------------------------------------\n");
-		
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
@@ -68,11 +63,7 @@ public class GroupDrawMainStageCurrentFormat extends DrawStructure {
 		D.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
 		pools.remove(0);
 		
-		// Printout Groups
-		System.out.println(A + "\n");
-		System.out.println(B + "\n");
-		System.out.println(C + "\n");
-		System.out.println(D);
+		super.setGroups(groups);
+		super.PrintGroups();
 	}
-
 }

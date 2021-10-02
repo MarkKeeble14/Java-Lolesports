@@ -1,14 +1,11 @@
 package MSI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Pool;
-import Classes.Team;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
@@ -17,10 +14,6 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 	
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
-		System.out.println("\n------------------------------------------------------------------------");
-		System.out.println("\nSimulating Current Knockout Bracket");
-		System.out.println("\n------------------------------------------------");
-		
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
@@ -40,16 +33,16 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M1.setTeamB(poolOne.Draw());
 		M2.setTeamB(poolTwo.Draw());
 
-		M1.Simulate(Strings.MSKS, 5);
-		M2.Simulate(Strings.MSKS, 5);
+		M1.Simulate(Strings.MSKS, 5, true);
+		M2.Simulate(Strings.MSKS, 5, true);
 		
 		M3.setTeamA(M1.getWinner());
 		M3.setTeamB(M2.getWinner());
 		
-		M3.Simulate(Strings.MSKS, 5);
+		M3.Simulate(Strings.MSKS, 5, true);
 		
-		super.AddMatches(M1, M2, M3);
-		
-		super.PrintWinnerStats();
+		// General Tracking Stuff
+		super.addMatches(M1, M2, M3);
+		super.setChampionshipMatch(M3);
 	}
 }

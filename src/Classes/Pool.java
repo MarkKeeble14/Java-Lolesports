@@ -109,6 +109,7 @@ public class Pool {
 			if (copiedPools.size() == 0) {
 				Pool poolToRemoveFrom = poolsToDrawFrom.get(indexOfCurrentPool);
 				poolToRemoveFrom.Remove(t);
+				
 				return t;
 			}
 		}

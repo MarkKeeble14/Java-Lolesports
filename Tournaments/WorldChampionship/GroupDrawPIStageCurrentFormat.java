@@ -17,11 +17,6 @@ public class GroupDrawPIStageCurrentFormat extends DrawStructure {
 	
 	@Override
 	public void Simulate(List<Group> groups, List<Pool> pools) throws Exception {
-		// Simulating Play-ins Group Draw
-		System.out.println("\n------------------------------------------------------------------------");
-		System.out.println("\nSimulating PI Stage Group Draw\n"); 
-		System.out.println("------------------------------------------------\n");
-		
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
@@ -55,10 +50,7 @@ public class GroupDrawPIStageCurrentFormat extends DrawStructure {
 		A.Add(PoolTwo.Draw()); 
 		B.Add(PoolTwo.Draw());
 		
-		// Print out Group A
-		System.out.println(A + "\n");
-		// Print out Group B
-		System.out.println(B);
+		super.setGroups(groups);
+		super.PrintGroups();
 	}
-
 }

@@ -3,6 +3,7 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import Misc.QualificationDetails;
 import Misc.Region;
 
 public class Team implements Comparable<Team> {
@@ -12,6 +13,9 @@ public class Team implements Comparable<Team> {
 	
 	private List<Record> records = new ArrayList<Record>();
 	private int currentRecordIndex = -1;
+	
+	private List<QualificationDetails> QDs = new ArrayList<QualificationDetails>();
+	private int currentQDIndex = -1;
 	
 	/**
 	* Constructor
@@ -57,12 +61,43 @@ public class Team implements Comparable<Team> {
 		this.currentRecordIndex = currentRecordIndex;
 	}
 	
+	public int getCurrentQDIndex() {
+		return currentQDIndex;
+	}
+
+	public void setCurrentQDIndex(int currentQualificationDetailsIndex) {
+		this.currentQDIndex = currentQualificationDetailsIndex;
+	}
+
 	public void bumpCurrentRecordIndex() {
 		currentRecordIndex++;
+	}
+	
+	public void bumpCurrentQDIndex() {
+		currentQDIndex++;
 	}
 
 	public Record getRecord() {
 		return records.get(currentRecordIndex);
+	}
+	
+	public Record getRecord(String stageLabel) {
+		for (Record r : records) {
+			if (r.getLabel().compareTo(stageLabel) == 0) {
+				return r;
+			}
+		}
+		return null;
+	}
+	
+	public QualificationDetails getQD() {
+		return QDs.get(currentQDIndex);
+	}
+	
+	public void setNewQD(QualificationDetails QD) {
+		currentQDIndex++;
+		QD.setT(this);
+		QDs.add(QD);
 	}
 
 	public void setNewRecord(String label) {

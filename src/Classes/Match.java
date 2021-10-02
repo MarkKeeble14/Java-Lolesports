@@ -2,6 +2,7 @@ package Classes;
 
 import java.util.Random;
 
+import Misc.Util;
 import TournamentSimulator.Driver;
 
 public class Match {
@@ -35,7 +36,7 @@ public class Match {
 	}
 
 	// Simulates the match playing out, the team with the higher rating wins
-	public void Simulate(String stageLabel, int bestOf) {
+	public void Simulate(String stageLabel, int bestOf, boolean printLineBreak) {
 		int scale = 100;
 		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * scale;
 		double oddsTeamBWins = CalculateChance(teamB.getRating(), teamA.getRating()) * scale;
@@ -72,7 +73,11 @@ public class Match {
 						loser = teamB;
 						
 						System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
-						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins() + "\n");
+						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins());
+						
+						if (printLineBreak) {
+							Util.PrintSmallLineBreak();	
+						}
 						break;
 					}
 				} else {
@@ -87,7 +92,11 @@ public class Match {
 						loser = teamA;
 						
 						System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
-						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins() + "\n");
+						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins());
+						
+						if (printLineBreak) {
+							Util.PrintSmallLineBreak();	
+						}
 						break;
 					}
 				}
@@ -101,9 +110,8 @@ public class Match {
 				winner = teamB;
 				loser = teamA;
 			}
-			System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag() + "\n");
+			System.out.println(label + ": " + winner.getTag() + " has beaten " + loser.getTag());
 		}
-		System.out.println("------------------------------------------------");
 	}
 
 	public Team getWinner() {
@@ -132,7 +140,17 @@ public class Match {
 
 	@Override
 	public String toString() {
-		return "Match " + label + ": [teamA=" + teamA + ", teamB=" + teamB + ", winner=" + winner + ", loser=" + loser + "]";
+		if (winner == null) {
+			return label + ": " + teamA.getTag() + " VS " + teamB.getTag();
+		} else {
+			String s = label + teamA + " VS " + teamB + "\n";
+			if (winner == teamA) {
+				s += teamA.getTag() + " > " + teamB.getTag();
+			} else {
+				s += teamB.getTag() + " > " + teamA.getTag();
+			}
+			return s;
+		}
 	}
 	
 	// Calculates the chance of a team with rating RA beating a team with rating RB
