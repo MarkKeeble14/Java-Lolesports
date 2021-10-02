@@ -280,7 +280,7 @@ public class Group {
 					Util.PrintSmallLineBreak();
 					Util.Print("\nTiebreaker between: " + teamA + ", and: " + teamB);
 					Util.Print(teamA + " Record: " + teamA.getRecord() + " vs ");
-					Util.Print(teamB + " Record: " + teamB.getRecord() + "\n");
+					Util.Print(teamB + " Record: " + teamB.getRecord());
 					
 					Match M = new Match("M", teamA, teamB);
 					
