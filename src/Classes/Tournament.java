@@ -6,6 +6,8 @@ import Misc.Util;
 
 public abstract class Tournament {
 	private String label;
+	private Team winner;
+	private Team runnerUp;
 	
 	public Tournament(String label) {
 		this.label = label;
@@ -22,11 +24,12 @@ public abstract class Tournament {
 	public abstract void Simulate(List<Pool> pools) throws Exception;
 	
 	public void PrintChampionStats(Bracket b) {
-		Team winner = b.getChampion();
-		Team runnerUp = b.getRunnerUp();
+		winner = b.getChampion();
+		runnerUp = b.getRunnerUp();
 		
 		// Print
 		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
+		System.out.println("\n" + winner + " Records: " + winner.qdLog());
 		System.out.println("\n" + winner + " Records: " + winner.recordLog());
 		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
 	}
@@ -38,5 +41,13 @@ public abstract class Tournament {
 			Util.PrintSmallLineBreak();
 			System.out.println(t.getQD());
 		}
+	}
+
+	public Team getWinner() {
+		return winner;
+	}
+
+	public Team getRunnerUp() {
+		return runnerUp;
 	}
 }

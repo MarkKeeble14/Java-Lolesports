@@ -1,6 +1,6 @@
-package Misc;
+package Classes;
 
-import Classes.Group;
+import Misc.ReasonForQual;
 
 public class QualifiedThroughGroupPlacement extends QualificationDetails {
 	private Group qualifiedThrough;

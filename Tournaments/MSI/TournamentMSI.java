@@ -9,10 +9,10 @@ import Classes.DrawStructure;
 import Classes.Group;
 import Classes.GroupStage;
 import Classes.Pool;
+import Classes.QualifiedThroughGroupPlacement;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import Misc.QualifiedThroughGroupPlacement;
 import Misc.Strings;
 import Misc.Util;
 

@@ -3,7 +3,6 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import Misc.QualificationDetails;
 import Misc.Region;
 
 public class Team implements Comparable<Team> {
@@ -123,6 +122,19 @@ public class Team implements Comparable<Team> {
 		return s;
 	}
 
+	public String qdLog() {
+		String s = "";
+		for (int i = 0; i < QDs.size(); i++) {
+			QualificationDetails qd = QDs.get(i);
+			if (i == QDs.size() - 1) {
+				s += qd.Print();					
+			} else {
+				s += qd.Print() + "\n";				
+			}
+		}
+		return s;
+	}
+	
 	@Override
 	public int compareTo(Team that) {
 		if (this.getRating() > that.getRating()) {

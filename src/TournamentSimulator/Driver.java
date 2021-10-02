@@ -2,13 +2,18 @@ package TournamentSimulator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Classes.Pool;
+import Classes.Team;
 import Classes.Tournament;
 import MSI.TournamentMSI;
+import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
+import Misc.Util;
 import WorldChampionship.TournamentWorldChampionship;
 
 public class Driver {
@@ -25,7 +30,7 @@ public class Driver {
 	}
 	
 	// Simulates an Entire Tournament
-	public static void SimulateCurrentWorldsFormatFromScratch() throws Exception {
+	public static Tournament SimulateCurrentWorldsFormatFromScratch() throws Exception {
 		// Setting up Pools
 		Pool PIPool1 = new Pool(Strings.LPIPoolOne, Teams.LNG, Teams.HLE, Teams.BYG, Teams.C9); 
 		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, Teams.INF, Teams.GS, Teams.UOL, Teams.PCE, Teams.RED, Teams.DFM);
@@ -36,6 +41,7 @@ public class Driver {
 		
 		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
 		WC.Simulate(pools);
+		return WC;
 	}
 	
 	// Simulates the current World Championship, from it's current state (Updated Manually).
@@ -44,7 +50,7 @@ public class Driver {
 		WC.SimulateCurrentWorldsState();
 	}
 	
-	public static void SimulateCurrentMSIFormatFromScratch() throws Exception {
+	public static Tournament SimulateCurrentMSIFormatFromScratch() throws Exception {
 		// Setting up Pools
 		Pool P1 = new Pool(Strings.LPoolOne, Teams.RNG, Teams.DK, Teams.PSG, Teams.C9, Teams.MAD, Teams.GAM); 
 		Pool P2 = new Pool(Strings.LPoolTwo, Teams.PGG, Teams.UOL, Teams.PNG, Teams.IW, Teams.DFM, Teams.INF);
@@ -52,5 +58,6 @@ public class Driver {
 		
 		Tournament MSI = new TournamentMSI(Strings.LMSI);
 		MSI.Simulate(pools);
+		return MSI;
 	}
 }

@@ -1,6 +1,6 @@
-package Misc;
+package Classes;
 
-import Classes.Match;
+import Misc.ReasonForQual;
 
 public class QualifiedThroughSeriesWin extends QualificationDetails {
 	private Match m;

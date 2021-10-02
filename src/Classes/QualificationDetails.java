@@ -1,6 +1,6 @@
-package Misc;
+package Classes;
 
-import Classes.Team;
+import Misc.ReasonForQual;
 
 public abstract class QualificationDetails {
 	private ReasonForQual qualificationReason;
