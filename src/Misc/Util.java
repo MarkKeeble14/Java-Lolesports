@@ -28,6 +28,36 @@ public class Util {
 		}
 	}
 	
+	public static void PrintLargeLineBreak(boolean linebreak) {
+		if (Driver.PRINT_OUTPUT) {
+			if (linebreak) {
+				System.out.println(Strings.LargeLineBreak);	
+			} else {
+				System.out.println(Strings.LargeLineBreakNoNL);	
+			}
+		}
+	}
+	
+	public static void PrintMediumLineBreak(boolean linebreak) {
+		if (Driver.PRINT_OUTPUT) {
+			if (linebreak) {
+				System.out.println(Strings.MediumLineBreak);	
+			} else {
+				System.out.println(Strings.MediumLineBreakNoNL);	
+			}
+		}
+	}
+	
+	public static void PrintSmallLineBreak(boolean linebreak) {
+		if (Driver.PRINT_OUTPUT) {
+			if (linebreak) {
+				System.out.println(Strings.SmallLineBreak);	
+			} else {
+				System.out.println(Strings.SmallLineBreakNoNL);	
+			}
+		}
+	}
+	
 	public static void Print(String s) {
 		if (Driver.PRINT_OUTPUT) {
 			System.out.println(s);			

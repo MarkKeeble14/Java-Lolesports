@@ -71,6 +71,7 @@ public class Match {
 					if (teamARecord.getWins() == goal) { // Team A Wins
 						winner = teamA;
 						loser = teamB;
+						Driver.getT().Update(winner, loser);
 						
 						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
 						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins());
@@ -90,6 +91,7 @@ public class Match {
 					if (teamBRecord.getWins() == goal) { // Team B wins
 						winner = teamB;
 						loser = teamA;
+						Driver.getT().Update(winner, loser);
 						
 						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
 						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins());
@@ -110,6 +112,7 @@ public class Match {
 				winner = teamB;
 				loser = teamA;
 			}
+			Driver.getT().Update(winner, loser);
 			Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag());
 		}
 	}

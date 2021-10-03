@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import Classes.Pool;
+import Classes.RegionalWLTracker;
 import Classes.Team;
 import Classes.Tournament;
 import MSI.TournamentMSI;
@@ -25,11 +26,17 @@ public class Driver {
 	public static boolean PRINT_OUTPUT = true;
 	public static boolean PRINT_WINNER = true;
 	
+	public static boolean SHOW_EMPTY_REGION_WL = false;
+	public static RegionalWLTracker t = new RegionalWLTracker();
+	
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsFormatFromScratch();
 		SimulateCurrentWorldsState();
 		// SimulateCurrentMSIFormatFromScratch();
+		
+		// Print out regional W/L Records
+		t.NicePrintMajor(SHOW_EMPTY_REGION_WL);
 	}
 	
 	// Simulates an Entire Tournament
@@ -79,5 +86,9 @@ public class Driver {
 		Util.PrintLargeLineBreak();
 		timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
 		Util.NicePrintResults(timesTeamWonMap, x);
+	}
+
+	public static RegionalWLTracker getT() {
+		return t;
 	}
 }

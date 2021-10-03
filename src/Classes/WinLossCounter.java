@@ -1,5 +1,7 @@
 package Classes;
 
+import java.text.DecimalFormat;
+
 public class WinLossCounter {
 	private int wins = 0;
 	private int losses = 0;
@@ -21,6 +23,13 @@ public class WinLossCounter {
 	
 	@Override
 	public String toString() {
-		return "WinLossCounter [wins=" + wins + ", losses=" + losses + "]";
+		int total = (wins + losses);
+		if (total > 0) {
+			DecimalFormat df = new DecimalFormat("#0.00");
+			float n = (float) wins / total * 100;
+			return "Wins=" + wins + " | Losses=" + losses + " | Percent - " + df.format(n) + "%";	
+		} else {
+			return "Wins=" + wins + " | Losses=" + losses;
+		}
 	}
 }

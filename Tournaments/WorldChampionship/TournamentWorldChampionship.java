@@ -184,7 +184,7 @@ public class TournamentWorldChampionship extends Tournament {
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
 		Util.StartSection(Strings.MSKS);
-		MKnockoutBracket = new KnockoutBracketDoubleElimFormat();
+		MKnockoutBracket = new KnockoutBracketCurrentFormat();
 		MKnockoutBracket.Simulate(groups);
 	}
 	
