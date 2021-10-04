@@ -264,11 +264,13 @@ public class Group {
 			}
 		}
 		
-		// Play out the tiebreakers
+		teamsByRecordMap = MapUtil.sortSectionsByRecordValue(teamsByRecordMap);
+		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		Set<Entry<Record, List<Team>>> sortedTeams = teamsByRecordMap.entrySet();
 		for (Entry<Record, List<Team>> entry : sortedTeams) {
 			List<Team> lst = entry.getValue();
 			if (lst.size() > 1) {
+				
 				// Sorts based on criteria you can see within the function
 				lst = SortSameRecords(entry.getValue());
 				
@@ -294,9 +296,20 @@ public class Group {
 					loser.getRecord().TiebreakerLoss(winner);
 					
 					prevTeam = winner;
+					
+					fs.put(loser, fs.size());
+					
+					if (fs.size() == teams.size() - 1) {
+						fs.put(winner, fs.size());
+					}
 				}
+				
+			} else {
+				fs.put(lst.get(0), fs.size());
 			}
 		}
+		
+		standings = MapUtil.sortByIntegerValue(fs);
 	}
 		
 	private List<Team> SortSameRecords(List<Team> teamsToSort) {
