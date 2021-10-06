@@ -5,21 +5,28 @@ import java.util.List;
 import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 
 public class GroupDrawGroupStageCurrentFormat extends DrawStructure {
+	public GroupDrawGroupStageCurrentFormat(Tournament partOf) {
+		super(partOf);
+	}
+
 	int requiredNumberOfGroups = 3;
 	int requiredNumberOfPools = 2;
 	
 	@Override
-	public void Simulate(List<Group> groups, List<Pool> pools) throws Exception {
+	public void Simulate(String label, List<Group> groups, List<Pool> pools) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		if (pools.size() != requiredNumberOfPools) {
 			throw new MismatchedNumberOfPoolsException(requiredNumberOfPools, pools.size());
 		}
+		
+		super.setLabel(label);
 		
 		// Set Pools
 		Pool P1 = pools.get(0);

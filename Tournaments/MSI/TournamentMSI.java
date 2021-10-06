@@ -6,6 +6,7 @@ import java.util.List;
 
 import Classes.Bracket;
 import Classes.DrawStructure;
+import Classes.EOTStandings;
 import Classes.Group;
 import Classes.GroupStage;
 import Classes.Pool;
@@ -36,6 +37,8 @@ public class TournamentMSI extends Tournament {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
 		}
 		
+		EOTStandings eots = super.getEots();
+		
 		// Setting Up Pools
 		Pool P1 = pools.get(0);
 		Pool P2 = pools.get(1);
@@ -51,6 +54,15 @@ public class TournamentMSI extends Tournament {
 		
 		SimulateCurrentGroupStage(groups);
 		
+		// Place Teams
+		eots.PlaceTeam(A.GetTeamFromPlacement(4), 12);
+		eots.PlaceTeam(B.GetTeamFromPlacement(4), 12);
+		eots.PlaceTeam(C.GetTeamFromPlacement(4), 12);
+		eots.PlaceTeam(A.GetTeamFromPlacement(3), 9);
+		eots.PlaceTeam(B.GetTeamFromPlacement(3), 9);
+		eots.PlaceTeam(C.GetTeamFromPlacement(3), 9);
+		// 
+		
 		List<Team> Q = new ArrayList<Team>(Arrays.asList(	
 				A.GetTeamFromPlacement(1), A.GetTeamFromPlacement(2),
 				B.GetTeamFromPlacement(1), B.GetTeamFromPlacement(2),
@@ -63,9 +75,19 @@ public class TournamentMSI extends Tournament {
 		
 		SimulateCurrentRumbleStage(groups1);
 		
+		// Place Teams
+		eots.PlaceTeam(RumbleGroup.GetTeamFromPlacement(6), 6);
+		eots.PlaceTeam(RumbleGroup.GetTeamFromPlacement(5), 5);
+		//
+		
 		SimulateCurrentKnockoutStage(groups1);
 		
-		super.PrintChampionStats(knockoutBracket);
+		// Place Teams
+		eots.PlaceTeam(knockoutBracket.getMatch(1).getLoser(), 4);
+		eots.PlaceTeam(knockoutBracket.getMatch(2).getLoser(), 4);
+		eots.PlaceTeam(knockoutBracket.getMatch(3).getLoser(), 2);
+		eots.PlaceTeam(knockoutBracket.getMatch(3).getWinner(), 1);
+		//
 	}
 	
 	private void PrintQualified(List<Group> groups, List<Team> teams) {
@@ -86,30 +108,37 @@ public class TournamentMSI extends Tournament {
 		Team Q6 = teams.get(5);
 		Q6.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, C, 2));
 
-		Tournament.PrintQualified(Strings.GS, teams);
+		Tournament.PrintQualified(Strings.GS, teams, false);
 	}
 
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		Util.StartSection(Strings.GSGD);
-		groupDraw = new GroupDrawGroupStageCurrentFormat();
-		groupDraw.Simulate(groups, pools);
+		String section = Strings.GSGD;
+		Util.StartSection(section, false);
+		groupDraw = new GroupDrawGroupStageCurrentFormat(this);
+		super.addDrawStructure(groupDraw);
+		groupDraw.Simulate(section, groups, pools);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.GS);
-		rumbleStage = new GroupStageGroupStageCurrentFormat();
-		rumbleStage.Simulate(groups);
+		String section = Strings.GS;
+		Util.StartSection(section, false);
+		groupStage = new GroupStageGroupStageCurrentFormat(this);
+		super.addGroupStage(groupStage);
+		groupStage.Simulate(section, groups);
 	}
 	
 	private void SimulateCurrentRumbleStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.RSGS);
-		groupStage = new GroupStageRumbleStageCurrentFormat();
-		groupStage.Simulate(groups);
+		String section = Strings.RSGS;
+		Util.StartSection(section, false);
+		rumbleStage = new GroupStageRumbleStageCurrentFormat(this);
+		super.addGroupStage(rumbleStage);
+		rumbleStage.Simulate(section, groups);
 	}
 	
 	private void SimulateCurrentKnockoutStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.RSKS);
-		knockoutBracket = new KnockoutBracketCurrentFormat();
-		knockoutBracket.Simulate(groups);
+		String section = Strings.RSKS;
+		Util.StartSection(section, false);
+		knockoutBracket = new KnockoutBracketCurrentFormat(this);
+		knockoutBracket.Simulate(section, groups);
 	}
 }

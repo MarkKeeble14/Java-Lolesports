@@ -80,9 +80,14 @@ public class Team implements Comparable<Team> {
 		return records.get(currentRecordIndex);
 	}
 	
+	public Record getTopRecord() {
+		return records.get(records.size() - 1);
+	}
+	
 	public Record getRecord(String stageLabel) {
 		for (Record r : records) {
-			if (r.getLabel().compareTo(stageLabel) == 0) {
+			String o = r.getLabel();
+			if (stageLabel.compareTo(o) == 0) {
 				return r;
 			}
 		}

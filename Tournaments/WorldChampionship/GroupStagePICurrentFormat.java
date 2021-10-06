@@ -4,25 +4,32 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.GroupStage;
+import Classes.RegionalWLTracker;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import Misc.Strings;
 
 public class GroupStagePICurrentFormat extends GroupStage {
+	public GroupStagePICurrentFormat(Tournament partOf) {
+		super(partOf);
+	}
+
 	int requiredNumberOfGroups = 2;
 	
 	@Override
-	public void Simulate(List<Group> groups) throws Exception {
+	public void Simulate(String label, List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
+		super.setLabel(label);
+		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
 		Group A = groups.get(0);
 		Group B = groups.get(1);
 		
 		// Play out games
-		A.FullSimulate(Strings.PIGS, 1, true); 
-		B.FullSimulate(Strings.PIGS, 1, true); 
+		A.FullSimulate(label, tracker, 1, true, this); 
+		B.FullSimulate(label, tracker, 1, true, this); 
 		
 		super.setGroups(groups);
 		super.PrintGroups();

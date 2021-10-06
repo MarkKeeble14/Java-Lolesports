@@ -8,18 +8,26 @@ import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Pool;
+import Classes.RegionalWLTracker;
 import Classes.Team;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
 // 4 Group Double Elim Bracket
 public class KnockoutBracketDoubleElimFormat extends Bracket {
+	public KnockoutBracketDoubleElimFormat(Tournament partOf) {
+		super(partOf);
+	}
+
 	int requiredNumberOfGroups = 4;
 	
-	public void Simulate(List<Group> groups) throws Exception {
+	public void Simulate(String label, List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
+		super.setLabel(label);
+		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -66,10 +74,10 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M2.setTeamB(poolThree.DrawWithSameSideRule(M2, M1, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M3.setTeamB(poolThree.DrawWithSameSideRule(M3, M4, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M4.setTeamB(poolThree.DrawWithSameSideRule(M4, M3, poolThree, new ArrayList<Team>(), upperMatchups, groups));
-		M1.Simulate(Strings.MSKS, 3, true);
-		M2.Simulate(Strings.MSKS, 3, true);
-		M3.Simulate(Strings.MSKS, 3, true);
-		M4.Simulate(Strings.MSKS, 3, true);
+		M1.Simulate(label, tracker, 3, true);
+		M2.Simulate(label, tracker, 3, true);
+		M3.Simulate(label, tracker, 3, true);
+		M4.Simulate(label, tracker, 3, true);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -79,10 +87,10 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M6.setTeamA(poolOne.DrawWithSameMatchRule(M6, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M7.setTeamA(poolOne.DrawWithSameMatchRule(M7, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M8.setTeamA(poolOne.DrawWithSameMatchRule(M8, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
-		M5.Simulate(Strings.MSKS, 5, true);
-		M6.Simulate(Strings.MSKS, 5, true);
-		M7.Simulate(Strings.MSKS, 5, true);
-		M8.Simulate(Strings.MSKS, 5, true);
+		M5.Simulate(label, tracker, 5, true);
+		M6.Simulate(label, tracker, 5, true);
+		M7.Simulate(label, tracker, 5, true);
+		M8.Simulate(label, tracker, 5, true);
 		
 		M9.setTeamA(M5.getLoser());
 		M9.setTeamB(M7.getLoser());
@@ -92,10 +100,10 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M11.setTeamB(M6.getWinner());
 		M12.setTeamA(M7.getWinner());
 		M12.setTeamB(M8.getWinner());
-		M9.Simulate(Strings.MSKS, 5, true);
-		M10.Simulate(Strings.MSKS, 5, true);
-		M11.Simulate(Strings.MSKS, 5, true);
-		M12.Simulate(Strings.MSKS, 5, true);
+		M9.Simulate(label, tracker, 5, true);
+		M10.Simulate(label, tracker, 5, true);
+		M11.Simulate(label, tracker, 5, true);
+		M12.Simulate(label, tracker, 5, true);
 		
 		M13.setTeamA(M11.getLoser());
 		M13.setTeamB(M9.getWinner());
@@ -103,21 +111,21 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M14.setTeamB(M10.getWinner());
 		M15.setTeamA(M11.getWinner());
 		M15.setTeamB(M12.getWinner());
-		M13.Simulate(Strings.MSKS, 5, true);
-		M14.Simulate(Strings.MSKS, 5, true);
-		M15.Simulate(Strings.MSKS, 5, true);
+		M13.Simulate(label, tracker, 5, true);
+		M14.Simulate(label, tracker, 5, true);
+		M15.Simulate(label, tracker, 5, true);
 		
 		M16.setTeamA(M13.getWinner());
 		M16.setTeamB(M14.getWinner());
-		M16.Simulate(Strings.MSKS, 5, true);
+		M16.Simulate(label, tracker, 5, true);
 		
 		M17.setTeamA(M15.getLoser());
 		M17.setTeamB(M16.getWinner());
-		M17.Simulate(Strings.MSKS, 5, true);
+		M17.Simulate(label, tracker, 5, true);
 		
 		M18.setTeamA(M15.getWinner());
 		M18.setTeamB(M17.getWinner());
-		M18.Simulate(Strings.MSKS, 5, true);
+		M18.Simulate(label, tracker, 5, true);
 		
 		super.addMatches(M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18);
 		super.setChampionshipMatch(M18);

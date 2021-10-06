@@ -8,18 +8,26 @@ import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Pool;
+import Classes.RegionalWLTracker;
 import Classes.Team;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
 public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
+	public KnockoutBracketSecondPlaysThirdThenCurrentFormat(Tournament partOf) {
+		super(partOf);
+	}
+
 	int requiredNumberOfGroups = 4;
 	
 	@Override
-	public void Simulate(List<Group> groups) throws Exception {
+	public void Simulate(String label, List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
+		super.setLabel(label);
+		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -55,10 +63,10 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		M2.setTeamB(poolThree.DrawWithSameSideRule(M2, M1, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M3.setTeamB(poolThree.DrawWithSameSideRule(M3, M4, poolThree, new ArrayList<Team>(), upperMatchups, groups));
 		M4.setTeamB(poolThree.DrawWithSameSideRule(M4, M3, poolThree, new ArrayList<Team>(), upperMatchups, groups));
-		M1.Simulate(Strings.MSKS, 3, true);
-		M2.Simulate(Strings.MSKS, 3, true);
-		M3.Simulate(Strings.MSKS, 3, true);
-		M4.Simulate(Strings.MSKS, 3, true);
+		M1.Simulate(label, tracker, 3, true);
+		M2.Simulate(label, tracker, 3, true);
+		M3.Simulate(label, tracker, 3, true);
+		M4.Simulate(label, tracker, 3, true);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -68,21 +76,21 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		M6.setTeamA(poolOne.DrawWithSameMatchRule(M6, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M7.setTeamA(poolOne.DrawWithSameMatchRule(M7, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
 		M8.setTeamA(poolOne.DrawWithSameMatchRule(M8, poolOne, new ArrayList<Team>(), lowerMatchups, groups));
-		M5.Simulate(Strings.MSKS, 5, true);
-		M6.Simulate(Strings.MSKS, 5, true);
-		M7.Simulate(Strings.MSKS, 5, true);
-		M8.Simulate(Strings.MSKS, 5, true);
+		M5.Simulate(label, tracker, 5, true);
+		M6.Simulate(label, tracker, 5, true);
+		M7.Simulate(label, tracker, 5, true);
+		M8.Simulate(label, tracker, 5, true);
 		
 		M9.setTeamA(M5.getWinner());
 		M9.setTeamB(M6.getWinner());
 		M10.setTeamA(M7.getWinner());
 		M10.setTeamB(M8.getWinner());
-		M9.Simulate(Strings.MSKS, 5, true);
-		M10.Simulate(Strings.MSKS, 5, true);
+		M9.Simulate(label, tracker, 5, true);
+		M10.Simulate(label, tracker, 5, true);
 		
 		M11.setTeamA(M9.getWinner());
 		M11.setTeamB(M10.getWinner());
-		M11.Simulate(Strings.MSKS, 5, true);
+		M11.Simulate(label, tracker, 5, true);
 		
 		super.addMatches(M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11);
 		super.setChampionshipMatch(M11);

@@ -43,4 +43,5 @@ public class Strings {
 			+ "----------------------------------------";
 	public static final String LargeLineBreakNoNL = "----------------------------------------"
 			+ "--------------------------------------------------------------------------------";
+	public static final String EOTStandings = "Results";
 }

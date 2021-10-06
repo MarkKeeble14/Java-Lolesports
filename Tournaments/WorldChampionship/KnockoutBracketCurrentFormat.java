@@ -8,19 +8,27 @@ import Classes.Bracket;
 import Classes.Group;
 import Classes.Match;
 import Classes.Pool;
+import Classes.RegionalWLTracker;
 import Classes.Team;
+import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 
 // 4 Group Bracket
 public class KnockoutBracketCurrentFormat extends Bracket {
+	public KnockoutBracketCurrentFormat(Tournament partOf) {
+		super(partOf);
+	}
+
 	int requiredNumberOfGroups = 4;
 	
 	@Override
-	public void Simulate(List<Group> groups) throws Exception {
+	public void Simulate(String label, List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
+		super.setLabel(label);
+		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -53,21 +61,21 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
 				
-		M1.Simulate(Strings.MSKS, 5, true);
-		M2.Simulate(Strings.MSKS, 5, true);
-		M3.Simulate(Strings.MSKS, 5, true);
-		M4.Simulate(Strings.MSKS, 5, true);
+		M1.Simulate(label, tracker, 5, true);
+		M2.Simulate(label, tracker, 5, true);
+		M3.Simulate(label, tracker, 5, true);
+		M4.Simulate(label, tracker, 5, true);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
-		M5.Simulate(Strings.MSKS, 5, true);
-		M6.Simulate(Strings.MSKS, 5, true);
+		M5.Simulate(label, tracker, 5, true);
+		M6.Simulate(label, tracker, 5, true);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
-		M7.Simulate(Strings.MSKS, 5, true);
+		M7.Simulate(label, tracker, 5, true);
 		
 		// General Tracking Stuff
 		super.addMatches(M1, M2, M3, M4, M5, M6, M7);

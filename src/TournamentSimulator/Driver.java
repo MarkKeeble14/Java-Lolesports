@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import Classes.Pool;
-import Classes.RegionalWLTracker;
 import Classes.Team;
 import Classes.Tournament;
 import MSI.TournamentMSI;
@@ -23,20 +22,27 @@ public class Driver {
 	// A scale of 1 makes most matchups 50/50
 	public static int ELO_SCALING = 75;
 	
-	public static boolean PRINT_OUTPUT = true;
-	public static boolean PRINT_WINNER = true;
+	// If false, nothing will be printed
+	public static final boolean PRINT_OUTPUT = false;
 	
-	public static boolean SHOW_EMPTY_REGION_WL = false;
-	public static RegionalWLTracker t = new RegionalWLTracker();
+	//
+	public static final boolean PRINT_WINNER = true; 
+	
+	// 
+	public static final boolean PRINT_REGIONAL_WL = false;
+	public static final boolean SHOW_EMPTY_REGION_WL = false;
+	
+	//
+	public static final boolean PRINT_FINAL_STANDINGS = false;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
+		// SimulateCurrentWorldsState();
 		// SimulateCurrentWorldsFormatFromScratch();
-		SimulateCurrentWorldsState();
+		
 		// SimulateCurrentMSIFormatFromScratch();
 		
-		// Print out regional W/L Records
-		t.NicePrintMajor(SHOW_EMPTY_REGION_WL);
+		LoopTournament(1);
 	}
 	
 	// Simulates an Entire Tournament
@@ -51,6 +57,7 @@ public class Driver {
 		
 		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
 		WC.Simulate(pools);
+		WC.ConcludeTournament();
 		return WC;
 	}
 	
@@ -58,6 +65,7 @@ public class Driver {
 	public static Tournament SimulateCurrentWorldsState() throws Exception {
 		TournamentWorldChampionship WC = new TournamentWorldChampionship(Strings.LWC);
 		WC.SimulateCurrentWorldsState();
+		WC.ConcludeTournament();
 		return WC;
 	}
 	
@@ -69,26 +77,36 @@ public class Driver {
 		
 		Tournament MSI = new TournamentMSI(Strings.LMSI);
 		MSI.Simulate(pools);
+		MSI.ConcludeTournament();
 		return MSI;
 	}
 	
-	private static void TrackNumberOfTimesTeamWins(int x) throws Exception {
+	// Doesn't allow for very large numbers; 200: Safe Limit - Takes like 5ish Seconds to run
+	// 
+	// A way to up the threshhold is to remove/comment out any sections where it calls Util.Print; 
+	// Doing so allowed me to safely test with numbers up to ~100,000
+	private static void LoopTournament(int x) throws Exception {
+		Map<Integer, Tournament> tournamentMap = new HashMap<Integer, Tournament>();
 		Map<Team, Integer> timesTeamWonMap = new HashMap<Team, Integer>();
 		for (int i = 0; i < x; i++) {
-			Tournament WC = SimulateCurrentWorldsFormatFromScratch();
-			Team champion = WC.getWinner();
+			Tournament T = SimulateCurrentWorldsFormatFromScratch();
+			tournamentMap.put(tournamentMap.size(), T);
+			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion)) {
 				timesTeamWonMap.put(champion, timesTeamWonMap.get(champion) + 1);
 			} else {
 				timesTeamWonMap.put(champion, 1);
 			}
 		}
-		Util.PrintLargeLineBreak();
+		
+		// Print Results 
+		// Currently can count duplicate tournament results (Same exact outcomes) as a seperate tournament win,
+		// Which might skew the results a little?
 		timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
 		Util.NicePrintResults(timesTeamWonMap, x);
-	}
-
-	public static RegionalWLTracker getT() {
-		return t;
+		
+		int index = 0;
+		Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -", true);
+		tournamentMap.get(index).PrintInfo(true, true, true, true, true);
 	}
 }

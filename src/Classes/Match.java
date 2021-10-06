@@ -10,6 +10,9 @@ public class Match {
 	private Team teamA;
 	private Team teamB;
 	
+	private int teamAWins;
+	private int teamBWins;
+	
 	private Team winner;
 	private Team loser;
 	
@@ -36,17 +39,17 @@ public class Match {
 	}
 
 	// Simulates the match playing out, the team with the higher rating wins
-	public void Simulate(String stageLabel, int bestOf, boolean printLineBreak) {
+	public void Simulate(String stageLabel, RegionalWLTracker t, int bestOf, boolean printLineBreak) {
 		int scale = 100;
 		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * scale;
 		double oddsTeamBWins = CalculateChance(teamB.getRating(), teamA.getRating()) * scale;
 		
-		Util.Print("\nMatch Between: " + teamA + ", and: " + teamB);
-		Util.Print(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins);
+		Util.Print("\nMatch Between: " + teamA + ", and: " + teamB, false);
+		Util.Print(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins, false);
 		
 		// Best of is equal to the number of games to play
 		if (bestOf > 1) {
-			Util.Print("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n");
+			Util.Print("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n", false);
 			
 			// Set Variables
 			teamA.setNewRecord(stageLabel);
@@ -59,45 +62,47 @@ public class Match {
 			
 			// Simulate the games
 			for (int i = 1; i < bestOf + 1; i++) {
-				Util.Print("Game #" + i);
+				Util.Print("Game #" + i, false);
 				double random = rand.nextDouble() * scale;
 				// Team A Wins the game
 				if (random > 0 && random < oddsTeamAWins) {
+					teamAWins++;
 					teamARecord.MatchWin(teamB);
 					teamBRecord.MatchLoss(teamA);
-					Util.Print(teamA.getTag() + " Win\n");
+					Util.Print(teamA.getTag() + " Win\n", false);
 					
 					// Team A Wins the match
 					if (teamARecord.getWins() == goal) { // Team A Wins
 						winner = teamA;
 						loser = teamB;
-						Driver.getT().Update(winner, loser);
+						t.Update(winner, loser);
 						
 						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
-						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins());
+						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins(), false);
 						
 						if (printLineBreak) {
-							Util.PrintSmallLineBreak();	
+							Util.PrintSmallLineBreak(false);	
 						}
 						break;
 					}
 				} else {
 					// Team B Wins the game
+					teamBWins++;
 					teamBRecord.MatchWin(teamA);
 					teamARecord.MatchLoss(teamB);
-					Util.Print(teamB.getTag() + " Win\n");
+					Util.Print(teamB.getTag() + " Win\n", false);
 				
 					// Team B Wins the match
 					if (teamBRecord.getWins() == goal) { // Team B wins
 						winner = teamB;
 						loser = teamA;
-						Driver.getT().Update(winner, loser);
+						t.Update(winner, loser);
 						
 						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
-						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins());
+						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins(), false);
 						
 						if (printLineBreak) {
-							Util.PrintSmallLineBreak();	
+							Util.PrintSmallLineBreak(false);	
 						}
 						break;
 					}
@@ -106,15 +111,105 @@ public class Match {
 		} else {
 			double random = rand.nextDouble() * scale;
 			if (random > 0 && random < oddsTeamAWins) {
+				teamAWins++;
 				winner = teamA;
 				loser = teamB;
 			} else {
+				teamBWins++;
 				winner = teamB;
 				loser = teamA;
 			}
-			Driver.getT().Update(winner, loser);
-			Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag());
+			t.Update(winner, loser);
+			Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag(), false);
 		}
+	}
+	
+	// Simulates the match playing out, the team with the higher rating wins
+	public void SimulateGroupStageMatch(String stageLabel, RegionalWLTracker t, int bestOf, 
+			boolean printLineBreak, Group g, GroupStage gs) {
+		int scale = 100;
+		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * scale;
+		double oddsTeamBWins = CalculateChance(teamB.getRating(), teamA.getRating()) * scale;
+		
+		Util.Print("\nMatch Between: " + teamA + ", and: " + teamB, false);
+		Util.Print(teamA + " Odds - " + oddsTeamAWins + ", " + teamB + " Odds - " + oddsTeamBWins, false);
+		
+		// Best of is equal to the number of games to play
+		if (bestOf > 1) {
+			Util.Print("\nBest of " + bestOf + ": " + teamA + " vs " + teamB + "\n", false);
+			
+			// Set Variables
+			teamA.setNewRecord(stageLabel);
+			Record teamARecord = teamA.getRecord();
+			
+			teamB.setNewRecord(stageLabel);
+			Record teamBRecord = teamB.getRecord();
+			
+			int goal = (int) Math.ceil((double) bestOf / 2);
+			
+			// Simulate the games
+			for (int i = 1; i < bestOf + 1; i++) {
+				Util.Print("Game #" + i, false);
+				double random = rand.nextDouble() * scale;
+				// Team A Wins the game
+				if (random > 0 && random < oddsTeamAWins) {
+					teamAWins++;
+					teamARecord.MatchWin(teamB);
+					teamBRecord.MatchLoss(teamA);
+					Util.Print(teamA.getTag() + " Win\n", false);
+					
+					// Team A Wins the match
+					if (teamARecord.getWins() == goal) { // Team A Wins
+						winner = teamA;
+						loser = teamB;
+						t.Update(winner, loser);
+						
+						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
+						+ ": Gamescore: " + teamARecord.getWins() + "-" + teamBRecord.getWins(), false);
+						
+						if (printLineBreak) {
+							Util.PrintSmallLineBreak(false);	
+						}
+						break;
+					}
+				} else {
+					// Team B Wins the game
+					teamBWins++;
+					teamBRecord.MatchWin(teamA);
+					teamARecord.MatchLoss(teamB);
+					Util.Print(teamB.getTag() + " Win\n", false);
+				
+					// Team B Wins the match
+					if (teamBRecord.getWins() == goal) { // Team B wins
+						winner = teamB;
+						loser = teamA;
+						t.Update(winner, loser);
+						
+						Util.Print(label + ": " + winner.getTag() + " has beaten " + loser.getTag() 
+						+ ": Gamescore: " + teamBRecord.getWins() + "-" + teamARecord.getWins(), false);
+						
+						if (printLineBreak) {
+							Util.PrintSmallLineBreak(false);	
+						}
+						break;
+					}
+				}
+			}	
+		} else {
+			double random = rand.nextDouble() * scale;
+			if (random > 0 && random < oddsTeamAWins) {
+				teamAWins++;
+				winner = teamA;
+				loser = teamB;
+			} else {
+				teamBWins++;
+				winner = teamB;
+				loser = teamA;
+			}
+			t.Update(winner, loser);
+			Util.Print(this.toString(), false);
+		}
+		gs.AddMatches(g, this);
 	}
 
 	public Team getWinner() {
@@ -146,11 +241,11 @@ public class Match {
 		if (winner == null) {
 			return label + ": " + teamA.getTag() + " VS " + teamB.getTag();
 		} else {
-			String s = label + teamA + " VS " + teamB + "\n";
+			String s = label + ": " + teamA + " VS " + teamB + "\n";
 			if (winner == teamA) {
-				s += teamA.getTag() + " > " + teamB.getTag();
+				s += teamAWins + ":" + teamBWins + "; " + teamA.getTag() + " > " + teamB.getTag() + "\n";
 			} else {
-				s += teamB.getTag() + " > " + teamA.getTag();
+				s += teamAWins + ":" + teamBWins + "; " + teamA.getTag() + " < " + teamB.getTag() + "\n";
 			}
 			return s;
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import Classes.Bracket;
 import Classes.DrawStructure;
+import Classes.EOTStandings;
 import Classes.Group;
 import Classes.GroupStage;
 import Classes.Match;
@@ -41,6 +42,8 @@ public class TournamentWorldChampionship extends Tournament {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
 		}
 		
+		EOTStandings eots = super.getEots();
+		
 		// Setting Up Pools
 		Pool PIPoolOne = pools.get(0);
 		Pool PIPoolTwo = pools.get(1);
@@ -55,9 +58,22 @@ public class TournamentWorldChampionship extends Tournament {
 		
 		SimulateCurrentPIGroupStage(PIGroups);
 		
+		// Place Teams
+		eots.PlaceTeam(PA.GetTeamFromPlacement(5), 22);
+		eots.PlaceTeam(PB.GetTeamFromPlacement(5), 22);
+		//
+		
 		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
 		Match M3 = PIKO.getMatch(3);
 		Match M4 = PIKO.getMatch(4);
+		
+		// Place Teams
+		eots.PlaceTeam(PIKO.getMatch(1).getLoser(), 20);
+		eots.PlaceTeam(PIKO.getMatch(2).getLoser(), 20);
+		eots.PlaceTeam(PIKO.getMatch(3).getLoser(), 18);
+		eots.PlaceTeam(PIKO.getMatch(4).getLoser(), 18);		
+		//
+		
 		List<Match> QMatches = new ArrayList<Match>(Arrays.asList(M3, M4));
 		
 		List<Team> Q = new ArrayList<Team>(
@@ -85,6 +101,18 @@ public class TournamentWorldChampionship extends Tournament {
 		
 		SimulateCurrentGroupStage(groups);
 		
+		// Place Teams
+		eots.PlaceTeam(A.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(B.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(C.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(D.GetTeamFromPlacement(4), 16);
+		//
+		eots.PlaceTeam(A.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(B.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(C.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
+		//
+		
 		List<Team> GSQ = new ArrayList<Team>(
 					Arrays.asList(	A.GetTeamFromPlacement(1),
 									A.GetTeamFromPlacement(2),
@@ -100,7 +128,18 @@ public class TournamentWorldChampionship extends Tournament {
 		// Simulate Knockout Stage
 		SimulateCurrentDrawKO(groups);
 		
-		super.PrintChampionStats(MKnockoutBracket);
+		// Place Teams
+		eots.PlaceTeam(MKnockoutBracket.getMatch(1).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(2).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(3).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(4).getLoser(), 8);
+		//
+		eots.PlaceTeam(MKnockoutBracket.getMatch(5).getLoser(), 4);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(6).getLoser(), 4);
+		//
+		eots.PlaceTeam(MKnockoutBracket.getMatch(7).getLoser(), 2);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(7).getWinner(), 1);
+		//
 	}
 	
 	private void PrintQualifiedThroughPI(List<Group> groups, List<Match> matches, List<Team> teams) {
@@ -119,7 +158,7 @@ public class TournamentWorldChampionship extends Tournament {
 		Team Q4 = teams.get(3);
 		Q4.setNewQD(new QualifiedThroughSeriesWin(Strings.PIKS, M2));
 
-		Tournament.PrintQualified(Strings.GS, teams);
+		Tournament.PrintQualified(Strings.GS, teams, false);
 	}
 	
 	private void PrintQualifiedThroughGroups(List<Group> groups, List<Team> teams) {
@@ -148,44 +187,56 @@ public class TournamentWorldChampionship extends Tournament {
 		Team D2 = teams.get(7);
 		D2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 2));
 		
-		Tournament.PrintQualified(Strings.GS, teams);
+		Tournament.PrintQualified(Strings.GS, teams, false);
 	}
 	
 	private void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		Util.StartSection(Strings.PIGD);
-		PIGroupDraw = new GroupDrawPIStageCurrentFormat();
-		PIGroupDraw.Simulate(groups, pools);
+		String section = Strings.PIGD;
+		Util.StartSection(section, false);
+		PIGroupDraw = new GroupDrawPIStageCurrentFormat(this);
+		super.addDrawStructure(PIGroupDraw);
+		PIGroupDraw.Simulate(section, groups, pools);
 	}
 	
 	private void SimulateCurrentPIGroupStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.PIGS);
-		PIGroupStage = new GroupStagePICurrentFormat();
-		PIGroupStage.Simulate(groups);
+		String section = Strings.PIGS;
+		Util.StartSection(section, false);
+		PIGroupStage = new GroupStagePICurrentFormat(this);
+		super.addGroupStage(PIGroupStage);
+		PIGroupStage.Simulate(section, groups);
 	}
 	
 	private Bracket SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.PIKS);
-		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat();
-		PIKnockoutBracket.Simulate(groups);
+		String section = Strings.PIKS;
+		Util.StartSection(section, false);
+		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat(this);
+		super.addBracket(PIKnockoutBracket);
+		PIKnockoutBracket.Simulate(section, groups);
 		return PIKnockoutBracket;
 	}
 	
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		Util.StartSection(Strings.MSGD);
-		MGroupDraw = new GroupDrawMainStageCurrentFormat();
-		MGroupDraw.Simulate(groups, pools);
+		String section = Strings.MSGD;
+		Util.StartSection(section, false);
+		MGroupDraw = new GroupDrawMainStageCurrentFormat(this);
+		super.addDrawStructure(MGroupDraw);
+		MGroupDraw.Simulate(section, groups, pools);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.MSGS);
-		MGroupStage = new GroupStageMainCurrentFormat();
-		MGroupStage.Simulate(groups);
+		String section = Strings.MSGS;
+		Util.StartSection(section, false);
+		MGroupStage = new GroupStageMainCurrentFormat(this);
+		super.addGroupStage(MGroupStage);
+		MGroupStage.Simulate(section, groups);
 	}
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
-		Util.StartSection(Strings.MSKS);
-		MKnockoutBracket = new KnockoutBracketCurrentFormat();
-		MKnockoutBracket.Simulate(groups);
+		String section = Strings.MSKS;
+		Util.StartSection(section, false);
+		MKnockoutBracket = new KnockoutBracketCurrentFormat(this);
+		super.addBracket(MKnockoutBracket);
+		MKnockoutBracket.Simulate(section, groups);
 	}
 	
 	public void SimulateCurrentWorldsState() throws Exception {
@@ -195,9 +246,22 @@ public class TournamentWorldChampionship extends Tournament {
 		
 		SimulateCurrentPIGroupStage(PIGroups);
 		
+		// Place Teams
+		eots.PlaceTeam(PA.GetTeamFromPlacement(5), 22);
+		eots.PlaceTeam(PB.GetTeamFromPlacement(5), 22);
+		//
+		
 		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
 		Match M3 = PIKO.getMatch(3);
 		Match M4 = PIKO.getMatch(4);
+		
+		// Place Teams
+		eots.PlaceTeam(PIKO.getMatch(1).getLoser(), 20);
+		eots.PlaceTeam(PIKO.getMatch(2).getLoser(), 20);
+		eots.PlaceTeam(PIKO.getMatch(3).getLoser(), 18);
+		eots.PlaceTeam(PIKO.getMatch(4).getLoser(), 18);		
+		//
+		
 		List<Match> QMatches = new ArrayList<Match>(Arrays.asList(M3, M4));
 		
 		List<Team> Q = new ArrayList<Team>(
@@ -227,6 +291,18 @@ public class TournamentWorldChampionship extends Tournament {
 		
 		SimulateCurrentGroupStage(groups);
 		
+		// Place Teams
+		eots.PlaceTeam(A.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(B.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(C.GetTeamFromPlacement(4), 16);
+		eots.PlaceTeam(D.GetTeamFromPlacement(4), 16);
+		//
+		eots.PlaceTeam(A.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(B.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(C.GetTeamFromPlacement(3), 12);
+		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
+		//
+		
 		List<Team> GSQ = new ArrayList<Team>(
 					Arrays.asList(	A.GetTeamFromPlacement(1),
 									A.GetTeamFromPlacement(2),
@@ -242,6 +318,17 @@ public class TournamentWorldChampionship extends Tournament {
 		// Main Knockout Stage
 		SimulateCurrentDrawKO(groups);
 		
-		super.PrintChampionStats(MKnockoutBracket);
+		// Place Teams
+		eots.PlaceTeam(MKnockoutBracket.getMatch(1).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(2).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(3).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(4).getLoser(), 8);
+		//
+		eots.PlaceTeam(MKnockoutBracket.getMatch(5).getLoser(), 4);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(6).getLoser(), 4);
+		//
+		eots.PlaceTeam(MKnockoutBracket.getMatch(7).getLoser(), 2);
+		eots.PlaceTeam(MKnockoutBracket.getMatch(7).getWinner(), 1);
+		//
 	}
 }
