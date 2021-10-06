@@ -8,9 +8,9 @@ import Classes.Record;
 import Classes.Team;
 
 public class MapUtil {
-	public static Map<Team, Integer> sortByIntegerValue(Map<Team, Integer> unsortMap)
+	public static <K> Map<K, Integer> sortByIntegerValue(Map<K, Integer> unsortMap)
     {
-		LinkedHashMap<Team, Integer> sortedMap = new LinkedHashMap<>();
+		LinkedHashMap<K, Integer> sortedMap = new LinkedHashMap<>();
 		 
 		unsortMap.entrySet()
 		    .stream()

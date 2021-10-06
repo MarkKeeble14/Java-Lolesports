@@ -101,20 +101,20 @@ public class Util {
 		}
 	}
 	
-	public static void NicePrintResults(Map<Team, Integer> map, int timesRan) {
+	public static <K> void NicePrintResults(Map<K, Integer> map, int timesRan) {
 		PrintMediumLineBreak(false, true);
 		System.out.println("\nResults of Simulating the tournament: " + timesRan + " times");
 		PrintMediumLineBreak(true, true);
 		System.out.println();
 		
 		DecimalFormat df = new DecimalFormat("#0.00###");
-		Set<Entry<Team, Integer>> set = map.entrySet();
+		Set<Entry<K, Integer>> set = map.entrySet();
 		int i = 0;
-		for (Entry<Team, Integer> e : set) {
+		for (Entry<K, Integer> e : set) {
 			float n = (float) e.getValue() / timesRan * 100;
 			
 			if (i == set.size() - 1) {
-				Util.Print(e.getKey() + ", " + e.getValue() + ": Percent - " + df.format(n), true);
+				Util.Print(e.getKey() + ", " + e.getValue() + ": Percent - " + df.format(n) + "%", true);
 			} else {
 				Util.Print(e.getKey() + ", " + e.getValue() + ": Percent - " + df.format(n) + "%\n", true);	
 			}

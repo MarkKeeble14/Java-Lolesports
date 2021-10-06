@@ -42,17 +42,17 @@ public class Driver {
 		
 		// SimulateCurrentMSIFormatFromScratch();
 		
-		LoopTournament(1);
+		LoopTournament(12000);
 	}
 	
 	// Simulates an Entire Tournament
 	public static Tournament SimulateCurrentWorldsFormatFromScratch() throws Exception {
 		// Setting up Pools
-		Pool PIPool1 = new Pool(Strings.LPIPoolOne, Teams.LNG, Teams.HLE, Teams.BYG, Teams.C9); 
-		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, Teams.INF, Teams.GS, Teams.UOL, Teams.PCE, Teams.RED, Teams.DFM);
-		Pool P1 = new Pool(Strings.LPoolOne, Teams.DK, Teams.EDG, Teams.MAD, Teams.PSG); 
-		Pool P2 = new Pool(Strings.LPoolTwo, Teams.O100T, Teams.FNC, Teams.GEN, Teams.FPX);
-		Pool P3 = new Pool(Strings.LPoolThree, Teams.TL, Teams.T1, Teams.RGE, Teams.RNG);
+		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new Team(Teams.LNG), new Team(Teams.HLE), new Team(Teams.BYG), new Team(Teams.C9)); 
+		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new Team(Teams.INF), new Team(Teams.GS), new Team(Teams.UOL), new Team(Teams.PCE), new Team(Teams.RED), new Team(Teams.DFM));
+		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.DK), new Team(Teams.EDG), new Team(Teams.MAD), new Team(Teams.PSG)); 
+		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.O100T), new Team(Teams.FNC), new Team(Teams.GEN), new Team(Teams.FPX));
+		Pool P3 = new Pool(Strings.LPoolThree, new Team(Teams.TL), new Team(Teams.T1), new Team(Teams.RGE), new Team(Teams.RNG));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
 		
 		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
@@ -71,8 +71,8 @@ public class Driver {
 	
 	public static Tournament SimulateCurrentMSIFormatFromScratch() throws Exception {
 		// Setting up Pools
-		Pool P1 = new Pool(Strings.LPoolOne, Teams.RNG, Teams.DK, Teams.PSG, Teams.C9, Teams.MAD, Teams.GAM); 
-		Pool P2 = new Pool(Strings.LPoolTwo, Teams.PGG, Teams.UOL, Teams.PNG, Teams.IW, Teams.DFM, Teams.INF);
+		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.RNG), new Team(Teams.DK), new Team(Teams.PSG), new Team(Teams.C9), new Team(Teams.MAD), new Team(Teams.GAM)); 
+		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.PGG), new Team(Teams.UOL), new Team(Teams.PNG), new Team(Teams.IW), new Team(Teams.DFM), new Team(Teams.INF));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(P1, P2));
 		
 		Tournament MSI = new TournamentMSI(Strings.LMSI);
@@ -81,21 +81,19 @@ public class Driver {
 		return MSI;
 	}
 	
-	// Doesn't allow for very large numbers; 200: Safe Limit - Takes like 5ish Seconds to run
-	// 
-	// A way to up the threshhold is to remove/comment out any sections where it calls Util.Print; 
-	// Doing so allowed me to safely test with numbers up to ~100,000
+	// Doesn't allow for SUPER large numbers; 10,000 Works: Takes like 10ish Seconds to run for me
+	// You can probably go higher if you want to wait.
 	private static void LoopTournament(int x) throws Exception {
 		Map<Integer, Tournament> tournamentMap = new HashMap<Integer, Tournament>();
-		Map<Team, Integer> timesTeamWonMap = new HashMap<Team, Integer>();
+		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		for (int i = 0; i < x; i++) {
 			Tournament T = SimulateCurrentWorldsFormatFromScratch();
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
-			if (timesTeamWonMap.containsKey(champion)) {
-				timesTeamWonMap.put(champion, timesTeamWonMap.get(champion) + 1);
+			if (timesTeamWonMap.containsKey(champion.getTag())) {
+				timesTeamWonMap.put(champion.getTag(), timesTeamWonMap.get(champion.getTag()) + 1);
 			} else {
-				timesTeamWonMap.put(champion, 1);
+				timesTeamWonMap.put(champion.getTag(), 1);
 			}
 		}
 		
@@ -105,7 +103,7 @@ public class Driver {
 		timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
 		Util.NicePrintResults(timesTeamWonMap, x);
 		
-		int index = 0;
+		int index = 147;
 		Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -", true);
 		tournamentMap.get(index).PrintInfo(true, true, true, true, true);
 	}
