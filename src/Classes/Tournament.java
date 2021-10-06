@@ -55,7 +55,7 @@ public abstract class Tournament {
 	}
 	
 	public void PrintLists(boolean forcePrint) {
-		Util.StartHeadline("Printing Results of Tournement", true);
+		Util.PrintSectionBreak("Printing Results of Tournement", true);
 		for (TournamentComponent t : tComps) {
 			Util.StartSection(t.getLabel(), forcePrint);
 			Util.Print(t.toString(), forcePrint);
@@ -65,20 +65,24 @@ public abstract class Tournament {
 	public void PrintInfo(boolean forcePrint, 
 			boolean printWinner, boolean printRegionalWL, 
 			boolean printFinalStandings, boolean printTComps) {
+		
+		if (printTComps) {
+			PrintLists(forcePrint);
+		}
+		
 		if (printWinner) {
+			Util.PrintSectionBreak("Championship Stats", forcePrint);
 			PrintChampionshipStats(forcePrint);	
 		}
 		
 		if (printRegionalWL) {
+			Util.PrintSectionBreak("Regional Win/Loss Ratios", forcePrint);
 			t.NicePrintMajor(Driver.SHOW_EMPTY_REGION_WL, forcePrint);	
 		}
 		
 		if (printFinalStandings) {
+			Util.PrintSectionBreak("Tournament Standings", forcePrint);
 			eots.Print(forcePrint);	
-		}
-		
-		if (printTComps) {
-			PrintLists(forcePrint);
 		}
 	}
 	

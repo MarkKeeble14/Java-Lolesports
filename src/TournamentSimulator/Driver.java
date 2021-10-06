@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import Classes.Pool;
 import Classes.Team;
@@ -35,6 +36,8 @@ public class Driver {
 	//
 	public static final boolean PRINT_FINAL_STANDINGS = false;
 	
+	private static final int numberOfSims = 1000;
+	
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsState();
@@ -42,7 +45,7 @@ public class Driver {
 		
 		// SimulateCurrentMSIFormatFromScratch();
 		
-		LoopTournament(12000);
+		LoopTournament(numberOfSims);
 	}
 	
 	// Simulates an Entire Tournament
@@ -86,25 +89,65 @@ public class Driver {
 	private static void LoopTournament(int x) throws Exception {
 		Map<Integer, Tournament> tournamentMap = new HashMap<Integer, Tournament>();
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
+		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
 			Tournament T = SimulateCurrentWorldsFormatFromScratch();
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {
 				timesTeamWonMap.put(champion.getTag(), timesTeamWonMap.get(champion.getTag()) + 1);
+				List<Integer> prevWins =  indexOfTeamWins.get(champion.getTag());
+				prevWins.add(i);
+				indexOfTeamWins.put(champion.getTag(), prevWins);
 			} else {
 				timesTeamWonMap.put(champion.getTag(), 1);
+				indexOfTeamWins.put(champion.getTag(), new ArrayList<Integer>(Arrays.asList(i)));
 			}
 		}
 		
-		// Print Results 
-		// Currently can count duplicate tournament results (Same exact outcomes) as a seperate tournament win,
-		// Which might skew the results a little?
-		timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
-		Util.NicePrintResults(timesTeamWonMap, x);
+		Util.PrintSectionBreak("World's Simulations", true);
 		
-		int index = 147;
-		Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -", true);
-		tournamentMap.get(index).PrintInfo(true, true, true, true, true);
+		// Program
+		Scanner scan = new Scanner(System.in);
+		String sentinal = "NO";
+		String input = "";
+		while (true) {
+			// Print Results 
+			// Currently can count duplicate tournament results (Same exact outcomes) as a seperate tournament win,
+			// Which might skew the results a little?
+			timesTeamWonMap = MapUtil.sortByIntegerValue(timesTeamWonMap);
+			Util.NicePrintResults(timesTeamWonMap, x);
+			
+			System.out.print("\nShow me a World where X Wins: ");
+			input = scan.nextLine().toUpperCase();
+			
+			if (input.compareTo(sentinal) == 0) {
+				System.out.println("\nOk");
+				break;
+			}
+			
+			// Print out possible numbers
+			if (indexOfTeamWins.containsKey(input)) {
+				List<Integer> options = indexOfTeamWins.get(input);
+				
+				if (options.size() > 0) {
+					int index = options.get(0);
+					options.remove(0);
+					indexOfTeamWins.put(input, options);
+					
+					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -", true);
+					tournamentMap.get(index).PrintInfo(true, true, false, false, true);
+				} else {
+					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
+				}
+				Util.PrintMediumLineBreak(true);
+			} else {
+				System.out.println("No saved simulations where " + input + " Wins; Run again if you'd like");
+				Util.PrintMediumLineBreak(true);
+				continue;
+			}
+		}
+		
+		scan.close();
 	}
 }

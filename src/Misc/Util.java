@@ -103,7 +103,7 @@ public class Util {
 	
 	public static <K> void NicePrintResults(Map<K, Integer> map, int timesRan) {
 		PrintMediumLineBreak(false, true);
-		System.out.println("\nResults of Simulating the tournament: " + timesRan + " times");
+		System.out.println("\n# of Times X Team Won; Results from " + timesRan + " Simulations");
 		PrintMediumLineBreak(true, true);
 		System.out.println();
 		
