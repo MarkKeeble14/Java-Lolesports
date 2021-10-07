@@ -29,7 +29,7 @@ public abstract class Tournament {
 	}
 
 	public void PrintHeadline() {
-		Util.StartHeadline(label, false);
+		Util.StartHeadline(label);
 	}
 	
 	public abstract void Simulate(List<Pool> pools) throws Exception;
@@ -39,58 +39,45 @@ public abstract class Tournament {
 		
 		winner = b.getChampion();
 		runnerUp = b.getRunnerUp();
-		
-		if (Driver.PRINT_WINNER) {
-			PrintChampionshipStats(false);
-		}
-		
-		if (Driver.PRINT_REGIONAL_WL) {
-			// Print out regional W/L Records
-			t.NicePrintMajor(Driver.SHOW_EMPTY_REGION_WL, false);	
-		}
-		if (Driver.PRINT_FINAL_STANDINGS) {
-			// Print out final placements
-			eots.Print(false);	
-		}
 	}
 	
-	public void PrintLists(boolean forcePrint) {
-		Util.PrintSectionBreak("Printing Results of Tournement", true);
+	public void PrintLists() {
+		Util.PrintSectionBreak("Printing Results of Tournement");
 		for (TournamentComponent t : tComps) {
-			Util.StartSection(t.getLabel(), forcePrint);
-			Util.Print(t.toString(), forcePrint);
+			Util.PrintSectionBreak(t.getLabel());
+			System.out.println(t.toString());
 		}
 	}
 	
-	public void PrintInfo(boolean forcePrint, 
+	public void PrintInfo(
 			boolean printWinner, boolean printRegionalWL, 
 			boolean printFinalStandings, boolean printTComps) {
 		
 		if (printTComps) {
-			PrintLists(forcePrint);
+			PrintLists();
 		}
 		
 		if (printWinner) {
-			Util.PrintSectionBreak("Championship Stats", forcePrint);
-			PrintChampionshipStats(forcePrint);	
+			Util.PrintSectionBreak("Championship Stats");
+			PrintChampionshipStats();	
 		}
 		
 		if (printRegionalWL) {
-			Util.PrintSectionBreak("Regional Win/Loss Ratios", forcePrint);
-			t.NicePrintMajor(Driver.SHOW_EMPTY_REGION_WL, forcePrint);	
+			Util.PrintSectionBreak("Regional Win/Loss Ratios");
+			t.NicePrintMajor();	
 		}
 		
 		if (printFinalStandings) {
-			Util.PrintSectionBreak("Tournament Standings", forcePrint);
-			eots.Print(forcePrint);	
+			Util.PrintSectionBreak("Tournament Standings");
+			eots.Print();	
 		}
 	}
 	
-	public void PrintChampionshipStats(boolean forcePrint) {
-		Util.Print("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp, forcePrint);
-		Util.Print("\n" + winner + " Records: " + winner.qdLog(), forcePrint);
-		Util.Print("\n" + winner + " Records: " + winner.recordLog(), forcePrint);
-		Util.Print("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp, forcePrint);	
+	public void PrintChampionshipStats() {
+		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
+		System.out.println("\n" + winner + " Records: " + winner.qdLog());
+		System.out.println("\n" + winner + " Records: " + winner.recordLog());
+		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);	
 	}
 
 	public Team getWinner() {
@@ -124,12 +111,12 @@ public abstract class Tournament {
 		tComps.add(ds);
 	}
 	
-	public static void PrintQualified(String sectionQualifiedThrough, List<Team> qualified, boolean forcePrint) {
+	public static void PrintQualified(String sectionQualifiedThrough, List<Team> qualified) {
 		Util.PrintMediumLineBreak(false);
-		Util.Print("\nQualified Teams Through " + sectionQualifiedThrough + ": ", forcePrint);
+		System.out.println("\nQualified Teams Through " + sectionQualifiedThrough + ": ");
 		for (Team t : qualified) {
 			Util.PrintSmallLineBreak(false);
-			Util.Print(t.getQD().toString(), forcePrint);
+			System.out.println(t.getQD().toString());
 		}
 	}
 }

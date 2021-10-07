@@ -32,6 +32,5 @@ public class GroupStagePICurrentFormat extends GroupStage {
 		B.FullSimulate(label, tracker, 1, true, this); 
 		
 		super.setGroups(groups);
-		super.PrintGroups();
 	}
 }

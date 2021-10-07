@@ -2,6 +2,7 @@ package Classes;
 
 import java.util.List;
 
+import Misc.Strings;
 import Misc.Util;
 
 public abstract class DrawStructure extends TournamentComponent {
@@ -26,7 +27,7 @@ public abstract class DrawStructure extends TournamentComponent {
 
 	public void PrintGroups() {
 		for (Group g : groups) {
-			Util.Print(g.toString(), false);
+			System.out.println(g.toString());
 		}
 	}
 
@@ -44,6 +45,7 @@ public abstract class DrawStructure extends TournamentComponent {
 				s += g.StringifyGroup();
 			} else {
 				s += g.StringifyGroup() + "\n";
+				s += Strings.MediumLineBreak + "\n";
 			}
 			x++;
 		}

@@ -20,6 +20,10 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		super(partOf);
 	}
 
+	public KnockoutBracketCurrentFormat(TournamentWorldChampionship tournamentWorldChampionship, String msgs) {
+		super(tournamentWorldChampionship, msgs);
+	}
+
 	int requiredNumberOfGroups = 4;
 	
 	@Override
@@ -48,7 +52,7 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		Match M5 = new Match("M5");
 		Match M6 = new Match("M6");
 		Match M7 = new Match("M7");
-	
+		
 		ArrayList<Match> matches = new ArrayList<Match>(Arrays.asList(M1, M2, M3, M4));
 		
 		M1.setTeamA(poolOne.Draw());
@@ -61,21 +65,21 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
 				
-		M1.Simulate(label, tracker, 5, true);
-		M2.Simulate(label, tracker, 5, true);
-		M3.Simulate(label, tracker, 5, true);
-		M4.Simulate(label, tracker, 5, true);
+		M1.Simulate(label, tracker, 5);
+		M2.Simulate(label, tracker, 5);
+		M3.Simulate(label, tracker, 5);
+		M4.Simulate(label, tracker, 5);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
-		M5.Simulate(label, tracker, 5, true);
-		M6.Simulate(label, tracker, 5, true);
+		M5.Simulate(label, tracker, 5);
+		M6.Simulate(label, tracker, 5);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
-		M7.Simulate(label, tracker, 5, true);
+		M7.Simulate(label, tracker, 5);
 		
 		// General Tracking Stuff
 		super.addMatches(M1, M2, M3, M4, M5, M6, M7);

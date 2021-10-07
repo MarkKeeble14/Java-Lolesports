@@ -56,6 +56,5 @@ public class GroupDrawPIStageCurrentFormat extends DrawStructure {
 		B.Add(PoolTwo.Draw());
 		
 		super.setGroups(groups);
-		super.PrintGroups();
 	}
 }

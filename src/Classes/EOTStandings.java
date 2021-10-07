@@ -17,7 +17,7 @@ public class EOTStandings {
 		standings.put(t, placing);
 	}
 
-	public void Print(boolean forcePrint) {
+	public void Print() {
 		// Sort
 		standings = MapUtil.sortByIntegerValue(standings);
 		

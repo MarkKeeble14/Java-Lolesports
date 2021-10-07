@@ -35,34 +35,34 @@ public class RegionalWLTracker {
 		tracker.get(tLost.getRegion()).get(tWon.getRegion()).Lose();
 	}
 	
-	public void Print(Region r, boolean forcePrint) {
-		Util.PrintSmallLineBreak(forcePrint);
-		Util.Print("\nRegional Win Loss Record for: " + r, forcePrint);
-		Util.PrintSmallLineBreak(forcePrint);
+	public void Print(Region r) {
+		Util.PrintSmallLineBreak(true);
+		System.out.println("\nRegional Win Loss Record for: " + r);
+		Util.PrintSmallLineBreak(true);
 
 		Map<Region, WinLossCounter> t = tracker.get(r);
 		
 		Set<Entry<Region, WinLossCounter>> set = t.entrySet();
 		for (Entry<Region, WinLossCounter> e : set) {
 			WinLossCounter c = e.getValue();
-			if (Driver.SHOW_EMPTY_REGION_WL) {
-				Util.Print("\n" + e.getKey() + ", " + e.getValue(), forcePrint);
+			if (Driver.SHOW_REGIONAL_WL_WITH_0_GAMES) {
+				System.out.println("\n" + e.getKey() + ", " + e.getValue());
 			} else {
 				if (c.getWins() != 0 || c.getLosses() != 0) {
-					Util.Print("\nVS: " + e.getKey() + ", " + e.getValue(), forcePrint);
+					System.out.println("\nVS: " + e.getKey() + ", " + e.getValue());
 				}	
 			}
 		}
 	}
 	
-	public void NicePrintAll(boolean showEmpty, boolean forcePrint) {
-		NicePrintMajor(showEmpty, forcePrint);
-		NicePrintMinor(showEmpty, forcePrint);
+	public void NicePrintAll() {
+		NicePrintMajor();
+		NicePrintMinor();
 	}
 	
-	public void NicePrintMajor(boolean showEmpty, boolean forcePrint) {
-		Util.PrintLargeLineBreak(forcePrint);
-		Util.Print("\nRegional Win Loss Records for Major Regions", forcePrint);
+	public void NicePrintMajor() {
+		Util.PrintLargeLineBreak(true);
+		System.out.println("\nRegional Win Loss Records for Major Regions");
 		
 		List<Region> major = new ArrayList<Region>(Arrays.asList(
 				Region.EU,
@@ -72,13 +72,13 @@ public class RegionalWLTracker {
 				Region.SEA));
 		
 		for (Region r : major) {
-			Print(r, forcePrint);
+			Print(r);
 		}
 	}
 	
-	public void NicePrintMinor(boolean showEmpty, boolean forcePrint) {
+	public void NicePrintMinor() {
 		Util.PrintLargeLineBreak(false);
-		Util.Print("\nRegional Win Loss Records for Minor Regions", forcePrint);
+		System.out.println("\nRegional Win Loss Records for Minor Regions");
 		
 		List<Region> minor = new ArrayList<Region>(Arrays.asList(
 				Region.RUS,
@@ -90,7 +90,7 @@ public class RegionalWLTracker {
 				Region.VIET));
 		
 		for (Region r : minor) {
-			Print(r, forcePrint);
+			Print(r);
 		}
 	}
 }

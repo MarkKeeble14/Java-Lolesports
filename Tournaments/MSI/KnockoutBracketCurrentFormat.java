@@ -1,5 +1,7 @@
 package MSI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Classes.Bracket;
@@ -14,6 +16,10 @@ import Misc.Strings;
 public class KnockoutBracketCurrentFormat extends Bracket {
 	public KnockoutBracketCurrentFormat(Tournament partOf) {
 		super(partOf);
+	}
+
+	public KnockoutBracketCurrentFormat(TournamentMSI tournamentMSI, String rsgs) {
+		super(tournamentMSI, rsgs);
 	}
 
 	int requiredNumberOfGroups = 1;
@@ -41,13 +47,13 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M1.setTeamB(poolOne.Draw());
 		M2.setTeamB(poolTwo.Draw());
 
-		M1.Simulate(label, tracker, 5, true);
-		M2.Simulate(label, tracker, 5, true);
+		M1.Simulate(label, tracker, 5);
+		M2.Simulate(label, tracker, 5);
 		
 		M3.setTeamA(M1.getWinner());
 		M3.setTeamB(M2.getWinner());
 		
-		M3.Simulate(label, tracker, 5, true);
+		M3.Simulate(label, tracker, 5);
 		
 		// General Tracking Stuff
 		super.addMatches(M1, M2, M3);

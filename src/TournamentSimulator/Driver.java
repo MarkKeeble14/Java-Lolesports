@@ -23,33 +23,28 @@ public class Driver {
 	// A scale of 1 makes most matchups 50/50
 	public static int ELO_SCALING = 75;
 	
-	// If false, nothing will be printed
-	public static final boolean PRINT_OUTPUT = false;
+	// 100,000 Too High
+	// 10,000 ~10 Seconds
+	private static final int numberOfSims = 10000;
 	
-	//
-	public static final boolean PRINT_WINNER = true; 
+	public static final boolean SHOW_REGIONAL_WL_WITH_0_GAMES = false;
 	
-	// 
-	public static final boolean PRINT_REGIONAL_WL = false;
-	public static final boolean SHOW_EMPTY_REGION_WL = false;
+	public static final boolean PRINT_DETAILED_SERIES_SUMMARY = true;
 	
-	//
-	public static final boolean PRINT_FINAL_STANDINGS = false;
-	
-	private static final int numberOfSims = 1000;
+	public static final boolean PRINT_QUALIFICATION_REASONS = true;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		// SimulateCurrentWorldsState();
-		// SimulateCurrentWorldsFormatFromScratch();
+		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
+		SimulateWorldsFormatFromScratch().PrintInfo(true, false, false, true);
 		
-		// SimulateCurrentMSIFormatFromScratch();
+		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
 		
-		LoopTournament(numberOfSims);
+		// LoopTournament(numberOfSims);
 	}
 	
 	// Simulates an Entire Tournament
-	public static Tournament SimulateCurrentWorldsFormatFromScratch() throws Exception {
+	public static Tournament SimulateWorldsFormatFromScratch() throws Exception {
 		// Setting up Pools
 		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new Team(Teams.LNG), new Team(Teams.HLE), new Team(Teams.BYG), new Team(Teams.C9)); 
 		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new Team(Teams.INF), new Team(Teams.GS), new Team(Teams.UOL), new Team(Teams.PCE), new Team(Teams.RED), new Team(Teams.DFM));
@@ -72,7 +67,7 @@ public class Driver {
 		return WC;
 	}
 	
-	public static Tournament SimulateCurrentMSIFormatFromScratch() throws Exception {
+	public static Tournament SimulateMSIFormatFromScratch() throws Exception {
 		// Setting up Pools
 		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.RNG), new Team(Teams.DK), new Team(Teams.PSG), new Team(Teams.C9), new Team(Teams.MAD), new Team(Teams.GAM)); 
 		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.PGG), new Team(Teams.UOL), new Team(Teams.PNG), new Team(Teams.IW), new Team(Teams.DFM), new Team(Teams.INF));
@@ -91,7 +86,7 @@ public class Driver {
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
-			Tournament T = SimulateCurrentWorldsFormatFromScratch();
+			Tournament T = SimulateWorldsFormatFromScratch();
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {
@@ -105,7 +100,7 @@ public class Driver {
 			}
 		}
 		
-		Util.PrintSectionBreak("World's Simulations", true);
+		Util.PrintSectionBreak("World's Simulations");
 		
 		// Program
 		Scanner scan = new Scanner(System.in);
@@ -135,8 +130,8 @@ public class Driver {
 					options.remove(0);
 					indexOfTeamWins.put(input, options);
 					
-					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -", true);
-					tournamentMap.get(index).PrintInfo(true, true, false, false, true);
+					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
+					tournamentMap.get(index).PrintInfo(true, false, false, true);
 				} else {
 					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
 				}

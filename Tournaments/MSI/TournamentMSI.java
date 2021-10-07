@@ -31,8 +31,6 @@ public class TournamentMSI extends Tournament {
 	
 	@Override
 	public void Simulate(List<Pool> pools) throws Exception {
-		super.PrintHeadline();
-		
 		if (pools.size() != requiredNumberOfPools) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
 		}
@@ -68,7 +66,7 @@ public class TournamentMSI extends Tournament {
 				B.GetTeamFromPlacement(1), B.GetTeamFromPlacement(2),
 				C.GetTeamFromPlacement(1), C.GetTeamFromPlacement(2)));
 		
-		PrintQualified(groups, Q);
+		SetQDsForGroups(groups, Q);
 		
 		Group RumbleGroup = new Group(Strings.LRumble, Q);
 		List<Group> groups1 = new ArrayList<Group>(Arrays.asList(RumbleGroup));
@@ -80,6 +78,11 @@ public class TournamentMSI extends Tournament {
 		eots.PlaceTeam(RumbleGroup.GetTeamFromPlacement(5), 5);
 		//
 		
+		List<Team> QR = new ArrayList<Team>(Arrays.asList(	
+				RumbleGroup.GetTeamFromPlacement(1), RumbleGroup.GetTeamFromPlacement(2),
+				RumbleGroup.GetTeamFromPlacement(3), RumbleGroup.GetTeamFromPlacement(4)));
+		SetQDsForRumble(groups1, QR);
+		
 		SimulateCurrentKnockoutStage(groups1);
 		
 		// Place Teams
@@ -90,7 +93,7 @@ public class TournamentMSI extends Tournament {
 		//
 	}
 	
-	private void PrintQualified(List<Group> groups, List<Team> teams) {
+	private void SetQDsForGroups(List<Group> groups, List<Team> teams) {
 		Group A = groups.get(0);
 		Group B = groups.get(1);
 		Group C = groups.get(2);
@@ -107,13 +110,23 @@ public class TournamentMSI extends Tournament {
 		Q5.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, C, 1));
 		Team Q6 = teams.get(5);
 		Q6.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, C, 2));
-
-		Tournament.PrintQualified(Strings.GS, teams, false);
+	}
+	
+	private void SetQDsForRumble(List<Group> groups, List<Team> teams) {
+		Group g = groups.get(0);
+		
+		Team Q1 = teams.get(0);
+		Q1.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 1));
+		Team Q2 = teams.get(1);
+		Q2.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 2));
+		Team Q3 = teams.get(2);
+		Q3.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 3));
+		Team Q4 = teams.get(3);
+		Q4.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 4));
 	}
 
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
 		String section = Strings.GSGD;
-		Util.StartSection(section, false);
 		groupDraw = new GroupDrawGroupStageCurrentFormat(this);
 		super.addDrawStructure(groupDraw);
 		groupDraw.Simulate(section, groups, pools);
@@ -121,15 +134,13 @@ public class TournamentMSI extends Tournament {
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
 		String section = Strings.GS;
-		Util.StartSection(section, false);
 		groupStage = new GroupStageGroupStageCurrentFormat(this);
 		super.addGroupStage(groupStage);
 		groupStage.Simulate(section, groups);
 	}
 	
 	private void SimulateCurrentRumbleStage(List<Group> groups) throws Exception {
-		String section = Strings.RSGS;
-		Util.StartSection(section, false);
+		String section = Strings.LRumble;
 		rumbleStage = new GroupStageRumbleStageCurrentFormat(this);
 		super.addGroupStage(rumbleStage);
 		rumbleStage.Simulate(section, groups);
@@ -137,8 +148,8 @@ public class TournamentMSI extends Tournament {
 	
 	private void SimulateCurrentKnockoutStage(List<Group> groups) throws Exception {
 		String section = Strings.RSKS;
-		Util.StartSection(section, false);
-		knockoutBracket = new KnockoutBracketCurrentFormat(this);
+		knockoutBracket = new KnockoutBracketCurrentFormat(this, Strings.LRumble);
+		super.addBracket(knockoutBracket);
 		knockoutBracket.Simulate(section, groups);
 	}
 }

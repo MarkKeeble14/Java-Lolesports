@@ -142,8 +142,6 @@ public class Group {
 			copy.Add(t);
 		}
 		
-		Util.Print(StringifyGroup(), false);
-		
 		// Simulate the actual games
 		while(copy.getSize() > 0) {
 			Team t = copy.getGroup().get(0);
@@ -151,11 +149,10 @@ public class Group {
 				Team c = copy.getGroup().get(p);
 				if (t != c) {
 					for (int q = 0; q < matchesPerTwo; q++) {
-						Util.PrintSmallLineBreak(false);
 						Match M = new Match("M", t, c);
 						
 						// Assuming groups are BO1
-						M.SimulateGroupStageMatch(stageLabel, tracker, 1, true, this, partOf);
+						M.SimulateGroupStageMatch(stageLabel, tracker, 1, this, partOf);
 						
 						Team winner = M.getWinner();
 						Team loser = M.getLoser();
@@ -175,13 +172,6 @@ public class Group {
 		
 		// Sort into standings
 		SortStandingsPostTiebreakers();
-		
-		Util.PrintSmallLineBreak(false);
-		
-		Util.Print("\nFinal Standings", false);
-		PrintStandings();
-		
-		Util.PrintLargeLineBreak(false);
 	}
 	
 	private boolean tiebreakersRequired() {
@@ -229,10 +219,7 @@ public class Group {
 	}
 	
 	private void SimulateTiebreakers(String stageLabel, RegionalWLTracker tracker) {
-		Util.PrintSmallLineBreak(false);
-		Util.Print("\nPre-Tiebreakers Standings", false);
 		SortStandingsPreTiebreakers();
-		PrintStandings();
 		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
@@ -284,15 +271,10 @@ public class Group {
 					Team teamA = prevTeam;
 					Team teamB = lst.get(i + 1);
 					
-					Util.PrintSmallLineBreak(false);
-					Util.Print("\nTiebreaker Between: " + teamA + ", and: " + teamB, false);
-					Util.Print(teamA + " Record: " + teamA.getRecord(), false);
-					Util.Print(teamB + " Record: " + teamB.getRecord(), false);
-					
 					Match M = new Match("M", teamA, teamB);
 					
 					// Assuming groups are BO1
-					M.Simulate(stageLabel + ": Tiebreakers", tracker, 1, true);
+					M.SimulateGroupStageTiebreakerMatch(stageLabel + ": Tiebreakers", tracker, 1, this, partOf);
 					
 					Team winner = M.getWinner();
 					Team loser = M.getLoser();
@@ -512,15 +494,15 @@ public class Group {
 	}
 
 	public void PrintStandings() {
-		Util.Print("\nGroup " + label + "\n", false);
-		standings.forEach((k, v) -> Util.Print((v + " : " + k + " | Record: " 
-				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses()), false));
+		System.out.println("\nGroup " + label + "\n");
+		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
 	}
 	
 	public void PrintStandingsWithRecordLogs(String label) {
-		Util.Print("\nGroup " + label + "\n", false);
-		standings.forEach((k, v) -> Util.Print((v + " : " + k + " | Record: " 
-				+ k.getRecord(label).detailedPrint()), false));
+		System.out.println("\nGroup " + label + "\n");
+		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
+				+ k.getRecord(label).detailedPrint())));
 	}
 	
 	public String toStandings() {

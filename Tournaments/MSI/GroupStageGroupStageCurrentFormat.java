@@ -36,6 +36,5 @@ public class GroupStageGroupStageCurrentFormat extends GroupStage {
 		C.FullSimulate(label, tracker,  2, true, this); 
 		
 		super.setGroups(groups);
-		super.PrintGroups();
 	}
 }

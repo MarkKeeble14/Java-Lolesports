@@ -69,6 +69,5 @@ public class GroupDrawMainStageCurrentFormat extends DrawStructure {
 		pools.remove(0);
 		
 		super.setGroups(groups);
-		super.PrintGroups();
 	}
 }

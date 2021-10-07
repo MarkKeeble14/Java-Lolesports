@@ -95,7 +95,20 @@ public class Team implements Comparable<Team> {
 	}
 	
 	public QualificationDetails getQD() {
-		return QDs.get(currentQDIndex);
+		if (QDs.size() > 0) {
+			return QDs.get(currentQDIndex);	
+		} else {
+			return null;
+		}
+	}
+	
+	public QualificationDetails getQD(String label) {
+		for (QualificationDetails qd : QDs) {
+			if (qd.getLabel().compareTo(label) == 0) {
+				return qd;
+			}
+		}
+		return null;
 	}
 	
 	public void setNewQD(QualificationDetails QD) {
