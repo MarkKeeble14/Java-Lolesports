@@ -16,6 +16,7 @@ import Misc.Strings;
 import Misc.Teams;
 import Misc.Util;
 import WorldChampionship.TournamentWorldChampionship;
+import WorldChampionship.TournamentWorldChampionshipDoubleElim;
 
 public class Driver {
 	// Variables / Tuning
@@ -33,14 +34,21 @@ public class Driver {
 	
 	public static final boolean PRINT_QUALIFICATION_REASONS = true;
 	
+	public static final boolean PRINT_GROUP_STAGE_SUMMARY = true;
+	
+	public static final boolean PRINT_OVERALL_WL = true;
+	public static final boolean PRINT_INDIVIDUAL_WL = true;
+	public static final boolean PRINT_MAJOR_REGIONAL_WL = true;
+	public static final boolean PRINT_MINOR_REGIONAL_WL = false;
+	
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		SimulateWorldsFormatFromScratch().PrintInfo(true, false, false, true);
+		// SimulateWorldsFormatFromScratch().PrintInfo(false, true, false, false);
 		
 		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
 		
-		// LoopTournament(numberOfSims);
+		LoopTournament(numberOfSims);
 	}
 	
 	// Simulates an Entire Tournament
@@ -53,9 +61,8 @@ public class Driver {
 		Pool P3 = new Pool(Strings.LPoolThree, new Team(Teams.TL), new Team(Teams.T1), new Team(Teams.RGE), new Team(Teams.RNG));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
 		
-		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
+		Tournament WC = new TournamentWorldChampionshipDoubleElim(Strings.LWC);
 		WC.Simulate(pools);
-		WC.ConcludeTournament();
 		return WC;
 	}
 	
@@ -63,7 +70,6 @@ public class Driver {
 	public static Tournament SimulateCurrentWorldsState() throws Exception {
 		TournamentWorldChampionship WC = new TournamentWorldChampionship(Strings.LWC);
 		WC.SimulateCurrentWorldsState();
-		WC.ConcludeTournament();
 		return WC;
 	}
 	
@@ -75,7 +81,6 @@ public class Driver {
 		
 		Tournament MSI = new TournamentMSI(Strings.LMSI);
 		MSI.Simulate(pools);
-		MSI.ConcludeTournament();
 		return MSI;
 	}
 	
@@ -130,19 +135,40 @@ public class Driver {
 					options.remove(0);
 					indexOfTeamWins.put(input, options);
 					
+					System.out.println("Print Tournament Progression?: ");
+					boolean printTProg = GetYN(scan);
+					
+					System.out.println("Print Tournament Champion Records?: ");
+					boolean printCRec = GetYN(scan);
+					
+					System.out.println("Print W/L?: ");
+					boolean printRWL = GetYN(scan);
+					
+					System.out.println("Print Tournament Standings?: ");
+					boolean printTStand = GetYN(scan);
+					
 					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
-					tournamentMap.get(index).PrintInfo(true, false, false, true);
+					tournamentMap.get(index).PrintInfo(printCRec, printRWL, printTStand, printTProg);
 				} else {
 					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
 				}
-				Util.PrintMediumLineBreak(true);
 			} else {
 				System.out.println("No saved simulations where " + input + " Wins; Run again if you'd like");
-				Util.PrintMediumLineBreak(true);
 				continue;
 			}
 		}
 		
 		scan.close();
+	}
+	
+	private static boolean GetYN(Scanner scan) {
+		System.out.print("Y or N?: ");
+		
+		String input = scan.nextLine();
+		while (input.toUpperCase().compareTo("Y") != 0 && input.toUpperCase().compareTo("N") != 0) {
+			input = scan.nextLine();
+		}
+		
+		return input.toUpperCase().compareTo("Y") == 0 ? true : false;
 	}
 }

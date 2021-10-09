@@ -2,12 +2,12 @@ package MSI;
 
 import java.util.List;
 
-import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
+import TournamentComponents.DrawStructure;
 
 public class GroupDrawGroupStageCurrentFormat extends DrawStructure {
 	public GroupDrawGroupStageCurrentFormat(Tournament partOf) {

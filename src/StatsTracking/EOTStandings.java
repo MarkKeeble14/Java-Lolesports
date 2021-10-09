@@ -1,4 +1,4 @@
-package Classes;
+package StatsTracking;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import Classes.Team;
 import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Util;

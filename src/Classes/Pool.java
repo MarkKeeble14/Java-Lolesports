@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CustomExceptions.ImpossibleDrawException;
+import Matches.Match;
+import Matches.Series;
 
 public class Pool {
 	private String label;
@@ -141,14 +143,14 @@ public class Pool {
 	* Used for knockout stage
 	* Ensures that the match is not populated with two teams from the same group
 	* 
-	* @param match The match you're drawing into
+	* @param m5 The match you're drawing into
 	* @param p The pool of teams to draw from
 	* @param A list of teams already attempted to be drawn; pass in an empty ArrayList<Team> if you are calling the method from outside itself
-	* @param matches A list of the matches at this stage in the bracket
+	* @param lowerMatchups A list of the matches at this stage in the bracket
 	* @param groups A list of the groups
 	*/
-	public Team DrawWithSameMatchRule(Match match, Pool p, List<Team> attempted, 
-			List<Match> matches, List<Group> groups) throws Exception {
+	public Team DrawWithSameMatchRule(Series m5, Pool p, List<Team> attempted, 
+			ArrayList<Series> lowerMatchups, List<Group> groups) throws Exception {
 		// If you've attempted every team in the pool and nothing works, the situation is impossible to resolve according to the rule
 		if (attempted.size() == p.getPool().size()) {
 			throw new ImpossibleDrawException(p.toString(), groups.toString(), "Same Match, Same Group");
@@ -171,16 +173,16 @@ public class Pool {
 		
 		// Rules to determine legality of the draw
 		// First Rule, can't have two teams from the same group facing off
-		boolean bA = Group.FindGroup(t, groups) == Group.FindGroup(match.getTeamA(), groups);
-		boolean bB = Group.FindGroup(t, groups) == Group.FindGroup(match.getTeamB(), groups);
+		boolean bA = Group.FindGroup(t, groups) == Group.FindGroup(m5.getTeamA(), groups);
+		boolean bB = Group.FindGroup(t, groups) == Group.FindGroup(m5.getTeamB(), groups);
 		if (bA || bB) {
 			attempted.add(t);
-			t = DrawWithSameMatchRule(match, p, attempted, matches, groups);
+			t = DrawWithSameMatchRule(m5, p, attempted, lowerMatchups, groups);
 		}
 		
 		// Second Rule, the first rule must not leave the bracket in an impossible situation
-		for (int i = 1; i < matches.size(); i++) {
-			Match currentMatch = matches.get(i);
+		for (int i = 1; i < lowerMatchups.size(); i++) {
+			Series currentMatch = lowerMatchups.get(i);
 			// If the match isn't already filled
 			if (currentMatch.getTeamA() != null && currentMatch.getTeamB() != null) {
 				continue;
@@ -198,7 +200,7 @@ public class Pool {
 			// If there are no legal draws, attempt a different team
 			if (potentialDraws.size() == 0) {
 				attempted.add(t);
-				t = DrawWithSameMatchRule(match, p, attempted, matches, groups);
+				t = DrawWithSameMatchRule(m5, p, attempted, lowerMatchups, groups);
 			} else if (potentialDraws.contains(t)) {
 				copy.Remove(t);
 			}
@@ -212,15 +214,15 @@ public class Pool {
 	* Used for knockout stage
 	* Ensures that the side if the bracket made up of match1 and match2 are not from teams from the same group
 	* 
-	* @param match1 One match on the side of the bracket
-	* @param match2 The other match on the side of the bracket
+	* @param m1 One match on the side of the bracket
+	* @param m2 The other match on the side of the bracket
 	* @param p The pool of teams to draw from
 	* @param A list of teams already attempted to be drawn; pass in an empty ArrayList<Team> if you are calling the method from outside itself
-	* @param matches A list of the matches at this stage in the bracket
+	* @param upperMatchups A list of the matches at this stage in the bracket
 	* @param groups A list of the groups
 	*/
-	public Team DrawWithSameSideRule(Match match1, Match match2, Pool p, 
-			List<Team> attempted, List<Match> matches, List<Group> groups) throws Exception {
+	public Team DrawWithSameSideRule(Series m1, Series m2, Pool p, 
+			List<Team> attempted, ArrayList<Series> upperMatchups, List<Group> groups) throws Exception {
 		// If you've attempted every team in the pool and nothing works, the situation is impossible to resolve according to the rule
 		if (attempted.size() == p.getPool().size()) {
 			throw new ImpossibleDrawException(p.toString(), groups.toString(), "Same Side, Same Group");
@@ -243,18 +245,18 @@ public class Pool {
 		
 		// Rules to determine legality of the draw
 		// First Rule, teams from the same group must be on opposite sides of the bracket
-		boolean bA = Group.FindGroup(t, groups) == Group.FindGroup(match1.getTeamA(), groups);
-		boolean bB = Group.FindGroup(t, groups) == Group.FindGroup(match1.getTeamB(), groups);
-		boolean bC = Group.FindGroup(t, groups) == Group.FindGroup(match2.getTeamA(), groups);
-		boolean bD = Group.FindGroup(t, groups) == Group.FindGroup(match2.getTeamB(), groups);
+		boolean bA = Group.FindGroup(t, groups) == Group.FindGroup(m1.getTeamA(), groups);
+		boolean bB = Group.FindGroup(t, groups) == Group.FindGroup(m1.getTeamB(), groups);
+		boolean bC = Group.FindGroup(t, groups) == Group.FindGroup(m2.getTeamA(), groups);
+		boolean bD = Group.FindGroup(t, groups) == Group.FindGroup(m2.getTeamB(), groups);
 		if (bA || bB || bC || bD) {
 			attempted.add(t);
-			t = DrawWithSameSideRule(match1, match2, p, attempted, matches, groups);
+			t = DrawWithSameSideRule(m1, m2, p, attempted, upperMatchups, groups);
 		}
 		
 		// Second Rule, the first rule must not leave the bracket in an impossible situation
-		for (int i = 1; i < matches.size(); i++) {
-			Match currentMatch = matches.get(i);
+		for (int i = 1; i < upperMatchups.size(); i++) {
+			Series currentMatch = upperMatchups.get(i);
 			// If the match isn't already filled
 			if (currentMatch.getTeamA() != null && currentMatch.getTeamB() != null) {
 				continue;
@@ -269,7 +271,7 @@ public class Pool {
 			// If there are no legal draws, attempt a different team
 			if (potentialDraws.size() == 0) {
 				attempted.add(t);
-				t = DrawWithSameSideRule(match1, match2, p, attempted, matches, groups);
+				t = DrawWithSameSideRule(m1, m2, p, attempted, upperMatchups, groups);
 			} else if (potentialDraws.contains(t)) {
 				copy.Remove(t);
 			}

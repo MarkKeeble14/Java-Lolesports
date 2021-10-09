@@ -1,4 +1,4 @@
-package Classes;
+package TournamentComponents;
 
 public abstract class TournamentComponent {
 	private String label;

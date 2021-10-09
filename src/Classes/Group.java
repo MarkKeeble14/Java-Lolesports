@@ -8,8 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import CustomExceptions.GroupExceedingCapacityException;
+import Matches.Match;
 import Misc.MapUtil;
 import Misc.Util;
+import StatsTracking.RegionalWLTracker;
+import TournamentComponents.GroupStage;
 
 import java.util.Set;
 
@@ -149,10 +152,11 @@ public class Group {
 				Team c = copy.getGroup().get(p);
 				if (t != c) {
 					for (int q = 0; q < matchesPerTwo; q++) {
-						Match M = new Match("M", t, c);
+						Match M = new Match(stageLabel, "M", t, c, tracker);
 						
 						// Assuming groups are BO1
-						M.SimulateGroupStageMatch(stageLabel, tracker, 1, this, partOf);
+						M.Simulate();
+						partOf.AddMatches(this, M);
 						
 						Team winner = M.getWinner();
 						Team loser = M.getLoser();
@@ -271,10 +275,11 @@ public class Group {
 					Team teamA = prevTeam;
 					Team teamB = lst.get(i + 1);
 					
-					Match M = new Match("M", teamA, teamB);
+					Match M = new Match(stageLabel, "M", teamA, teamB, tracker);
 					
 					// Assuming groups are BO1
-					M.SimulateGroupStageTiebreakerMatch(stageLabel + ": Tiebreakers", tracker, 1, this, partOf);
+					M.Simulate();
+					partOf.AddTiebreakerMatches(this, M);
 					
 					Team winner = M.getWinner();
 					Team loser = M.getLoser();
@@ -493,6 +498,11 @@ public class Group {
 		return potentialDraws;
 	}
 
+	public void setStandings(Map<Team, Integer> m) {
+		standings = m;
+		standings = MapUtil.sortByIntegerValue(standings);
+	}
+	
 	public void PrintStandings() {
 		System.out.println("\nGroup " + label + "\n");
 		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 

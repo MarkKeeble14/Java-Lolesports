@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Misc.Util;
+import StatsTracking.EOTStandings;
+import StatsTracking.RegionalWLTracker;
+import TournamentComponents.Bracket;
+import TournamentComponents.DrawStructure;
+import TournamentComponents.GroupStage;
+import TournamentComponents.TournamentComponent;
 import TournamentSimulator.Driver;
 
 public abstract class Tournament {
@@ -63,8 +69,13 @@ public abstract class Tournament {
 		}
 		
 		if (printRegionalWL) {
-			Util.PrintSectionBreak("Regional Win/Loss Ratios");
-			t.NicePrintMajor();	
+			Util.PrintSectionBreak("Win/Loss Records");
+			if (Driver.PRINT_MAJOR_REGIONAL_WL) {
+				t.NicePrintMajor();		
+			}
+			if (Driver.PRINT_MINOR_REGIONAL_WL) {
+				t.NicePrintMinor();	
+			}
 		}
 		
 		if (printFinalStandings) {
@@ -74,7 +85,6 @@ public abstract class Tournament {
 	}
 	
 	public void PrintChampionshipStats() {
-		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);
 		System.out.println("\n" + winner + " Records: " + winner.qdLog());
 		System.out.println("\n" + winner + " Records: " + winner.recordLog());
 		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);	

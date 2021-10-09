@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Classes.Bracket;
-import Classes.DrawStructure;
-import Classes.EOTStandings;
 import Classes.Group;
-import Classes.GroupStage;
 import Classes.Pool;
-import Classes.QualifiedThroughGroupPlacement;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 import Misc.Util;
+import QualificationDetails.QualifiedThroughGroupPlacement;
+import StatsTracking.EOTStandings;
+import TournamentComponents.Bracket;
+import TournamentComponents.DrawStructure;
+import TournamentComponents.GroupStage;
 
 public class TournamentMSI extends Tournament {
 	DrawStructure groupDraw;
@@ -86,11 +86,13 @@ public class TournamentMSI extends Tournament {
 		SimulateCurrentKnockoutStage(groups1);
 		
 		// Place Teams
-		eots.PlaceTeam(knockoutBracket.getMatch(1).getLoser(), 4);
-		eots.PlaceTeam(knockoutBracket.getMatch(2).getLoser(), 4);
-		eots.PlaceTeam(knockoutBracket.getMatch(3).getLoser(), 2);
-		eots.PlaceTeam(knockoutBracket.getMatch(3).getWinner(), 1);
+		eots.PlaceTeam(knockoutBracket.getSeries(1).getLoser(), 4);
+		eots.PlaceTeam(knockoutBracket.getSeries(2).getLoser(), 4);
+		eots.PlaceTeam(knockoutBracket.getSeries(3).getLoser(), 2);
+		eots.PlaceTeam(knockoutBracket.getSeries(3).getWinner(), 1);
 		//
+		
+		ConcludeTournament();
 	}
 	
 	private void SetQDsForGroups(List<Group> groups, List<Team> teams) {

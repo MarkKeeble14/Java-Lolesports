@@ -1,7 +1,10 @@
-package Classes;
+package TournamentComponents;
 
 import java.util.List;
 
+import Classes.Group;
+import Classes.Pool;
+import Classes.Tournament;
 import Misc.Strings;
 import Misc.Util;
 

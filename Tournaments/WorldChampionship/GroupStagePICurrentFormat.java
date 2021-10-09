@@ -3,10 +3,10 @@ package WorldChampionship;
 import java.util.List;
 
 import Classes.Group;
-import Classes.GroupStage;
-import Classes.RegionalWLTracker;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
+import StatsTracking.RegionalWLTracker;
+import TournamentComponents.GroupStage;
 
 public class GroupStagePICurrentFormat extends GroupStage {
 	public GroupStagePICurrentFormat(Tournament partOf) {

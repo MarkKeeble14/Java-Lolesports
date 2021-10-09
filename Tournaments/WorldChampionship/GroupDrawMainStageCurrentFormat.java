@@ -3,13 +3,13 @@ package WorldChampionship;
 import java.util.ArrayList;
 import java.util.List;
 
-import Classes.DrawStructure;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
+import TournamentComponents.DrawStructure;
 
 public class GroupDrawMainStageCurrentFormat extends DrawStructure {
 	public GroupDrawMainStageCurrentFormat(Tournament partOf) {

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Classes.Bracket;
 import Classes.Group;
-import Classes.Match;
 import Classes.Pool;
-import Classes.RegionalWLTracker;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
+import Matches.Series;
 import Misc.Strings;
+import StatsTracking.RegionalWLTracker;
+import TournamentComponents.Bracket;
 
 // 4 Group Bracket
 public class KnockoutBracketCurrentFormat extends Bracket {
@@ -20,7 +20,7 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		super(partOf);
 	}
 
-	public KnockoutBracketCurrentFormat(TournamentWorldChampionship tournamentWorldChampionship, String msgs) {
+	public KnockoutBracketCurrentFormat(Tournament tournamentWorldChampionship, String msgs) {
 		super(tournamentWorldChampionship, msgs);
 	}
 
@@ -45,15 +45,15 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), 
 				C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
 		
-		Match M1 = new Match("M1");
-		Match M2 = new Match("M2");
-		Match M3 = new Match("M3");
-		Match M4 = new Match("M4");
-		Match M5 = new Match("M5");
-		Match M6 = new Match("M6");
-		Match M7 = new Match("M7");
+		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.QFS), "M1", 5, tracker);
+		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.QFS), "M2", 5, tracker);
+		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.QFS), "M3", 5, tracker);
+		Series M4 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.QFS), "M4", 5, tracker);
+		Series M5 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.SFS), "M5", 5, tracker);
+		Series M6 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.SFS), "M6", 5, tracker);
+		Series M7 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.FS), "M7", 5, tracker);
 		
-		ArrayList<Match> matches = new ArrayList<Match>(Arrays.asList(M1, M2, M3, M4));
+		ArrayList<Series> matches = new ArrayList<Series>(Arrays.asList(M1, M2, M3, M4));
 		
 		M1.setTeamA(poolOne.Draw());
 		M2.setTeamA(poolOne.Draw());
@@ -65,25 +65,25 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
 				
-		M1.Simulate(label, tracker, 5);
-		M2.Simulate(label, tracker, 5);
-		M3.Simulate(label, tracker, 5);
-		M4.Simulate(label, tracker, 5);
+		M1.Simulate();
+		M2.Simulate();
+		M3.Simulate();
+		M4.Simulate();
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
-		M5.Simulate(label, tracker, 5);
-		M6.Simulate(label, tracker, 5);
+		M5.Simulate();
+		M6.Simulate();
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
-		M7.Simulate(label, tracker, 5);
+		M7.Simulate();
 		
 		// General Tracking Stuff
-		super.addMatches(M1, M2, M3, M4, M5, M6, M7);
-		super.setChampionshipMatch(M7);
+		super.addSeries(M1, M2, M3, M4, M5, M6, M7);
+		super.setChampionshipSeries(M7);
 	}
 
 }

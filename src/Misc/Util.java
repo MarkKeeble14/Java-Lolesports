@@ -62,7 +62,7 @@ public class Util {
 	}
 	
 	public static <K> void NicePrintResults(Map<K, Integer> map, int timesRan) {
-		PrintMediumLineBreak(false);
+		PrintMediumLineBreak(true);
 		System.out.println("\n# of Times X Team Won; Results from " + timesRan + " Simulations");
 		PrintMediumLineBreak(true);
 		System.out.println();
@@ -83,9 +83,6 @@ public class Util {
 	}
 	
 	public static void NicePrintStandings(Map<Team, Integer> map) {
-		PrintMediumLineBreak(true);
-		System.out.println("\nResults:");
-		PrintMediumLineBreak(true);
 		System.out.println();
 		
 		ArrayList<Team> keys = new ArrayList<Team>(map.keySet());

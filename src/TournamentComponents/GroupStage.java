@@ -1,12 +1,16 @@
-package Classes;
+package TournamentComponents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Classes.Group;
+import Classes.Tournament;
+import Matches.Match;
 import Misc.Strings;
 import Misc.Util;
+import TournamentSimulator.Driver;
 
 public abstract class GroupStage extends TournamentComponent {
 	private List<Group> groups;
@@ -126,6 +130,24 @@ public abstract class GroupStage extends TournamentComponent {
 				s += Strings.MediumLineBreak + "\n";
 			}
 			x++;
+		}
+		
+		if (Driver.PRINT_GROUP_STAGE_SUMMARY) {
+			s += Strings.MediumLineBreak + "\n\n";
+			s += "Summary\n";
+			s += Strings.MediumLineBreak + "\n";
+			
+			x = 0;
+			for (int i = 0; i < groups.size(); i++) {
+				Group g = groups.get(i);
+				if (x == groups.size() - 1) {
+					s += g.toStandings(super.getLabel()) + "\n";
+				} else {
+					s += g.toStandings(super.getLabel()) + "\n";
+					s += Strings.MediumLineBreak + "\n";
+				}
+				x++;
+			}	
 		}
 		
 		return s.substring(0, s.length() - 1);

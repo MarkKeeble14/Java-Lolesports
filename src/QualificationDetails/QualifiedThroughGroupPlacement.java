@@ -1,5 +1,6 @@
-package Classes;
+package QualificationDetails;
 
+import Classes.Group;
 import Misc.ReasonForQual;
 
 public class QualifiedThroughGroupPlacement extends QualificationDetails {
@@ -15,8 +16,8 @@ public class QualifiedThroughGroupPlacement extends QualificationDetails {
 	
 	@Override
 	public String Print() {
-		String s = "\n" + super.getLabel() + " - " + super.getT().getTag() 
-				+ ": Reason For Qualification: " + super.getQualificationReason() 
+		String s = "\n" + super.getT().getTag() + " - " + super.getLabel()
+				+ "\nReason For Qualification: " + super.getQualificationReason() 
 				+ "; Placed: " + placement + "\n" + qualifiedThrough.toStandings(super.getLabel());
 		return s;
 	}

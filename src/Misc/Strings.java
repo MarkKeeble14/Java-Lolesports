@@ -13,6 +13,19 @@ public class Strings {
 	public static final String RSGS = "Rumble Stage Group Stage";
 	public static final String RSKS = "Rumble Stage Knockout Stage";
 	public static final String GS = "Group Stage";
+
+	public static final String QFS = "Quaterfinals";
+	public static final String SFS = "Semifinals";
+	public static final String FS = "Finals";
+	
+	public static final String WB = "Winners Bracket";
+	public static final String LB = "Losers Bracket";
+	
+	public static final String S1 = "Stage 1";
+	public static final String S2 = "Stage 2";
+	public static final String S3 = "Stage 3";
+	public static final String S4 = "Stage 4";
+	public static final String S5 = "Stage 5";
 	
 	// Pools
 	public static final String LPoolOne = "Pool One";
@@ -44,4 +57,31 @@ public class Strings {
 	public static final String LargeLineBreakNoNL = "----------------------------------------"
 			+ "--------------------------------------------------------------------------------";
 	public static final String EOTStandings = "Results";
+	
+	public static final String BasicBridge = "-";
+	public static final String BasicBridgeWSpace = " - ";
+	
+	public static final String R34 = "Round of Two VS Three";
+	public static final String WQFS = "Winners Quarterfinals";
+	public static final String WSFS = "Winners Semifinals";
+	public static final String WFS = "Winners Finals";
+	
+	public static final String LR1 = "Losers Round 1";
+	public static final String LR2 = "Losers Round 2";
+	public static final String LR3 = "Losers Round 3";
+	public static final String LFS = "Losers Finals";
+	
+	public static final String GFS = "Grand Finals";
+	
+	public static final String TableFormat = "%-15s %-7s %-12s %-20s%n";
+	
+	public static String Concat(String bridge, String... strings) {
+		String s = strings[0];
+		
+		for (int i = 1; i < strings.length; i++) {
+			s += bridge + strings[i];
+		}
+		
+		return s;
+	}
 }

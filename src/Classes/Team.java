@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Misc.Region;
+import QualificationDetails.QualificationDetails;
 
 public class Team implements Comparable<Team> {
 	private String tag;

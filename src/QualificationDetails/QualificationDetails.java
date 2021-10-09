@@ -1,5 +1,6 @@
-package Classes;
+package QualificationDetails;
 
+import Classes.Team;
 import Misc.ReasonForQual;
 
 public abstract class QualificationDetails {

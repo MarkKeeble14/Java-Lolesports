@@ -1,16 +1,21 @@
-package Classes;
+package TournamentComponents;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import MSI.TournamentMSI;
+import Classes.Group;
+import Classes.Team;
+import Classes.Tournament;
+import Matches.Match;
+import Matches.Series;
 import Misc.Strings;
+import QualificationDetails.QualificationDetails;
 import TournamentSimulator.Driver;
 
 public abstract class Bracket extends TournamentComponent {
-	private List<Match> matches = new ArrayList<Match>();
+	private List<Series> series = new ArrayList<Series>();
 
-	private Match championshipMatch;
+	private Series championshipMatch;
 	private Team champion;
 	private Team runnerUp;
 	
@@ -33,30 +38,30 @@ public abstract class Bracket extends TournamentComponent {
 
 	public abstract void Simulate(String label, List<Group> groups) throws Exception;
 	
-	public Match getMatch(int no) throws Exception {
-		if (matches.size() < no) {
+	public Series getSeries(int no) throws Exception {
+		if (series.size() < no) {
 			throw new Exception();
 		}
-		return matches.get(no - 1);
+		return series.get(no - 1);
 	}
 	
-	public void addMatches(Match ...matches) {
-		for (Match m : matches) {
-			this.matches.add(m);
+	public void addSeries(Series ...series) {
+		for (Series m : series) {
+			this.series.add(m);
 		}
 	}
 	
-	public List<Match> getMatches() {
-		return matches;
+	public List<Series> getSeries() {
+		return series;
 	}
 	
-	public void setChampionshipMatch(Match m) {
-		championshipMatch = m;
-		setChampion(m.getWinner());
-		setRunnerUp(m.getLoser());
+	public void setChampionshipSeries(Series s) {
+		championshipMatch = s;
+		setChampion(s.getWinner());
+		setRunnerUp(s.getLoser());
 	}
 	
-	public Match getChampionshipMatch() {
+	public Series getChampionshipSeries() {
 		return championshipMatch;
 	}
 
@@ -84,8 +89,8 @@ public abstract class Bracket extends TournamentComponent {
 	public String toString() {
 		String s = "";
 		int x = 0;
-		for (int i = 0; i < matches.size(); i++) {
-			Match m = matches.get(i);
+		for (int i = 0; i < series.size(); i++) {
+			Series m = series.get(i);
 			
 			if (Driver.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
 				Team a = m.getTeamA();
@@ -109,6 +114,8 @@ public abstract class Bracket extends TournamentComponent {
 					
 					if (!seenTeams.contains(b) && bQD != null) {
 						s += "\n\n";
+					} else {
+						s += "\n";
 					}
 				}
 				if (bQD != null && !seenTeams.contains(b)) {
@@ -122,7 +129,7 @@ public abstract class Bracket extends TournamentComponent {
 				}
 			}
 			
-			if (x == matches.size() - 1) {
+			if (x == series.size() - 1) {
 				s += "\n" + m.toString();
 			} else {
 				s += "\n" + m.toString() + "\n";

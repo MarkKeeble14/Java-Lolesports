@@ -23,7 +23,7 @@ import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
 
-public class TournamentWorldChampionship extends Tournament {
+public class TournamentWorldChampionshipDoubleElim extends Tournament {
 	int requiredNumberOfPools = 5;
 	
 	DrawStructure PIGroupDraw;
@@ -33,7 +33,7 @@ public class TournamentWorldChampionship extends Tournament {
 	GroupStage MGroupStage;
 	Bracket MKnockoutBracket;
 	
-	public TournamentWorldChampionship(String label) {
+	public TournamentWorldChampionshipDoubleElim(String label) {
 		super(label);
 	}
 
@@ -118,21 +118,20 @@ public class TournamentWorldChampionship extends Tournament {
 		eots.PlaceTeam(C.GetTeamFromPlacement(4), 16);
 		eots.PlaceTeam(D.GetTeamFromPlacement(4), 16);
 		//
-		eots.PlaceTeam(A.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(B.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(C.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
-		//
 		
 		List<Team> GSQ = new ArrayList<Team>(
 				Arrays.asList(	A.GetTeamFromPlacement(1),
 								A.GetTeamFromPlacement(2),
+								A.GetTeamFromPlacement(3),
 								B.GetTeamFromPlacement(1),
 								B.GetTeamFromPlacement(2),
+								B.GetTeamFromPlacement(3),
 								C.GetTeamFromPlacement(1),
 								C.GetTeamFromPlacement(2),
+								C.GetTeamFromPlacement(3),
 								D.GetTeamFromPlacement(1),
-								D.GetTeamFromPlacement(2)));
+								D.GetTeamFromPlacement(2),
+								D.GetTeamFromPlacement(3)));
 	
 		SetQualifiedToMainKO(groups, GSQ);
 		
@@ -140,16 +139,22 @@ public class TournamentWorldChampionship extends Tournament {
 		SimulateCurrentDrawKO(groups);
 		
 		// Place Teams
-		eots.PlaceTeam(MKnockoutBracket.getSeries(1).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(2).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(3).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(4).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(1).getLoser(), 12);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(2).getLoser(), 12);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(3).getLoser(), 12);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(4).getLoser(), 12);
 		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(5).getLoser(), 4);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(6).getLoser(), 4);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(9).getLoser(), 8);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(10).getLoser(), 8);
 		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getLoser(), 2);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getWinner(), 1);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(13).getLoser(), 6);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(14).getLoser(), 6);
+		//
+		eots.PlaceTeam(MKnockoutBracket.getSeries(16).getLoser(), 4);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(17).getLoser(), 3);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(18).getLoser(), 2);
+		eots.PlaceTeam(MKnockoutBracket.getSeries(18).getWinner(), 1);
+		//		
 		//
 		
 		ConcludeTournament();
@@ -193,102 +198,9 @@ public class TournamentWorldChampionship extends Tournament {
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
 		String section = Strings.MSKS;
-		MKnockoutBracket = new KnockoutBracketCurrentFormat(this, Strings.MSGS);
+		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(this, section);
 		super.addBracket(MKnockoutBracket);
 		MKnockoutBracket.Simulate(section, groups);
-	}
-	
-	public void SimulateCurrentWorldsState() throws Exception {
-		Group PA = new Group(Strings.LFirstGroup, 5, Teams.LNG, Teams.HLE, Teams.INF, Teams.PCE, Teams.RED);
-		Group PB = new Group(Strings.LSecondGroup, 5, Teams.C9, Teams.BYG, Teams.UOL, Teams.GS, Teams.DFM);
-		List<Group> PIGroups = new ArrayList<>(Arrays.asList(PA, PB));
-		
-		// Set the standings of the group; I think better way would be to set the matches that have already played out?
-		// Might get tricky idk
-		Map<Team, Integer> aSMap = new HashMap<Team, Integer>();
-		aSMap.put(Teams.LNG, 1);
-		aSMap.put(Teams.HLE, 2);
-		aSMap.put(Teams.PCE, 3);
-		aSMap.put(Teams.RED, 4);
-		aSMap.put(Teams.INF, 5);
-		PA.setStandings(aSMap);
-		
-		Map<Team, Integer> bSMap = new HashMap<Team, Integer>();
-		bSMap.put(Teams.DFM, 1);
-		bSMap.put(Teams.C9, 2);
-		bSMap.put(Teams.GS, 3);
-		bSMap.put(Teams.BYG, 4);
-		bSMap.put(Teams.UOL, 5);
-		PB.setStandings(bSMap);
-		
-		// Place Teams
-		eots.PlaceTeam(PA.GetTeamFromPlacement(5), 22);
-		eots.PlaceTeam(PB.GetTeamFromPlacement(5), 22);
-		//
-		
-		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
-		Series M3 = PIKO.getSeries(3);
-		Series M4 = PIKO.getSeries(4);
-		
-		// Place Teams
-		eots.PlaceTeam(PIKO.getSeries(1).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(2).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(3).getLoser(), 18);
-		eots.PlaceTeam(PIKO.getSeries(4).getLoser(), 18);		
-		//
-		
-		List<Team> Q = new ArrayList<Team>(
-				Arrays.asList(	PA.GetTeamFromPlacement(1),
-								PB.GetTeamFromPlacement(1),
-								M3.getWinner(),
-								M4.getWinner()));
-		Pool PI = new Pool(Strings.LQualifiedPI, Q);
-		
-		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 4, Teams.DK, Teams.FPX, Teams.RGE); 
-		Group B = new Group(Strings.LSecondGroup, 4, Teams.EDG, Teams.O100T, Teams.T1);
-		Group C = new Group(Strings.LThirdGroup, 4, Teams.PSG, Teams.FNC, Teams.RNG); 
-		Group D = new Group(Strings.LFourthGroup, 4, Teams.MAD, Teams.GEN, Teams.TL);
-		
-		ArrayList<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
-		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(PI));
-		
-		// Draw PI Pool Teams into Groups
-		A.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
-		B.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
-		C.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
-		D.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
-		pools.remove(0);
-		
-		SimulateCurrentGroupStage(groups);
-		
-		// Place Teams
-		eots.PlaceTeam(A.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(B.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(C.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(D.GetTeamFromPlacement(4), 16);
-		//
-		eots.PlaceTeam(A.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(B.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(C.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
-		//
-		
-		// Main Knockout Stage
-		SimulateCurrentDrawKO(groups);
-		
-		// Place Teams
-		eots.PlaceTeam(MKnockoutBracket.getSeries(1).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(2).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(3).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(4).getLoser(), 8);
-		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(5).getLoser(), 4);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(6).getLoser(), 4);
-		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getLoser(), 2);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getWinner(), 1);
-		//
 	}
 	
 	private void SetQualifiedToPIKO(List<Group> groups, List<Team> teams) {
@@ -324,20 +236,28 @@ public class TournamentWorldChampionship extends Tournament {
 		A1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 1));
 		Team A2 = teams.get(1);
 		A2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 2));
+		Team A3 = teams.get(2);
+		A3.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 3));
 
-		Team B1 = teams.get(2);
+		Team B1 = teams.get(3);
 		B1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 1));
-		Team B2 = teams.get(3);
+		Team B2 = teams.get(4);
 		B2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 2));
+		Team B3 = teams.get(5);
+		B3.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 3));
 		
-		Team C1 = teams.get(4);
+		Team C1 = teams.get(6);
 		C1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 1));
-		Team C2 = teams.get(5);
+		Team C2 = teams.get(7);
 		C2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 2));
+		Team C3 = teams.get(8);
+		C3.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 3));
 		
-		Team D1 = teams.get(6);
+		Team D1 = teams.get(9);
 		D1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 1));
-		Team D2 = teams.get(7);
+		Team D2 = teams.get(10);
 		D2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 2));
+		Team D3 = teams.get(11);
+		D3.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 3));
 	}
 }
