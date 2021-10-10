@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-import Classes.Record;
 import Classes.Team;
-import TournamentSimulator.Driver;
+import StatsTracking.Record;
+import TournamentSimulator.DomesticDriver;
 
 import java.util.Map.Entry;
 

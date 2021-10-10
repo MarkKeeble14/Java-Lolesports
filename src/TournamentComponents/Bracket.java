@@ -10,7 +10,7 @@ import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import QualificationDetails.QualificationDetails;
-import TournamentSimulator.Driver;
+import TournamentSimulator.DomesticDriver;
 
 public abstract class Bracket extends TournamentComponent {
 	private List<Series> series = new ArrayList<Series>();
@@ -92,7 +92,7 @@ public abstract class Bracket extends TournamentComponent {
 		for (int i = 0; i < series.size(); i++) {
 			Series m = series.get(i);
 			
-			if (Driver.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
+			if (DomesticDriver.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
 				Team a = m.getTeamA();
 				Team b = m.getTeamB();
 				

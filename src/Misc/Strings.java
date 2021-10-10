@@ -44,6 +44,7 @@ public class Strings {
 	public static final String LRumble = "Rumble";
 	public static final String LMSI = "MSI";
 	public static final String LWC = "the World Championship";
+	public static final String Tiebreakers = "Tiebreakers";
 	
 	public static final String SmallLineBreak = "\n----------------------------------------";
 	public static final String MediumLineBreak = "\n---------------------------------------"
@@ -65,6 +66,10 @@ public class Strings {
 	public static final String WQFS = "Winners Quarterfinals";
 	public static final String WSFS = "Winners Semifinals";
 	public static final String WFS = "Winners Finals";
+
+	public static final String WR1 = "Winners Round 1";
+	public static final String WR2 = "Winners Round 2";
+	public static final String WR3 = "Winners Round 3";
 	
 	public static final String LR1 = "Losers Round 1";
 	public static final String LR2 = "Losers Round 2";
@@ -73,8 +78,13 @@ public class Strings {
 	
 	public static final String GFS = "Grand Finals";
 	
+	public static final String RegularSeason = "Regular Season";
+	public static final String MSS = "Mid-Season Showdown";
+	public static final String LSpringLCS = "LCS Spring";
+	public static final String LSummerLCS = "LCS Summer";
+
+	public static final String RecordTableFormat = "%-50s %-10s %-12s %-20s%n";
 	public static final String TableFormat = "%-15s %-7s %-12s %-20s%n";
-	
 	public static final String StandingFormat = "%-50s %-20s";
 	
 	public static String Concat(String bridge, String... strings) {

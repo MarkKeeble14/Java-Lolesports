@@ -1,8 +1,14 @@
-package Classes;
+package StatsTracking;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import Classes.Team;
+import Misc.Region;
+import Misc.Strings;
+
 import java.util.Set;
 
 public class Record implements Comparable<Record> {
@@ -184,15 +190,6 @@ public class Record implements Comparable<Record> {
 			return 0;			
 		}
 	}
-
-	private <K, V> String StringifyMap(Map<K, V> map) {
-		String s = "";
-		Set<Entry<K, V>> set = map.entrySet();
-		for (Entry<K, V> entry : set) {
-			s += entry.getKey() + ": " + entry.getValue() + "\n";
-		}
-		return s;
-	}
 	
 	@Override
 	public String toString() {
@@ -200,14 +197,40 @@ public class Record implements Comparable<Record> {
 	}
 
 	public String detailedPrint() {
-		String tiebreakerData = "";
+		String s = "";
+		int wins = getWins();
+		int losses = getLosses();
 		if (tiebreakers.size() > 0) {
-			tiebreakerData = "\nTiebreakers:\n"+ StringifyMap(tiebreakers);
+			s += StringifyRecord(label, wins, losses);
+			s += StringifyMap(matches);
+			s += "\n" + label + ": Tiebreakers\n";
+			s += StringifyMap(tiebreakers);
+		} else {
+			s += StringifyRecord(label, wins, losses);
+			s += StringifyMap(matches);
 		}
-		return "\nCore Data [label=" + label + ", wins=" + getWins() + ", losses=" + getLosses() + "]\n" +
-				"\nRecord Versus Teams:\n" + StringifyMap(matches) + 
-				tiebreakerData +
-				"\n------------------------------------------------";
+		return s;
+	}
+	
+	private String StringifyRecord(String caption, int wins, int losses) {
+		DecimalFormat df = new DecimalFormat("#0.00");
+		
+		String s1 = caption;
+		String s2 = "| Wins=" + wins;
+		String s3 = "| Losses=" + losses;
+		String s4 = "| Percent - " + df.format((float)wins / (losses + wins) * 100) + "%";
+		String s = String.format(Strings.RecordTableFormat, s1, s2, s3, s4);
+		return s;
+	}
+	
+	private String StringifyMap(Map<Team, WinLossCounter> map) {
+		String s = "";
+		Set<Entry<Team, WinLossCounter>> set = map.entrySet();
+		for (Entry<Team, WinLossCounter> entry : set) {
+			WinLossCounter WLC = entry.getValue();
+			s += StringifyRecord(entry.getKey().toString(), WLC.getWins(), WLC.getLosses());
+		}
+		return s;
 	}
 
 	public Map<Team, Integer> getTimesBeatTeamMap() {

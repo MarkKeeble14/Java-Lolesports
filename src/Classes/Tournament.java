@@ -10,7 +10,7 @@ import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
 import TournamentComponents.TournamentComponent;
-import TournamentSimulator.Driver;
+import TournamentSimulator.DomesticDriver;
 
 public abstract class Tournament {
 	private String label;
@@ -72,10 +72,10 @@ public abstract class Tournament {
 		
 		if (printRegionalWL) {
 			Util.PrintSectionBreak("Win/Loss Records");
-			if (Driver.PRINT_MAJOR_REGIONAL_WL) {
+			if (DomesticDriver.PRINT_MAJOR_REGIONAL_WL) {
 				t.NicePrintMajor();		
 			}
-			if (Driver.PRINT_MINOR_REGIONAL_WL) {
+			if (DomesticDriver.PRINT_MINOR_REGIONAL_WL) {
 				t.NicePrintMinor();	
 			}
 		}
@@ -87,9 +87,13 @@ public abstract class Tournament {
 	}
 	
 	public void PrintChampionshipStats() {
-		System.out.println("\n" + winner + " Records: " + winner.qdLog());
-		System.out.println("\n" + winner + " Records: " + winner.recordLog());
-		System.out.println("\n" + winner + " has Won " + label + "; Runner Up: " + runnerUp);	
+		if (winner.getCurrentQDIndex() > 0) {
+			System.out.println("\n" + winner + " QDS: \n" + winner.qdLog());	
+		}
+		if (winner.getCurrentRecordIndex() > 0) {
+			System.out.println("\n" + winner + " Records: \n\n" + winner.recordLog());	
+		}
+		System.out.println(winner.getTag() + " has Won " + label + "; Runner Up: " + runnerUp.getTag());	
 	}
 
 	public Team getWinner() {

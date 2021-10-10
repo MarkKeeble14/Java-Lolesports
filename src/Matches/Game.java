@@ -5,7 +5,7 @@ import java.util.Random;
 
 import Classes.Team;
 import StatsTracking.RegionalWLTracker;
-import TournamentSimulator.Driver;
+import TournamentSimulator.DomesticDriver;
 
 public class Game extends Matchup {
 	private String stageLabel;
@@ -32,8 +32,27 @@ public class Game extends Matchup {
 		}
 		
 		// Update Teams Records
-		winner.getRecord().MatchWin(loser);
-		loser.getRecord().MatchLoss(winner);
+		winner.getRecord(stageLabel).MatchWin(loser);
+		loser.getRecord(stageLabel).MatchLoss(winner);
+		
+		WLT.Update(winner, loser);
+	}
+	
+	public void TBSimulate() {
+		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * 100;
+		
+		double random = rand.nextDouble() * 100;
+		if (random > 0 && random < oddsTeamAWins) {
+			winner = teamA;
+			loser = teamB;
+		} else {
+			winner = teamB;
+			loser = teamA;
+		}
+		
+		// Update Teams Records
+		winner.getRecord(stageLabel).TiebreakerWin(loser);
+		loser.getRecord(stageLabel).TiebreakerLoss(winner);
 		
 		WLT.Update(winner, loser);
 	}
@@ -70,7 +89,7 @@ public class Game extends Matchup {
 		
 		// Higher means rating matters more
 		// A scale of 1 makes most matchups 50/50
-		int scale = Driver.ELO_SCALING;
+		int scale = DomesticDriver.ELO_SCALING;
 		RA = RA * scale;
 		RB = RB * scale;
 		

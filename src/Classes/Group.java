@@ -14,6 +14,7 @@ import Matches.Series;
 import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Util;
+import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
 import TournamentComponents.GroupStage;
 
@@ -32,6 +33,10 @@ public class Group {
 	
 	private List<Matchup> matchups = new ArrayList<Matchup>();
 	private List<Matchup> tiebreakers = new ArrayList<Matchup>();
+	
+	public int getNumTiebreakers() { 
+		return tiebreakers.size();
+	}
 	
 	// Finds the group of Team t
 	public static Group FindGroup(Team t, Group[] groups) {
@@ -306,7 +311,7 @@ public class Group {
 					Game M = new Game(stageLabel, "M", teamA, teamB, tracker);
 					
 					// Assuming groups are BO1
-					M.Simulate();
+					M.TBSimulate();
 					tiebreakers.add(M);
 					
 					Team winner = M.getWinner();

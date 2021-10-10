@@ -10,6 +10,8 @@ import java.util.Scanner;
 import Classes.Pool;
 import Classes.Team;
 import Classes.Tournament;
+import LCS.SpringLCS;
+import LCS.SummerLCS;
 import MSI.TournamentMSI;
 import Misc.MapUtil;
 import Misc.Strings;
@@ -19,11 +21,11 @@ import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionshipDoubleElim;
 
-public class Driver {
+public class DomesticDriver {
 	// Variables / Tuning
 	// Higher means rating matters more, i.e, Upsets are LESS likely
 	// A scale of 1 makes most matchups 50/50
-	public static int ELO_SCALING = 75;
+	public static int ELO_SCALING = 300;
 	
 	// 100,000 Too High
 	// 10,000 ~10 Seconds
@@ -44,45 +46,21 @@ public class Driver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		// SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
-		
-		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
-		
 		LoopTournament(numberOfSims);
-	}
-	
-	// Simulates an Entire Tournament
-	public static Tournament SimulateWorldsFormatFromScratch() throws Exception {
-		// Setting up Pools
-		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new Team(Teams.LNG), new Team(Teams.HLE), new Team(Teams.BYG), new Team(Teams.C9)); 
-		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new Team(Teams.INF), new Team(Teams.GS), new Team(Teams.UOL), new Team(Teams.PCE), new Team(Teams.RED), new Team(Teams.DFM));
-		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.DK), new Team(Teams.EDG), new Team(Teams.MAD), new Team(Teams.PSG)); 
-		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.O100T), new Team(Teams.FNC), new Team(Teams.GEN), new Team(Teams.FPX));
-		Pool P3 = new Pool(Strings.LPoolThree, new Team(Teams.TL), new Team(Teams.T1), new Team(Teams.RGE), new Team(Teams.RNG));
-		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
 		
-		Tournament WC = new TournamentWorldChampionshipDoubleElim(Strings.LWC);
-		WC.Simulate(pools);
-		return WC;
+		// SimulateSpringLCS().PrintInfo(true, false, false, true);
 	}
 	
-	// Simulates the current World Championship, from it's current state (Updated Manually).
-	public static Tournament SimulateCurrentWorldsState() throws Exception {
-		Tournament WC = new CurrentStateOfTournamentWorldChampionship(Strings.LWC);
+	public static Tournament SimulateSpringLCS() throws Exception {
+		Tournament WC = new SpringLCS(Strings.LSpringLCS);
 		WC.Simulate(null);
 		return WC;
 	}
 	
-	public static Tournament SimulateMSIFormatFromScratch() throws Exception {
-		// Setting up Pools
-		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.RNG), new Team(Teams.DK), new Team(Teams.PSG), new Team(Teams.C9), new Team(Teams.MAD), new Team(Teams.GAM)); 
-		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.PGG), new Team(Teams.UOL), new Team(Teams.PNG), new Team(Teams.IW), new Team(Teams.DFM), new Team(Teams.INF));
-		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(P1, P2));
-		
-		Tournament MSI = new TournamentMSI(Strings.LMSI);
-		MSI.Simulate(pools);
-		return MSI;
+	public static Tournament SimulateSummerLCS() throws Exception {
+		Tournament WC = new SummerLCS(Strings.LSummerLCS);
+		WC.Simulate(null);
+		return WC;
 	}
 	
 	// Doesn't allow for SUPER large numbers; 10,000 Works: Takes like 10ish Seconds to run for me
@@ -92,7 +70,7 @@ public class Driver {
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
-			Tournament T = SimulateWorldsFormatFromScratch();
+			Tournament T = SimulateSpringLCS();
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {
@@ -142,14 +120,11 @@ public class Driver {
 					System.out.println("Print Tournament Champion Records?: ");
 					boolean printCRec = GetYN(scan);
 					
-					System.out.println("Print W/L?: ");
-					boolean printRWL = GetYN(scan);
-					
 					System.out.println("Print Tournament Standings?: ");
 					boolean printTStand = GetYN(scan);
 					
 					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
-					tournamentMap.get(index).PrintInfo(printCRec, printRWL, printTStand, printTProg);
+					tournamentMap.get(index).PrintInfo(printCRec, false, printTStand, printTProg);
 				} else {
 					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
 				}

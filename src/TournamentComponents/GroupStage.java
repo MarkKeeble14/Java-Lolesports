@@ -10,7 +10,7 @@ import Classes.Tournament;
 import Matches.Game;
 import Misc.Strings;
 import Misc.Util;
-import TournamentSimulator.Driver;
+import TournamentSimulator.DomesticDriver;
 
 public abstract class GroupStage extends TournamentComponent {
 	private List<Group> groups;
@@ -46,20 +46,26 @@ public abstract class GroupStage extends TournamentComponent {
 				s += "\n" + g.toStandings(super.getLabel()) + "\n";
 				s += Strings.MediumLineBreak + "\n";
 				s += "\n" + g.StringifyMatches() + "\n";
-				s += Strings.MediumLineBreak + "\n";
-				s += "\n" + g.StringifyTiebreakerMatches() +"\n";
+				
+				if (g.getNumTiebreakers() > 0) {
+					s += Strings.MediumLineBreak + "\n";
+					s += "\n" + g.StringifyTiebreakerMatches() +"\n";	
+				}
 			} else {
 				s += "\n" + g.toStandings(super.getLabel()) + "\n";
 				s += Strings.MediumLineBreak + "\n";
 				s += "\n" + g.StringifyMatches() + "\n";
-				s += Strings.MediumLineBreak + "\n";
-				s += "\n" + g.StringifyTiebreakerMatches() +"\n";
-				s += Strings.LargeLineBreak + "\n";
+				
+				if (g.getNumTiebreakers() > 0) {
+					s += Strings.MediumLineBreak + "\n";
+					s += "\n" + g.StringifyTiebreakerMatches() +"\n";
+					s += Strings.LargeLineBreak + "\n";
+				}
 			}
 			x++;
 		}
 		
-		if (Driver.PRINT_GROUP_STAGE_SUMMARY) {
+		if (DomesticDriver.PRINT_GROUP_STAGE_SUMMARY) {
 			s += Strings.MediumLineBreak + "\n\n";
 			s += "Summary\n";
 			s += Strings.MediumLineBreak + "\n";

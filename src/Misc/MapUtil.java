@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import Classes.Record;
 import Classes.Team;
+import StatsTracking.Record;
 
 public class MapUtil {
 	public static <K> Map<K, Integer> sortByIntegerValue(Map<K, Integer> unsortMap)

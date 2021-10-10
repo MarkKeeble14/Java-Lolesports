@@ -1,10 +1,12 @@
 package Classes;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import Misc.Region;
 import QualificationDetails.QualificationDetails;
+import StatsTracking.Record;
 
 public class Team implements Comparable<Team> {
 	private String tag;
@@ -16,6 +18,8 @@ public class Team implements Comparable<Team> {
 	
 	private List<QualificationDetails> QDs = new ArrayList<QualificationDetails>();
 	private int currentQDIndex = -1;
+	
+	private Player[] players;
 	
 	/**
 	* Constructor
@@ -35,10 +39,34 @@ public class Team implements Comparable<Team> {
 	* @param region The region the team is from
 	* @param rating A rating of the teams skill, higher is better
 	*/
+	public Team(String tag, Region region, Player...players) {
+		this.tag = tag;
+		this.region = region;
+		this.players = players;
+		setRatingFromPlayers();
+	}
+	
+	private void setRatingFromPlayers() {
+		for (Player p : players) {
+			rating += p.getRatingOutOf1();
+		}
+	}
+
+	/**
+	* Constructor
+	* @param tag The teams tag, i.e., Cloud9 has C9, FNATIC has FNC, etc
+	* @param region The region the team is from
+	* @param rating A rating of the teams skill, higher is better
+	*/
 	public Team(Team t) {
 		this.tag = t.getTag();
 		this.rating = t.getRating();
 		this.region = t.getRegion();
+		this.players = t.getPlayers();
+	}
+
+	public Player[] getPlayers() {
+		return players;
 	}
 
 	public double getRating() {
@@ -125,7 +153,8 @@ public class Team implements Comparable<Team> {
 
 	@Override
 	public String toString() {
-		return "Team [tag=" + tag + ", region=" + region + ", rating=" + rating + "]";
+		DecimalFormat df = new DecimalFormat("#0.00000");
+		return "Team [tag=" + tag + ", region=" + region + ", rating=" + df.format(rating) + "]";
 	}
 	
 	public String recordLog() {

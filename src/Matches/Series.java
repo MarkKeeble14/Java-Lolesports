@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Classes.Record;
 import Classes.Team;
+import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
-import TournamentSimulator.Driver;
+import TournamentSimulator.DomesticDriver;
 
 public class Series extends Matchup {
 	private String stageLabel;
@@ -173,7 +173,7 @@ public class Series extends Matchup {
 		if (Winner == null) {
 			return matchLabel + ": " + A.getTag() + " VS " + B.getTag() + " - Bo" + numGames;
 		} else {
-			if (Driver.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
+			if (DomesticDriver.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
 				
 				String s = matches.get(0).getMatchDetails();
 				int aWins = 0, bWins = 0;
