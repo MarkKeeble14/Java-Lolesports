@@ -15,6 +15,7 @@ import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
 import Misc.Util;
+import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionshipDoubleElim;
 
@@ -44,11 +45,11 @@ public class Driver {
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		// SimulateWorldsFormatFromScratch().PrintInfo(false, true, false, false);
+		SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
 		
 		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
 		
-		LoopTournament(numberOfSims);
+		// LoopTournament(numberOfSims);
 	}
 	
 	// Simulates an Entire Tournament
@@ -68,8 +69,8 @@ public class Driver {
 	
 	// Simulates the current World Championship, from it's current state (Updated Manually).
 	public static Tournament SimulateCurrentWorldsState() throws Exception {
-		TournamentWorldChampionship WC = new TournamentWorldChampionship(Strings.LWC);
-		WC.SimulateCurrentWorldsState();
+		Tournament WC = new CurrentStateOfTournamentWorldChampionship(Strings.LWC);
+		WC.Simulate(null);
 		return WC;
 	}
 	

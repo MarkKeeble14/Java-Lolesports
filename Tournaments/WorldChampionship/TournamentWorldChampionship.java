@@ -11,7 +11,7 @@ import Classes.Pool;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import Matches.Match;
+import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import Misc.Teams;
@@ -43,6 +43,8 @@ public class TournamentWorldChampionship extends Tournament {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
 		}
 		
+		Setup();
+		
 		EOTStandings eots = super.getEots();
 		
 		// Setting Up Pools
@@ -51,8 +53,8 @@ public class TournamentWorldChampionship extends Tournament {
 		List<Pool> PIPools = new ArrayList<Pool>(Arrays.asList(PIPoolOne, PIPoolTwo));
 		
 		// Setting up PI Groups
-		Group PA = new Group(Strings.LFirstGroup, 5); 
-		Group PB = new Group(Strings.LSecondGroup, 5);
+		Group PA = new Group(Strings.LFirstGroup, 5, 1, 1, PIGroupStage); 
+		Group PB = new Group(Strings.LSecondGroup, 5, 1, 1, PIGroupStage);
 		List<Group> PIGroups = new ArrayList<Group>(Arrays.asList(PA, PB));
 	  
 		SimulateCurrentPIGroupDraw(PIGroups, PIPools);
@@ -102,10 +104,10 @@ public class TournamentWorldChampionship extends Tournament {
 		List<Pool> pools1 = new ArrayList<Pool>(Arrays.asList(PI, P1, P2, P3)); 
 		
 		// Setting up groups
-		Group A = new Group(Strings.LFirstGroup, 4); 
-		Group B = new Group(Strings.LSecondGroup, 4);
-		Group C = new Group(Strings.LThirdGroup, 4); 
-		Group D = new Group(Strings.LFourthGroup, 4);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, MGroupStage); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, MGroupStage);
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, MGroupStage); 
+		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, MGroupStage);
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		
 		SimulateCurrentGroupDraw(groups, pools1);
@@ -155,110 +157,68 @@ public class TournamentWorldChampionship extends Tournament {
 		ConcludeTournament();
 	}
 	
-	private void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		String section = Strings.PIGD;
+	@Override 
+	public void Setup() {
 		PIGroupDraw = new GroupDrawPIStageCurrentFormat(this);
 		super.addDrawStructure(PIGroupDraw);
+		
+		PIGroupStage = new GroupStagePICurrentFormat(this);
+		super.addGroupStage(PIGroupStage);
+		
+		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat(this, Strings.PIGS);
+		super.addBracket(PIKnockoutBracket);
+		
+		MGroupDraw = new GroupDrawMainStageCurrentFormat(this);
+		super.addDrawStructure(MGroupDraw);
+		
+		MGroupStage = new GroupStageMainCurrentFormat(this);
+		super.addGroupStage(MGroupStage);
+		
+		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(this, Strings.MSKS);
+		super.addBracket(MKnockoutBracket);
+	}
+	
+	private void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
+		String section = Strings.PIGD;
 		PIGroupDraw.Simulate(section, groups, pools);
 	}
 	
 	private void SimulateCurrentPIGroupStage(List<Group> groups) throws Exception {
 		String section = Strings.PIGS;
-		PIGroupStage = new GroupStagePICurrentFormat(this);
-		super.addGroupStage(PIGroupStage);
 		PIGroupStage.Simulate(section, groups);
 	}
 	
 	private Bracket SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
 		String section = Strings.PIKS;
-		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat(this, Strings.PIGS);
-		super.addBracket(PIKnockoutBracket);
 		PIKnockoutBracket.Simulate(section, groups);
 		return PIKnockoutBracket;
 	}
 	
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
 		String section = Strings.MSGD;
-		MGroupDraw = new GroupDrawMainStageCurrentFormat(this);
-		super.addDrawStructure(MGroupDraw);
 		MGroupDraw.Simulate(section, groups, pools);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
 		String section = Strings.MSGS;
-		MGroupStage = new GroupStageMainCurrentFormat(this);
-		super.addGroupStage(MGroupStage);
 		MGroupStage.Simulate(section, groups);
 	}
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
 		String section = Strings.MSKS;
-		MKnockoutBracket = new KnockoutBracketCurrentFormat(this, Strings.MSGS);
-		super.addBracket(MKnockoutBracket);
 		MKnockoutBracket.Simulate(section, groups);
 	}
 	
 	public void SimulateCurrentWorldsState() throws Exception {
-		Group PA = new Group(Strings.LFirstGroup, 5, Teams.LNG, Teams.HLE, Teams.INF, Teams.PCE, Teams.RED);
-		Group PB = new Group(Strings.LSecondGroup, 5, Teams.C9, Teams.BYG, Teams.UOL, Teams.GS, Teams.DFM);
-		List<Group> PIGroups = new ArrayList<>(Arrays.asList(PA, PB));
-		
-		// Set the standings of the group; I think better way would be to set the matches that have already played out?
-		// Might get tricky idk
-		Map<Team, Integer> aSMap = new HashMap<Team, Integer>();
-		aSMap.put(Teams.LNG, 1);
-		aSMap.put(Teams.HLE, 2);
-		aSMap.put(Teams.PCE, 3);
-		aSMap.put(Teams.RED, 4);
-		aSMap.put(Teams.INF, 5);
-		PA.setStandings(aSMap);
-		
-		Map<Team, Integer> bSMap = new HashMap<Team, Integer>();
-		bSMap.put(Teams.DFM, 1);
-		bSMap.put(Teams.C9, 2);
-		bSMap.put(Teams.GS, 3);
-		bSMap.put(Teams.BYG, 4);
-		bSMap.put(Teams.UOL, 5);
-		PB.setStandings(bSMap);
-		
-		// Place Teams
-		eots.PlaceTeam(PA.GetTeamFromPlacement(5), 22);
-		eots.PlaceTeam(PB.GetTeamFromPlacement(5), 22);
-		//
-		
-		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
-		Series M3 = PIKO.getSeries(3);
-		Series M4 = PIKO.getSeries(4);
-		
-		// Place Teams
-		eots.PlaceTeam(PIKO.getSeries(1).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(2).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(3).getLoser(), 18);
-		eots.PlaceTeam(PIKO.getSeries(4).getLoser(), 18);		
-		//
-		
-		List<Team> Q = new ArrayList<Team>(
-				Arrays.asList(	PA.GetTeamFromPlacement(1),
-								PB.GetTeamFromPlacement(1),
-								M3.getWinner(),
-								M4.getWinner()));
-		Pool PI = new Pool(Strings.LQualifiedPI, Q);
+		Setup();
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 4, Teams.DK, Teams.FPX, Teams.RGE); 
-		Group B = new Group(Strings.LSecondGroup, 4, Teams.EDG, Teams.O100T, Teams.T1);
-		Group C = new Group(Strings.LThirdGroup, 4, Teams.PSG, Teams.FNC, Teams.RNG); 
-		Group D = new Group(Strings.LFourthGroup, 4, Teams.MAD, Teams.GEN, Teams.TL);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, MGroupStage, Teams.DK, Teams.FPX, Teams.RGE, Teams.C9); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, MGroupStage,Teams.EDG, Teams.O100T, Teams.T1, Teams.DFM);
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, MGroupStage, Teams.PSG, Teams.FNC, Teams.RNG, Teams.HLE); 
+		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, MGroupStage,Teams.MAD, Teams.GEN, Teams.TL, Teams.LNG);
 		
 		ArrayList<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
-		ArrayList<Pool> pools = new ArrayList<Pool>(Arrays.asList(PI));
-		
-		// Draw PI Pool Teams into Groups
-		A.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 0, new ArrayList<Team>()));
-		B.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 1, new ArrayList<Team>()));
-		C.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 2, new ArrayList<Team>()));
-		D.Add(PI.DrawWithSameRegionRule(pools, 0, groups, 3, new ArrayList<Team>()));
-		pools.remove(0);
 		
 		SimulateCurrentGroupStage(groups);
 		
@@ -289,6 +249,8 @@ public class TournamentWorldChampionship extends Tournament {
 		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getLoser(), 2);
 		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getWinner(), 1);
 		//
+		
+		ConcludeTournament();
 	}
 	
 	private void SetQualifiedToPIKO(List<Group> groups, List<Team> teams) {

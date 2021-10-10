@@ -11,13 +11,13 @@ import Classes.Team;
 import StatsTracking.RegionalWLTracker;
 import TournamentSimulator.Driver;
 
-public class Series {
+public class Series extends Matchup {
 	private String stageLabel;
 	private String matchLabel;
 	private int numGames;
 	
 	private Map<Team, Integer> gamescore = new HashMap<Team, Integer>();
-	private List<Match> matches = new ArrayList<Match>();
+	private List<Game> matches = new ArrayList<Game>();
 	
 	private Team A;
 	private Team B;
@@ -55,7 +55,7 @@ public class Series {
 		// Simulate the games
 		for (int i = 1; i < numGames + 1; i++) {
 			
-			Match m = new Match(stageLabel, matchLabel, A, B, WLT);
+			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
 			m.Simulate();
 			matches.add(m);
 			
@@ -120,7 +120,7 @@ public class Series {
 		return gamescore;
 	}
 
-	public List<Match> getMatches() {
+	public List<Game> getMatches() {
 		return matches;
 	}
 
@@ -148,7 +148,7 @@ public class Series {
 		this.gamescore = gamescore;
 	}
 
-	public void setMatches(List<Match> matches) {
+	public void setMatches(List<Game> matches) {
 		this.matches = matches;
 	}
 
@@ -185,7 +185,7 @@ public class Series {
 				int aWins = 0, bWins = 0;
 				
 				for (int i = 0; i < matches.size(); i++) {
-					Match m = matches.get(i);
+					Game m = matches.get(i);
 					Team won = m.getWinner();
 					
 					if (won == A) {

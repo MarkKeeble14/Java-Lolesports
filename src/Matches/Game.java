@@ -7,7 +7,7 @@ import Classes.Team;
 import StatsTracking.RegionalWLTracker;
 import TournamentSimulator.Driver;
 
-public class Match {
+public class Game extends Matchup {
 	private String stageLabel;
 	private String matchLabel;
 	private Team teamA;
@@ -30,6 +30,11 @@ public class Match {
 			winner = teamB;
 			loser = teamA;
 		}
+		
+		// Update Teams Records
+		winner.getRecord().MatchWin(loser);
+		loser.getRecord().MatchLoss(winner);
+		
 		WLT.Update(winner, loser);
 	}
 	
@@ -39,7 +44,7 @@ public class Match {
 	* @param A Combatant A 
 	* @param B Combatant B
 	*/
-	public Match(String sl, String l, Team A, Team B, RegionalWLTracker t) {
+	public Game(String sl, String l, Team A, Team B, RegionalWLTracker t) {
 		stageLabel = sl;
 		matchLabel = l;
 		teamA = A;
@@ -51,7 +56,7 @@ public class Match {
 	* Constructor
 	* @param label The match id/number of the match, i.e., M1, M2, M3, etc
 	*/
-	public Match(String sl, String l, RegionalWLTracker t) {
+	public Game(String sl, String l, RegionalWLTracker t) {
 		stageLabel = sl;
 		matchLabel = l;
 		WLT = t;
@@ -108,9 +113,9 @@ public class Match {
 		} else {
 			String s = getMatchDetails();
 			if (winner == teamA) {
-				s += teamA.getTag() + " > " + teamB.getTag() + "\n";
+				s += teamA.getTag() + " > " + teamB.getTag();
 			} else {
-				s += teamA.getTag() + " < " + teamB.getTag() + "\n";
+				s += teamA.getTag() + " < " + teamB.getTag();
 			}
 			return s;	
 		}

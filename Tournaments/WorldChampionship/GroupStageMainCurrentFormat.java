@@ -30,10 +30,10 @@ public class GroupStageMainCurrentFormat extends GroupStage {
 		Group D = groups.get(3);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, 2, true, this); 
-		B.FullSimulate(label, tracker, 2, true, this); 
-		C.FullSimulate(label, tracker, 2, true, this); 
-		D.FullSimulate(label, tracker, 2, true, this); 
+		A.FullSimulate(label, tracker, true); 
+		B.FullSimulate(label, tracker, true); 
+		C.FullSimulate(label, tracker, true); 
+		D.FullSimulate(label, tracker, true); 
 		
 		super.setGroups(groups);
 	}

@@ -1,12 +1,12 @@
 package QualificationDetails;
 
-import Matches.Match;
+import Matches.Game;
 import Misc.ReasonForQual;
 
 public class QualifiedThroughSeriesWin extends QualificationDetails {
-	private Match m;
+	private Game m;
 	
-	public QualifiedThroughSeriesWin(String label, Match m) {
+	public QualifiedThroughSeriesWin(String label, Game m) {
 		super.setLabel(label);
 		super.setQualificationReason(ReasonForQual.WonSeries);
 		this.m = m;

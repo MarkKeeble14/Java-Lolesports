@@ -45,9 +45,9 @@ public abstract class DrawStructure extends TournamentComponent {
 		for (int i = 0; i < groups.size(); i++) {
 			Group g = groups.get(i);
 			if (x == groups.size() - 1) {
-				s += g.StringifyGroup();
+				s += "\n" + g.StringifyGroupParticipants();
 			} else {
-				s += g.StringifyGroup() + "\n";
+				s += "\n" + g.StringifyGroupParticipants() + "\n";
 				s += Strings.MediumLineBreak + "\n";
 			}
 			x++;

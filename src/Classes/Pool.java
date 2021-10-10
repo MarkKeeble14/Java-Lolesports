@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CustomExceptions.ImpossibleDrawException;
-import Matches.Match;
+import Matches.Game;
 import Matches.Series;
 
 public class Pool {

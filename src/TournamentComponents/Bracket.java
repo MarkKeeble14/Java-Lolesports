@@ -6,7 +6,7 @@ import java.util.List;
 import Classes.Group;
 import Classes.Team;
 import Classes.Tournament;
-import Matches.Match;
+import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import QualificationDetails.QualificationDetails;

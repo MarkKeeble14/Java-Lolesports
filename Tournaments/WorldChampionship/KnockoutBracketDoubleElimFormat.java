@@ -9,7 +9,7 @@ import Classes.Pool;
 import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import Matches.Match;
+import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import StatsTracking.RegionalWLTracker;

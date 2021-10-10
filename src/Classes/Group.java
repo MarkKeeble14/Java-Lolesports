@@ -8,8 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import CustomExceptions.GroupExceedingCapacityException;
-import Matches.Match;
+import Matches.Game;
+import Matches.Matchup;
+import Matches.Series;
 import Misc.MapUtil;
+import Misc.Strings;
 import Misc.Util;
 import StatsTracking.RegionalWLTracker;
 import TournamentComponents.GroupStage;
@@ -24,8 +27,31 @@ public class Group {
 	private Map<Team, Integer> standings = new HashMap<Team, Integer>();
 	
 	private GroupStage partOf;
+	private int gamesPerRoundRobin;
+	private int matchesAreBOX;
 	
-	// private Map<Team, Record> teamRecords = new HashMap<Team, Record>();
+	private List<Matchup> matchups = new ArrayList<Matchup>();
+	private List<Matchup> tiebreakers = new ArrayList<Matchup>();
+	
+	// Finds the group of Team t
+	public static Group FindGroup(Team t, Group[] groups) {
+		for (Group g : groups) {
+			if (g.Contains(t)) {
+				return g;
+			}
+		}
+		return null;
+	}
+
+	// Finds the group of Team t
+	public static Group FindGroup(Team t, List<Group> groups) {
+		for (Group g : groups) {
+			if (g.Contains(t)) {
+				return g;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	* Constructor
@@ -33,9 +59,12 @@ public class Group {
 	* @param capacity The number of teams in the group
 	* @param teams The teams in the group
 	*/
-	public Group(String label, int capacity, Team ...groupTeams) {
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, GroupStage partOf, Team ...groupTeams) {
 		this.label = label;
 		this.capacity = capacity;
+		this.gamesPerRoundRobin = gamesPerRoundRobin;
+		this.matchesAreBOX = matchesAreBOX;
+		this.partOf = partOf;
 		teams = new ArrayList<Team>();
 		for (Team t : groupTeams) {
 			teams.add(t);
@@ -47,9 +76,12 @@ public class Group {
 	* @param label A label for the group, i.e., A, B, C, D, etc
 	* @param capacity The number of teams in the group
 	*/
-	public Group(String label, int capacity) {
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, int numGamesPerMatch, GroupStage partOf) {
 		this.label = label;
 		this.capacity = capacity;
+		this.gamesPerRoundRobin = gamesPerRoundRobin;
+		this.matchesAreBOX = matchesAreBOX;
+		this.partOf = partOf;
 		teams = new ArrayList<Team>();
 	}
 	
@@ -107,7 +139,7 @@ public class Group {
 	
 	public void Add(Team team) throws Exception {
 		if (isFull()) {
-			throw new GroupExceedingCapacityException(StringifyGroup(), team.toString(), capacity);
+			throw new GroupExceedingCapacityException(StringifyGroupParticipants(), team.toString(), capacity);
 		}
 		teams.add(team);
 	}
@@ -134,12 +166,9 @@ public class Group {
 		standings = MapUtil.sortByIntegerValue(standings);
 	}
 	
-	public void FullSimulate(String stageLabel, RegionalWLTracker tracker, int matchesPerTwo, 
-			boolean simulateTiebreakers, GroupStage partOf) throws Exception {
-		this.partOf = partOf;
-		
+	public void FullSimulate(String stageLabel, RegionalWLTracker tracker, boolean simulateTiebreakers) throws Exception {
 		// Make a copy of the initial Group
-		Group copy = new Group("Copy", this.getCapacity());
+		Group copy = new Group("Copy", capacity, gamesPerRoundRobin, matchesAreBOX, partOf);
 		for (Team t : teams) {
 			t.setNewRecord(stageLabel);
 			copy.Add(t);
@@ -151,18 +180,18 @@ public class Group {
 			for (int p = 0; p < copy.getGroup().size(); p++) {
 				Team c = copy.getGroup().get(p);
 				if (t != c) {
-					for (int q = 0; q < matchesPerTwo; q++) {
-						Match M = new Match(stageLabel, "M", t, c, tracker);
-						
-						// Assuming groups are BO1
-						M.Simulate();
-						partOf.AddMatches(this, M);
-						
-						Team winner = M.getWinner();
-						Team loser = M.getLoser();
-						
-						winner.getRecord().MatchWin(loser);
-						loser.getRecord().MatchLoss(winner);
+					for (int q = 0; q < gamesPerRoundRobin; q++) {
+						if (matchesAreBOX > 1) {
+							Series S = new Series(stageLabel, "S", matchesAreBOX, t, c, tracker);
+							
+							S.Simulate();
+							matchups.add(S);
+						} else {
+							Game M = new Game(stageLabel, "M", t, c, tracker);
+							
+							M.Simulate();
+							matchups.add(M);
+						}
 					}	
 				}
 			}
@@ -266,7 +295,6 @@ public class Group {
 		for (Entry<Record, List<Team>> entry : sortedTeams) {
 			List<Team> lst = entry.getValue();
 			if (lst.size() > 1) {
-				
 				// Sorts based on criteria you can see within the function
 				lst = SortSameRecords(entry.getValue());
 				
@@ -275,17 +303,14 @@ public class Group {
 					Team teamA = prevTeam;
 					Team teamB = lst.get(i + 1);
 					
-					Match M = new Match(stageLabel, "M", teamA, teamB, tracker);
+					Game M = new Game(stageLabel, "M", teamA, teamB, tracker);
 					
 					// Assuming groups are BO1
 					M.Simulate();
-					partOf.AddTiebreakerMatches(this, M);
+					tiebreakers.add(M);
 					
 					Team winner = M.getWinner();
 					Team loser = M.getLoser();
-					
-					winner.getRecord().TiebreakerWin(loser);
-					loser.getRecord().TiebreakerLoss(winner);
 					
 					prevTeam = winner;
 					
@@ -503,45 +528,33 @@ public class Group {
 		standings = MapUtil.sortByIntegerValue(standings);
 	}
 	
-	public void PrintStandings() {
-		System.out.println("\nGroup " + label + "\n");
-		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
-				+ k.getRecord().getWins() + "-" + k.getRecord().getLosses())));
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public Map<Team, Integer> getStandings() {
+		return standings;
+	}
+
+	public GroupStage getPartOf() {
+		return partOf;
 	}
 	
-	public void PrintStandingsWithRecordLogs(String label) {
-		System.out.println("\nGroup " + label + "\n");
-		standings.forEach((k, v) -> System.out.println((v + " : " + k + " | Record: " 
-				+ k.getRecord(label).detailedPrint())));
+	public int getGamesPerRoundRobin() {
+		return gamesPerRoundRobin;
+	}
+
+	public int getMatchesAreBOX() {
+		return matchesAreBOX;
+	}
+
+	@Override
+	public String toString() {
+		return StringifyGroupParticipants();
 	}
 	
-	public String toStandings() {
-		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
-		String s = "\nGroup " + label + "\n";
-		for (Entry<Team, Integer> entry : teamStandings) {
-			Team k = entry.getKey();
-			Integer v = entry.getValue();
-			s += v + " : " + k + " | Record: " 
-					+ k.getRecord().getWins() + "-" + k.getRecord().getLosses() + "\n";
-		}
-		return s.substring(0, s.length() - 1);
-	}
-	
-	public String toStandings(String stageLabel) {
-		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
-		String s = "\nGroup " + label + "\n";
-		for (Entry<Team, Integer> entry : teamStandings) {
-			Team k = entry.getKey();
-			Integer v = entry.getValue();
-			Record r = k.getRecord(stageLabel);
-			s += v + " : " + k + " | Record: " 
-					+ r.getWins() + "-" + r.getLosses() + "\n";
-		}
-		return s.substring(0, s.length() - 1);
-	}
-	
-	public String StringifyGroup() {
-		String s = "\nGroup " + label + "\n";
+	public String StringifyGroupParticipants() {
+		String s = "Group " + label + "\n\n";
 		for (int i = 0; i < teams.size(); i++) {
 			Team t = teams.get(i);
 			if (i == teams.size() - 1) {
@@ -553,28 +566,65 @@ public class Group {
 		return s;
 	}
 	
-	@Override
-	public String toString() {
-		return StringifyGroup();
-	}
-
-	// Finds the group of Team t
-	public static Group FindGroup(Team t, Group[] groups) {
-		for (Group g : groups) {
-			if (g.Contains(t)) {
-				return g;
+	public String toStandings(String stageLabel) {
+		String s = "Group " + label + "\n\n";
+		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
+		int x = 0;
+		for (Entry<Team, Integer> entry : teamStandings) {
+			Team k = entry.getKey();
+			Integer v = entry.getValue();
+			Record r = k.getRecord(stageLabel);
+			if (x == teamStandings.size() -1) {
+				String s1 = v + " : " + k;
+				String s2 = " | Record: " + r.getWins() + "-" + r.getLosses();
+				
+				s += String.format(Strings.StandingFormat, s1, s2);
+			} else {
+				String s1 = v + " : " + k;
+				String s2 = " | Record: " + r.getWins() + "-" + r.getLosses();
+				
+				s += String.format(Strings.StandingFormat, s1, s2) + "\n";
 			}
+			
+			x++;
 		}
-		return null;
+		return s;
 	}
-
-	// Finds the group of Team t
-	public static Group FindGroup(Team t, List<Group> groups) {
-		for (Group g : groups) {
-			if (g.Contains(t)) {
-				return g;
+	
+	public String StringifyMatches() {
+		String s = "Group " + label + " Games\n";
+		int x = 0;
+		
+		for (int i = 0; i < matchups.size(); i++) {
+			Matchup m = matchups.get(i);
+			if (x == matchups.size() - 1) {
+				s += "\n" + m.toString();
+			} else {
+				s += "\n" + m.toString() + "\n";
+				s += Strings.SmallLineBreak + "\n";
 			}
+			x++;
 		}
-		return null;
+		
+		return s;
+	}
+	
+	public String StringifyTiebreakerMatches() {
+		if (tiebreakers.size() == 0)
+			return "";
+		
+		String s = "Group " + label + " Tiebreakers\n";
+		int x = 0;
+		for (int i = 0; i < tiebreakers.size(); i++) {
+			Matchup m = tiebreakers.get(i);
+			if (x == tiebreakers.size() - 1) {
+				s += "\n" + m.toString();
+			} else {
+				s += "\n" + m.toString() + "\n";
+				s += Strings.SmallLineBreak + "\n";
+			}
+			x++;
+		}
+		return s;
 	}
 }

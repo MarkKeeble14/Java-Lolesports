@@ -75,6 +75,8 @@ public class Strings {
 	
 	public static final String TableFormat = "%-15s %-7s %-12s %-20s%n";
 	
+	public static final String StandingFormat = "%-50s %-20s";
+	
 	public static String Concat(String bridge, String... strings) {
 		String s = strings[0];
 		

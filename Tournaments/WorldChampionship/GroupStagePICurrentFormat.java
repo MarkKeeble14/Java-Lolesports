@@ -28,8 +28,8 @@ public class GroupStagePICurrentFormat extends GroupStage {
 		Group B = groups.get(1);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, 1, true, this); 
-		B.FullSimulate(label, tracker, 1, true, this); 
+		A.FullSimulate(label, tracker, true); 
+		B.FullSimulate(label, tracker, true); 
 		
 		super.setGroups(groups);
 	}

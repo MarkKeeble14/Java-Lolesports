@@ -40,6 +40,8 @@ public abstract class Tournament {
 	
 	public abstract void Simulate(List<Pool> pools) throws Exception;
 	
+	public abstract void Setup();
+	
 	public void ConcludeTournament() {
 		Bracket b = brackets.get(brackets.size() - 1);
 		

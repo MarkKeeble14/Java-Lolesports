@@ -28,7 +28,7 @@ public class GroupStageRumbleStageCurrentFormat extends GroupStage {
 		Group A = groups.get(0);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, 2, true, this); 
+		A.FullSimulate(label, tracker, true); 
 		
 		super.setGroups(groups);
 	}
