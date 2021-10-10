@@ -45,11 +45,11 @@ public class Driver {
 	// Main
 	public static void main(String[] args) throws Exception {
 		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
+		// SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
 		
 		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
 		
-		// LoopTournament(numberOfSims);
+		LoopTournament(numberOfSims);
 	}
 	
 	// Simulates an Entire Tournament

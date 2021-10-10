@@ -83,12 +83,6 @@ public class Series extends Matchup {
 	}
 	
 	private void TeamWin(Team win, Team loss) {
-		Record r1 = win.getRecord(stageLabel);
-		Record r2 = loss.getRecord(stageLabel);
-		
-		r1.MatchWin(loss);
-		r2.MatchLoss(win);
-		
 		UpdateGamescore(win);
 	}
 	
