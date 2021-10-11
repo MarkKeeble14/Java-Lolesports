@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import LCS.SpringLCS;
 import MSI.TournamentMSI;
@@ -16,6 +15,8 @@ import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
 import Misc.Util;
+import Teams.RatingDefinedTeam;
+import Teams.Team;
 import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionshipDoubleElim;
 
@@ -55,11 +56,11 @@ public class InternationalDriver {
 	// Simulates an Entire Tournament
 	public static Tournament SimulateWorldsFormatFromScratch() throws Exception {
 		// Setting up Pools
-		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new Team(Teams.LNG), new Team(Teams.HLE), new Team(Teams.BYG), new Team(Teams.C9)); 
-		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new Team(Teams.INF), new Team(Teams.GS), new Team(Teams.UOL), new Team(Teams.PCE), new Team(Teams.RED), new Team(Teams.DFM));
-		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.DK), new Team(Teams.EDG), new Team(Teams.MAD), new Team(Teams.PSG)); 
-		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.O100T), new Team(Teams.FNC), new Team(Teams.GEN), new Team(Teams.FPX));
-		Pool P3 = new Pool(Strings.LPoolThree, new Team(Teams.TL), new Team(Teams.T1), new Team(Teams.RGE), new Team(Teams.RNG));
+		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new RatingDefinedTeam(Teams.LNG), new RatingDefinedTeam(Teams.HLE), new RatingDefinedTeam(Teams.BYG), new RatingDefinedTeam(Teams.C9)); 
+		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new RatingDefinedTeam(Teams.INF), new RatingDefinedTeam(Teams.GS), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PCE), new RatingDefinedTeam(Teams.RED), new RatingDefinedTeam(Teams.DFM));
+		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.EDG), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.PSG)); 
+		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.O100T), new RatingDefinedTeam(Teams.FNC), new RatingDefinedTeam(Teams.GEN), new RatingDefinedTeam(Teams.FPX));
+		Pool P3 = new Pool(Strings.LPoolThree, new RatingDefinedTeam(Teams.TL), new RatingDefinedTeam(Teams.T1), new RatingDefinedTeam(Teams.RGE), new RatingDefinedTeam(Teams.RNG));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
 		
 		Tournament WC = new TournamentWorldChampionshipDoubleElim(Strings.LWC);
@@ -76,8 +77,8 @@ public class InternationalDriver {
 	
 	public static Tournament SimulateMSIFormatFromScratch() throws Exception {
 		// Setting up Pools
-		Pool P1 = new Pool(Strings.LPoolOne, new Team(Teams.RNG), new Team(Teams.DK), new Team(Teams.PSG), new Team(Teams.C9), new Team(Teams.MAD), new Team(Teams.GAM)); 
-		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.PGG), new Team(Teams.UOL), new Team(Teams.PNG), new Team(Teams.IW), new Team(Teams.DFM), new Team(Teams.INF));
+		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.RNG), new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.PSG), new RatingDefinedTeam(Teams.C9), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.GAM)); 
+		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.PGG), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PNG), new RatingDefinedTeam(Teams.IW), new RatingDefinedTeam(Teams.DFM), new RatingDefinedTeam(Teams.INF));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(P1, P2));
 		
 		Tournament MSI = new TournamentMSI();

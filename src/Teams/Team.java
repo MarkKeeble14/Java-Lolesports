@@ -1,4 +1,4 @@
-package Classes;
+package Teams;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import Misc.Region;
 import QualificationDetails.QualificationDetails;
 import StatsTracking.Record;
 
-public class Team implements Comparable<Team> {
+public abstract class Team implements Comparable<Team> {
 	private String tag;
 	private Region region;
 	private double rating;
@@ -18,8 +18,6 @@ public class Team implements Comparable<Team> {
 	
 	private List<QualificationDetails> QDs = new ArrayList<QualificationDetails>();
 	private int currentQDIndex = -1;
-	
-	private Player[] players;
 	
 	/**
 	* Constructor
@@ -32,32 +30,6 @@ public class Team implements Comparable<Team> {
 		this.rating = rating;
 		this.region = region;
 	}
-	
-	public Team(String tag, Region region, Player top, Player jungle, Player mid, Player bottom, Player support) {
-		this.tag = tag;
-		this.region = region;
-		this.players = new Player[] { top, jungle, mid, bottom, support };
-		setRatingFromPlayers();
-	}
-	
-	/**
-	* Constructor
-	* @param tag The teams tag, i.e., Cloud9 has C9, FNATIC has FNC, etc
-	* @param region The region the team is from
-	* @param rating A rating of the teams skill, higher is better
-	*/
-	public Team(String tag, Region region, Player...players) {
-		this.tag = tag;
-		this.region = region;
-		this.players = players;
-		setRatingFromPlayers();
-	}
-	
-	private void setRatingFromPlayers() {
-		for (Player p : players) {
-			rating += p.getRatingOutOf1();
-		}
-	}
 
 	/**
 	* Constructor
@@ -69,11 +41,6 @@ public class Team implements Comparable<Team> {
 		this.tag = t.getTag();
 		this.rating = t.getRating();
 		this.region = t.getRegion();
-		this.players = t.getPlayers();
-	}
-
-	public Player[] getPlayers() {
-		return players;
 	}
 
 	public double getRating() {
@@ -198,5 +165,9 @@ public class Team implements Comparable<Team> {
 			return -1;
 		}
 		return 0;
+	}
+
+	public void setRating(float ratingFromPlayers) {
+		rating = ratingFromPlayers;
 	}
 }

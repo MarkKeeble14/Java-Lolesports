@@ -3,8 +3,8 @@ package Matches;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-import Classes.Team;
 import StatsTracking.RegionalWLTracker;
+import Teams.Team;
 import TournamentSimulator.DomesticDriver;
 
 public class Game extends Matchup {

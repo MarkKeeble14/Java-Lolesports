@@ -6,13 +6,13 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import StatsTracking.RegionalWLTracker;
+import Teams.Team;
 import TournamentComponents.Bracket;
 
 // 4 Group Double Elim Bracket

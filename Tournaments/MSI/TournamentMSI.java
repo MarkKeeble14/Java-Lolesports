@@ -6,13 +6,13 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Misc.Strings;
 import Misc.Util;
 import QualificationDetails.QualifiedThroughGroupPlacement;
 import StatsTracking.EOTStandings;
+import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;

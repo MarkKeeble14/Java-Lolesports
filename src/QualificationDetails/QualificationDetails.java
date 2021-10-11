@@ -1,7 +1,7 @@
 package QualificationDetails;
 
-import Classes.Team;
 import Misc.ReasonForQual;
+import Teams.Team;
 
 public abstract class QualificationDetails {
 	private ReasonForQual qualificationReason;

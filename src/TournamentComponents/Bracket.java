@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Classes.Group;
-import Classes.Team;
 import Classes.Tournament;
 import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import QualificationDetails.QualificationDetails;
+import Teams.Team;
 import TournamentSimulator.DomesticDriver;
 
 public abstract class Bracket extends TournamentComponent {

@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import Classes.Team;
 
 import java.util.Map.Entry;
 import Misc.Region;
 import Misc.Strings;
 import Misc.Util;
+import Teams.Team;
 import TournamentSimulator.DomesticDriver;
 
 public class RegionalWLTracker {

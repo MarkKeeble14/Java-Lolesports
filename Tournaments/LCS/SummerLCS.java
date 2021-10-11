@@ -6,7 +6,6 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import MSI.GroupDrawGroupStageCurrentFormat;
 import MSI.GroupStageGroupStageCurrentFormat;
@@ -34,11 +33,7 @@ public class SummerLCS extends Tournament {
 		Setup();
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 10, 3, 1, RR, 
-				new Team(TeamsWithPlayers.TSM), new Team(TeamsWithPlayers.C9), new Team(TeamsWithPlayers.TL), 
-				new Team(TeamsWithPlayers.EG), new Team(TeamsWithPlayers.FLY), new Team(TeamsWithPlayers.GG), 
-				new Team(TeamsWithPlayers.CLG), new Team(TeamsWithPlayers.DIG), new Team(TeamsWithPlayers.O100), 
-				new Team(TeamsWithPlayers.IMT)); 
+		Group A = new Group(Strings.LFirstGroup, 10, 3, 1, RR, pools.get(0).getPool()); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A));
 		
 		SimulateGroupStage(groups);

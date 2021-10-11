@@ -6,6 +6,7 @@ import java.util.List;
 import Misc.Util;
 import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
+import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;

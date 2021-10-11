@@ -16,6 +16,7 @@ import Misc.Strings;
 import Misc.Util;
 import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
+import Teams.Team;
 import TournamentComponents.GroupStage;
 
 import java.util.Set;
@@ -25,7 +26,10 @@ public class Group {
 	private int capacity;
 	
 	private List<Team> teams;
-	private Map<Team, Integer> standings = new HashMap<Team, Integer>();
+	
+	private Map<Team, Integer> preTBStandings = new HashMap<Team, Integer>();
+	
+	private Map<Team, Integer> postTBStandings = new HashMap<Team, Integer>();
 	
 	private GroupStage partOf;
 	private int gamesPerRoundRobin;
@@ -166,7 +170,7 @@ public class Group {
 	}
 	
 	public Team GetTeamFromPlacement(Integer index) {
-	    for (Entry<Team, Integer> entry : standings.entrySet()) {
+	    for (Entry<Team, Integer> entry : postTBStandings.entrySet()) {
 	        if (index == entry.getValue()) {
 	            return entry.getKey();
 	        }
@@ -178,9 +182,9 @@ public class Group {
 	public void BasicSimulate() {
 		Collections.sort(teams);
 		for (int i = 1; i < teams.size() + 1; i++) {
-			standings.put(teams.get(i - 1), teams.size() - i + 1);
+			preTBStandings.put(teams.get(i - 1), teams.size() - i + 1);
 		}
-		standings = MapUtil.sortByIntegerValue(standings);
+		preTBStandings = MapUtil.sortByIntegerValue(preTBStandings);
 	}
 	
 	public void FullSimulate(String stageLabel, RegionalWLTracker tracker, boolean simulateTiebreakers) throws Exception {
@@ -215,13 +219,14 @@ public class Group {
 			copy.Remove(t);
 		}
 		
+		preTBStandings = SortStandingsPreTiebreakers();
+		
 		// Tiebreakers
 		if (simulateTiebreakers && tiebreakersRequired()) {
 			SimulateTiebreakers(stageLabel, tracker);
 		}
 		
-		// Sort into standings
-		SortStandingsPostTiebreakers();
+		postTBStandings = SortStandingsPostTiebreakers();
 	}
 	
 	private boolean tiebreakersRequired() {
@@ -244,8 +249,8 @@ public class Group {
 				for (Entry<Record, List<Team>> entry2 : alreadyAddedSet) {
 					i++;
 					
-					if (entry.getValue().getWins() == entry2.getKey().getWins()
-							&& entry.getValue().getLosses() == entry2.getKey().getLosses()) {
+					if (entry.getValue().getWins(true) == entry2.getKey().getWins(true)
+							&& entry.getValue().getLosses(true) == entry2.getKey().getLosses(true)) {
 						List<Team> lst = teamsByRecordMap.get(entry2.getKey());
 						lst.add(entry.getKey());
 						teamsByRecordMap.put(entry2.getKey(), lst);
@@ -269,8 +274,6 @@ public class Group {
 	}
 	
 	private void SimulateTiebreakers(String stageLabel, RegionalWLTracker tracker) {
-		SortStandingsPreTiebreakers();
-		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
 			teamRecords.put(t, t.getRecord());
@@ -290,8 +293,8 @@ public class Group {
 				for (Entry<Record, List<Team>> entry2 : alreadyAddedSet) {
 					i++;
 					
-					if (entry.getValue().getWins() == entry2.getKey().getWins()
-							&& entry.getValue().getLosses() == entry2.getKey().getLosses()) {
+					if (entry.getValue().getWins(false) == entry2.getKey().getWins(false)
+							&& entry.getValue().getLosses(false) == entry2.getKey().getLosses(false)) {
 						List<Team> lst = teamsByRecordMap.get(entry2.getKey());
 						lst.add(entry.getKey());
 						teamsByRecordMap.put(entry2.getKey(), lst);
@@ -337,13 +340,12 @@ public class Group {
 						fs.put(winner, fs.size());
 					}
 				}
-				
 			} else {
 				fs.put(lst.get(0), fs.size());
 			}
 		}
 		
-		standings = MapUtil.sortByIntegerValue(fs);
+		postTBStandings = MapUtil.sortByIntegerValue(fs);
 	}
 		
 	private List<Team> SortSameRecords(List<Team> teamsToSort) {
@@ -374,7 +376,7 @@ public class Group {
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
-				if (eRecord.getWins() > trRecord.getWins()) {
+				if (eRecord.getWins(true) > trRecord.getWins(true)) {
 	            	topRecord = entry;
 	            } else if (eRecord.getWinsOfTeamsBeat() == trRecord.getWinsOfTeamsBeat()) {
 	            	if (eRecord.getWinsOfTeamsBeat() < trRecord.getWinsOfTeamsBeat()) {
@@ -392,8 +394,8 @@ public class Group {
 		return sortedList;
 	}
 	
-	private void SortStandingsPreTiebreakers() {
-		standings = new HashMap<Team, Integer>();
+	private Map<Team, Integer> SortStandingsPreTiebreakers() {
+		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
@@ -401,18 +403,15 @@ public class Group {
 		}
 		
 		int place = 0;
+		int numTeams = teamRecords.size();
 		Set<Entry<Team, Record>> set = teamRecords.entrySet();
-		while (standings.size() < teamRecords.size()) {
+		while (fs.size() < numTeams) {
 			Map.Entry<Team, Record> topRecord = null;
 			for (Entry<Team, Record> entry : set) {
 				
 				// Set Variables
 				Team eTeam = entry.getKey();
 				Record eRecord = entry.getValue();
-				
-				if (standings.containsKey(eTeam)) {
-					continue;
-				}
 				
 				if (topRecord == null) {
 	            	topRecord = entry;
@@ -422,17 +421,18 @@ public class Group {
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
-				if (eRecord.getWins() > trRecord.getWins()) {
+				if (eRecord.getWins(false) > trRecord.getWins(false)) {
 	            	topRecord = entry;
 	            }
 	        }
-			standings.put(topRecord.getKey(), ++place);
+			fs.put(topRecord.getKey(), ++place);
+			teamRecords.remove(topRecord.getKey());
 		}
-		standings = MapUtil.sortByIntegerValue(standings);
+		return MapUtil.sortByIntegerValue(fs);
 	}
 	
-	private void SortStandingsPostTiebreakers() {
-		standings = new HashMap<Team, Integer>();
+	private Map<Team, Integer> SortStandingsPostTiebreakers() {
+		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		
 		Map<Team, Record> teamRecords = new HashMap<Team, Record>();
 		for (Team t : teams) {
@@ -440,17 +440,14 @@ public class Group {
 		}
 		
 		int place = 0;
+		int numTeams = teamRecords.size();
 		Set<Entry<Team, Record>> set = teamRecords.entrySet();
-		while (standings.size() < teamRecords.size()) {
+		while (fs.size() < numTeams) {
 			Map.Entry<Team, Record> topRecord = null;
 			for (Entry<Team, Record> entry : set) {
 				// Set Variables
 				Team eTeam = entry.getKey();
 				Record eRecord = entry.getValue();
-				
-				if (standings.containsKey(eTeam)) {
-					continue;
-				}
 				
 				if (topRecord == null) {
 	            	topRecord = entry;
@@ -461,7 +458,7 @@ public class Group {
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
-				if (eRecord.getWins() >= trRecord.getWins()) {
+				if (eRecord.getWins(true) >= trRecord.getWins(true)) {
 					if (eRecord.getNumberOfTiebreakers() < trRecord.getNumberOfTiebreakers()) {
             			topRecord = entry;
             		} else if (eRecord.getNumberOfTiebreakers() >= trRecord.getNumberOfTiebreakers()) {
@@ -471,18 +468,19 @@ public class Group {
             				if (eRecord.getTotalWinsOfTeamsLostToInTiebreakers() 
             						> trRecord.getTotalWinsOfTeamsLostToInTiebreakers()) {
             					topRecord = entry;
-            				} else if (trRecord.getLosses() > eRecord.getLosses()) {
+            				} else if (trRecord.getLosses(true) > eRecord.getLosses(true)) {
             					topRecord = entry;
-            				} else if (eRecord.getWins() > trRecord.getWins()) {
+            				} else if (eRecord.getWins(true) > trRecord.getWins(true)) {
             					topRecord = entry;
             				}
             			}
             		}
 	            }
 	        }
-			standings.put(topRecord.getKey(), ++place);
+			fs.put(topRecord.getKey(), ++place);
+			teamRecords.remove(topRecord.getKey());
 		}
-		standings = MapUtil.sortByIntegerValue(standings);
+		return MapUtil.sortByIntegerValue(fs);
 	}
 	
 	// Returns true if there is a team from the Pool p which can be drawn into this group, given the rule that 
@@ -536,17 +534,17 @@ public class Group {
 		return potentialDraws;
 	}
 
-	public void setStandings(Map<Team, Integer> m) {
-		standings = m;
-		standings = MapUtil.sortByIntegerValue(standings);
+	public void setPostTBStandings(Map<Team, Integer> m) {
+		postTBStandings = m;
+		postTBStandings = MapUtil.sortByIntegerValue(postTBStandings);
 	}
 	
 	public List<Team> getTeams() {
 		return teams;
 	}
 
-	public Map<Team, Integer> getStandings() {
-		return standings;
+	public Map<Team, Integer> getPostTBStandings() {
+		return postTBStandings;
 	}
 
 	public GroupStage getPartOf() {
@@ -583,38 +581,58 @@ public class Group {
 		String s = "";
 		if (includeTiebreakers) {
 			s += "Group " + label + ": Post-Tiebreakers\n\n";
+			Set<Entry<Team, Integer>> teamStandings = postTBStandings.entrySet();
+			int x = 0;
+			for (Entry<Team, Integer> entry : teamStandings) {
+				Team k = entry.getKey();
+				Integer v = entry.getValue();
+				Record r = k.getRecord(stageLabel);
+				
+				int wins = r.getWins(includeTiebreakers);
+				int losses = r.getLosses(includeTiebreakers);
+				
+				if (x == teamStandings.size() - 1) {
+					String s1 = v + " : " + k;
+					String s2 = " | Record: " + wins + "-" + losses;
+					
+					s += String.format(Strings.StandingFormat, s1, s2);
+				} else {
+					String s1 = v + " : " + k;
+					String s2 = " | Record: " + wins + "-" + losses;
+					
+					s += String.format(Strings.StandingFormat, s1, s2) + "\n";
+				}
+				
+				x++;
+			}
 		} else {
 			s += "Group " + label + ": Pre-Tiebreakers\n\n";
-		}
-		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
-		int x = 0;
-		for (Entry<Team, Integer> entry : teamStandings) {
-			Team k = entry.getKey();
-			Integer v = entry.getValue();
-			Record r = k.getRecord(stageLabel);
-			
-			int wins = r.getWins();
-			int losses = r.getLosses();
-			
-			if (!includeTiebreakers) {
-				wins -= r.getNumberOfTiebreakerWins();
-				losses -= r.getNumberOfTiebreakerLosses();
-			}
-			
-			if (x == teamStandings.size() - 1) {
-				String s1 = v + " : " + k;
-				String s2 = " | Record: " + wins + "-" + losses;
+			Set<Entry<Team, Integer>> teamStandings = preTBStandings.entrySet();
+			int x = 0;
+			for (Entry<Team, Integer> entry : teamStandings) {
+				Team k = entry.getKey();
+				Integer v = entry.getValue();
+				Record r = k.getRecord(stageLabel);
 				
-				s += String.format(Strings.StandingFormat, s1, s2);
-			} else {
-				String s1 = v + " : " + k;
-				String s2 = " | Record: " + wins + "-" + losses;
+				int wins = r.getWins(includeTiebreakers);
+				int losses = r.getLosses(includeTiebreakers);
 				
-				s += String.format(Strings.StandingFormat, s1, s2) + "\n";
+				if (x == teamStandings.size() - 1) {
+					String s1 = v + " : " + k;
+					String s2 = " | Record: " + wins + "-" + losses;
+					
+					s += String.format(Strings.StandingFormat, s1, s2);
+				} else {
+					String s1 = v + " : " + k;
+					String s2 = " | Record: " + wins + "-" + losses;
+					
+					s += String.format(Strings.StandingFormat, s1, s2) + "\n";
+				}
+				
+				x++;
 			}
-			
-			x++;
 		}
+		
 		return s;
 	}
 	

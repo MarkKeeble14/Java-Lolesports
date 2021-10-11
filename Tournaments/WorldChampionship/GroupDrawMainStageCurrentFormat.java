@@ -5,10 +5,10 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
+import Teams.Team;
 import TournamentComponents.DrawStructure;
 
 public class GroupDrawMainStageCurrentFormat extends DrawStructure {

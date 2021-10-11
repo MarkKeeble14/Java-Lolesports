@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Classes.Team;
 import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
+import Teams.Team;
 import TournamentSimulator.DomesticDriver;
 
 public class Series extends Matchup {

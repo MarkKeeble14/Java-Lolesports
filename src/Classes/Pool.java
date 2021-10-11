@@ -6,6 +6,7 @@ import java.util.List;
 import CustomExceptions.ImpossibleDrawException;
 import Matches.Game;
 import Matches.Series;
+import Teams.Team;
 
 public class Pool {
 	private String label;

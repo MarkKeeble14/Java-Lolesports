@@ -6,7 +6,6 @@ import java.util.List;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import Misc.Strings;
 import Misc.TeamsWithPlayers;

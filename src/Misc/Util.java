@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-import Classes.Team;
 import StatsTracking.Record;
+import Teams.Team;
 import TournamentSimulator.DomesticDriver;
 
 import java.util.Map.Entry;

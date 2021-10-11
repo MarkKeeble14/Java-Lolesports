@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Classes.Team;
 import Misc.Region;
 import Misc.Strings;
+import Teams.Team;
 
 import java.util.Set;
 
@@ -147,7 +147,7 @@ public class Record implements Comparable<Record> {
 		int i = 0;
 		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
 			if (entry.getValue().getLosses() > 0) {
-				entry.getKey().getRecord().getWins();	
+				entry.getKey().getRecord().getWins(true);	
 			}
 		}
 		return i;
@@ -156,29 +156,33 @@ public class Record implements Comparable<Record> {
 	public int getWinsOfTeamsBeat() {
 		int i = 0;
 		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
-			i += entry.getKey().getRecord().getWins();
+			i += entry.getKey().getRecord().getWins(false);
 		}
 		return i;
 	}
 	
-	public int getWins() {
+	public int getWins(boolean includeTiebreakers) {
 		int i = 0; 
 		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
 			i += entry.getValue().getWins();
 		}
-		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
-			i += entry.getValue().getWins();
+		if (includeTiebreakers) {
+			for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+				i += entry.getValue().getWins();
+			}	
 		}
 		return i;
 	}
 
-	public int getLosses() {
+	public int getLosses(boolean includeTiebreakers) {
 		int i = 0; 
 		for (Entry<Team, WinLossCounter> entry : matches.entrySet()) {
 			i += entry.getValue().getLosses();
 		}
-		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
-			i += entry.getValue().getLosses();
+		if (includeTiebreakers) {
+			for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+				i += entry.getValue().getLosses();
+			}
 		}
 		return i;
 	}
@@ -193,9 +197,9 @@ public class Record implements Comparable<Record> {
 
 	@Override
 	public int compareTo(Record r) {
-		if (this.getWins() > r.getWins()) {
+		if (this.getWins(false) > r.getWins(false)) {
 			return 1;
-		} else if (this.getWins() < r.getWins()) {
+		} else if (this.getWins(false) < r.getWins(false)) {
 			return -1;
 		} else {
 			return 0;			
@@ -204,13 +208,13 @@ public class Record implements Comparable<Record> {
 	
 	@Override
 	public String toString() {
-		return "Record [label=" + label + ", wins=" + getWins() + ", losses=" + getLosses() + "]";
+		return "Record [label=" + label + ", wins=" + getWins(true) + ", losses=" + getLosses(true) + "]";
 	}
 
 	public String detailedPrint() {
 		String s = "";
-		int wins = getWins();
-		int losses = getLosses();
+		int wins = getWins(true);
+		int losses = getLosses(true);
 		if (tiebreakers.size() > 0) {
 			s += StringifyRecord(label, wins, losses);
 			s += StringifyMap(matches);

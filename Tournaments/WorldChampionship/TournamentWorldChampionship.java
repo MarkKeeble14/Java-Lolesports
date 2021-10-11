@@ -8,7 +8,6 @@ import java.util.Map;
 
 import Classes.Group;
 import Classes.Pool;
-import Classes.Team;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Game;
@@ -19,6 +18,7 @@ import Misc.Util;
 import QualificationDetails.QualifiedThroughGroupPlacement;
 import QualificationDetails.QualifiedThroughSeriesWin;
 import StatsTracking.EOTStandings;
+import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
