@@ -118,6 +118,18 @@ public class Group {
 		}
 	}
 	
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, GroupStage partOf, List<Team> teams) {
+		this.label = label;
+		this.capacity = capacity;
+		this.gamesPerRoundRobin = gamesPerRoundRobin;
+		this.matchesAreBOX = matchesAreBOX;
+		this.partOf = partOf;
+		this.teams = new ArrayList<Team>();
+		for (Team t: teams) {
+			this.teams.add(t);
+		}
+	}
+
 	public boolean Contains(Team team) {
 		return teams.contains(team);
 	}
@@ -410,12 +422,8 @@ public class Group {
 				Record trRecord = topRecord.getValue();
 				
 				// Sorting
-            	if (eRecord.getWins() > trRecord.getWins()) {
+				if (eRecord.getWins() > trRecord.getWins()) {
 	            	topRecord = entry;
-	            } else if (eRecord.getWinsOfTeamsBeat() == trRecord.getWinsOfTeamsBeat()) {
-	            	if (eRecord.getWinsOfTeamsBeat() < trRecord.getWinsOfTeamsBeat()) {
-		            	topRecord = entry;
-		            }
 	            }
 	        }
 			standings.put(topRecord.getKey(), ++place);
@@ -571,22 +579,36 @@ public class Group {
 		return s;
 	}
 	
-	public String toStandings(String stageLabel) {
-		String s = "Group " + label + "\n\n";
+	public String toStandings(String stageLabel, boolean includeTiebreakers) {
+		String s = "";
+		if (includeTiebreakers) {
+			s += "Group " + label + ": Post-Tiebreakers\n\n";
+		} else {
+			s += "Group " + label + ": Pre-Tiebreakers\n\n";
+		}
 		Set<Entry<Team, Integer>> teamStandings = standings.entrySet();
 		int x = 0;
 		for (Entry<Team, Integer> entry : teamStandings) {
 			Team k = entry.getKey();
 			Integer v = entry.getValue();
 			Record r = k.getRecord(stageLabel);
-			if (x == teamStandings.size() -1) {
+			
+			int wins = r.getWins();
+			int losses = r.getLosses();
+			
+			if (!includeTiebreakers) {
+				wins -= r.getNumberOfTiebreakerWins();
+				losses -= r.getNumberOfTiebreakerLosses();
+			}
+			
+			if (x == teamStandings.size() - 1) {
 				String s1 = v + " : " + k;
-				String s2 = " | Record: " + r.getWins() + "-" + r.getLosses();
+				String s2 = " | Record: " + wins + "-" + losses;
 				
 				s += String.format(Strings.StandingFormat, s1, s2);
 			} else {
 				String s1 = v + " : " + k;
-				String s2 = " | Record: " + r.getWins() + "-" + r.getLosses();
+				String s2 = " | Record: " + wins + "-" + losses;
 				
 				s += String.format(Strings.StandingFormat, s1, s2) + "\n";
 			}

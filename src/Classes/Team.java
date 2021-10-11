@@ -33,6 +33,13 @@ public class Team implements Comparable<Team> {
 		this.region = region;
 	}
 	
+	public Team(String tag, Region region, Player top, Player jungle, Player mid, Player bottom, Player support) {
+		this.tag = tag;
+		this.region = region;
+		this.players = new Player[] { top, jungle, mid, bottom, support };
+		setRatingFromPlayers();
+	}
+	
 	/**
 	* Constructor
 	* @param tag The teams tag, i.e., Cloud9 has C9, FNATIC has FNC, etc

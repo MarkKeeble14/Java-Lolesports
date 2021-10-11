@@ -34,7 +34,7 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 	Bracket MKnockoutBracket;
 	
 	public TournamentWorldChampionshipDoubleElim(String label) {
-		super(label);
+		super(Strings.LWC);
 	}
 
 	@Override

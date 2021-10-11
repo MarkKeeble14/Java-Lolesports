@@ -43,24 +43,32 @@ public abstract class GroupStage extends TournamentComponent {
 		for (int i = 0; i < groups.size(); i++) {
 			Group g = groups.get(i);
 			if (x == groups.size() - 1) {
-				s += "\n" + g.toStandings(super.getLabel()) + "\n";
+				s += "\n" + g.StringifyGroupParticipants() + "\n";
 				s += Strings.MediumLineBreak + "\n";
 				s += "\n" + g.StringifyMatches() + "\n";
+				s += Strings.MediumLineBreak + "\n";
+				s += "\n" + g.toStandings(super.getLabel(), false) + "\n";
 				
 				if (g.getNumTiebreakers() > 0) {
 					s += Strings.MediumLineBreak + "\n";
 					s += "\n" + g.StringifyTiebreakerMatches() +"\n";	
+					s += Strings.MediumLineBreak + "\n";
+					s += "\n" + g.toStandings(super.getLabel(), true) + "\n";
 				}
 			} else {
-				s += "\n" + g.toStandings(super.getLabel()) + "\n";
+				s += "\n" + g.StringifyGroupParticipants() + "\n";
 				s += Strings.MediumLineBreak + "\n";
 				s += "\n" + g.StringifyMatches() + "\n";
+				s += Strings.MediumLineBreak + "\n";
+				s += "\n" + g.toStandings(super.getLabel(), false) + "\n";
 				
 				if (g.getNumTiebreakers() > 0) {
 					s += Strings.MediumLineBreak + "\n";
 					s += "\n" + g.StringifyTiebreakerMatches() +"\n";
-					s += Strings.LargeLineBreak + "\n";
+					s += Strings.MediumLineBreak + "\n";
+					s += "\n" + g.toStandings(super.getLabel(), true) + "\n";
 				}
+				s += Strings.LargeLineBreak + "\n";
 			}
 			x++;
 		}
@@ -74,9 +82,9 @@ public abstract class GroupStage extends TournamentComponent {
 			for (int i = 0; i < groups.size(); i++) {
 				Group g = groups.get(i);
 				if (x == groups.size() - 1) {
-					s += "\n" + g.toStandings(super.getLabel()) + "\n";
+					s += "\n" + g.toStandings(super.getLabel(), true) + "\n";
 				} else {
-					s += "\n" + g.toStandings(super.getLabel()) + "\n";
+					s += "\n" + g.toStandings(super.getLabel(), true) + "\n";
 					s += Strings.MediumLineBreak + "\n";
 				}
 				x++;

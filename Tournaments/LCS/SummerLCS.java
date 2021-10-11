@@ -23,8 +23,8 @@ public class SummerLCS extends Tournament {
 	GroupStage RR;
 	Bracket MSS;
 	
-	public SummerLCS(String label) {
-		super(label);
+	public SummerLCS() {
+		super(Strings.LSummerLCS);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class SummerLCS extends Tournament {
 	
 	private void SimulateKnockoutStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		MSS.Simulate(Strings.MSS, groups);
+		MSS.Simulate(Strings.LCSPlayoffs, groups);
 	}
 	
 	private void SimulateGroupStage(List<Group> groups) throws Exception {

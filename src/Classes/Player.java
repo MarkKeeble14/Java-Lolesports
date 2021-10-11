@@ -7,6 +7,7 @@ public class Player {
 	private float ratingOutOf1; // 1.00 is a perfect score, think of it as a scale out of 100, just divided by 100
 	private Region region;
 	private boolean isImport;
+	private Role role;
 	
 	public String getName() {
 		return name;
@@ -24,11 +25,12 @@ public class Player {
 		return isImport;
 	}
 
-	public Player(String name, float ratingOutOf1, Region region, boolean isImport) {
+	public Player(String name, float ratingOutOf1, Role role, Region region, boolean isImport) {
 		super();
 		this.name = name;
 		this.ratingOutOf1 = ratingOutOf1;
 		this.region = region;
 		this.isImport = isImport;
+		this.role = role;
 	}
 }

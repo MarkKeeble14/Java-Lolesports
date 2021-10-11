@@ -34,7 +34,7 @@ public class TournamentWorldChampionship extends Tournament {
 	Bracket MKnockoutBracket;
 	
 	public TournamentWorldChampionship(String label) {
-		super(label);
+		super(Strings.LWC);
 	}
 
 	@Override

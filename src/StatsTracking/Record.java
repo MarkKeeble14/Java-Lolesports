@@ -21,7 +21,7 @@ public class Record implements Comparable<Record> {
 		super();
 		this.label = label;
 	}
-
+	
 	public Record Loss(Map<Team, WinLossCounter> map, Team teamLostTo) {
 		if (map.containsKey(teamLostTo)) {
 			map.get(teamLostTo).Lose();
@@ -116,6 +116,17 @@ public class Record implements Comparable<Record> {
 			WinLossCounter counter = entry.getValue();
 			if (counter.getWins() > 0) {
 				i += counter.getWins();	
+			}
+		}
+		return i;
+	}
+	
+	public int getNumberOfTiebreakerLosses() {
+		int i = 0;
+		for (Entry<Team, WinLossCounter> entry : tiebreakers.entrySet()) {
+			WinLossCounter counter = entry.getValue();
+			if (counter.getLosses() > 0) {
+				i += counter.getLosses();	
 			}
 		}
 		return i;

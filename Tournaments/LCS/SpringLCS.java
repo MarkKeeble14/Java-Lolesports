@@ -23,8 +23,8 @@ public class SpringLCS extends Tournament {
 	GroupStage RR;
 	Bracket MSS;
 	
-	public SpringLCS(String label) {
-		super(label);
+	public SpringLCS() {
+		super(Strings.LSpringLCS);
 	}
 
 	@Override
@@ -32,11 +32,8 @@ public class SpringLCS extends Tournament {
 		Setup();
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 10, 2, 1, RR, 
-				new Team(TeamsWithPlayers.TSM), new Team(TeamsWithPlayers.C9), new Team(TeamsWithPlayers.TL), 
-				new Team(TeamsWithPlayers.EG), new Team(TeamsWithPlayers.FLY), new Team(TeamsWithPlayers.GG), 
-				new Team(TeamsWithPlayers.CLG), new Team(TeamsWithPlayers.DIG), new Team(TeamsWithPlayers.O100), 
-				new Team(TeamsWithPlayers.IMT)); 
+		// Setting up Groups
+		Group A = new Group(Strings.RegularSeason, 10, 2, 1, RR, pools.get(0).getPool()); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A));
 		
 		SimulateGroupStage(groups);

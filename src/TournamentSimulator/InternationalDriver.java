@@ -80,7 +80,7 @@ public class InternationalDriver {
 		Pool P2 = new Pool(Strings.LPoolTwo, new Team(Teams.PGG), new Team(Teams.UOL), new Team(Teams.PNG), new Team(Teams.IW), new Team(Teams.DFM), new Team(Teams.INF));
 		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(P1, P2));
 		
-		Tournament MSI = new TournamentMSI(Strings.LMSI);
+		Tournament MSI = new TournamentMSI();
 		MSI.Simulate(pools);
 		return MSI;
 	}

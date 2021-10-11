@@ -14,4 +14,17 @@ public class TeamsWithPlayers {
 	public static final Team DIG = new Team("DIG", Region.NA, Players.FakeGod, Players.Akaadian, Players.Yusui, Players.Neo, Players.Aphromoo);
 	public static final Team CLG = new Team("CLG", Region.NA, Players.Finn, Players.Broxah, Players.Damonte, Players.WildTurtle, Players.Smoothie);
 	public static final Team FLY = new Team("FLY", Region.NA, Players.Kumo, Players.Josedeodo, Players.Palafox, Players.Johnsun, Players.Dreams);
+
+	// LEC
+	public static final Team G2 = new Team("G2", Region.EU, Players.Wunder, Players.Jankos, Players.Caps, Players.Rekkles, Players.Mikyx);
+	public static final Team FNC = new Team("FNC", Region.EU, Players.Adam, Players.Bwipo, Players.Nisqy, Players.Upset, Players.Hyllisang);
+	public static final Team RGE = new Team("RGE", Region.EU, Players.Odoamne, Players.Inspired, Players.Larssen, Players.HansSama, Players.Trymbi);
+	public static final Team MSF = new Team("MSF", Region.EU, Players.HiRit, Players.Razork, Players.Vetheo, Players.Kobbe, Players.Vander);
+	public static final Team SK = new Team("SK", Region.EU, Players.Jenax, Players.Treatz, Players.Blue, Players.Jezu, Players.Lillip);
+	public static final Team XL = new Team("XL", Region.EU, Players.Kryze, Players.Markoon, Players.Nukeduck, Players.Patrik, Players.Advienne);
+	public static final Team AST = new Team("AST", Region.EU, Players.WhiteKnight, Players.Zanzarah, Players.MagiFelix, Players.Jeskla, Players.Promisq);
+	public static final Team BDS = new Team("BDS", Region.EU, Players.BrokenBlade, Players.Kirei, Players.NuclearInt, Players.Neon, Players.Limit);
+	public static final Team VIT = new Team("VIT", Region.EU, Players.Szygenda, Players.Selfmade, Players.LIDER, Players.Crownshot, Players.Labrov);
+	public static final Team MAD = new Team("MAD", Region.EU, Players.Armut, Players.Elyoya, Players.Humanoid, Players.Carzzy, Players.Kaiser);
+
 }

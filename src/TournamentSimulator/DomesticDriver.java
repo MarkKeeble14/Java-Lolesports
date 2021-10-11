@@ -10,12 +10,16 @@ import java.util.Scanner;
 import Classes.Pool;
 import Classes.Team;
 import Classes.Tournament;
+import LCS.LCSLockin;
 import LCS.SpringLCS;
 import LCS.SummerLCS;
+import LEC.SpringLEC;
+import LEC.SummerLEC;
 import MSI.TournamentMSI;
 import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
+import Misc.TeamsWithPlayers;
 import Misc.Util;
 import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionship;
@@ -46,20 +50,68 @@ public class DomesticDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		LoopTournament(numberOfSims);
+		// LoopTournament(numberOfSims);
 		
-		// SimulateSpringLCS().PrintInfo(true, false, false, true);
+		SimulateSpringLEC().PrintInfo(true, false, false, true);
 	}
 	
 	public static Tournament SimulateSpringLCS() throws Exception {
-		Tournament WC = new SpringLCS(Strings.LSpringLCS);
-		WC.Simulate(null);
+		Tournament WC = new SpringLCS();
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new Team(TeamsWithPlayers.TSM), new Team(TeamsWithPlayers.C9), new Team(TeamsWithPlayers.TL), 
+				new Team(TeamsWithPlayers.EG), new Team(TeamsWithPlayers.FLY), new Team(TeamsWithPlayers.GG), 
+				new Team(TeamsWithPlayers.CLG), new Team(TeamsWithPlayers.DIG), new Team(TeamsWithPlayers.O100), 
+				new Team(TeamsWithPlayers.IMT)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	
 	public static Tournament SimulateSummerLCS() throws Exception {
-		Tournament WC = new SummerLCS(Strings.LSummerLCS);
-		WC.Simulate(null);
+		Tournament WC = new SummerLCS();
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new Team(TeamsWithPlayers.TSM), new Team(TeamsWithPlayers.C9), new Team(TeamsWithPlayers.TL), 
+				new Team(TeamsWithPlayers.EG), new Team(TeamsWithPlayers.FLY), new Team(TeamsWithPlayers.GG), 
+				new Team(TeamsWithPlayers.CLG), new Team(TeamsWithPlayers.DIG), new Team(TeamsWithPlayers.O100), 
+				new Team(TeamsWithPlayers.IMT)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Tournament SimulateLockinLCS() throws Exception {
+		Tournament WC = new LCSLockin();
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new Team(TeamsWithPlayers.TSM), new Team(TeamsWithPlayers.C9), new Team(TeamsWithPlayers.TL), 
+				new Team(TeamsWithPlayers.EG), new Team(TeamsWithPlayers.FLY), new Team(TeamsWithPlayers.GG), 
+				new Team(TeamsWithPlayers.CLG), new Team(TeamsWithPlayers.DIG), new Team(TeamsWithPlayers.O100), 
+				new Team(TeamsWithPlayers.IMT)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Tournament SimulateSpringLEC() throws Exception {
+		Tournament WC = new SpringLEC();
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new Team(TeamsWithPlayers.G2), new Team(TeamsWithPlayers.XL), new Team(TeamsWithPlayers.MAD), 
+				new Team(TeamsWithPlayers.FNC), new Team(TeamsWithPlayers.AST), new Team(TeamsWithPlayers.VIT), 
+				new Team(TeamsWithPlayers.RGE), new Team(TeamsWithPlayers.SK), new Team(TeamsWithPlayers.BDS), 
+				new Team(TeamsWithPlayers.MSF)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Tournament SimulateSummerLEC() throws Exception {
+		Tournament WC = new SummerLEC();
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new Team(TeamsWithPlayers.G2), new Team(TeamsWithPlayers.XL), new Team(TeamsWithPlayers.MAD), 
+				new Team(TeamsWithPlayers.FNC), new Team(TeamsWithPlayers.AST), new Team(TeamsWithPlayers.VIT), 
+				new Team(TeamsWithPlayers.RGE), new Team(TeamsWithPlayers.SK), new Team(TeamsWithPlayers.BDS), 
+				new Team(TeamsWithPlayers.MSF)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	

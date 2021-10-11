@@ -23,8 +23,8 @@ public class TournamentMSI extends Tournament {
 	GroupStage rumbleStage;
 	Bracket knockoutBracket;
 	
-	public TournamentMSI(String label) {
-		super(label);
+	public TournamentMSI() {
+		super(Strings.LMSI);
 	}
 
 	int requiredNumberOfPools = 2;
