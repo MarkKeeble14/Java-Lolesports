@@ -77,15 +77,15 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 								PB.GetTeamFromPlacement(4)));
 		SetQualifiedToPIKO(PIGroups, QPI);
 		
-		Bracket PIKO = SimulateCurrentPlayinsKOStage(PIGroups);
-		Series M3 = PIKO.getSeries(3);
-		Series M4 = PIKO.getSeries(4);
+		SimulateCurrentPlayinsKOStage(PIGroups);
+		Series M3 = PIKnockoutBracket.getSeries(3);
+		Series M4 = PIKnockoutBracket.getSeries(4);
 		
 		// Place Teams
-		eots.PlaceTeam(PIKO.getSeries(1).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(2).getLoser(), 20);
-		eots.PlaceTeam(PIKO.getSeries(3).getLoser(), 18);
-		eots.PlaceTeam(PIKO.getSeries(4).getLoser(), 18);		
+		eots.PlaceTeam(PIKnockoutBracket.getSeries(1).getLoser(), 20);
+		eots.PlaceTeam(PIKnockoutBracket.getSeries(2).getLoser(), 20);
+		eots.PlaceTeam(PIKnockoutBracket.getSeries(3).getLoser(), 18);
+		eots.PlaceTeam(PIKnockoutBracket.getSeries(4).getLoser(), 18);		
 		//
 		
 		List<Team> Q = new ArrayList<Team>(
@@ -163,54 +163,47 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 	
 	@Override 
 	public void Setup() {
-		PIGroupDraw = new GroupDrawPIStageCurrentFormat(this);
+		PIGroupDraw = new GroupDrawPIStageCurrentFormat(Strings.PIGD, this);
 		super.addDrawStructure(PIGroupDraw);
 		
-		PIGroupStage = new GroupStagePICurrentFormat(this);
+		PIGroupStage = new GroupStagePICurrentFormat(Strings.PIGS, this);
 		super.addGroupStage(PIGroupStage);
 		
-		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat(this, Strings.PIGS);
+		PIKnockoutBracket = new KnockoutBracketCurrentPIFormat(Strings.PIKS, this, Strings.PIGS);
 		super.addBracket(PIKnockoutBracket);
 		
-		MGroupDraw = new GroupDrawMainStageCurrentFormat(this);
+		MGroupDraw = new GroupDrawMainStageCurrentFormat(Strings.MSGD, this);
 		super.addDrawStructure(MGroupDraw);
 		
-		MGroupStage = new GroupStageMainCurrentFormat(this);
+		MGroupStage = new GroupStageMainCurrentFormat(Strings.MSGS, this);
 		super.addGroupStage(MGroupStage);
 		
-		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(this, Strings.MSKS);
+		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(Strings.MSKS, this, Strings.MSKS);
 		super.addBracket(MKnockoutBracket);
 	}
 	
 	private void SimulateCurrentPIGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		String section = Strings.PIGD;
-		PIGroupDraw.Simulate(section, groups, pools);
+		PIGroupDraw.Simulate(groups, pools);
 	}
 	
 	private void SimulateCurrentPIGroupStage(List<Group> groups) throws Exception {
-		String section = Strings.PIGS;
-		PIGroupStage.Simulate(section, groups);
+		PIGroupStage.Simulate(groups);
 	}
 	
-	private Bracket SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
-		String section = Strings.PIKS;
-		PIKnockoutBracket.Simulate(section, groups);
-		return PIKnockoutBracket;
+	private void SimulateCurrentPlayinsKOStage(List<Group> groups) throws Exception {
+		PIKnockoutBracket.Simulate(groups);
 	}
 	
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		String section = Strings.MSGD;
-		MGroupDraw.Simulate(section, groups, pools);
+		MGroupDraw.Simulate(groups, pools);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		String section = Strings.MSGS;
-		MGroupStage.Simulate(section, groups);
+		MGroupStage.Simulate(groups);
 	}
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
-		String section = Strings.MSKS;
-		MKnockoutBracket.Simulate(section, groups);
+		MKnockoutBracket.Simulate(groups);
 	}
 	
 	private void SetQualifiedToPIKO(List<Group> groups, List<Team> teams) {

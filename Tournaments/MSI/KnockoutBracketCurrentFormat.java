@@ -14,22 +14,22 @@ import StatsTracking.RegionalWLTracker;
 import TournamentComponents.Bracket;
 
 public class KnockoutBracketCurrentFormat extends Bracket {
-	public KnockoutBracketCurrentFormat(Tournament partOf) {
-		super(partOf);
+	public KnockoutBracketCurrentFormat(String label, Tournament partOf) {
+		super(label, partOf);
 	}
 
-	public KnockoutBracketCurrentFormat(TournamentMSI tournamentMSI, String rsgs) {
-		super(tournamentMSI, rsgs);
+	public KnockoutBracketCurrentFormat(String label, TournamentMSI tournamentMSI, String rsgs) {
+		super(label, tournamentMSI, rsgs);
 	}
 
 	int requiredNumberOfGroups = 1;
 	
 	@Override
-	public void Simulate(String label, List<Group> groups) throws Exception {
+	public void Simulate(List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
-		super.setLabel(label);
+		
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
@@ -38,9 +38,9 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		Pool poolOne = new Pool(Strings.LPoolOne, A.GetTeamFromPlacement(1), A.GetTeamFromPlacement(2));
 		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(3), A.GetTeamFromPlacement(4));
 		
-		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.SFS), "M1", 5, tracker);
-		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.SFS), "M2", 5, tracker);
-		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, label, Strings.FS), "M3", 5, tracker);
+		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M1", 5, tracker);
+		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M2", 5, tracker);
+		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS), "M3", 5, tracker);
 		
 		M1.setTeamA(poolOne.Draw());
 		M2.setTeamA(poolTwo.Draw());

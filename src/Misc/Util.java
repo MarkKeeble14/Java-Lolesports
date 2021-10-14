@@ -7,9 +7,10 @@ import java.util.Set;
 
 import StatsTracking.Record;
 import Teams.Team;
-import TournamentSimulator.DomesticDriver;
 
 import java.util.Map.Entry;
+
+import Drivers.DomesticDriver;
 
 public class Util {
 	public static void PrintLargeLineBreak(boolean linebreak) {

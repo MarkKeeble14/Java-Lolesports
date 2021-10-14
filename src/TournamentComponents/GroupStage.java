@@ -7,22 +7,24 @@ import java.util.Map;
 
 import Classes.Group;
 import Classes.Tournament;
+import Drivers.DomesticDriver;
 import Matches.Game;
 import Misc.Strings;
 import Misc.Util;
-import TournamentSimulator.DomesticDriver;
+import Misc.GlobalVariables;
 
 public abstract class GroupStage extends TournamentComponent {
 	private List<Group> groups;
 	
 	private Tournament partOf;
 	
-	public GroupStage(Tournament partOf) {
+	public GroupStage(String label, Tournament partOf) {
 		super();
 		this.partOf = partOf;
+		setLabel(label);
 	}
 
-	public abstract void Simulate(String label, List<Group> groups) throws Exception;
+	public abstract void Simulate(List<Group> groups) throws Exception;
 	
 	public List<Group> getGroups() {
 		return groups;
@@ -73,7 +75,7 @@ public abstract class GroupStage extends TournamentComponent {
 			x++;
 		}
 		
-		if (DomesticDriver.PRINT_GROUP_STAGE_SUMMARY) {
+		if (GlobalVariables.PRINT_GROUP_STAGE_SUMMARY) {
 			s += Strings.MediumLineBreak + "\n\n";
 			s += "Summary\n";
 			s += Strings.MediumLineBreak + "\n";

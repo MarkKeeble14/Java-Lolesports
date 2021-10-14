@@ -9,18 +9,18 @@ import StatsTracking.RegionalWLTracker;
 import TournamentComponents.GroupStage;
 
 public class GroupStagePICurrentFormat extends GroupStage {
-	public GroupStagePICurrentFormat(Tournament partOf) {
-		super(partOf);
+	public GroupStagePICurrentFormat(String label, Tournament partOf) {
+		super(label, partOf);
 	}
 
 	int requiredNumberOfGroups = 2;
 	
 	@Override
-	public void Simulate(String label, List<Group> groups) throws Exception {
+	public void Simulate(List<Group> groups) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
-		super.setLabel(label);
+		
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
@@ -28,8 +28,8 @@ public class GroupStagePICurrentFormat extends GroupStage {
 		Group B = groups.get(1);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, true); 
-		B.FullSimulate(label, tracker, true); 
+		A.FullSimulate(super.getLabel(), tracker, true); 
+		B.FullSimulate(super.getLabel(), tracker, true); 
 		
 		super.setGroups(groups);
 	}

@@ -3,9 +3,11 @@ package Matches;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+import Drivers.DomesticDriver;
+import Drivers.InternationalDriver;
+import Misc.GlobalVariables;
 import StatsTracking.RegionalWLTracker;
 import Teams.Team;
-import TournamentSimulator.DomesticDriver;
 
 public class Game extends Matchup {
 	private String stageLabel;
@@ -89,7 +91,7 @@ public class Game extends Matchup {
 		
 		// Higher means rating matters more
 		// A scale of 1 makes most matchups 50/50
-		int scale = DomesticDriver.ELO_SCALING;
+		int scale = GlobalVariables.getEloScaling();
 		RA = RA * scale;
 		RB = RB * scale;
 		
@@ -99,6 +101,17 @@ public class Game extends Matchup {
 		double y = 1 + x;
 		double z = 1 / y;
 		return z;
+	}
+	
+	public void setResult(Team t1, Team t2) {
+		winner = t1;
+		loser = t2;
+		
+		// Update Teams Records
+		winner.getRecord(stageLabel).MatchWin(loser);
+		loser.getRecord(stageLabel).MatchLoss(winner);
+		
+		WLT.Update(winner, loser);
 	}
 	
 	public Team getWinner() {
@@ -152,5 +165,10 @@ public class Game extends Matchup {
 		s += teamB.getTag() + ": " + df.format(oddsTeamBWins) + "% Chance to Win\n\n";
 		
 		return s;
+	}
+
+	@Override
+	public boolean resultDetermined() {
+		return winner != null;
 	}
 }

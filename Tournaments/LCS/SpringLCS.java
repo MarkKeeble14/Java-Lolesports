@@ -58,20 +58,20 @@ public class SpringLCS extends Tournament {
 
 	@Override
 	public void Setup() {
-		RR = new RoundRobin(this);
+		RR = new RoundRobin(Strings.RegularSeason, this);
 		super.addGroupStage(RR);
 		
-		MSS = new MidSeasonShowdown(this, Strings.RegularSeason);
+		MSS = new MidSeasonShowdown(Strings.MSS, this, Strings.RegularSeason);
 		super.addBracket(MSS);
 	}
 	
 	private void SimulateKnockoutStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		MSS.Simulate(Strings.MSS, groups);
+		MSS.Simulate(groups);
 	}
 	
 	private void SimulateGroupStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		RR.Simulate(Strings.RegularSeason, groups);
+		RR.Simulate(groups);
 	}
 }

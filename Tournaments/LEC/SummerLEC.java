@@ -40,25 +40,32 @@ public class SummerLEC extends Tournament {
 		
 		SimulateKnockoutStage(groups);
 		
+		eots.PlaceTeam(KO.getSeries(3).getLoser(), 6);
+		eots.PlaceTeam(KO.getSeries(4).getLoser(), 5);
+		eots.PlaceTeam(KO.getSeries(5).getLoser(), 4);
+		eots.PlaceTeam(KO.getSeries(7).getLoser(), 3);
+		eots.PlaceTeam(KO.getSeries(8).getLoser(), 2);
+		eots.PlaceTeam(KO.getSeries(8).getWinner(), 1);
+		
 		ConcludeTournament();
 	}
 
 	private void SimulateKnockoutStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		KO.Simulate(Strings.LECPlayoffs, groups);
+		KO.Simulate(groups);
 	}
 	
 	private void SimulateGroupStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		RR.Simulate(Strings.RegularSeason, groups);
+		RR.Simulate(groups);
 	}
 
 	@Override
 	public void Setup() {
-		RR = new RoundRobin(this);
+		RR = new RoundRobin(Strings.RegularSeason, this);
 		super.addGroupStage(RR);
 		
-		KO = new PlayoffsLEC(this, Strings.RegularSeason);
+		KO = new PlayoffsLEC(Strings.LECPlayoffs, this, Strings.RegularSeason);
 		super.addBracket(KO);
 	}
 

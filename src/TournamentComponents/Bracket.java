@@ -9,8 +9,9 @@ import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import QualificationDetails.QualificationDetails;
+import StatsTracking.EOTStandings;
 import Teams.Team;
-import TournamentSimulator.DomesticDriver;
+import Misc.GlobalVariables;
 
 public abstract class Bracket extends TournamentComponent {
 	private List<Series> series = new ArrayList<Series>();
@@ -25,18 +26,22 @@ public abstract class Bracket extends TournamentComponent {
 	
 	private List<Team> seenTeams = new ArrayList<Team>();
 	
-	public Bracket(Tournament partOf) {
+	public Bracket(String label, Tournament partOf) {
 		super();
 		this.partOf = partOf;
+		
+		setLabel(label);
 	}
 	
-	public Bracket(Tournament partOf, String fedTeamsThrough) {
+	public Bracket(String label, Tournament partOf, String fedTeamsThrough) {
 		super();
 		this.partOf = partOf;
+		
+		setLabel(label);
 		teamsQThroughLabel = fedTeamsThrough;
 	}
 
-	public abstract void Simulate(String label, List<Group> groups) throws Exception;
+	public abstract void Simulate(List<Group> groups) throws Exception;
 	
 	public Series getSeries(int no) throws Exception {
 		if (series.size() < no) {
@@ -89,10 +94,22 @@ public abstract class Bracket extends TournamentComponent {
 	public String toString() {
 		String s = "";
 		int x = 0;
+		
+		if (GlobalVariables.PRINT_BRACKET_SUMMARY) {
+			s += "\nBracket Summary";
+			s += "\n" + Strings.SmallLineBreak;
+			for (int i = 0; i < series.size(); i++) {
+				Series m = series.get(i);
+				s += "\n\n" + m.getLabel() + ": " + m.getTeamA().getTag() + " VS " + m.getTeamB().getTag();
+				s += "\n" + Strings.SmallLineBreak;
+			}
+			s += "\n";
+		}
+		
 		for (int i = 0; i < series.size(); i++) {
 			Series m = series.get(i);
 			
-			if (DomesticDriver.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
+			if (GlobalVariables.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
 				Team a = m.getTeamA();
 				Team b = m.getTeamB();
 				

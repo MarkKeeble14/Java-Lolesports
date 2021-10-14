@@ -64,18 +64,6 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
 		//
 		
-		List<Team> GSQ = new ArrayList<Team>(
-				Arrays.asList(	A.GetTeamFromPlacement(1),
-								A.GetTeamFromPlacement(2),
-								B.GetTeamFromPlacement(1),
-								B.GetTeamFromPlacement(2),
-								C.GetTeamFromPlacement(1),
-								C.GetTeamFromPlacement(2),
-								D.GetTeamFromPlacement(1),
-								D.GetTeamFromPlacement(2)));
-	
-		SetQualifiedToMainKO(groups, GSQ);
-		
 		// Simulate Knockout Stage
 		SimulateCurrentDrawKO(groups);
 		
@@ -97,47 +85,18 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 	
 	@Override 
 	public void Setup() {
-		MGroupStage = new GroupStageMainCurrentFormat(this);
+		MGroupStage = new GroupStageMainCurrentFormat(Strings.MSGS, this);
 		super.addGroupStage(MGroupStage);
 		
-		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(this, Strings.MSKS);
+		MKnockoutBracket = new KnockoutBracketCurrentFormat(Strings.MSKS, this);
 		super.addBracket(MKnockoutBracket);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		String section = Strings.MSGS;
-		MGroupStage.Simulate(section, groups);
+		MGroupStage.Simulate(groups);
 	}
 	
 	private void SimulateCurrentDrawKO(List<Group> groups) throws Exception {
-		String section = Strings.MSKS;
-		MKnockoutBracket.Simulate(section, groups);
-	}
-	
-	private void SetQualifiedToMainKO(List<Group> groups, List<Team> teams) {
-		Group A = groups.get(0);
-		Group B = groups.get(1);
-		Group C = groups.get(2);
-		Group D = groups.get(3);
-		
-		Team A1 = teams.get(0);
-		A1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 1));
-		Team A2 = teams.get(1);
-		A2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 2));
-
-		Team B1 = teams.get(2);
-		B1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 1));
-		Team B2 = teams.get(3);
-		B2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 2));
-		
-		Team C1 = teams.get(4);
-		C1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 1));
-		Team C2 = teams.get(5);
-		C2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 2));
-		
-		Team D1 = teams.get(6);
-		D1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 1));
-		Team D2 = teams.get(7);
-		D2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 2));
+		MKnockoutBracket.Simulate(groups);
 	}
 }

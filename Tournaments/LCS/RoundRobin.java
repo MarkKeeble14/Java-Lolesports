@@ -10,22 +10,20 @@ import TournamentComponents.GroupStage;
 
 public class RoundRobin extends GroupStage {
 
-	public RoundRobin(Tournament partOf) {
-		super(partOf);
+	public RoundRobin(String label, Tournament partOf) {
+		super(label, partOf);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void Simulate(String label, List<Group> groups) throws Exception {
-		super.setLabel(label);
-		
+	public void Simulate(List<Group> groups) throws Exception {
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
 		Group A = groups.get(0);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, true); 
+		A.FullSimulate(super.getLabel(), tracker, true); 
 		
 		super.setGroups(groups);
 	}

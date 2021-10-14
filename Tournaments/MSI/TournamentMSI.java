@@ -99,37 +99,33 @@ public class TournamentMSI extends Tournament {
 	
 	@Override
 	public void Setup() {
-		groupDraw = new GroupDrawGroupStageCurrentFormat(this);
+		groupDraw = new GroupDrawGroupStageCurrentFormat(Strings.GSGD, this);
 		super.addDrawStructure(groupDraw);
 		
-		groupStage = new GroupStageGroupStageCurrentFormat(this);
+		groupStage = new GroupStageGroupStageCurrentFormat(Strings.GS, this);
 		super.addGroupStage(groupStage);
 		
-		rumbleStage = new GroupStageRumbleStageCurrentFormat(this);
+		rumbleStage = new GroupStageRumbleStageCurrentFormat(Strings.LRumble, this);
 		super.addGroupStage(rumbleStage);
 		
-		knockoutBracket = new KnockoutBracketCurrentFormat(this, Strings.LRumble);
+		knockoutBracket = new KnockoutBracketCurrentFormat(Strings.RSKS, this, Strings.LRumble);
 		super.addBracket(knockoutBracket);
 	}
 
 	private void SimulateCurrentGroupDraw(List<Group> groups, List<Pool> pools) throws Exception {
-		String section = Strings.GSGD;
-		groupDraw.Simulate(section, groups, pools);
+		groupDraw.Simulate(groups, pools);
 	}
 	
 	private void SimulateCurrentGroupStage(List<Group> groups) throws Exception {
-		String section = Strings.GS;
-		groupStage.Simulate(section, groups);
+		groupStage.Simulate(groups);
 	}
 	
 	private void SimulateCurrentRumbleStage(List<Group> groups) throws Exception {
-		String section = Strings.LRumble;
-		rumbleStage.Simulate(section, groups);
+		rumbleStage.Simulate(groups);
 	}
 	
 	private void SimulateCurrentKnockoutStage(List<Group> groups) throws Exception {
-		String section = Strings.RSKS;
-		knockoutBracket.Simulate(section, groups);
+		knockoutBracket.Simulate(groups);
 	}
 	
 	private void SetQDsForGroups(List<Group> groups, List<Team> teams) {

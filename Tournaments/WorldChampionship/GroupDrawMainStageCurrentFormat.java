@@ -12,22 +12,22 @@ import Teams.Team;
 import TournamentComponents.DrawStructure;
 
 public class GroupDrawMainStageCurrentFormat extends DrawStructure {
-	public GroupDrawMainStageCurrentFormat(Tournament partOf) {
-		super(partOf);
+	public GroupDrawMainStageCurrentFormat(String label, Tournament partOf) {
+		super(label, partOf);
 	}
 
 	int requiredNumberOfGroups = 4;
 	int requiredNumberOfPools = 4;
 	
 	@Override
-	public void Simulate(String label, List<Group> groups, List<Pool> pools) throws Exception {
+	public void Simulate(List<Group> groups, List<Pool> pools) throws Exception {
 		if (groups.size() != requiredNumberOfGroups) {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		if (pools.size() != requiredNumberOfPools) {
 			throw new MismatchedNumberOfPoolsException(requiredNumberOfPools, pools.size());
 		}
-		super.setLabel(label);
+		
 		// Set Pools
 		Pool P1 = pools.get(0);
 		Pool P2 = pools.get(1);

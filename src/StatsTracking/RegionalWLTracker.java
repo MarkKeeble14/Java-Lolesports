@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+import Misc.GlobalVariables;
 import java.util.Map.Entry;
 import Misc.Region;
 import Misc.Strings;
 import Misc.Util;
 import Teams.Team;
-import TournamentSimulator.DomesticDriver;
 
 public class RegionalWLTracker {
 	public Map<Region, Map<Region, WinLossCounter>> tracker;
@@ -46,10 +45,10 @@ public class RegionalWLTracker {
 		System.out.println("\nWin/Loss Records for: " + r);
 		Util.PrintSmallLineBreak(true);
 
-		if (DomesticDriver.PRINT_OVERALL_WL) {
+		if (GlobalVariables.PRINT_OVERALL_WL) {
 			PrintOverall(r);
 		}
-		if (DomesticDriver.PRINT_INDIVIDUAL_WL) {
+		if (GlobalVariables.PRINT_INDIVIDUAL_WL) {
 			PrintIndividual(r);
 		}
 	}
@@ -86,7 +85,7 @@ public class RegionalWLTracker {
 		Set<Entry<Region, WinLossCounter>> set = t.entrySet();
 		for (Entry<Region, WinLossCounter> e : set) {
 			WinLossCounter c = e.getValue();
-			if (DomesticDriver.SHOW_REGIONAL_WL_WITH_0_GAMES) {
+			if (GlobalVariables.SHOW_REGIONAL_WL_WITH_0_GAMES) {
 				System.out.println(e.getKey() + ", " + e.getValue());
 			} else {
 				if (c.getWins() != 0 || c.getLosses() != 0) {

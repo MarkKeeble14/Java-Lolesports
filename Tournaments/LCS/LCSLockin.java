@@ -15,6 +15,7 @@ import TournamentComponents.GroupStage;
 public class LCSLockin extends Tournament {
 	GroupStage GS;
 	Bracket KOStage;
+	
 	public LCSLockin() {
 		super(Strings.LLockin);
 	}
@@ -65,21 +66,21 @@ public class LCSLockin extends Tournament {
 
 	private void SimulateKnockoutStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		KOStage.Simulate(Strings.LockinKOStage, groups);
+		KOStage.Simulate(groups);
 	}
 	
 	private void SimulateGroupStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		GS.Simulate(Strings.LockinGroupStage, groups);
+		GS.Simulate(groups);
 	}
 	
 	@Override
 	public void Setup() {
 		// TODO Auto-generated method stub
-		GS = new LockinGroupStage(this);
+		GS = new LockinGroupStage(Strings.LockinGroupStage, this);
 		super.addGroupStage(GS);
 		
-		KOStage = new LockinKOBracket(this, Strings.LockinGroupStage);
+		KOStage = new LockinKOBracket(Strings.LockinKOStage, this, Strings.LockinGroupStage);
 		super.addBracket(KOStage);
 	}
 

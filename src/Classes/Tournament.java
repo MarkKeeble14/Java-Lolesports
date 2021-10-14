@@ -3,6 +3,7 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import Misc.GlobalVariables;
 import Misc.Util;
 import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
@@ -11,7 +12,6 @@ import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
 import TournamentComponents.TournamentComponent;
-import TournamentSimulator.DomesticDriver;
 
 public abstract class Tournament {
 	private String label;
@@ -73,10 +73,10 @@ public abstract class Tournament {
 		
 		if (printRegionalWL) {
 			Util.PrintSectionBreak("Win/Loss Records");
-			if (DomesticDriver.PRINT_MAJOR_REGIONAL_WL) {
+			if (GlobalVariables.PRINT_MAJOR_REGIONAL_WL) {
 				t.NicePrintMajor();		
 			}
-			if (DomesticDriver.PRINT_MINOR_REGIONAL_WL) {
+			if (GlobalVariables.PRINT_MINOR_REGIONAL_WL) {
 				t.NicePrintMinor();	
 			}
 		}

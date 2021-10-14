@@ -13,12 +13,13 @@ public abstract class DrawStructure extends TournamentComponent {
 	
 	private Tournament partOf;
 	
-	public DrawStructure(Tournament partOf) {
+	public DrawStructure(String label, Tournament partOf) {
 		super();
 		this.partOf = partOf;
+		setLabel(label);
 	}
 
-	public abstract void Simulate(String label, List<Group> groups, List<Pool> pools) throws Exception;
+	public abstract void Simulate(List<Group> groups, List<Pool> pools) throws Exception;
 	
 	public List<Group> getGroups() {
 		return groups;

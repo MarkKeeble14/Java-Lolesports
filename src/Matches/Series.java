@@ -6,10 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Drivers.DomesticDriver;
 import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
 import Teams.Team;
-import TournamentSimulator.DomesticDriver;
+import Misc.GlobalVariables;
 
 public class Series extends Matchup {
 	private String stageLabel;
@@ -22,8 +23,8 @@ public class Series extends Matchup {
 	private Team A;
 	private Team B;
 	
-	private Team Winner;
-	private Team Loser;
+	private Team winner;
+	private Team loser;
 	
 	private RegionalWLTracker WLT;
 	
@@ -64,8 +65,8 @@ public class Series extends Matchup {
 				TeamWin(A, B);
 				
 				if (gamescore.get(A) == goal) {
-					Winner = A;
-					Loser = B;
+					winner = A;
+					loser = B;
 					
 					break;
 				}
@@ -73,8 +74,8 @@ public class Series extends Matchup {
 				TeamWin(B, A);
 				
 				if (gamescore.get(B) == goal) {
-					Winner = B;
-					Loser = A;
+					winner = B;
+					loser = A;
 					
 					break;
 				}
@@ -94,12 +95,33 @@ public class Series extends Matchup {
 		}
 	}
 	
+	public void setResult(Team t1, Team t2, int t1GS, int t2GS) {
+		// Set Variables
+		t1.setNewRecord(stageLabel);
+		t2.setNewRecord(stageLabel);
+		
+		// Simulate the games
+		for (int i = 1; i < t1GS; i++) {
+			
+			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
+			m.setResult(t1, t2);
+			matches.add(m);
+		}	
+		// Simulate the games
+		for (int i = 1; i < t2GS; i++) {
+			
+			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
+			m.setResult(t2, t1);
+			matches.add(m);
+		}	
+	}
+	
 	public Team getWinner() {
-		return Winner;
+		return winner;
 	}
 
 	public Team getLoser() {
-		return Loser;
+		return loser;
 	}
 
 	public String getLabel() {
@@ -157,11 +179,11 @@ public class Series extends Matchup {
 	}
 
 	public void setWinner(Team winner) {
-		Winner = winner;
+		winner = winner;
 	}
 
 	public void setLoser(Team loser) {
-		Loser = loser;
+		loser = loser;
 	}
 
 	public void setWLT(RegionalWLTracker wLT) {
@@ -170,10 +192,10 @@ public class Series extends Matchup {
 
 	@Override
 	public String toString() {
-		if (Winner == null) {
+		if (winner == null) {
 			return matchLabel + ": " + A.getTag() + " VS " + B.getTag() + " - Bo" + numGames;
 		} else {
-			if (DomesticDriver.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
+			if (GlobalVariables.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
 				
 				String s = matches.get(0).getMatchDetails();
 				int aWins = 0, bWins = 0;
@@ -212,7 +234,7 @@ public class Series extends Matchup {
 				return s;
 			} else {
 				String s = matchLabel + ": " + A + " VS " + B + "\n";
-				if (Winner == A) {
+				if (winner == A) {
 					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " > " + B.getTag() + "\n";
 				} else {
 					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " < " + B.getTag() + "\n";
@@ -220,5 +242,10 @@ public class Series extends Matchup {
 				return s;	
 			}
 		}
+	}	
+	
+	@Override
+	public boolean resultDetermined() {
+		return winner != null;
 	}
 }

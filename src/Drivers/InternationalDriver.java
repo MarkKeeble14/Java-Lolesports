@@ -1,4 +1,4 @@
-package TournamentSimulator;
+package Drivers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +11,8 @@ import Classes.Pool;
 import Classes.Tournament;
 import LCS.SpringLCS;
 import MSI.TournamentMSI;
+import Misc.DriverType;
+import Misc.GlobalVariables;
 import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
@@ -27,24 +29,13 @@ public class InternationalDriver {
 	public static int ELO_SCALING = 75;
 	
 	// 100,000 Too High
-	// 10,000 ~10 Seconds
+	// 10,000 ~4 Seconds
 	private static final int numberOfSims = 10000;
-	
-	public static final boolean SHOW_REGIONAL_WL_WITH_0_GAMES = false;
-	
-	public static final boolean PRINT_DETAILED_SERIES_SUMMARY = true;
-	
-	public static final boolean PRINT_QUALIFICATION_REASONS = true;
-	
-	public static final boolean PRINT_GROUP_STAGE_SUMMARY = true;
-	
-	public static final boolean PRINT_OVERALL_WL = true;
-	public static final boolean PRINT_INDIVIDUAL_WL = true;
-	public static final boolean PRINT_MAJOR_REGIONAL_WL = true;
-	public static final boolean PRINT_MINOR_REGIONAL_WL = false;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
+		GlobalVariables.setCurrentDriver(DriverType.International);
+		
 		SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
 		// SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
 		

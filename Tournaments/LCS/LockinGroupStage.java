@@ -9,15 +9,13 @@ import TournamentComponents.GroupStage;
 
 public class LockinGroupStage extends GroupStage {
 
-	public LockinGroupStage(Tournament partOf) {
-		super(partOf);
+	public LockinGroupStage(String label, Tournament partOf) {
+		super(label, partOf);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void Simulate(String label, List<Group> groups) throws Exception {
-		super.setLabel(label);
-		
+	public void Simulate(List<Group> groups) throws Exception {
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		
 		// Set Groups
@@ -25,8 +23,8 @@ public class LockinGroupStage extends GroupStage {
 		Group B = groups.get(1);
 		
 		// Play out games
-		A.FullSimulate(label, tracker, true); 
-		B.FullSimulate(label, tracker, true); 
+		A.FullSimulate(super.getLabel(), tracker, true); 
+		B.FullSimulate(super.getLabel(), tracker, true); 
 		
 		super.setGroups(groups);
 	}

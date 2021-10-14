@@ -1,4 +1,4 @@
-package TournamentSimulator;
+package Drivers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +15,8 @@ import LCS.SummerLCS;
 import LEC.SpringLEC;
 import LEC.SummerLEC;
 import MSI.TournamentMSI;
+import Misc.DriverType;
+import Misc.GlobalVariables;
 import Misc.MapUtil;
 import Misc.Strings;
 import Misc.Teams;
@@ -32,58 +34,66 @@ public class DomesticDriver {
 	// A scale of 1 makes most matchups 50/50
 	public static int ELO_SCALING = 300;
 	
-	// 100,000 Too High
-	// 10,000 ~10 Seconds
+	// LCS
+	// Lockin - 	100,000 	~8-10 Seconds
+	// Spring - 	10,000		~2 Seconds
+	// Summer - 	10,000		~2 Seconds
+	
+	// LEC
+	// Spring - 	10,000		~2 Seconds
+	// Summer - 	10,000		~2 Seconds
 	private static final int numberOfSims = 10000;
-	
-	public static final boolean SHOW_REGIONAL_WL_WITH_0_GAMES = false;
-	
-	public static final boolean PRINT_DETAILED_SERIES_SUMMARY = true;
-	
-	public static final boolean PRINT_QUALIFICATION_REASONS = true;
-	
-	public static final boolean PRINT_GROUP_STAGE_SUMMARY = true;
-	
-	public static final boolean PRINT_OVERALL_WL = true;
-	public static final boolean PRINT_INDIVIDUAL_WL = true;
-	public static final boolean PRINT_MAJOR_REGIONAL_WL = true;
-	public static final boolean PRINT_MINOR_REGIONAL_WL = false;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
+		GlobalVariables.setCurrentDriver(DriverType.Domestic);
+		
 		// LoopTournament(numberOfSims);
 		
-		SimulateSpringLCS().PrintInfo(true, false, true, true);
+		SimulateLockinLCS().PrintInfo(true, false, true, true);
+		// SimulateSpringLCS().PrintInfo(true, false, true, true);
+		// SimulateSummerLCS().PrintInfo(true, false, true, true);
+		
+		// SimulateSpringLEC().PrintInfo(true, false, true, true);
+		// SimulateSummerLEC().PrintInfo(true, false, true, true);
 	}
 	
 	public static Tournament SimulateSpringLCS() throws Exception {
 		Tournament WC = new SpringLCS();
-		List<Team> teams = new ArrayList<Team>(Arrays.asList(
-				new RatingDefinedTeam(TeamsWithPlayers.TSM), new RatingDefinedTeam(TeamsWithPlayers.C9), 
-				new RatingDefinedTeam(TeamsWithPlayers.TL), new RatingDefinedTeam(TeamsWithPlayers.EG), 
-				new RatingDefinedTeam(TeamsWithPlayers.FLY), new RatingDefinedTeam(TeamsWithPlayers.GG), 
-				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
-				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
-		Pool p = new Pool(Strings.LCSTeams, teams);
+		Pool p = getPoolOfLCSTeams();
 		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	
 	public static Tournament SimulateSummerLCS() throws Exception {
 		Tournament WC = new SummerLCS();
-		List<Team> teams = new ArrayList<Team>(Arrays.asList(
-				new RatingDefinedTeam(TeamsWithPlayers.TSM), new RatingDefinedTeam(TeamsWithPlayers.C9), 
-				new RatingDefinedTeam(TeamsWithPlayers.TL), new RatingDefinedTeam(TeamsWithPlayers.EG), 
-				new RatingDefinedTeam(TeamsWithPlayers.FLY), new RatingDefinedTeam(TeamsWithPlayers.GG), 
-				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
-				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
-		Pool p = new Pool(Strings.LCSTeams, teams);
+		Pool p = getPoolOfLCSTeams();
 		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	
 	public static Tournament SimulateLockinLCS() throws Exception {
 		Tournament WC = new LCSLockin();
+		Pool p = getPoolOfLCSTeams();
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Tournament SimulateSpringLEC() throws Exception {
+		Tournament WC = new SpringLEC();
+		Pool p = getPoolOfLECTeams();
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Tournament SimulateSummerLEC() throws Exception {
+		Tournament WC = new SummerLEC();
+		Pool p = getPoolOfLECTeams();
+		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
+		return WC;
+	}
+	
+	public static Pool getPoolOfLCSTeams() {
 		List<Team> teams = new ArrayList<Team>(Arrays.asList(
 				new RatingDefinedTeam(TeamsWithPlayers.TSM), new RatingDefinedTeam(TeamsWithPlayers.C9), 
 				new RatingDefinedTeam(TeamsWithPlayers.TL), new RatingDefinedTeam(TeamsWithPlayers.EG), 
@@ -91,12 +101,10 @@ public class DomesticDriver {
 				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
 				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
-		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
-		return WC;
+		return p;
 	}
 	
-	public static Tournament SimulateSpringLEC() throws Exception {
-		Tournament WC = new SpringLEC();
+	public static Pool getPoolOfLECTeams() {
 		List<Team> teams = new ArrayList<Team>(Arrays.asList(
 				new RatingDefinedTeam(TeamsWithPlayers.G2), new RatingDefinedTeam(TeamsWithPlayers.XL), 
 				new RatingDefinedTeam(TeamsWithPlayers.MAD), new RatingDefinedTeam(TeamsWithPlayers.FNC), 
@@ -104,21 +112,7 @@ public class DomesticDriver {
 				new RatingDefinedTeam(TeamsWithPlayers.RGE), new RatingDefinedTeam(TeamsWithPlayers.SK), 
 				new RatingDefinedTeam(TeamsWithPlayers.BDS), new RatingDefinedTeam(TeamsWithPlayers.MSF)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
-		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
-		return WC;
-	}
-	
-	public static Tournament SimulateSummerLEC() throws Exception {
-		Tournament WC = new SummerLEC();
-		List<Team> teams = new ArrayList<Team>(Arrays.asList(
-				new RatingDefinedTeam(TeamsWithPlayers.G2), new RatingDefinedTeam(TeamsWithPlayers.XL), 
-				new RatingDefinedTeam(TeamsWithPlayers.MAD), new RatingDefinedTeam(TeamsWithPlayers.FNC), 
-				new RatingDefinedTeam(TeamsWithPlayers.AST), new RatingDefinedTeam(TeamsWithPlayers.VIT), 
-				new RatingDefinedTeam(TeamsWithPlayers.RGE), new RatingDefinedTeam(TeamsWithPlayers.SK), 
-				new RatingDefinedTeam(TeamsWithPlayers.BDS), new RatingDefinedTeam(TeamsWithPlayers.MSF)));
-		Pool p = new Pool(Strings.LCSTeams, teams);
-		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
-		return WC;
+		return p;
 	}
 	
 	// Doesn't allow for SUPER large numbers; 10,000 Works: Takes like 10ish Seconds to run for me
@@ -128,7 +122,11 @@ public class DomesticDriver {
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
-			Tournament T = SimulateSpringLCS();
+			
+			// Change this
+			Tournament T = SimulateSummerLCS();
+			//
+			
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {

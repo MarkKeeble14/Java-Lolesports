@@ -52,20 +52,20 @@ public class SpringLEC extends Tournament {
 
 	private void SimulateKnockoutStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		KO.Simulate(Strings.LECPlayoffs, groups);
+		KO.Simulate(groups);
 	}
 	
 	private void SimulateGroupStage(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		RR.Simulate(Strings.RegularSeason, groups);
+		RR.Simulate(groups);
 	}
 
 	@Override
 	public void Setup() {
-		RR = new RoundRobin(this);
+		RR = new RoundRobin(Strings.RegularSeason, this);
 		super.addGroupStage(RR);
 		
-		KO = new PlayoffsLEC(this, Strings.RegularSeason);
+		KO = new PlayoffsLEC(Strings.LECPlayoffs, this, Strings.RegularSeason);
 		super.addBracket(KO);
 	}
 
