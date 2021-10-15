@@ -10,15 +10,16 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
+import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
 import TournamentComponents.Bracket;
 
-public class KnockoutBracketCurrentPIFormat extends Bracket {
-	public KnockoutBracketCurrentPIFormat(String label, Tournament partOf) {
+public class PIStageKnockoutBracket extends Bracket {
+	public PIStageKnockoutBracket(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public KnockoutBracketCurrentPIFormat(String label, Tournament tournamentWorldChampionship, String pigs) {
+	public PIStageKnockoutBracket(String label, Tournament tournamentWorldChampionship, String pigs) {
 		super(label, tournamentWorldChampionship, pigs);
 	}
 
@@ -31,6 +32,7 @@ public class KnockoutBracketCurrentPIFormat extends Bracket {
 		}
 		
 		RegionalWLTracker tracker = super.getPartOf().getT();
+		EOTStandings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -42,11 +44,17 @@ public class KnockoutBracketCurrentPIFormat extends Bracket {
 		S1.Simulate();
 		S2.Simulate();
 		
+		standings.PlaceTeam(S1.getLoser(), 20);
+		standings.PlaceTeam(S2.getLoser(), 20);
+		
 		Series S3 = new Series(Strings.Concat( Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2), "M3", 5, A.GetTeamFromPlacement(2), S1.getWinner(), tracker);
 		Series S4 = new Series(Strings.Concat( Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2), "M4", 5, B.GetTeamFromPlacement(2), S2.getWinner(), tracker);
 		
 		S3.Simulate();
 		S4.Simulate();
+		
+		standings.PlaceTeam(S3.getLoser(), 18);
+		standings.PlaceTeam(S4.getLoser(), 18);
 		
 		super.addSeries(S1, S2, S3, S4);
 	}

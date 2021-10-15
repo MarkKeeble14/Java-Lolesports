@@ -9,8 +9,8 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import CustomExceptions.MismatchedNumberOfPoolsException;
 import TournamentComponents.DrawStructure;
 
-public class GroupDrawGroupStageCurrentFormat extends DrawStructure {
-	public GroupDrawGroupStageCurrentFormat(String label, Tournament partOf) {
+public class GroupDraw extends DrawStructure {
+	public GroupDraw(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 

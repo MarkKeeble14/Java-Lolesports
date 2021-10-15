@@ -19,7 +19,7 @@ public class GlobalVariables {
 	public static final boolean PRINT_OVERALL_WL = true;
 	public static final boolean PRINT_INDIVIDUAL_WL = true;
 	public static final boolean PRINT_MAJOR_REGIONAL_WL = true;
-	public static final boolean PRINT_MINOR_REGIONAL_WL = false;
+	public static final boolean PRINT_MINOR_REGIONAL_WL = true;
 
 	public static final boolean PRINT_BRACKET_SUMMARY = true;
 	

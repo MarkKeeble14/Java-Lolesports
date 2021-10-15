@@ -10,8 +10,8 @@ import CustomExceptions.MismatchedNumberOfPoolsException;
 import CustomExceptions.MismatchedSizeOfPoolException;
 import TournamentComponents.DrawStructure;
 
-public class GroupDrawPIStageCurrentFormat extends DrawStructure {
-	public GroupDrawPIStageCurrentFormat(String label, Tournament partOf) {
+public class PIStageGroupDraw extends DrawStructure {
+	public PIStageGroupDraw(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 

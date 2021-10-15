@@ -94,34 +94,6 @@ public class Group {
 		teams = new ArrayList<Team>();
 	}
 	
-	/**
-	* Constructor
-	* @param label A label for the group, i.e., A, B, C, D, etc
-	* @param capacity The number of teams in the group
-	*/
-	public Group(String label, List<Team> finalListOfTeams) {
-		this.label = label;
-		this.capacity = finalListOfTeams.size();
-		teams = new ArrayList<Team>();
-		for (Team t : finalListOfTeams) {
-			teams.add(t);
-		}
-	}
-	
-	/**
-	* Copy Constructor
-	* @param g The group to copy
-	*/
-	public Group(Group g) {
-		this.label = g.getLabel();
-		this.capacity = g.getCapacity();
-		
-		teams = new ArrayList<Team>();
-		for (Team t: g.getGroup()) {
-			teams.add(t);
-		}
-	}
-	
 	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, GroupStage partOf, List<Team> teams) {
 		this.label = label;
 		this.capacity = capacity;
@@ -133,7 +105,23 @@ public class Group {
 			this.teams.add(t);
 		}
 	}
-
+	
+	/**
+	* Copy Constructor
+	* @param g The group to copy
+	*/
+	public Group(Group g) {
+		this.label = g.getLabel();
+		this.capacity = g.getCapacity();
+		this.gamesPerRoundRobin = g.getGamesPerRoundRobin();
+		this.matchesAreBOX = g.getMatchesAreBOX();
+		this.partOf = g.getPartOf();
+		teams = new ArrayList<Team>();
+		for (Team t: g.getGroup()) {
+			teams.add(t);
+		}
+	}
+	
 	public boolean Contains(Team team) {
 		return teams.contains(team);
 	}
@@ -556,25 +544,28 @@ public class Group {
 	}
 	
 	public String StringifyMatches() {
-		String s = "Group " + label + " Games\n";
-		int x;
+		String s = "Group " + label + " Games\n" + Strings.MediumLineBreak + "\n";
+		int x; int y; int z;
 		
 		Set<Entry<Team, Map<Team, List<Matchup>>>> set = matchups.entrySet();
+		x = 0;
 		for (Entry<Team, Map<Team, List<Matchup>>> entry : set) {
 			Set<Entry<Team, List<Matchup>>> set2 = entry.getValue().entrySet();
+			y = 0;
 			for (Entry<Team, List<Matchup>> entry2 : set2) {
 				List<Matchup> innerMatchups = entry2.getValue();
-				x = 0;
+				z = 0;
 				for (Matchup m : innerMatchups) {
-					if (x == matchups.size() - 1) {
-						s += "\n" + m.toString();
-					} else {
-						s += "\n" + m.toString() + "\n";
-						s += Strings.SmallLineBreak + "\n";
+					s += "\n" + m.toString();
+					
+					if (x != set.size() - 1 || y != set2.size() - 1 || z != innerMatchups.size() - 1) {
+						s += "\n" + Strings.SmallLineBreak + "\n";
 					}
-					x++;
+					z++;
 				}
+				y++;
 			}
+			x++;
 		}
 		
 		return s;

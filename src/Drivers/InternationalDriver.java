@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import Classes.Pool;
 import Classes.Tournament;
-import LCS.SpringLCS;
 import MSI.TournamentMSI;
 import Misc.DriverType;
 import Misc.GlobalVariables;
@@ -19,8 +18,10 @@ import Misc.Teams;
 import Misc.Util;
 import Teams.RatingDefinedTeam;
 import Teams.Team;
-import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
-import WorldChampionship.TournamentWorldChampionshipDoubleElim;
+import WorldChampionship.TournamentWorldChampionship;
+import WorldChampionship2VS3.TournamentWorldChampionship2VS3;
+import WorldChampionshipCurrentState.CurrentStateOfTournamentWorldChampionship;
+import WorldChampionshipDoubleElim.TournamentWorldChampionshipDoubleElim;
 
 public class InternationalDriver {
 	// Variables / Tuning
@@ -37,24 +38,50 @@ public class InternationalDriver {
 		GlobalVariables.setCurrentDriver(DriverType.International);
 		
 		SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		// SimulateWorldsFormatFromScratch().PrintInfo(true, true, true, true);
+		// SimulateStandardWC().PrintInfo(true, false, false, false);
+		// SimulateDoubleElimWC().PrintInfo(true, true, true, true);
+		// Simulate2VS3WC().PrintInfo(true, true, true, true);
 		
-		// SimulateMSIFormatFromScratch().PrintInfo(true, false, false, true);
+		// SimulateStandardMSI().PrintInfo(true, true, true, true);
 		
 		// LoopTournament(numberOfSims);
 	}
 	
-	// Simulates an Entire Tournament
-	public static Tournament SimulateWorldsFormatFromScratch() throws Exception {
-		// Setting up Pools
+	private static List<Pool> get2021WCPools() {
 		Pool PIPool1 = new Pool(Strings.LPIPoolOne, new RatingDefinedTeam(Teams.LNG), new RatingDefinedTeam(Teams.HLE), new RatingDefinedTeam(Teams.BYG), new RatingDefinedTeam(Teams.C9)); 
 		Pool PIPool2 = new Pool(Strings.LPIPoolTwo, new RatingDefinedTeam(Teams.INF), new RatingDefinedTeam(Teams.GS), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PCE), new RatingDefinedTeam(Teams.RED), new RatingDefinedTeam(Teams.DFM));
 		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.EDG), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.PSG)); 
 		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.O100T), new RatingDefinedTeam(Teams.FNC), new RatingDefinedTeam(Teams.GEN), new RatingDefinedTeam(Teams.FPX));
 		Pool P3 = new Pool(Strings.LPoolThree, new RatingDefinedTeam(Teams.TL), new RatingDefinedTeam(Teams.T1), new RatingDefinedTeam(Teams.RGE), new RatingDefinedTeam(Teams.RNG));
-		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
-		
+		return new ArrayList<Pool>(Arrays.asList(PIPool1, PIPool2, P1, P2, P3));
+	}
+	
+	private static List<Pool> get2021MSIPools() {
+		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.RNG), new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.PSG), new RatingDefinedTeam(Teams.C9), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.GAM)); 
+		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.PGG), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PNG), new RatingDefinedTeam(Teams.IW), new RatingDefinedTeam(Teams.DFM), new RatingDefinedTeam(Teams.INF));
+		return new ArrayList<Pool>(Arrays.asList(P1, P2));
+	}
+	
+	// Simulates an Entire Tournament
+	public static Tournament SimulateStandardWC() throws Exception {
+		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
+		List<Pool> pools = get2021WCPools();
+		WC.Simulate(pools);
+		return WC;
+	}
+	
+	// Simulates an Entire Tournament
+	public static Tournament SimulateDoubleElimWC() throws Exception {
 		Tournament WC = new TournamentWorldChampionshipDoubleElim(Strings.LWC);
+		List<Pool> pools = get2021WCPools();
+		WC.Simulate(pools);
+		return WC;
+	}
+	
+	// Simulates an Entire Tournament
+	public static Tournament Simulate2VS3WC() throws Exception {
+		Tournament WC = new TournamentWorldChampionship2VS3(Strings.LWC);
+		List<Pool> pools = get2021WCPools();
 		WC.Simulate(pools);
 		return WC;
 	}
@@ -66,13 +93,9 @@ public class InternationalDriver {
 		return WC;
 	}
 	
-	public static Tournament SimulateMSIFormatFromScratch() throws Exception {
-		// Setting up Pools
-		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.RNG), new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.PSG), new RatingDefinedTeam(Teams.C9), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.GAM)); 
-		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.PGG), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PNG), new RatingDefinedTeam(Teams.IW), new RatingDefinedTeam(Teams.DFM), new RatingDefinedTeam(Teams.INF));
-		List<Pool> pools = new ArrayList<Pool>(Arrays.asList(P1, P2));
-		
+	public static Tournament SimulateStandardMSI() throws Exception {
 		Tournament MSI = new TournamentMSI();
+		List<Pool> pools = get2021MSIPools();
 		MSI.Simulate(pools);
 		return MSI;
 	}
@@ -84,7 +107,7 @@ public class InternationalDriver {
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
-			Tournament T = SimulateWorldsFormatFromScratch();
+			Tournament T = SimulateStandardWC();
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {

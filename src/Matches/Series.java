@@ -100,20 +100,27 @@ public class Series extends Matchup {
 		t1.setNewRecord(stageLabel);
 		t2.setNewRecord(stageLabel);
 		
+		int goal = (int) Math.ceil((double) numGames / 2);
+		
 		// Simulate the games
 		for (int i = 1; i < t1GS; i++) {
-			
 			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
 			m.setResult(t1, t2);
 			matches.add(m);
 		}	
 		// Simulate the games
 		for (int i = 1; i < t2GS; i++) {
-			
 			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
 			m.setResult(t2, t1);
 			matches.add(m);
-		}	
+		}
+		if (t1GS == goal) {
+			winner = t1;
+			loser = t2;
+		} else {
+			winner = t2;
+			loser = t1;
+		}
 	}
 	
 	public Team getWinner() {

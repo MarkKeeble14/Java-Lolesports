@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Misc.GlobalVariables;
+import Misc.Strings;
 import Misc.Util;
 import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
@@ -88,13 +89,18 @@ public abstract class Tournament {
 	}
 	
 	public void PrintChampionshipStats() {
-		if (winner.getCurrentQDIndex() > 0) {
-			System.out.println("\n" + winner + " QDS: \n" + winner.qdLog());	
+		String s = "";
+		if (winner.hasQDs()) {
+			s += "\n" + winner.qdLog() + "\n" + Strings.MediumLineBreak;
+			if (winner.getCurrentRecordIndex() > 0) {
+				s += "\n";
+			}
 		}
-		if (winner.getCurrentRecordIndex() > 0) {
-			System.out.println("\n" + winner + " Records: \n\n" + winner.recordLog());	
+		if (winner.hasRecords()) {
+			s += "\n" + winner.recordLog() + Strings.MediumLineBreak + "\n";
 		}
-		System.out.println(winner.getTag() + " has Won " + label + "; Runner Up: " + runnerUp.getTag());	
+		s += "\n" + winner.getTag() + " has Won " + label + "; Runner Up: " + runnerUp.getTag();
+		System.out.println(s);
 	}
 
 	public Team getWinner() {

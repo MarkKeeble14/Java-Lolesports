@@ -10,15 +10,16 @@ import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Series;
 import Misc.Strings;
+import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
 import TournamentComponents.Bracket;
 
-public class KnockoutBracketCurrentFormat extends Bracket {
-	public KnockoutBracketCurrentFormat(String label, Tournament partOf) {
+public class KnockoutBracket extends Bracket {
+	public KnockoutBracket(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public KnockoutBracketCurrentFormat(String label, TournamentMSI tournamentMSI, String rsgs) {
+	public KnockoutBracket(String label, TournamentMSI tournamentMSI, String rsgs) {
 		super(label, tournamentMSI, rsgs);
 	}
 
@@ -31,6 +32,7 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		}
 		
 		RegionalWLTracker tracker = super.getPartOf().getT();
+		EOTStandings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -50,10 +52,16 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M1.Simulate();
 		M2.Simulate();
 		
+		standings.PlaceTeam(M1.getLoser(), 4);
+		standings.PlaceTeam(M2.getLoser(), 4);
+		
 		M3.setTeamA(M1.getWinner());
 		M3.setTeamB(M2.getWinner());
 		
 		M3.Simulate();
+		
+		standings.PlaceTeam(M3.getLoser(), 2);
+		standings.PlaceTeam(M3.getWinner(), 1);
 		
 		// General Tracking Stuff
 		super.addSeries(M1, M2, M3);

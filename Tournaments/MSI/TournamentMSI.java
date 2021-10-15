@@ -35,8 +35,6 @@ public class TournamentMSI extends Tournament {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfPools, pools.size());
 		}
 		
-		EOTStandings eots = super.getEots();
-		
 		Setup();
 		
 		// Setting Up Pools
@@ -54,61 +52,33 @@ public class TournamentMSI extends Tournament {
 		
 		SimulateCurrentGroupStage(groups);
 		
-		// Place Teams
-		eots.PlaceTeam(A.GetTeamFromPlacement(4), 12);
-		eots.PlaceTeam(B.GetTeamFromPlacement(4), 12);
-		eots.PlaceTeam(C.GetTeamFromPlacement(4), 12);
-		eots.PlaceTeam(A.GetTeamFromPlacement(3), 9);
-		eots.PlaceTeam(B.GetTeamFromPlacement(3), 9);
-		eots.PlaceTeam(C.GetTeamFromPlacement(3), 9);
-		// 
-		
 		List<Team> Q = new ArrayList<Team>(Arrays.asList(	
 				A.GetTeamFromPlacement(1), A.GetTeamFromPlacement(2),
 				B.GetTeamFromPlacement(1), B.GetTeamFromPlacement(2),
 				C.GetTeamFromPlacement(1), C.GetTeamFromPlacement(2)));
 		
-		SetQDsForGroups(groups, Q);
+		Group Rumble = new Group(Strings.LRumble, 6, 2, 1, groupStage, Q);
+		List<Group> RGroup = new ArrayList<Group>(Arrays.asList(Rumble));
 		
-		Group RumbleGroup = new Group(Strings.LRumble, Q);
-		List<Group> groups1 = new ArrayList<Group>(Arrays.asList(RumbleGroup));
+		SimulateCurrentRumbleStage(RGroup);
 		
-		SimulateCurrentRumbleStage(groups1);
-		
-		// Place Teams
-		eots.PlaceTeam(RumbleGroup.GetTeamFromPlacement(6), 6);
-		eots.PlaceTeam(RumbleGroup.GetTeamFromPlacement(5), 5);
-		//
-		
-		List<Team> QR = new ArrayList<Team>(Arrays.asList(	
-				RumbleGroup.GetTeamFromPlacement(1), RumbleGroup.GetTeamFromPlacement(2),
-				RumbleGroup.GetTeamFromPlacement(3), RumbleGroup.GetTeamFromPlacement(4)));
-		SetQDsForRumble(groups1, QR);
-		
-		SimulateCurrentKnockoutStage(groups1);
-		
-		// Place Teams
-		eots.PlaceTeam(knockoutBracket.getSeries(1).getLoser(), 4);
-		eots.PlaceTeam(knockoutBracket.getSeries(2).getLoser(), 4);
-		eots.PlaceTeam(knockoutBracket.getSeries(3).getLoser(), 2);
-		eots.PlaceTeam(knockoutBracket.getSeries(3).getWinner(), 1);
-		//
+		SimulateCurrentKnockoutStage(RGroup);
 		
 		ConcludeTournament();
 	}
 	
 	@Override
 	public void Setup() {
-		groupDraw = new GroupDrawGroupStageCurrentFormat(Strings.GSGD, this);
+		groupDraw = new GroupDraw(Strings.GSGD, this);
 		super.addDrawStructure(groupDraw);
 		
-		groupStage = new GroupStageGroupStageCurrentFormat(Strings.GS, this);
+		groupStage = new MSIGroupStage(Strings.GS, this);
 		super.addGroupStage(groupStage);
 		
-		rumbleStage = new GroupStageRumbleStageCurrentFormat(Strings.LRumble, this);
+		rumbleStage = new RumbleStage(Strings.LRumble, this);
 		super.addGroupStage(rumbleStage);
 		
-		knockoutBracket = new KnockoutBracketCurrentFormat(Strings.RSKS, this, Strings.LRumble);
+		knockoutBracket = new KnockoutBracket(Strings.RSKS, this, Strings.LRumble);
 		super.addBracket(knockoutBracket);
 	}
 
@@ -126,37 +96,5 @@ public class TournamentMSI extends Tournament {
 	
 	private void SimulateCurrentKnockoutStage(List<Group> groups) throws Exception {
 		knockoutBracket.Simulate(groups);
-	}
-	
-	private void SetQDsForGroups(List<Group> groups, List<Team> teams) {
-		Group A = groups.get(0);
-		Group B = groups.get(1);
-		Group C = groups.get(2);
-		
-		Team Q1 = teams.get(0);
-		Q1.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, A, 1));
-		Team Q2 = teams.get(1);
-		Q2.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, A, 2));
-		Team Q3 = teams.get(2);
-		Q3.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, B, 1));
-		Team Q4 = teams.get(3);
-		Q4.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, B, 2));
-		Team Q5 = teams.get(4);
-		Q5.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, C, 1));
-		Team Q6 = teams.get(5);
-		Q6.setNewQD(new QualifiedThroughGroupPlacement(Strings.GS, C, 2));
-	}
-	
-	private void SetQDsForRumble(List<Group> groups, List<Team> teams) {
-		Group g = groups.get(0);
-		
-		Team Q1 = teams.get(0);
-		Q1.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 1));
-		Team Q2 = teams.get(1);
-		Q2.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 2));
-		Team Q3 = teams.get(2);
-		Q3.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 3));
-		Team Q4 = teams.get(3);
-		Q4.setNewQD(new QualifiedThroughGroupPlacement(Strings.LRumble, g, 4));
 	}
 }

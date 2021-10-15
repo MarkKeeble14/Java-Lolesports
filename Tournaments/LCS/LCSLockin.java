@@ -9,6 +9,7 @@ import Classes.Pool;
 import Classes.Tournament;
 import Misc.Strings;
 import Misc.TeamsWithPlayers;
+import StatsTracking.EOTStandings;
 import TournamentComponents.Bracket;
 import TournamentComponents.GroupStage;
 
@@ -44,22 +45,7 @@ public class LCSLockin extends Tournament {
 		
 		SimulateGroupStage(groups);
 		
-		eots.PlaceTeam(A.GetTeamFromPlacement(5), 10);
-		eots.PlaceTeam(B.GetTeamFromPlacement(5), 10);
-		
 		SimulateKnockoutStage(groups);
-		
-		eots.PlaceTeam(KOStage.getSeries(1).getLoser(), 6);
-		eots.PlaceTeam(KOStage.getSeries(2).getLoser(), 6);
-		
-		eots.PlaceTeam(KOStage.getSeries(3).getLoser(), 6);
-		eots.PlaceTeam(KOStage.getSeries(4).getLoser(), 6);
-		
-		eots.PlaceTeam(KOStage.getSeries(5).getLoser(), 4);
-		eots.PlaceTeam(KOStage.getSeries(6).getLoser(), 4);
-		
-		eots.PlaceTeam(KOStage.getSeries(7).getLoser(), 2);
-		eots.PlaceTeam(KOStage.getSeries(7).getWinner(), 1);
 		
 		ConcludeTournament();
 	}

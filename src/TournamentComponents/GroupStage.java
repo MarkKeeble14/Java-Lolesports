@@ -11,6 +11,7 @@ import Drivers.DomesticDriver;
 import Matches.Game;
 import Misc.Strings;
 import Misc.Util;
+import Teams.Team;
 import Misc.GlobalVariables;
 
 public abstract class GroupStage extends TournamentComponent {
@@ -25,6 +26,8 @@ public abstract class GroupStage extends TournamentComponent {
 	}
 
 	public abstract void Simulate(List<Group> groups) throws Exception;
+	
+	public abstract void SetQualified(List<Group> groups, List<Team> teams);
 	
 	public List<Group> getGroups() {
 		return groups;

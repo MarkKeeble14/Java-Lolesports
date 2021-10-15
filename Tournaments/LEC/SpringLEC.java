@@ -8,7 +8,7 @@ import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
 import LCS.MidSeasonShowdown;
-import LCS.RoundRobin;
+import LCS.RegularSeasonLCS;
 import Misc.Strings;
 import Misc.TeamsWithPlayers;
 import TournamentComponents.Bracket;
@@ -62,7 +62,7 @@ public class SpringLEC extends Tournament {
 
 	@Override
 	public void Setup() {
-		RR = new RoundRobin(Strings.RegularSeason, this);
+		RR = new RegularSeasonLCS(Strings.RegularSeason, this);
 		super.addGroupStage(RR);
 		
 		KO = new PlayoffsLEC(Strings.LECPlayoffs, this, Strings.RegularSeason);

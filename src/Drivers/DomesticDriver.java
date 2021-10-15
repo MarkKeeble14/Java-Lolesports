@@ -24,9 +24,9 @@ import Misc.TeamsWithPlayers;
 import Misc.Util;
 import Teams.RatingDefinedTeam;
 import Teams.Team;
-import WorldChampionship.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionship.TournamentWorldChampionship;
-import WorldChampionship.TournamentWorldChampionshipDoubleElim;
+import WorldChampionshipCurrentState.CurrentStateOfTournamentWorldChampionship;
+import WorldChampionshipDoubleElim.TournamentWorldChampionshipDoubleElim;
 
 public class DomesticDriver {
 	// Variables / Tuning

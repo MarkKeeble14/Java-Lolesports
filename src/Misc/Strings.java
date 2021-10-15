@@ -76,7 +76,7 @@ public class Strings {
 	public static final String LSecondGroup = "B";
 	public static final String LThirdGroup = "C";
 	public static final String LFourthGroup = "D";
-	public static final String LRumble = "Rumble";
+	public static final String LRumble = "Rumble Stage";
 	public static final String RegularSeason = "Regular Season";
 	
 	// Tournament Labels

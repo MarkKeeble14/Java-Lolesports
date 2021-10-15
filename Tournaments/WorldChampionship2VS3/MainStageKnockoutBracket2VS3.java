@@ -1,4 +1,4 @@
-package WorldChampionship;
+package WorldChampionship2VS3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,16 +10,17 @@ import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Series;
 import Misc.Strings;
+import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
 import Teams.Team;
 import TournamentComponents.Bracket;
 
-public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
-	public KnockoutBracketSecondPlaysThirdThenCurrentFormat(String label, Tournament partOf) {
+public class MainStageKnockoutBracket2VS3 extends Bracket {
+	public MainStageKnockoutBracket2VS3(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public KnockoutBracketSecondPlaysThirdThenCurrentFormat(String label, Tournament partOf, String fedThrough) {
+	public MainStageKnockoutBracket2VS3(String label, Tournament partOf, String fedThrough) {
 		super(label, partOf, fedThrough);
 	}
 	
@@ -32,6 +33,7 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		}
 		
 		RegionalWLTracker tracker = super.getPartOf().getT();
+		EOTStandings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -72,6 +74,11 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		M3.Simulate();
 		M4.Simulate();
 		
+		standings.PlaceTeam(M1.getLoser(), 12);
+		standings.PlaceTeam(M2.getLoser(), 12);
+		standings.PlaceTeam(M3.getLoser(), 12);
+		standings.PlaceTeam(M4.getLoser(), 12);
+		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
 		M7.setTeamB(M3.getWinner());
@@ -85,6 +92,11 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		M7.Simulate();
 		M8.Simulate();
 		
+		standings.PlaceTeam(M5.getLoser(), 8);
+		standings.PlaceTeam(M6.getLoser(), 8);
+		standings.PlaceTeam(M7.getLoser(), 8);
+		standings.PlaceTeam(M8.getLoser(), 8);
+		
 		M9.setTeamA(M5.getWinner());
 		M9.setTeamB(M6.getWinner());
 		M10.setTeamA(M7.getWinner());
@@ -92,9 +104,15 @@ public class KnockoutBracketSecondPlaysThirdThenCurrentFormat extends Bracket {
 		M9.Simulate();
 		M10.Simulate();
 		
+		standings.PlaceTeam(M9.getLoser(), 4);
+		standings.PlaceTeam(M10.getLoser(), 4);
+		
 		M11.setTeamA(M9.getWinner());
 		M11.setTeamB(M10.getWinner());
 		M11.Simulate();
+		
+		standings.PlaceTeam(M11.getLoser(), 2);
+		standings.PlaceTeam(M11.getWinner(), 1);
 		
 		super.addSeries(M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11);
 		super.setChampionshipSeries(M11);

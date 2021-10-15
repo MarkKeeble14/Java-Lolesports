@@ -14,7 +14,7 @@ public class QualifiedThroughSeriesWin extends QualificationDetails {
 	
 	@Override
 	public String Print() {
-		String s = "\n" + super.getLabel() + " - " + super.getT().getTag() 
+		String s = super.getLabel() + " - " + super.getT().getTag() 
 				+ ": Reason For Qualification: " + super.getQualificationReason() 
 				+ "\nOpponant: " + m.getLoser().getTag();
 		return s;

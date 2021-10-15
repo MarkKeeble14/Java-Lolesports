@@ -10,17 +10,18 @@ import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Series;
 import Misc.Strings;
+import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
 import Teams.Team;
 import TournamentComponents.Bracket;
 
 // 4 Group Bracket
-public class KnockoutBracketCurrentFormat extends Bracket {
-	public KnockoutBracketCurrentFormat(String label, Tournament partOf) {
+public class MainStageKnockoutBracket extends Bracket {
+	public MainStageKnockoutBracket(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public KnockoutBracketCurrentFormat(String label, Tournament tournamentWorldChampionship, String msgs) {
+	public MainStageKnockoutBracket(String label, Tournament tournamentWorldChampionship, String msgs) {
 		super(label, tournamentWorldChampionship, msgs);
 	}
 
@@ -33,6 +34,7 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		}
 		
 		RegionalWLTracker tracker = super.getPartOf().getT();
+		EOTStandings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -70,6 +72,11 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M3.Simulate();
 		M4.Simulate();
 		
+		standings.PlaceTeam(M1.getLoser(), 8);
+		standings.PlaceTeam(M2.getLoser(), 8);
+		standings.PlaceTeam(M3.getLoser(), 8);
+		standings.PlaceTeam(M4.getLoser(), 8);
+		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
@@ -77,9 +84,15 @@ public class KnockoutBracketCurrentFormat extends Bracket {
 		M5.Simulate();
 		M6.Simulate();
 		
+		standings.PlaceTeam(M5.getLoser(), 4);
+		standings.PlaceTeam(M6.getLoser(), 4);
+		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
+		
+		standings.PlaceTeam(M7.getLoser(), 2);
+		standings.PlaceTeam(M7.getWinner(), 1);
 		
 		// General Tracking Stuff
 		super.addSeries(M1, M2, M3, M4, M5, M6, M7);

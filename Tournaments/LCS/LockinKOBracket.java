@@ -6,6 +6,7 @@ import Classes.Group;
 import Classes.Tournament;
 import Matches.Series;
 import Misc.Strings;
+import StatsTracking.EOTStandings;
 import StatsTracking.RegionalWLTracker;
 import TournamentComponents.Bracket;
 
@@ -22,6 +23,7 @@ public class LockinKOBracket extends Bracket {
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
 		RegionalWLTracker tracker = super.getPartOf().getT();
+		EOTStandings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -59,6 +61,18 @@ public class LockinKOBracket extends Bracket {
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
+		
+		standings.PlaceTeam(M1.getLoser(), 6);
+		standings.PlaceTeam(M2.getLoser(), 6);
+		
+		standings.PlaceTeam(M3.getLoser(), 6);
+		standings.PlaceTeam(M4.getLoser(), 6);
+		
+		standings.PlaceTeam(M5.getLoser(), 4);
+		standings.PlaceTeam(M6.getLoser(), 4);
+		
+		standings.PlaceTeam(M7.getLoser(), 2);
+		standings.PlaceTeam(M7.getWinner(), 1);
 		
 		// General Tracking Stuff
 		super.addSeries(M1, M2, M3, M4, M5, M6, M7);

@@ -7,10 +7,10 @@ import java.util.List;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
-import MSI.GroupDrawGroupStageCurrentFormat;
-import MSI.GroupStageGroupStageCurrentFormat;
-import MSI.GroupStageRumbleStageCurrentFormat;
-import MSI.KnockoutBracketCurrentFormat;
+import MSI.GroupDraw;
+import MSI.MSIGroupStage;
+import MSI.RumbleStage;
+import MSI.KnockoutBracket;
 import Misc.Strings;
 import Misc.TeamsWithPlayers;
 import StatsTracking.EOTStandings;
@@ -58,7 +58,7 @@ public class SpringLCS extends Tournament {
 
 	@Override
 	public void Setup() {
-		RR = new RoundRobin(Strings.RegularSeason, this);
+		RR = new RegularSeasonLCS(Strings.RegularSeason, this);
 		super.addGroupStage(RR);
 		
 		MSS = new MidSeasonShowdown(Strings.MSS, this, Strings.RegularSeason);

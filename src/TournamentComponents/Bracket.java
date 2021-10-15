@@ -121,8 +121,6 @@ public abstract class Bracket extends TournamentComponent {
 				}
 				
 				if (aQD != null && !seenTeams.contains(a)) {
-					s += "Reason for Qualification for: " + a.getTag();
-					
 					s += aQD;
 					
 					s += "\n" + Strings.SmallLineBreak;
@@ -136,8 +134,6 @@ public abstract class Bracket extends TournamentComponent {
 					}
 				}
 				if (bQD != null && !seenTeams.contains(b)) {
-					s += "Reason for Qualification for: " + b.getTag();
-					
 					s += bQD;
 					
 					s += "\n" + Strings.SmallLineBreak + "\n";

@@ -16,7 +16,7 @@ public class QualifiedThroughGroupPlacement extends QualificationDetails {
 	
 	@Override
 	public String Print() {
-		String s = "\n" + super.getT().getTag() + " - " + super.getLabel()
+		String s = super.getT().getTag() + " - " + super.getLabel()
 				+ "\nReason For Qualification: " + super.getQualificationReason() 
 				+ "; Placed: " + placement + "\n" + qualifiedThrough.toStandings(super.getLabel(), true);
 		return s;

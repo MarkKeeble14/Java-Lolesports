@@ -1,30 +1,25 @@
-package WorldChampionship;
+package WorldChampionship2VS3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import Matches.Game;
-import Matches.Series;
 import Misc.Strings;
-import Misc.Teams;
-import Misc.Util;
-import QualificationDetails.QualifiedThroughGroupPlacement;
-import QualificationDetails.QualifiedThroughSeriesWin;
-import StatsTracking.EOTStandings;
 import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
-import WorldChampionshipDoubleElim.KnockoutBracketDoubleElimFormat;
+import WorldChampionship.MainStageGroupDraw;
+import WorldChampionship.PIStageGroupDraw;
+import WorldChampionship.MainStageGroupStage;
+import WorldChampionship.PIStageGroupStage;
+import WorldChampionship.PIStageKnockoutBracket;
 
-public class TournamentWorldChampionship extends Tournament {
+public class TournamentWorldChampionship2VS3 extends Tournament {
 	int requiredNumberOfPools = 5;
 	
 	DrawStructure PIGroupDraw;
@@ -34,7 +29,7 @@ public class TournamentWorldChampionship extends Tournament {
 	GroupStage MGroupStage;
 	Bracket MKnockoutBracket;
 	
-	public TournamentWorldChampionship(String label) {
+	public TournamentWorldChampionship2VS3(String label) {
 		super(Strings.LWC);
 	}
 
@@ -107,7 +102,7 @@ public class TournamentWorldChampionship extends Tournament {
 		MGroupStage = new MainStageGroupStage(Strings.MSGS, this);
 		super.addGroupStage(MGroupStage);
 		
-		MKnockoutBracket = new MainStageKnockoutBracket(Strings.MSKS, this, Strings.MSGS);
+		MKnockoutBracket = new MainStageKnockoutBracket2VS3(Strings.MSKS, this, Strings.MSKS);
 		super.addBracket(MKnockoutBracket);
 	}
 	

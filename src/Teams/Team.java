@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Misc.Region;
+import Misc.Strings;
 import QualificationDetails.QualificationDetails;
 import StatsTracking.Record;
 
@@ -132,26 +133,26 @@ public abstract class Team implements Comparable<Team> {
 	}
 	
 	public String recordLog() {
-		String s = "";
+		String s = "Record Logs for: " + tag + "\n" + Strings.MediumLineBreak + "\n";
 		for (int i = 0; i < records.size(); i++) {
 			Record r = records.get(i);
 			if (i == records.size() - 1) {
-				s += r.detailedPrint();					
+				s += "\n" + r.detailedPrint();					
 			} else {
-				s += r.detailedPrint() + "\n";				
+				s += "\n" + r.detailedPrint();				
 			}
 		}
 		return s;
 	}
 
 	public String qdLog() {
-		String s = "";
+		String s = "Qualification Logs for: " + tag + "\n" + Strings.MediumLineBreak + "\n";
 		for (int i = 0; i < QDs.size(); i++) {
 			QualificationDetails qd = QDs.get(i);
 			if (i == QDs.size() - 1) {
-				s += qd.Print();					
+				s += "\n" + qd.Print();					
 			} else {
-				s += qd.Print() + "\n";				
+				s += "\n" + qd.Print() + "\n" + Strings.SmallLineBreak + "\n";				
 			}
 		}
 		return s;
@@ -169,5 +170,13 @@ public abstract class Team implements Comparable<Team> {
 
 	public void setRating(float ratingFromPlayers) {
 		rating = ratingFromPlayers;
+	}
+
+	public boolean hasQDs() {
+		return QDs.size() > 0;
+	}
+	
+	public boolean hasRecords() {
+		return records.size() > 0;
 	}
 }

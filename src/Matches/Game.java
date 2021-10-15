@@ -21,6 +21,8 @@ public class Game extends Matchup {
 	private Random rand = new Random();
 	private RegionalWLTracker WLT;
 	
+	private boolean setManually = false;
+	
 	public void Simulate() {
 		double oddsTeamAWins = CalculateChance(teamA.getRating(), teamB.getRating()) * 100;
 		
@@ -112,6 +114,8 @@ public class Game extends Matchup {
 		loser.getRecord(stageLabel).MatchLoss(winner);
 		
 		WLT.Update(winner, loser);
+		
+		setManually = true;
 	}
 	
 	public Team getWinner() {
@@ -149,12 +153,17 @@ public class Game extends Matchup {
 			} else {
 				s += teamA.getTag() + " < " + teamB.getTag();
 			}
+			if (setManually) {
+				s += "\n\nSet Manually";
+			}
 			return s;	
 		}
 	}
 	
 	public String getMatchDetails() {
-		String s = stageLabel + ": " + matchLabel + " - " + teamA + " VS " + teamB + "\n";
+		String s = "";
+		
+		s += stageLabel + ": " + matchLabel + " - " + teamA + " VS " + teamB + "\n";
 		
 		DecimalFormat df = new DecimalFormat("00.00");
 		

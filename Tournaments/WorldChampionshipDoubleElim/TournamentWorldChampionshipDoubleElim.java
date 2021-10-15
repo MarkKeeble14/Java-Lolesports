@@ -1,4 +1,4 @@
-package WorldChampionship;
+package WorldChampionshipDoubleElim;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,9 +22,13 @@ import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
-import WorldChampionshipDoubleElim.KnockoutBracketDoubleElimFormat;
+import WorldChampionship.MainStageGroupDraw;
+import WorldChampionship.PIStageGroupDraw;
+import WorldChampionship.MainStageGroupStage;
+import WorldChampionship.PIStageGroupStage;
+import WorldChampionship.PIStageKnockoutBracket;
 
-public class TournamentWorldChampionship extends Tournament {
+public class TournamentWorldChampionshipDoubleElim extends Tournament {
 	int requiredNumberOfPools = 5;
 	
 	DrawStructure PIGroupDraw;
@@ -34,7 +38,7 @@ public class TournamentWorldChampionship extends Tournament {
 	GroupStage MGroupStage;
 	Bracket MKnockoutBracket;
 	
-	public TournamentWorldChampionship(String label) {
+	public TournamentWorldChampionshipDoubleElim(String label) {
 		super(Strings.LWC);
 	}
 
@@ -107,7 +111,7 @@ public class TournamentWorldChampionship extends Tournament {
 		MGroupStage = new MainStageGroupStage(Strings.MSGS, this);
 		super.addGroupStage(MGroupStage);
 		
-		MKnockoutBracket = new MainStageKnockoutBracket(Strings.MSKS, this, Strings.MSGS);
+		MKnockoutBracket = new KnockoutBracketDoubleElimFormat(Strings.MSKS, this, Strings.MSGS);
 		super.addBracket(MKnockoutBracket);
 	}
 	

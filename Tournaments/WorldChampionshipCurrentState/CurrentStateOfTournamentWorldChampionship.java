@@ -1,27 +1,19 @@
-package WorldChampionship;
+package WorldChampionshipCurrentState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
-import CustomExceptions.MismatchedNumberOfGroupsException;
-import Matches.Game;
-import Matches.Series;
 import Misc.Strings;
 import Misc.Teams;
-import Misc.Util;
-import QualificationDetails.QualifiedThroughGroupPlacement;
-import QualificationDetails.QualifiedThroughSeriesWin;
 import StatsTracking.EOTStandings;
-import Teams.Team;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.GroupStage;
+import WorldChampionship.MainStageKnockoutBracket;
 
 public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 	int requiredNumberOfPools = 5;
@@ -85,10 +77,10 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 	
 	@Override 
 	public void Setup() {
-		MGroupStage = new GroupStageMainCurrentFormat(Strings.MSGS, this);
+		MGroupStage = new MainStageGroupStage(Strings.MSGS, this);
 		super.addGroupStage(MGroupStage);
 		
-		MKnockoutBracket = new KnockoutBracketCurrentFormat(Strings.MSKS, this);
+		MKnockoutBracket = new MainStageKnockoutBracket(Strings.MSKS, this, Strings.MSGS);
 		super.addBracket(MKnockoutBracket);
 	}
 	
