@@ -36,11 +36,11 @@ public class InternationalDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		GlobalVariables.setEloScaling(ELO_SCALING_TYPE.WACKY);
+		GlobalVariables.setEloScaling(ELO_SCALING_TYPE.REASONABLE);
 		
 		// SimulateCurrentWorldsState().PrintInfo(false, false, false, true);
-		SimulateStandardWC().PrintInfo(false, false, false, true);
-		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
+		// SimulateStandardWC().PrintInfo(false, false, false, true);
+		SimulateDoubleElimWC().PrintInfo(false, false, false, true);
 		// Simulate2VS3WC().PrintInfo(false, false, false, true);
 		
 		// SimulateStandardMSI().PrintInfo(false, false, false, true);

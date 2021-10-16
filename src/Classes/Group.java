@@ -1,6 +1,7 @@
 package Classes;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,10 @@ public class Group {
 	
 	// private List<Matchup> matchups = new ArrayList<Matchup>();
 	private Map<Team, Map<Team, List<Matchup>>> matchups = new HashMap<Team, Map<Team, List<Matchup>>>();
+	private Map<Integer, Matchup> gamesInOrder = new HashMap<Integer, Matchup>();
 	private List<Matchup> tiebreakers = new ArrayList<Matchup>();
+	
+	private List<Game> presetTiebreakers = new ArrayList<Game>();
 	
 	public int getNumTiebreakers() { 
 		return tiebreakers.size();
@@ -191,6 +195,7 @@ public class Group {
 		}
 		
 		// Add Matches
+		int gameNo = 1;
 		while(copy.getSize() > 0) {
 			Team t = copy.getGroup().get(0);
 			for (int p = 0; p < copy.getGroup().size(); p++) {
@@ -198,12 +203,13 @@ public class Group {
 				if (t != t2) {
 					for (int q = getNumMatchupsBetweenTeams(t, t2); q < gamesPerRoundRobin; q++) {
 						if (matchesAreBOX > 1) {
-							Series S = new Series(stageLabel, 1, matchesAreBOX, t, t2, tracker);
-							addMatchupToMatchups(t, t2, S);
+							Series S = new Series(stageLabel, gameNo, matchesAreBOX, t, t2, tracker);
+							addMatchupToMatchups(gameNo, t, t2, S);
 						} else {
-							Game M = new Game(stageLabel, 1, t, t2, tracker);
-							addMatchupToMatchups(t, t2, M);
+							Game M = new Game(stageLabel, gameNo, t, t2, tracker);
+							addMatchupToMatchups(gameNo, t, t2, M);
 						}
+						gameNo++;
 					}	
 				}
 			}
@@ -253,7 +259,7 @@ public class Group {
 		return nList.size();
 	}
 	
-	private void addMatchupToMatchups(Team t, Team t2, Matchup m) {
+	private void addMatchupToMatchups(int gameNo, Team t, Team t2, Matchup m) {
 		Map<Team, List<Matchup>> nMap = matchups.get(t);
 		if (nMap == null) {
 			nMap = new HashMap<Team, List<Matchup>>();
@@ -265,6 +271,8 @@ public class Group {
 		nList.add(m);
 		nMap.put(t2, nList);
 		matchups.put(t, nMap);
+		
+		gamesInOrder.put(gameNo, m);
 	}
 	
 	public void addResultToGameMatchup(Team A, Team B, Team winner, Team loser, boolean allowLoop) {
@@ -325,6 +333,22 @@ public class Group {
 		return false;
 	}
 	
+	public void addPresetTiebreaker(String stageLabel, Team A, Team B, Team winner, Team loser, RegionalWLTracker tracker) {
+		Game g = new Game(stageLabel, gamesInOrder.size() + 1, A, B, tracker);
+		g.setResult(winner, loser);	
+		presetTiebreakers.add(g);
+		gamesInOrder.put(gamesInOrder.size() + 1, g);
+	}
+	
+	private Game getPresetTiebreaker(Team A, Team B) {
+		for (Game g : presetTiebreakers) {
+			if (g.getTeamA() == A && g.getTeamB() == B || g.getTeamA() == B && g.getTeamA() == A) {
+				return g;
+			}
+		}
+		return null;
+	}
+	
 	private void SimulateTiebreakers(String stageLabel, RegionalWLTracker tracker) {
 		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		Object[] a = preTBStandings.keySet().toArray();
@@ -336,19 +360,32 @@ public class Group {
 			Record t2r = t2.getRecord();
 			
 			if (t1r.getWins(false) == t2r.getWins(false)) {
-				Game M = new Game(stageLabel, 1, t1, t2, tracker);
-				
-				M.TBSimulate();
-				tiebreakers.add(M);
-				
-				Team winner = M.getWinner();
-				
-				if (winner == t1) {
-					// Swap the two teams
-					a[i] = t2;
-					a[i - 1] = t1;
+				Game presetTB = getPresetTiebreaker(t1, t2);
+				if (presetTB != null) {
+					tiebreakers.add(presetTB);
+					
+					if (presetTB.getWinner() == t1) {
+						// Swap the two teams
+						a[i] = t2;
+						a[i - 1] = t1;
+					} else {
+						// Teams are already in correct order
+					}
 				} else {
-					// Teams are already in correct order
+					Game M = new Game(stageLabel, gamesInOrder.size() + 1, t1, t2, tracker);
+					
+					M.TBSimulate();
+					tiebreakers.add(M);
+					
+					Team winner = M.getWinner();
+					
+					if (winner == t1) {
+						// Swap the two teams
+						a[i] = t2;
+						a[i - 1] = t1;
+					} else {
+						// Teams are already in correct order
+					}
 				}
 			}
 		}
@@ -552,25 +589,16 @@ public class Group {
 	
 	public String StringifyMatches() {
 		String s = "Group " + label + " Games\n" + Strings.MediumLineBreak + "\n";
-		int x; int y; int z;
+		int x;
 		
-		Set<Entry<Team, Map<Team, List<Matchup>>>> set = matchups.entrySet();
+		Set<Entry<Integer, Matchup>> set = gamesInOrder.entrySet();
 		x = 0;
-		for (Entry<Team, Map<Team, List<Matchup>>> entry : set) {
-			Set<Entry<Team, List<Matchup>>> set2 = entry.getValue().entrySet();
-			y = 0;
-			for (Entry<Team, List<Matchup>> entry2 : set2) {
-				List<Matchup> innerMatchups = entry2.getValue();
-				z = 0;
-				for (Matchup m : innerMatchups) {
-					s += "\n" + m.toString();
-					
-					if (x != set.size() - 1 || y != set2.size() - 1 || z != innerMatchups.size() - 1) {
-						s += "\n" + Strings.SmallLineBreak + "\n";
-					}
-					z++;
-				}
-				y++;
+		for (Entry<Integer, Matchup> e : set) {
+			Matchup m = e.getValue();
+			s += "\n" + m.toString();
+			
+			if (x != set.size() - 1) {
+				s += "\n" + Strings.SmallLineBreak + "\n";
 			}
 			x++;
 		}

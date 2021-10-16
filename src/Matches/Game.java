@@ -142,6 +142,10 @@ public class Game extends Matchup {
 		this.teamB = teamB;
 	}
 	
+	public int getMatchLabel() {
+		return matchLabel;
+	}
+	
 	@Override
 	public String toString() {
 		if (winner == null) {

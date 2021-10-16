@@ -53,6 +53,9 @@ public class MainStageGroupStage extends GroupStage {
 		A.addResultToGameMatchup(Teams.DK, Teams.RGE, Teams.DK, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, true);
 		
+		A.addPresetTiebreaker(super.getLabel(), Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, tracker);
+		A.addPresetTiebreaker(super.getLabel(), Teams.C9, Teams.RGE, Teams.C9, Teams.RGE, tracker);
+		
 		A.SimulatePresetMatches(super.getLabel(), tracker, true);
 		
 		B.SetupMatches(super.getLabel(), tracker);
@@ -62,6 +65,13 @@ public class MainStageGroupStage extends GroupStage {
 		B.addResultToGameMatchup(Teams.T1, Teams.DFM, Teams.T1, Teams.DFM, true);
 		B.addResultToGameMatchup(Teams.EDG, Teams.DFM, Teams.EDG, Teams.DFM, true);
 		B.addResultToGameMatchup(Teams.EDG, Teams.T1, Teams.EDG, Teams.T1, true);
+		
+		B.addResultToGameMatchup(Teams.T1, Teams.EDG, Teams.T1, Teams.EDG, true);
+		B.addResultToGameMatchup(Teams.T1, Teams.O100T, Teams.T1, Teams.O100T, true);
+		B.addResultToGameMatchup(Teams.T1, Teams.DFM, Teams.T1, Teams.DFM, true);
+		B.addResultToGameMatchup(Teams.EDG, Teams.O100T, Teams.O100T, Teams.EDG, true);
+		B.addResultToGameMatchup(Teams.EDG, Teams.DFM, Teams.EDG, Teams.DFM, true);
+		B.addResultToGameMatchup(Teams.DFM, Teams.O100T, Teams.O100T, Teams.DFM, true);
 		B.SimulatePresetMatches(super.getLabel(), tracker, true);
 		
 		C.SetupMatches(super.getLabel(), tracker);

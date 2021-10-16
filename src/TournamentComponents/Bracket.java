@@ -218,11 +218,12 @@ public abstract class Bracket extends TournamentComponent {
 					}
 					if (p == horizontalEntries - 1) {
 						q++;
-						s += "\n";
+						if (q != mostEntriesVertical) {
+							s += "\n";	
+						}
 					}
 				}	
 			}
-			s += Strings.MediumLineBreak + "\n";
 		}
 		// PRINTING BRACKET SUMMARY
 		
