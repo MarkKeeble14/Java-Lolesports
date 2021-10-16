@@ -53,6 +53,7 @@ public class MainStageGroupStage extends GroupStage {
 		A.addResultToGameMatchup(Teams.DK, Teams.RGE, Teams.DK, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, true);
 		
+		A.addTiebreakerSeeding(Teams.DK, Teams.C9, Teams.RGE, Teams.FPX);
 		A.addPresetTiebreaker(super.getLabel(), Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, tracker);
 		A.addPresetTiebreaker(super.getLabel(), Teams.C9, Teams.RGE, Teams.C9, Teams.RGE, tracker);
 		

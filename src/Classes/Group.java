@@ -41,6 +41,7 @@ public class Group {
 	private List<Matchup> tiebreakers = new ArrayList<Matchup>();
 	
 	private List<Game> presetTiebreakers = new ArrayList<Game>();
+	private List<Team> presetTiebreakerSeeding;
 	
 	public int getNumTiebreakers() { 
 		return tiebreakers.size();
@@ -335,23 +336,35 @@ public class Group {
 	
 	public void addPresetTiebreaker(String stageLabel, Team A, Team B, Team winner, Team loser, RegionalWLTracker tracker) {
 		Game g = new Game(stageLabel, gamesInOrder.size() + 1, A, B, tracker);
-		g.setResult(winner, loser);	
+		g.setTBResult(winner, loser);	
 		presetTiebreakers.add(g);
-		gamesInOrder.put(gamesInOrder.size() + 1, g);
 	}
 	
 	private Game getPresetTiebreaker(Team A, Team B) {
 		for (Game g : presetTiebreakers) {
-			if (g.getTeamA() == A && g.getTeamB() == B || g.getTeamA() == B && g.getTeamA() == A) {
+			if (g.getTeamA() == A && g.getTeamB() == B || g.getTeamA() == B && g.getTeamB() == A) {
 				return g;
 			}
 		}
 		return null;
 	}
 	
+	public void addTiebreakerSeeding(Team... teams) {
+		presetTiebreakerSeeding = new ArrayList<Team>();
+		for (int i = 1; i < teams.length + 1; i++) {
+			presetTiebreakerSeeding.add(teams[i - 1]);
+		}
+	}
+	
 	private void SimulateTiebreakers(String stageLabel, RegionalWLTracker tracker) {
 		Map<Team, Integer> fs = new HashMap<Team, Integer>();
-		Object[] a = preTBStandings.keySet().toArray();
+		Object[] a = null;
+		if (presetTiebreakerSeeding != null) {
+			a = presetTiebreakerSeeding.toArray();
+		} else {
+			a = preTBStandings.keySet().toArray();	
+		}
+		
 		for (int i = a.length - 1; i > 0; i--) {
 			Team t1 = (Team)a[i];
 			Team t2 = (Team)a[i - 1];

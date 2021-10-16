@@ -118,6 +118,19 @@ public class Game extends Matchup {
 		setManually = true;
 	}
 	
+	public void setTBResult(Team t1, Team t2) {
+		winner = t1;
+		loser = t2;
+		
+		// Update Teams Records
+		winner.getRecord(stageLabel).TiebreakerWin(loser);
+		loser.getRecord(stageLabel).TiebreakerLoss(winner);
+		
+		WLT.Update(winner, loser);
+		
+		setManually = true;
+	}
+	
 	public Team getWinner() {
 		return winner;
 	}
