@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Classes.BracketSection;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
@@ -40,9 +41,17 @@ public class KnockoutBracket extends Bracket {
 		Pool poolOne = new Pool(Strings.LPoolOne, A.GetTeamFromPlacement(1), A.GetTeamFromPlacement(2));
 		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(3), A.GetTeamFromPlacement(4));
 		
-		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M1", 5, tracker);
-		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M2", 5, tracker);
-		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS), "M3", 5, tracker);
+		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS);
+		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS);
+		
+		BracketSection S1 = new BracketSection(s1);
+		BracketSection S2 = new BracketSection(s2);
+		
+		Series M1 = new Series(1, 5, tracker);
+		Series M2 = new Series(2, 5, tracker);
+		S1.addSeries(M1, M2);
+		Series M3 = new Series(3, 5, tracker);
+		S2.addSeries(M3);
 		
 		M1.setTeamA(poolOne.Draw());
 		M2.setTeamA(poolTwo.Draw());
@@ -64,7 +73,7 @@ public class KnockoutBracket extends Bracket {
 		standings.PlaceTeam(M3.getWinner(), 1);
 		
 		// General Tracking Stuff
-		super.addSeries(M1, M2, M3);
+		super.addBracketSections(S1, S2);
 		super.setChampionshipSeries(M3);
 	}
 }

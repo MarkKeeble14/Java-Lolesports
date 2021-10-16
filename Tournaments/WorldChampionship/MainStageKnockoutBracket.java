@@ -7,6 +7,7 @@ import java.util.List;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
+import Classes.BracketSection;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import Matches.Series;
 import Misc.Strings;
@@ -47,13 +48,24 @@ public class MainStageKnockoutBracket extends Bracket {
 		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), 
 				C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
 		
-		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS), "M1", 5, tracker);
-		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS), "M2", 5, tracker);
-		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS), "M3", 5, tracker);
-		Series M4 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS), "M4", 5, tracker);
-		Series M5 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M5", 5, tracker);
-		Series M6 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS), "M6", 5, tracker);
-		Series M7 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS), "M7", 5, tracker);
+		String qfs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS);
+		String sfs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS);
+		String fs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS);
+		
+		BracketSection S1 = new BracketSection(qfs);
+		BracketSection S2 = new BracketSection(sfs);
+		BracketSection S3 = new BracketSection(fs);
+		
+		Series M1 = new Series(1, 5, tracker);
+		Series M2 = new Series(2, 5, tracker);
+		Series M3 = new Series(3, 5, tracker);
+		Series M4 = new Series(4, 5, tracker);
+		S1.addSeries(M1, M2, M3, M4);
+		Series M5 = new Series(5, 5, tracker);
+		Series M6 = new Series(6, 5, tracker);
+		S2.addSeries(M5, M6);
+		Series M7 = new Series(7, 5, tracker);
+		S3.addSeries(M7);
 		
 		ArrayList<Series> matches = new ArrayList<Series>(Arrays.asList(M1, M2, M3, M4));
 		
@@ -95,7 +107,7 @@ public class MainStageKnockoutBracket extends Bracket {
 		standings.PlaceTeam(M7.getWinner(), 1);
 		
 		// General Tracking Stuff
-		super.addSeries(M1, M2, M3, M4, M5, M6, M7);
+		super.addBracketSections(S1, S2, S3);
 		super.setChampionshipSeries(M7);
 	}
 

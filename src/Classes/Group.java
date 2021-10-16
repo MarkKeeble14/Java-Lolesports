@@ -198,10 +198,10 @@ public class Group {
 				if (t != t2) {
 					for (int q = getNumMatchupsBetweenTeams(t, t2); q < gamesPerRoundRobin; q++) {
 						if (matchesAreBOX > 1) {
-							Series S = new Series(stageLabel, "S", matchesAreBOX, t, t2, tracker);
+							Series S = new Series(stageLabel, 1, matchesAreBOX, t, t2, tracker);
 							addMatchupToMatchups(t, t2, S);
 						} else {
-							Game M = new Game(stageLabel, "M", t, t2, tracker);
+							Game M = new Game(stageLabel, 1, t, t2, tracker);
 							addMatchupToMatchups(t, t2, M);
 						}
 					}	
@@ -267,22 +267,29 @@ public class Group {
 		matchups.put(t, nMap);
 	}
 	
-	public void addResultToGameMatchup(Team winner, Team loser) {
-		Map<Team, List<Matchup>> nMap = matchups.get(winner);
+	public void addResultToGameMatchup(Team A, Team B, Team winner, Team loser, boolean allowLoop) {
+		// Update map for the winner
+		Map<Team, List<Matchup>> nMap = matchups.get(A);
 		if (nMap == null) {
 			nMap = new HashMap<Team, List<Matchup>>();
 		}
-		List<Matchup> nList = nMap.get(loser);
+		
+		List<Matchup> nList = nMap.get(B);
 		if (nList == null) {
 			nList = new ArrayList<Matchup>();
 		}
 		
+		boolean hasSet = false;
 		for (int i = 0; i < nList.size(); i++) {
 			Game g = (Game) nList.get(i);
 			if (!g.resultDetermined()) {
 				g.setResult(winner, loser);	
+				hasSet = true;
 				break;
 			}
+		}
+		if (!hasSet && allowLoop) {
+			addResultToGameMatchup(B, A, winner, loser, false);
 		}
 	}
 	
@@ -329,7 +336,7 @@ public class Group {
 			Record t2r = t2.getRecord();
 			
 			if (t1r.getWins(false) == t2r.getWins(false)) {
-				Game M = new Game(stageLabel, "M", t1, t2, tracker);
+				Game M = new Game(stageLabel, 1, t1, t2, tracker);
 				
 				M.TBSimulate();
 				tiebreakers.add(M);

@@ -11,7 +11,7 @@ import Teams.Team;
 
 public class Game extends Matchup {
 	private String stageLabel;
-	private String matchLabel;
+	private int matchLabel;
 	private Team teamA;
 	private Team teamB;
 	
@@ -67,7 +67,7 @@ public class Game extends Matchup {
 	* @param A Combatant A 
 	* @param B Combatant B
 	*/
-	public Game(String sl, String l, Team A, Team B, RegionalWLTracker t) {
+	public Game(String sl, int l, Team A, Team B, RegionalWLTracker t) {
 		stageLabel = sl;
 		matchLabel = l;
 		teamA = A;
@@ -79,7 +79,7 @@ public class Game extends Matchup {
 	* Constructor
 	* @param label The match id/number of the match, i.e., M1, M2, M3, etc
 	*/
-	public Game(String sl, String l, RegionalWLTracker t) {
+	public Game(String sl, int l, RegionalWLTracker t) {
 		stageLabel = sl;
 		matchLabel = l;
 		WLT = t;

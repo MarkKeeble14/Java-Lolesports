@@ -1,20 +1,17 @@
 package Matches;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Drivers.DomesticDriver;
-import StatsTracking.Record;
 import StatsTracking.RegionalWLTracker;
 import Teams.Team;
 import Misc.GlobalVariables;
 
-public class Series extends Matchup {
+public class Series extends Matchup  {
 	private String stageLabel;
-	private String matchLabel;
+	private int matchLabel;
 	private int numGames;
 	
 	private Map<Team, Integer> gamescore = new HashMap<Team, Integer>();
@@ -28,7 +25,7 @@ public class Series extends Matchup {
 	
 	private RegionalWLTracker WLT;
 	
-	public Series(String stageLabel, String matchLabel, int numGames, Team a, Team b, RegionalWLTracker t) {
+	public Series(String stageLabel, int matchLabel, int numGames, Team a, Team b, RegionalWLTracker t) {
 		super();
 		this.stageLabel = stageLabel;
 		this.matchLabel = matchLabel;
@@ -38,9 +35,25 @@ public class Series extends Matchup {
 		WLT = t;
 	}
 	
-	public Series(String stageLabel, String matchLabel, int numGames, RegionalWLTracker t) {
+	public Series(int matchLabel, int numGames, Team a, Team b, RegionalWLTracker t) {
+		super();
+		this.matchLabel = matchLabel;
+		this.numGames = numGames;
+		setTeamA(a);
+		setTeamB(b);
+		WLT = t;
+	}
+	
+	public Series(String stageLabel, int matchLabel, int numGames, RegionalWLTracker t) {
 		super();
 		this.stageLabel = stageLabel;
+		this.matchLabel = matchLabel;
+		this.numGames = numGames;
+		WLT = t;
+	}
+	
+	public Series(int matchLabel, int numGames, RegionalWLTracker t) {
+		super();
 		this.matchLabel = matchLabel;
 		this.numGames = numGames;
 		WLT = t;
@@ -131,7 +144,7 @@ public class Series extends Matchup {
 		return loser;
 	}
 
-	public String getLabel() {
+	public int getLabel() {
 		return matchLabel;
 	}
 
@@ -159,7 +172,15 @@ public class Series extends Matchup {
 		return WLT;
 	}
 
-	public void setLabel(String label) {
+	public String getStageLabel() {
+		return stageLabel;
+	}
+
+	public void setStageLabel(String stageLabel) {
+		this.stageLabel = stageLabel;
+	}
+
+	public void setLabel(int label) {
 		this.matchLabel = label;
 	}
 

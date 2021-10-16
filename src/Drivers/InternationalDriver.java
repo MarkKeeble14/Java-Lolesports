@@ -39,7 +39,7 @@ public class InternationalDriver {
 		
 		SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
 		// SimulateStandardWC().PrintInfo(true, false, false, false);
-		// SimulateDoubleElimWC().PrintInfo(true, true, true, true);
+		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
 		// Simulate2VS3WC().PrintInfo(true, true, true, true);
 		
 		// SimulateStandardMSI().PrintInfo(true, true, true, true);

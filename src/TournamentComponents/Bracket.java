@@ -1,8 +1,15 @@
 package TournamentComponents;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import Classes.BracketSection;
 import Classes.Group;
 import Classes.Tournament;
 import Matches.Game;
@@ -14,8 +21,8 @@ import Teams.Team;
 import Misc.GlobalVariables;
 
 public abstract class Bracket extends TournamentComponent {
-	private List<Series> series = new ArrayList<Series>();
-
+	private Map<String, BracketSection> bracketSections = new HashMap<String, BracketSection>();
+	
 	private Series championshipMatch;
 	private Team champion;
 	private Team runnerUp;
@@ -43,21 +50,30 @@ public abstract class Bracket extends TournamentComponent {
 
 	public abstract void Simulate(List<Group> groups) throws Exception;
 	
+	public BracketSection getBracketSection(String label) {
+		return bracketSections.get(label);
+	}
+	
 	public Series getSeries(int no) throws Exception {
-		if (series.size() < no) {
-			throw new Exception();
+		Set<Entry<String, BracketSection>> set = bracketSections.entrySet();
+		for (Entry<String, BracketSection> entry : set) {
+			BracketSection section = entry.getValue();
+			Series s;
+			if ((s = section.getSeries(no)) != null) {
+				return s;
+			}
 		}
-		return series.get(no - 1);
+		return null;
 	}
 	
-	public void addSeries(Series ...series) {
-		for (Series m : series) {
-			this.series.add(m);
-		}
+	public void addBracketSection(BracketSection bracketSection) {
+		bracketSections.put(bracketSection.getLabel(), bracketSection);
 	}
 	
-	public List<Series> getSeries() {
-		return series;
+	public void addBracketSections(BracketSection... bracketsToAdd) {
+		for (BracketSection s : bracketsToAdd) {
+			bracketSections.put(s.getLabel(), s);	
+		}
 	}
 	
 	public void setChampionshipSeries(Series s) {
@@ -93,19 +109,53 @@ public abstract class Bracket extends TournamentComponent {
 	@Override
 	public String toString() {
 		String s = "";
-		int x = 0;
 		
 		if (GlobalVariables.PRINT_BRACKET_SUMMARY) {
 			s += "\nBracket Summary";
-			s += "\n" + Strings.SmallLineBreak;
-			for (int i = 0; i < series.size(); i++) {
-				Series m = series.get(i);
-				s += "\n\n" + m.getLabel() + ": " + m.getTeamA().getTag() + " VS " + m.getTeamB().getTag();
-				s += "\n" + Strings.SmallLineBreak;
+			s += "\n" + Strings.SmallLineBreak + "\n";
+			
+			Set<Entry<String, BracketSection>> set = bracketSections.entrySet();
+			Map<Integer, List<Series>> map = new HashMap<Integer, List<Series>>();
+			for (Entry<String, BracketSection> entry : set) {
+				List<Series> seriesList = entry.getValue().getSeriesList();
+				for (int i = 0; i < seriesList.size(); i++) {
+					if (map.get(i) == null) {
+						List<Series> nList = new ArrayList<Series>();
+						nList.add(seriesList.get(i));
+						map.put(i, nList);
+					} else {
+						List<Series> nList = map.get(i);
+						nList.add(seriesList.get(i));
+						map.put(i, nList);
+					}
+				}
 			}
-			s += "\n";
+			Set<Entry<Integer, List<Series>>> set2 = map.entrySet();
+			for (Entry<Integer, List<Series>> entry : set2) {
+				String bracketLineS = "\n";
+				List<Series> seriesList = entry.getValue();
+				sortListByLabel(seriesList);
+				for (int i = 0; i < seriesList.size(); i++) {
+					Series m = seriesList.get(i);
+					bracketLineS += m.getLabel() + ": " + m.getTeamA().getTag() + " VS " + m.getTeamB().getTag() + "\t\t";
+				}
+				bracketLineS += "\n";
+				s += bracketLineS;
+			}
+			s += Strings.MediumLineBreak + "\n";
 		}
 		
+		Set<Entry<String, BracketSection>> set = bracketSections.entrySet();
+		List<Series> series = new ArrayList<Series>();
+		for (Entry<String, BracketSection> entry : set) {
+			List<Series> seriesList = entry.getValue().getSeriesList();
+			for (int i = 0; i < seriesList.size(); i++) {
+				series.add(seriesList.get(i));
+			}
+		}
+		sortListByLabel(series);
+		
+		int x = 0;
 		for (int i = 0; i < series.size(); i++) {
 			Series m = series.get(i);
 			
@@ -141,8 +191,7 @@ public abstract class Bracket extends TournamentComponent {
 					seenTeams.add(b);
 				}
 			}
-			
-			if (x == series.size() - 1) {
+			if (x == bracketSections.size() - 1) {
 				s += "\n" + m.toString();
 			} else {
 				s += "\n" + m.toString() + "\n";
@@ -150,6 +199,16 @@ public abstract class Bracket extends TournamentComponent {
 			}
 			x++;
 		}
+		
 		return s;
+	}
+	
+	private void sortListByLabel(List<Series> seriesList) {
+		seriesList.sort(new Comparator<Series>() {
+			@Override
+			public int compare(Series lhs, Series rhs) {
+				return lhs.getLabel() < rhs.getLabel() ? -1 : (lhs.getLabel() < rhs.getLabel()) ? 1 : 0;
+			}
+		});
 	}
 }

@@ -2,6 +2,7 @@ package LCS;
 
 import java.util.List;
 
+import Classes.BracketSection;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
@@ -29,14 +30,28 @@ public class MidSeasonShowdown extends Bracket {
 		// Set Groups
 		Group A = groups.get(0);
 		
-		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WR1), "M1", 5, tracker);
-		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WR1), "M2", 5, tracker);
-		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR1), "M3", 5, tracker);
-		Series M4 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR1), "M4", 5, tracker);
-		Series M5 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WR2), "M5", 5, tracker);
-		Series M6 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR2), "M6", 5, tracker);
-		Series M7 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR3), "M7", 5, tracker);
-		Series M8 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.GFS), "M8", 5, tracker);
+		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S1);
+		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2);
+		String s3 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S3);
+		String fs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS);
+		
+		BracketSection S1 = new BracketSection(s1);
+		BracketSection S2 = new BracketSection(s2);
+		BracketSection S3 = new BracketSection(s3);
+		BracketSection S4 = new BracketSection(fs);
+		
+		Series M1 = new Series(1, 5, tracker);
+		Series M2 = new Series(2, 5, tracker);
+		Series M3 = new Series(3, 5, tracker);
+		Series M4 = new Series(4, 5, tracker);
+		S1.addSeries(M1, M2, M3, M4);
+		Series M5 = new Series(5, 5, tracker);
+		Series M6 = new Series(6, 5, tracker);
+		S2.addSeries(M5, M6);
+		Series M7 = new Series(7, 5, tracker);
+		S3.addSeries(M7);
+		Series M8 = new Series(8, 5, tracker);
+		S4.addSeries(M8);
 		
 		M1.setTeamA(A.GetTeamFromPlacement(1));
 		M1.setTeamB(A.GetTeamFromPlacement(4));
@@ -68,7 +83,7 @@ public class MidSeasonShowdown extends Bracket {
 		M8.Simulate();
 		
 		// General Tracking Stuff
-		super.addSeries(M1, M2, M3, M4, M5, M6, M7, M8);
+		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M8);
 	}
 }

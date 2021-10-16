@@ -44,33 +44,8 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 		
 		SimulateCurrentGroupStage(groups);
 		
-		// Place Teams
-		eots.PlaceTeam(A.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(B.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(C.GetTeamFromPlacement(4), 16);
-		eots.PlaceTeam(D.GetTeamFromPlacement(4), 16);
-		//
-		eots.PlaceTeam(A.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(B.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(C.GetTeamFromPlacement(3), 12);
-		eots.PlaceTeam(D.GetTeamFromPlacement(3), 12);
-		//
-		
 		// Simulate Knockout Stage
 		SimulateCurrentDrawKO(groups);
-		
-		// Place Teams
-		eots.PlaceTeam(MKnockoutBracket.getSeries(1).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(2).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(3).getLoser(), 8);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(4).getLoser(), 8);
-		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(5).getLoser(), 4);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(6).getLoser(), 4);
-		//
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getLoser(), 2);
-		eots.PlaceTeam(MKnockoutBracket.getSeries(7).getWinner(), 1);
-		//
 		
 		ConcludeTournament();
 	}

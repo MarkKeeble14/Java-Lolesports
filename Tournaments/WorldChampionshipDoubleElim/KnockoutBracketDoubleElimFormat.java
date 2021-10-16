@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Classes.BracketSection;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
@@ -50,24 +51,41 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		Pool poolThree = new Pool(Strings.LPoolThree, A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), 
 				C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
 		
-		Series M1 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34), "M1", 3, tracker);
-		Series M2 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34), "M2", 3, tracker);
-		Series M3 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34), "M3", 3, tracker);
-		Series M4 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34), "M4", 3, tracker);
-		Series M5 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WQFS), "M5", 5, tracker);
-		Series M6 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WQFS), "M6", 5, tracker);
-		Series M7 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WQFS), "M7", 5, tracker);
-		Series M8 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WQFS), "M8", 5, tracker);
-		Series M9 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR1), "M9", 5, tracker);
-		Series M10 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR1), "M10", 5, tracker);
-		Series M11 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WSFS), "M11", 5, tracker);
-		Series M12 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WSFS), "M12", 5, tracker);
-		Series M13 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR2), "M13", 5, tracker);
-		Series M14 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR2), "M14", 5, tracker);
-		Series M15 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.WFS), "M15", 5, tracker);
-		Series M16 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LR3), "M16", 5, tracker);
-		Series M17 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.LFS), "M17", 7, tracker);
-		Series M18 = new Series(Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.GFS), "M18", 7, tracker);
+		String r3vs4 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34);
+		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S1);
+		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2);
+		String s3 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S3);
+		String s4 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S4);
+		
+		BracketSection S1 = new BracketSection(r3vs4);
+		BracketSection S2 = new BracketSection(s1);
+		BracketSection S3 = new BracketSection(s2);
+		BracketSection S4 = new BracketSection(s3);
+		BracketSection S5 = new BracketSection(s4);
+		
+		Series M1 = new Series(1, 3, tracker);
+		Series M2 = new Series(2, 3, tracker);
+		Series M3 = new Series(3, 3, tracker);
+		Series M4 = new Series(4, 3, tracker);
+		S1.addSeries(M1, M2, M3, M4);
+		Series M5 = new Series(5, 5, tracker);
+		Series M6 = new Series(6, 5, tracker);
+		Series M7 = new Series(7, 5, tracker);
+		Series M8 = new Series(8, 5, tracker);
+		Series M9 = new Series(9, 5, tracker);
+		Series M10 = new Series(10, 5, tracker);
+		S2.addSeries(M5, M6, M7, M8, M9, M10);
+		Series M11 = new Series(11, 5, tracker);
+		Series M12 = new Series(12, 5, tracker);
+		Series M13 = new Series(13, 5, tracker);
+		Series M14 = new Series(14, 5, tracker);
+		S3.addSeries(M11, M12, M13, M14);
+		Series M15 = new Series(15, 5, tracker);
+		Series M16 = new Series(16, 5, tracker);
+		S4.addSeries(M15, M16);
+		Series M17 = new Series(17, 7, tracker);
+		Series M18 = new Series(18, 7, tracker);
+		S5.addSeries(M18, M17);
 		
 		// Defining certain regions of the bracket
 		ArrayList<Series> upperMatchups = new ArrayList<Series>(Arrays.asList(M1, M2, M3, M4));
@@ -153,7 +171,7 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		standings.PlaceTeam(M18.getLoser(), 2);
 		standings.PlaceTeam(M18.getWinner(), 1);
 		
-		super.addSeries(M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18);
+		super.addBracketSections(S1, S2, S3, S4, S5);
 		super.setChampionshipSeries(M18);
 	}
 }
