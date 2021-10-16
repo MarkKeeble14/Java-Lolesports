@@ -11,11 +11,13 @@ import Teams.Team;
 
 public class BracketSection {
 	private String label;
+	private int order;
 	private List<Series> series = new ArrayList<Series>();
 	
-	public BracketSection(String label) {
+	public BracketSection(String label, int order) {
 		super();
 		this.label = label;
+		this.order = order;
 	}
 
 	private void addSeries(Series s) {
@@ -41,6 +43,11 @@ public class BracketSection {
 	public String getLabel() {
 		return label;
 	}
+	
+	public int getOrder() {
+		return order;
+	}
+	
 	
 	public List<Series> getSeriesList() {
 		return series;

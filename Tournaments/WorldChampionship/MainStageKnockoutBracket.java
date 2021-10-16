@@ -48,13 +48,9 @@ public class MainStageKnockoutBracket extends Bracket {
 		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), 
 				C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
 		
-		String qfs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.QFS);
-		String sfs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.SFS);
-		String fs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS);
-		
-		BracketSection S1 = new BracketSection(qfs);
-		BracketSection S2 = new BracketSection(sfs);
-		BracketSection S3 = new BracketSection(fs);
+		BracketSection S1 = new BracketSection(Strings.QFS, 1);
+		BracketSection S2 = new BracketSection(Strings.SFS, 2);
+		BracketSection S3 = new BracketSection(Strings.FS, 3);
 		
 		Series M1 = new Series(1, 5, tracker);
 		Series M2 = new Series(2, 5, tracker);

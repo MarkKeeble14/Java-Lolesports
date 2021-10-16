@@ -16,6 +16,7 @@ import LEC.SpringLEC;
 import LEC.SummerLEC;
 import MSI.TournamentMSI;
 import Misc.DriverType;
+import Misc.ELO_SCALING_TYPE;
 import Misc.GlobalVariables;
 import Misc.MapUtil;
 import Misc.Strings;
@@ -46,15 +47,15 @@ public class DomesticDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		GlobalVariables.setCurrentDriver(DriverType.Domestic);
+		GlobalVariables.setEloScaling(ELO_SCALING_TYPE.RIGID);
 		
 		// LoopTournament(numberOfSims);
 		
-		SimulateLockinLCS().PrintInfo(true, false, true, true);
+		// SimulateLockinLCS().PrintInfo(true, false, true, true);
 		// SimulateSpringLCS().PrintInfo(true, false, true, true);
 		// SimulateSummerLCS().PrintInfo(true, false, true, true);
 		
-		// SimulateSpringLEC().PrintInfo(true, false, true, true);
+		SimulateSpringLEC().PrintInfo(true, false, true, true);
 		// SimulateSummerLEC().PrintInfo(true, false, true, true);
 	}
 	

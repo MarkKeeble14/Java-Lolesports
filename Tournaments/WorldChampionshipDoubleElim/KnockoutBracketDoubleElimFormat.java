@@ -51,17 +51,11 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		Pool poolThree = new Pool(Strings.LPoolThree, A.GetTeamFromPlacement(3), B.GetTeamFromPlacement(3), 
 				C.GetTeamFromPlacement(3), D.GetTeamFromPlacement(3));
 		
-		String r3vs4 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.R34);
-		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S1);
-		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2);
-		String s3 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S3);
-		String s4 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S4);
-		
-		BracketSection S1 = new BracketSection(r3vs4);
-		BracketSection S2 = new BracketSection(s1);
-		BracketSection S3 = new BracketSection(s2);
-		BracketSection S4 = new BracketSection(s3);
-		BracketSection S5 = new BracketSection(s4);
+		BracketSection S1 = new BracketSection(Strings.R34, 1);
+		BracketSection S2 = new BracketSection(Strings.S1, 2);
+		BracketSection S3 = new BracketSection(Strings.S2, 3);
+		BracketSection S4 = new BracketSection(Strings.S3, 4);
+		BracketSection S5 = new BracketSection(Strings.FS, 5);
 		
 		Series M1 = new Series(1, 3, tracker);
 		Series M2 = new Series(2, 3, tracker);

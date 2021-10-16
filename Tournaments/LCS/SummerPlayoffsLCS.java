@@ -29,17 +29,11 @@ public class SummerPlayoffsLCS extends Bracket {
 		// Set Groups
 		Group A = groups.get(0);
 		
-		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S1);
-		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2);
-		String s3 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S3);
-		String s4 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S4);
-		String fs = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.FS);
-		
-		BracketSection S1 = new BracketSection(s1);
-		BracketSection S2 = new BracketSection(s2);
-		BracketSection S3 = new BracketSection(s3);
-		BracketSection S4 = new BracketSection(s4);
-		BracketSection S5 = new BracketSection(fs);
+		BracketSection S1 = new BracketSection(Strings.S1, 1);
+		BracketSection S2 = new BracketSection(Strings.S2, 2);
+		BracketSection S3 = new BracketSection(Strings.S3, 3);
+		BracketSection S4 = new BracketSection(Strings.S4, 4);
+		BracketSection S5 = new BracketSection(Strings.FS, 5);
 		
 		Series M1 = new Series(1, 5, tracker);
 		Series M2 = new Series(2, 5, tracker);

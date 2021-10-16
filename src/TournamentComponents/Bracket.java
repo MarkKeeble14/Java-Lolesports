@@ -1,6 +1,7 @@
 package TournamentComponents;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -110,54 +111,19 @@ public abstract class Bracket extends TournamentComponent {
 	public String toString() {
 		String s = "";
 		
-		if (GlobalVariables.PRINT_BRACKET_SUMMARY) {
-			s += "\nBracket Summary";
-			s += "\n" + Strings.SmallLineBreak + "\n";
-			
-			Set<Entry<String, BracketSection>> set = bracketSections.entrySet();
-			Map<Integer, List<Series>> map = new HashMap<Integer, List<Series>>();
-			for (Entry<String, BracketSection> entry : set) {
-				List<Series> seriesList = entry.getValue().getSeriesList();
-				for (int i = 0; i < seriesList.size(); i++) {
-					if (map.get(i) == null) {
-						List<Series> nList = new ArrayList<Series>();
-						nList.add(seriesList.get(i));
-						map.put(i, nList);
-					} else {
-						List<Series> nList = map.get(i);
-						nList.add(seriesList.get(i));
-						map.put(i, nList);
-					}
-				}
-			}
-			Set<Entry<Integer, List<Series>>> set2 = map.entrySet();
-			for (Entry<Integer, List<Series>> entry : set2) {
-				String bracketLineS = "\n";
-				List<Series> seriesList = entry.getValue();
-				sortListByLabel(seriesList);
-				for (int i = 0; i < seriesList.size(); i++) {
-					Series m = seriesList.get(i);
-					bracketLineS += m.getLabel() + ": " + m.getTeamA().getTag() + " VS " + m.getTeamB().getTag() + "\t\t";
-				}
-				bracketLineS += "\n";
-				s += bracketLineS;
-			}
-			s += Strings.MediumLineBreak + "\n";
-		}
-		
 		Set<Entry<String, BracketSection>> set = bracketSections.entrySet();
-		List<Series> series = new ArrayList<Series>();
+		List<Series> listOfSeries = new ArrayList<Series>();
 		for (Entry<String, BracketSection> entry : set) {
 			List<Series> seriesList = entry.getValue().getSeriesList();
 			for (int i = 0; i < seriesList.size(); i++) {
-				series.add(seriesList.get(i));
+				listOfSeries.add(seriesList.get(i));
 			}
 		}
-		sortListByLabel(series);
+		sortSLListByLabel(listOfSeries);
 		
 		int x = 0;
-		for (int i = 0; i < series.size(); i++) {
-			Series m = series.get(i);
+		for (int i = 0; i < listOfSeries.size(); i++) {
+			Series m = listOfSeries.get(i);
 			
 			if (GlobalVariables.PRINT_QUALIFICATION_REASONS && teamsQThroughLabel != "") {
 				Team a = m.getTeamA();
@@ -191,7 +157,7 @@ public abstract class Bracket extends TournamentComponent {
 					seenTeams.add(b);
 				}
 			}
-			if (x == bracketSections.size() - 1) {
+			if (x == listOfSeries.size() - 1) {
 				s += "\n" + m.toString();
 			} else {
 				s += "\n" + m.toString() + "\n";
@@ -200,14 +166,91 @@ public abstract class Bracket extends TournamentComponent {
 			x++;
 		}
 		
+		// PRINTING BRACKET SUMMARY
+		if (GlobalVariables.PRINT_BRACKET_SUMMARY) {
+			s += "\n" + Strings.LargeLineBreak + "\n\nBracket Summary";
+			s += "\n" + Strings.SmallLineBreak + "\n" + "\n";
+			
+			int mostEntriesVertical = 0;
+			int horizontalEntries = 0;
+			Object[] toConv = bracketSections.values().toArray();
+			List<BracketSection> convSections = convertObjectArrayToBracketSectionList(toConv);			
+			sortBSListByLabel(convSections);
+			
+			for (int i = 0; i < convSections.size(); i++) {
+				List<Series> seriesList = convSections.get(i).getSeriesList();
+				if (seriesList.size() > mostEntriesVertical) {
+					mostEntriesVertical = seriesList.size();
+				}
+				horizontalEntries++;
+			}
+			
+			Series[][] bracketSummary = new Series[horizontalEntries][mostEntriesVertical];
+			int y = 0;
+			for (int i = 0; i < convSections.size(); i++) {
+				BracketSection bs = convSections.get(i);
+				List<Series> seriesList = bs.getSeriesList();
+				for (int p = 0; p < seriesList.size(); p++) {
+					int xIndex = y;
+					int yIndex = p;
+					bracketSummary[xIndex][yIndex] = seriesList.get(p);
+				}
+				y++;
+			}
+			
+			
+			for (int i = 0; i < convSections.size(); i++) {
+				BracketSection bs = convSections.get(i);
+				s += String.format(Strings.BracketSeriesFormatSingle, bs.getLabel()); 
+			}
+			s += "\n";
+			
+			int q = 0;
+			while (q < mostEntriesVertical) {
+				for (int p = 0; p < horizontalEntries; p++) {
+					Series[] column = bracketSummary[p];
+					Series series = column[q];
+					if (series != null) {
+						s += String.format(Strings.BracketSeriesFormatSingle, 
+								series.getTeamA().getTag() + " : " + series.getTeamB().getTag());
+					} else {
+						s += String.format(Strings.BracketSeriesFormatSingle, ""); 
+					}
+					if (p == horizontalEntries - 1) {
+						q++;
+						s += "\n";
+					}
+				}	
+			}
+			s += Strings.MediumLineBreak + "\n";
+		}
+		// PRINTING BRACKET SUMMARY
+		
 		return s;
 	}
 	
-	private void sortListByLabel(List<Series> seriesList) {
+	private void sortSLListByLabel(List<Series> seriesList) {
 		seriesList.sort(new Comparator<Series>() {
 			@Override
 			public int compare(Series lhs, Series rhs) {
 				return lhs.getLabel() < rhs.getLabel() ? -1 : (lhs.getLabel() < rhs.getLabel()) ? 1 : 0;
+			}
+		});
+	}
+	
+	private List<BracketSection> convertObjectArrayToBracketSectionList(Object[] toConv) {
+		List<BracketSection> res = new ArrayList<BracketSection>();
+		for (int i = 0; i < toConv.length; i++) {
+			res.add((BracketSection)toConv[i]);
+		}
+		return res;
+	}
+	
+	private void sortBSListByLabel(List<BracketSection> sections) {
+		sections.sort(new Comparator<BracketSection>() {
+			@Override
+			public int compare(BracketSection lhs, BracketSection rhs) {
+				return lhs.getOrder() < rhs.getOrder() ? -1 : (lhs.getOrder() < rhs.getOrder()) ? 1 : 0;
 			}
 		});
 	}

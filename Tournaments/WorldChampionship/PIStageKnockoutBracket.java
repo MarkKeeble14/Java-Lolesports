@@ -35,11 +35,8 @@ public class PIStageKnockoutBracket extends Bracket {
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		EOTStandings standings = super.getPartOf().getEots();
 		
-		String s1 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S1);
-		String s2 = Strings.Concat(Strings.BasicBridgeWSpace, super.getLabel(), Strings.S2);
-		
-		BracketSection S1 = new BracketSection(s1);
-		BracketSection S2 = new BracketSection(s2);
+		BracketSection S1 = new BracketSection(Strings.S1, 1);
+		BracketSection S2 = new BracketSection(Strings.S2, 2);
 		
 		// Set Groups
 		Group A = groups.get(0);

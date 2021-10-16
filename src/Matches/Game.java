@@ -163,7 +163,7 @@ public class Game extends Matchup {
 	public String getMatchDetails() {
 		String s = "";
 		
-		s += stageLabel + ": " + matchLabel + " - " + teamA + " VS " + teamB + "\n";
+		s += matchLabel + ": " + stageLabel + " - " + teamA + " VS " + teamB + "\n";
 		
 		DecimalFormat df = new DecimalFormat("00.00");
 		

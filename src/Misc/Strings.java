@@ -20,6 +20,7 @@ public class Strings {
 	public static final String RecordTableFormat = "%-50s %-10s %-12s %-20s%n";
 	public static final String TableFormat = "%-15s %-7s %-12s %-20s%n";
 	public static final String StandingFormat = "%-50s %-20s";
+	public static final String BracketSeriesFormatSingle = "%-20s";
 	
 	// Stages
 	public static final String PIGD = "PI Group Draw";
@@ -49,7 +50,7 @@ public class Strings {
 	public static final String S4 = "Stage 4";
 	public static final String S5 = "Stage 5";
 	
-	public static final String R34 = "Round of Two VS Three";
+	public static final String R34 = "Two VS Three";
 	public static final String WQFS = "Winners Quarterfinals";
 	public static final String WSFS = "Winners Semifinals";
 	public static final String WFS = "Winners Finals";
@@ -109,6 +110,14 @@ public class Strings {
 			s += bridge + strings[i];
 		}
 		
+		return s;
+	}
+	
+	public static String GetFormat(int entries) {
+		String s = "";
+		for (int i = 0; i < entries; i++) {
+			s += BracketSeriesFormatSingle;
+		}
 		return s;
 	}
 }

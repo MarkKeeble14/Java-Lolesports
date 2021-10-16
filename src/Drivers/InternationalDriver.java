@@ -11,6 +11,7 @@ import Classes.Pool;
 import Classes.Tournament;
 import MSI.TournamentMSI;
 import Misc.DriverType;
+import Misc.ELO_SCALING_TYPE;
 import Misc.GlobalVariables;
 import Misc.MapUtil;
 import Misc.Strings;
@@ -35,14 +36,14 @@ public class InternationalDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		GlobalVariables.setCurrentDriver(DriverType.International);
+		GlobalVariables.setEloScaling(ELO_SCALING_TYPE.WACKY);
 		
-		SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		// SimulateStandardWC().PrintInfo(true, false, false, false);
+		// SimulateCurrentWorldsState().PrintInfo(false, false, false, true);
+		SimulateStandardWC().PrintInfo(false, false, false, true);
 		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
-		// Simulate2VS3WC().PrintInfo(true, true, true, true);
+		// Simulate2VS3WC().PrintInfo(false, false, false, true);
 		
-		// SimulateStandardMSI().PrintInfo(true, true, true, true);
+		// SimulateStandardMSI().PrintInfo(false, false, false, true);
 		
 		// LoopTournament(numberOfSims);
 	}
