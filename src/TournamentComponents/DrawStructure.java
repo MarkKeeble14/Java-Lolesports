@@ -2,11 +2,8 @@ package TournamentComponents;
 
 import java.util.List;
 
-import Classes.Group;
-import Classes.Pool;
-import Classes.Tournament;
-import Misc.Strings;
-import Misc.Util;
+import StaticVariables.Strings;
+import Utility.Util;
 
 public abstract class DrawStructure extends TournamentComponent {
 	private List<Group> groups;

@@ -5,14 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Classes.Group;
-import Classes.Tournament;
+import DefiningMatches.Game;
+import DefiningTeams.Team;
 import Drivers.DomesticDriver;
-import Matches.Game;
-import Misc.Strings;
-import Misc.Util;
-import Teams.Team;
-import Misc.GlobalVariables;
+import StaticVariables.Settings;
+import StaticVariables.Strings;
+import Utility.Util;
 
 public abstract class GroupStage extends TournamentComponent {
 	private List<Group> groups;
@@ -78,7 +76,7 @@ public abstract class GroupStage extends TournamentComponent {
 			x++;
 		}
 		
-		if (GlobalVariables.PRINT_GROUP_STAGE_SUMMARY) {
+		if (Settings.PRINT_GROUP_STAGE_SUMMARY) {
 			s += Strings.MediumLineBreak + "\n\n";
 			s += "Summary\n";
 			s += Strings.MediumLineBreak + "\n";

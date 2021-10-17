@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Tournaments"/>
+	<classpathentry kind="src" path="tournaments"/>
+	<classpathentry kind="src" path="drivers"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
