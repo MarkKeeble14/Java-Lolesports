@@ -81,4 +81,10 @@ public class MidSeasonShowdown extends Bracket {
 		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M8);
 	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

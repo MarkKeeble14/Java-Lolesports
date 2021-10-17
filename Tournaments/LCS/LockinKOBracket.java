@@ -86,4 +86,9 @@ public class LockinKOBracket extends Bracket {
 		super.addBracketSections(S1, S2, S3);
 		super.setChampionshipSeries(M7);
 	}
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

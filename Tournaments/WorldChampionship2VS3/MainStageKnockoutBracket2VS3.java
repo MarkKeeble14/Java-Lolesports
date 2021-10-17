@@ -127,4 +127,10 @@ public class MainStageKnockoutBracket2VS3 extends Bracket {
 		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M11);
 	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

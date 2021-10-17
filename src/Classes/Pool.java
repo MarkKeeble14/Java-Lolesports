@@ -286,6 +286,12 @@ public class Pool {
 		teams.add(t);
 	}
 	
+	public void Add(List<Team> t) {
+		for (Team team : t) {
+			teams.add(team);
+		}
+	}
+	
 	public void Remove(Team t) {
 		teams.remove(t);
 	}

@@ -87,4 +87,10 @@ public class PlayoffsLEC extends Bracket {
 		super.setChampionshipSeries(M8);
 	}
 
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

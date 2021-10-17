@@ -73,4 +73,10 @@ public class KnockoutBracket extends Bracket {
 		super.addBracketSections(S1, S2);
 		super.setChampionshipSeries(M3);
 	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

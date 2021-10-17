@@ -23,6 +23,7 @@ import WorldChampionship.TournamentWorldChampionship;
 import WorldChampionship2VS3.TournamentWorldChampionship2VS3;
 import WorldChampionshipCurrentState.CurrentStateOfTournamentWorldChampionship;
 import WorldChampionshipDoubleElim.TournamentWorldChampionshipDoubleElim;
+import WorldChampionshipLong.TournamentWorldChampionshipLongFormat;
 
 public class InternationalDriver {
 	// Variables / Tuning
@@ -38,14 +39,40 @@ public class InternationalDriver {
 	public static void main(String[] args) throws Exception {
 		GlobalVariables.setEloScaling(ELO_SCALING_TYPE.REASONABLE);
 		
-		SimulateCurrentWorldsState().PrintInfo(false, false, false, true);
+		// SimulateCurrentWorldsState().PrintInfo(false, false, false, true);
 		// SimulateStandardWC().PrintInfo(false, false, false, true);
 		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
 		// Simulate2VS3WC().PrintInfo(false, false, false, true);
 		
 		// SimulateStandardMSI().PrintInfo(false, false, false, true);
 		
+		SimulateMyFormatWC().PrintInfo(true, true, true, true);
+		
 		// LoopTournament(numberOfSims);
+	}
+
+	private static List<Pool> getMyFormatPools() {
+		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.EDG), new RatingDefinedTeam(Teams.DK),
+				new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.O100T)); 
+		
+		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.FPX), new RatingDefinedTeam(Teams.GEN), 
+				new RatingDefinedTeam(Teams.FNC), new RatingDefinedTeam(Teams.PSG));
+		
+		Pool P3 = new Pool(Strings.LPoolThree, new RatingDefinedTeam(Teams.RNG), new RatingDefinedTeam(Teams.T1), 
+				new RatingDefinedTeam(Teams.TL), new RatingDefinedTeam(Teams.GAM)); 
+		
+		Pool P4 = new Pool(Strings.LPoolFour, new RatingDefinedTeam(Teams.RGE), new RatingDefinedTeam(Teams.C9));
+		
+		Pool PI1 = new Pool(Strings.LPIPoolOne, new RatingDefinedTeam(Teams.LNG), new RatingDefinedTeam(Teams.HLE), 
+				new RatingDefinedTeam(Teams.G2), new RatingDefinedTeam(Teams.TSM), 
+				new RatingDefinedTeam(Teams.BYG), new RatingDefinedTeam(Teams.JT), 
+				new RatingDefinedTeam(Teams.SGB), new RatingDefinedTeam(Teams.TS));
+		
+		Pool PI2 = new Pool(Strings.LPIPoolTwo, new RatingDefinedTeam(Teams.INF), new RatingDefinedTeam(Teams.GS), 
+				new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PCE),
+				new RatingDefinedTeam(Teams.RED), new RatingDefinedTeam(Teams.DFM));
+		
+		return new ArrayList<Pool>(Arrays.asList(PI1, PI2, P1, P2, P3, P4));
 	}
 	
 	private static List<Pool> get2021WCPools() {
@@ -61,6 +88,13 @@ public class InternationalDriver {
 		Pool P1 = new Pool(Strings.LPoolOne, new RatingDefinedTeam(Teams.RNG), new RatingDefinedTeam(Teams.DK), new RatingDefinedTeam(Teams.PSG), new RatingDefinedTeam(Teams.C9), new RatingDefinedTeam(Teams.MAD), new RatingDefinedTeam(Teams.GAM)); 
 		Pool P2 = new Pool(Strings.LPoolTwo, new RatingDefinedTeam(Teams.PGG), new RatingDefinedTeam(Teams.UOL), new RatingDefinedTeam(Teams.PNG), new RatingDefinedTeam(Teams.IW), new RatingDefinedTeam(Teams.DFM), new RatingDefinedTeam(Teams.INF));
 		return new ArrayList<Pool>(Arrays.asList(P1, P2));
+	}
+	
+	private static Tournament SimulateMyFormatWC() throws Exception {
+		Tournament WC = new TournamentWorldChampionshipLongFormat(Strings.LWC);
+		List<Pool> pools = getMyFormatPools();
+		WC.Simulate(pools);
+		return WC;
 	}
 	
 	// Simulates an Entire Tournament

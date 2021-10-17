@@ -1,14 +1,15 @@
-package WorldChampionship;
+package WorldChampionshipLong;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Classes.BracketSection;
 import Classes.Group;
 import Classes.Pool;
 import Classes.Tournament;
-import Classes.BracketSection;
 import CustomExceptions.MismatchedNumberOfGroupsException;
+import Matches.Game;
 import Matches.Series;
 import Misc.Strings;
 import StatsTracking.EOTStandings;
@@ -16,24 +17,23 @@ import StatsTracking.RegionalWLTracker;
 import Teams.Team;
 import TournamentComponents.Bracket;
 
-// 4 Group Bracket
-public class MainStageKnockoutBracket extends Bracket {
-	public MainStageKnockoutBracket(String label, Tournament partOf) {
+// 4 Group Double Elim Bracket
+public class FinalEliminationKnockoutBracket extends Bracket {
+	public FinalEliminationKnockoutBracket(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public MainStageKnockoutBracket(String label, Tournament tournamentWorldChampionship, String msgs) {
-		super(label, tournamentWorldChampionship, msgs);
+	public FinalEliminationKnockoutBracket(String label, Tournament partOf, String fedThrough) {
+		super(label, partOf, fedThrough);
 	}
-
+	
 	int requiredNumberOfGroups = 4;
 	
-	@Override
 	public void Simulate(List<Group> groups) throws Exception {
-		if (groups.size() != requiredNumberOfGroups) {
-			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
-		}
-		
+	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
 		RegionalWLTracker tracker = super.getPartOf().getT();
 		EOTStandings standings = super.getPartOf().getEots();
 		
@@ -43,10 +43,11 @@ public class MainStageKnockoutBracket extends Bracket {
 		Group C = groups.get(2);
 		Group D = groups.get(3);
 		
-		Pool poolOne = new Pool(Strings.LPoolOne, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), 
+		Pool poolOne = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), 
 				C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
-		Pool poolTwo = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(2), B.GetTeamFromPlacement(2), 
-				C.GetTeamFromPlacement(2), D.GetTeamFromPlacement(2));
+		
+		Pool poolTwo = new Pool(Strings.LPoolOne, b.getSeries(5).getWinner(), b.getSeries(6).getWinner(), 
+				b.getSeries(7).getWinner(), b.getSeries(8).getWinner());
 		
 		BracketSection S1 = new BracketSection(Strings.QFS, 1);
 		BracketSection S2 = new BracketSection(Strings.SFS, 2);
@@ -70,10 +71,10 @@ public class MainStageKnockoutBracket extends Bracket {
 		M3.setTeamA(poolOne.Draw());
 		M4.setTeamA(poolOne.Draw());
 		
-		M1.setTeamB(poolTwo.DrawWithSameSideRule(M1, M2, poolTwo, new ArrayList<Team>(), matches, groups));
-		M2.setTeamB(poolTwo.DrawWithSameSideRule(M2, M1, poolTwo, new ArrayList<Team>(), matches, groups));
-		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
-		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
+		M1.setTeamB(poolTwo.DrawWithSameMatchRule(M1,  poolTwo, new ArrayList<Team>(), matches, groups));
+		M2.setTeamB(poolTwo.DrawWithSameMatchRule(M2, poolTwo, new ArrayList<Team>(), matches, groups));
+		M3.setTeamB(poolTwo.DrawWithSameMatchRule(M3, poolTwo, new ArrayList<Team>(), matches, groups));
+		M4.setTeamB(poolTwo.DrawWithSameMatchRule(M4, poolTwo, new ArrayList<Team>(), matches, groups));
 				
 		M1.Simulate();
 		M2.Simulate();
@@ -106,11 +107,4 @@ public class MainStageKnockoutBracket extends Bracket {
 		super.addBracketSections(S1, S2, S3);
 		super.setChampionshipSeries(M7);
 	}
-
-	@Override
-	public void Simulate(Bracket b, List<Group> groups) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

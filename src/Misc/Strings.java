@@ -68,6 +68,7 @@ public class Strings {
 	public static final String LPoolOne = "Pool One";
 	public static final String LPoolTwo = "Pool Two";
 	public static final String LPoolThree = "Pool Three";
+	public static final String LPoolFour = "Pool Four";
 	public static final String LPIPoolOne = "PI - Pool One";
 	public static final String LPIPoolTwo = "PI - Pool Two";
 	public static final String LQualifiedPI = "Qualified Through PI";
@@ -102,6 +103,7 @@ public class Strings {
 	
 	public static final String LCSPlayoffs = "LCS Playoffs";
 	public static final String LECPlayoffs = "LEC Playoffs";
+	public static final String FSKS = "Final Elimination Bracket";
 	
 	public static String Concat(String bridge, String... strings) {
 		String s = strings[0];

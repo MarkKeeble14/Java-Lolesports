@@ -51,6 +51,8 @@ public abstract class Bracket extends TournamentComponent {
 
 	public abstract void Simulate(List<Group> groups) throws Exception;
 	
+	public abstract void Simulate(Bracket b, List<Group> groups) throws Exception;
+	
 	public BracketSection getBracketSection(String label) {
 		return bracketSections.get(label);
 	}

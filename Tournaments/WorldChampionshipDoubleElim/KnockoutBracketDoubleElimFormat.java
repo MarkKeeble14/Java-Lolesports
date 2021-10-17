@@ -168,4 +168,10 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		super.addBracketSections(S1, S2, S3, S4, S5);
 		super.setChampionshipSeries(M18);
 	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

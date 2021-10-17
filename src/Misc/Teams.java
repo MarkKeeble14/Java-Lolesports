@@ -38,9 +38,12 @@ public class Teams {
 	public static final Team PSG = new RatingDefinedTeam("PSG", Region.SEA, 5.131);
 	public static final Team BYG = new RatingDefinedTeam("BYG", Region.SEA, 3.385);
 	public static final Team MCX = new RatingDefinedTeam("MCX", Region.SEA, 1.552);
+	public static final Team JT = new RatingDefinedTeam("JT", Region.SEA, 2.345);
 	
 	// VCS
 	public static final Team GAM = new RatingDefinedTeam("GAM", Region.VIET, 3.542);
+	public static final Team TS = new RatingDefinedTeam("TS", Region.VIET, 2.234);
+	public static final Team SGB = new RatingDefinedTeam("SGB", Region.VIET, 2.596);
 	
 	// LLA
 	public static final Team INF = new RatingDefinedTeam("INF", Region.LAN, 2.425);

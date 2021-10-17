@@ -95,4 +95,10 @@ public class SummerPlayoffsLCS extends Bracket {
 		super.setChampionshipSeries(M12);
 	}
 
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
