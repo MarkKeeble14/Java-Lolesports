@@ -106,6 +106,7 @@ public abstract class Bracket extends TournamentComponent {
 		return partOf;
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public String toString() {
 		String s = "";
@@ -156,13 +157,19 @@ public abstract class Bracket extends TournamentComponent {
 					seenTeams.add(b);
 				}
 			}
-			if (x == listOfSeries.size() - 1) {
-				s += "\n" + m.toString();
-			} else {
-				s += "\n" + m.toString() + "\n";
-				s += Strings.SmallLineBreak + "\n";
+			if (Settings.PRINT_SERIES_SUMMARY) {
+				if (x == listOfSeries.size() - 1) {
+					s += "\n" + m.toString();
+				} else {
+					s += "\n" + m.toString() + "\n";
+					s += Strings.SmallLineBreak + "\n";
+				}	
 			}
 			x++;
+		}
+		
+		if (!Settings.PRINT_SERIES_SUMMARY) {
+			s += "\nPrint Bracket Summary set to false";
 		}
 		
 		// PRINTING BRACKET SUMMARY
@@ -171,7 +178,7 @@ public abstract class Bracket extends TournamentComponent {
 			s += "\n" + Strings.SmallLineBreak + "\n" + "\n";
 			
 			int mostEntriesVertical = 0;
-			int horizontalEntries = 0;
+			int horizontalEntries = 1;
 			Object[] toConv = bracketSections.values().toArray();
 			List<BracketSlice> convSections = convertObjectArrayToBracketSectionList(toConv);			
 			sortBSListByLabel(convSections);
@@ -202,9 +209,12 @@ public abstract class Bracket extends TournamentComponent {
 				BracketSlice bs = convSections.get(i);
 				s += String.format(Strings.BracketSeriesFormatSingle, bs.getStageLabel()); 
 			}
+			s += String.format(Strings.BracketSeriesFormatSingle, Strings.WNNRS);
 			s += "\n";
 			
 			int q = 0;
+			BracketSlice lastSlice = convSections.get(convSections.size() - 1);
+			List<Series> lastSliceSeries = lastSlice.getSeriesList();
 			while (q < mostEntriesVertical) {
 				for (int p = 0; p < horizontalEntries; p++) {
 					Series[] column = bracketSummary[p];
@@ -212,6 +222,12 @@ public abstract class Bracket extends TournamentComponent {
 					if (series != null) {
 						s += String.format(Strings.BracketSeriesFormatSingle, 
 								series.getTeamA().getTag() + " : " + series.getTeamB().getTag());
+					} else if (p == horizontalEntries - 1) {
+						if (q < lastSliceSeries.size()) {
+							s += String.format(Strings.BracketSeriesFormatSingle, lastSliceSeries.get(q).getWinner().getTag()); 
+						} else {
+							s += String.format(Strings.BracketSeriesFormatSingle, ""); 	
+						}
 					} else {
 						s += String.format(Strings.BracketSeriesFormatSingle, ""); 
 					}

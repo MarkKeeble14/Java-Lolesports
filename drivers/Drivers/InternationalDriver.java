@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import DefiningTeams.RatingDefinedTeam;
 import DefiningTeams.Team;
-import Enums.DRIVER_TYPE;
 import Enums.ELO_SCALING_TYPE;
 import MSI.TournamentMSI;
 import StaticVariables.Settings;
@@ -26,16 +25,23 @@ import WorldChampionshipDoubleElim.TournamentWorldChampionshipDoubleElim;
 import WorldChampionshipLong.TournamentWorldChampionshipLongFormat;
 
 public class InternationalDriver {
-	// 100,000 Too High
-	// 10,000 ~4 Seconds
+	// Worlds
+	// Current State - 		100,000 	~10 Seconds
+	// Standard - 			10,000		~4-5 Seconds
+	// DoubleElim - 		10,000		~4-5 Seconds
+	// 2VS3 - 				10,000		~4-5 Seconds
+	// Long - 				10,000		~22 Seconds
+	
+	// MSI
+	// Standard - 			10,000		~1-2 Seconds
 	private static final int numberOfSims = 10000;
 	
 	// Main
 	public static void main(String[] args) throws Exception {
 		Settings.setEloScaling(ELO_SCALING_TYPE.REASONABLE);
 		
-		SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
-		// SimulateStandardWC().PrintInfo(false, false, false, true);
+		// SimulateCurrentWorldsState().PrintInfo(true, false, false, true);
+		// SimulateStandardWC().PrintInfo(false, true, false, true);
 		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
 		// Simulate2VS3WC().PrintInfo(false, false, false, true);
 		
@@ -43,7 +49,7 @@ public class InternationalDriver {
 		
 		// SimulateLongWC().PrintInfo(true, true, true, true);
 		
-		// LoopTournament(numberOfSims);
+		LoopTournament(numberOfSims);
 	}
 
 	private static List<Pool> getLongWCPools() {
@@ -92,7 +98,6 @@ public class InternationalDriver {
 		return WC;
 	}
 	
-	// Simulates an Entire Tournament
 	public static Tournament SimulateStandardWC() throws Exception {
 		Tournament WC = new TournamentWorldChampionship(Strings.LWC);
 		List<Pool> pools = get2021WCPools();
@@ -100,7 +105,6 @@ public class InternationalDriver {
 		return WC;
 	}
 	
-	// Simulates an Entire Tournament
 	public static Tournament SimulateDoubleElimWC() throws Exception {
 		Tournament WC = new TournamentWorldChampionshipDoubleElim(Strings.LWC);
 		List<Pool> pools = get2021WCPools();
@@ -108,7 +112,6 @@ public class InternationalDriver {
 		return WC;
 	}
 	
-	// Simulates an Entire Tournament
 	public static Tournament Simulate2VS3WC() throws Exception {
 		Tournament WC = new TournamentWorldChampionship2VS3(Strings.LWC);
 		List<Pool> pools = get2021WCPools();
@@ -130,14 +133,15 @@ public class InternationalDriver {
 		return MSI;
 	}
 	
-	// Doesn't allow for SUPER large numbers; 10,000 Works: Takes like 10ish Seconds to run for me
-	// You can probably go higher if you want to wait.
 	private static void LoopTournament(int x) throws Exception {
 		Map<Integer, Tournament> tournamentMap = new HashMap<Integer, Tournament>();
 		Map<String, Integer> timesTeamWonMap = new HashMap<String, Integer>();
 		Map<String, List<Integer>> indexOfTeamWins = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < x; i++) {
-			Tournament T = SimulateStandardWC();
+			
+			// Change this to specifiy which tournament to simulate
+			Tournament T = SimulateStandardMSI();
+			
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();
 			if (timesTeamWonMap.containsKey(champion.getTag())) {

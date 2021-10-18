@@ -22,9 +22,12 @@ public class Settings {
 	
 	public static final boolean SHOW_REGIONAL_WL_WITH_0_GAMES = false;
 	
+	public static final boolean PRINT_SERIES_SUMMARY = false;
 	public static final boolean PRINT_DETAILED_SERIES_SUMMARY = true;
 	
-	public static final boolean PRINT_QUALIFICATION_REASONS = true;
+	public static final boolean PRINT_QUALIFICATION_REASONS = false;
+	
+	public static final boolean PRINT_GROUP_STAGE_GAMES = false;
 	
 	public static final boolean PRINT_GROUP_STAGE_SUMMARY = true;
 	

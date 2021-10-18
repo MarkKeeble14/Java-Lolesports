@@ -104,6 +104,7 @@ public class Strings {
 	public static final String LCSPlayoffs = "LCS Playoffs";
 	public static final String LECPlayoffs = "LEC Playoffs";
 	public static final String FSKS = "Final Elimination Bracket";
+	public static final Object WNNRS = "Winner(s)";
 	
 	public static String Concat(String bridge, String... strings) {
 		String s = strings[0];

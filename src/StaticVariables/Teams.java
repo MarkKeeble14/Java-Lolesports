@@ -26,14 +26,14 @@ public class Teams {
 	public static final Team O100T = new RatingDefinedTeam("100", REGION.NA, 4.732);
 	public static final Team TL = new RatingDefinedTeam("TL", REGION.NA, 4.456);
 	public static final Team C9 = new RatingDefinedTeam("C9", REGION.NA, 4.482);
-	public static final Team TSM = new RatingDefinedTeam("TSM", REGION.NA, 4.659);
+	public static final Team TSM = new RatingDefinedTeam("TSM", REGION.NA, 4.432);
 	public static final Team FLY = new RatingDefinedTeam("FLY", REGION.NA, 3.698);
 	
 	// LEC
 	public static final Team MAD = new RatingDefinedTeam("MAD", REGION.EU, 6.818);
 	public static final Team FNC = new RatingDefinedTeam("FNC", REGION.EU, 6.153);
 	public static final Team RGE = new RatingDefinedTeam("RGE", REGION.EU, 4.912);
-	public static final Team G2 = new RatingDefinedTeam("G2", REGION.EU, 6.884);
+	public static final Team G2 = new RatingDefinedTeam("G2", REGION.EU, 6.091);
 	
 	// PCS
 	public static final Team PSG = new RatingDefinedTeam("PSG", REGION.SEA, 5.131);

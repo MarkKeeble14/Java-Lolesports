@@ -224,7 +224,6 @@ public class Series extends Matchup  {
 			return matchLabel + ": " + A.getTag() + " VS " + B.getTag() + " - Bo" + numGames;
 		} else {
 			if (Settings.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
-				
 				String s = matches.get(0).getMatchDetails();
 				int aWins = 0, bWins = 0;
 				
@@ -263,9 +262,9 @@ public class Series extends Matchup  {
 			} else {
 				String s = matchLabel + ": " + A + " VS " + B + "\n";
 				if (winner == A) {
-					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " > " + B.getTag() + "\n";
+					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " > " + B.getTag();
 				} else {
-					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " < " + B.getTag() + "\n";
+					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " < " + B.getTag();
 				}
 				return s;	
 			}
