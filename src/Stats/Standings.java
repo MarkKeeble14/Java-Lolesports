@@ -2,6 +2,7 @@ package Stats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -14,20 +15,77 @@ import Utility.Util;
 import Utility.UtilMaps;
 
 public class Standings {
-	private Map<Team, Integer> standings = new HashMap<Team, Integer>();
+	// private Map<Team, Integer> standings = new HashMap<Team, Integer>();
+	private Map<Integer, List<Team>> standings = new HashMap<Integer, List<Team>>();
+	private int totalTeams;
+	private int teamsRemaining;
+	private int lastPlaced;
 	
-	public void PlaceTeam(Team t, Integer placing) {
-		standings.put(t, placing);
+	public void subtractTeams(int n) {
+		teamsRemaining = totalTeams - n;
+	}
+	
+	public Standings(int totalTeams) {
+		super();
+		this.totalTeams = totalTeams;
+		teamsRemaining = totalTeams;
+	}
+	
+	public void PlaceTeamDuringBacketStage(Team t, boolean newPlacing) {
+		if (newPlacing) {
+			lastPlaced -= standings.get(lastPlaced).size();
+		}
+		List<Team> l = standings.get(lastPlaced);
+		if (l == null) {
+			l = new ArrayList<Team>();
+		}
+		l.add(t);
+		standings.put(lastPlaced, l);
+		teamsRemaining--;
+	}
+	
+	public void PlaceTeamDuringGroupStage(Team t, Integer placing) {
+		int index = teamsRemaining - placing;
+		List<Team> l = standings.get(index);
+		if (l == null) {
+			l = new ArrayList<Team>();
+		}
+		l.add(t);
+		standings.put(index, l);
+		lastPlaced = index;
+	}
+
+	public int getTotalTeams() {
+		return totalTeams;
 	}
 
 	public void Print() {
+		System.out.println(this);
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		
 		// Sort
-		standings = UtilMaps.sortByIntegerValue(standings);
+		standings = UtilMaps.sortByIntegerKey(standings);
 		
 		// Print
-		Util.NicePrintStandings(standings);
+		Set<Integer> keys = standings.keySet();
+		
+		for (Integer i : keys) {
+			List<Team> teams = standings.get(i);
+			
+			for (Team t : teams) {
+	        	Record top = t.getTopRecord();
+        		s += "\n" + t.getTag() + ": Finished - " + i + " | Run Ended During: " 
+            	        + top.getLabel() + "\n";
+			}
+		}
+		return s;
 	}
 	
+	/*
 	public Map<Team, Integer> getStandings() {
 		return standings;
 	}
@@ -47,7 +105,8 @@ public class Standings {
 		}
 		return null;
 	}
-	
+	*/
+	/*
 	public boolean SameResultAs(Standings other) {
 		ArrayList<Team> keys = new ArrayList<Team>(standings.keySet());
 		Map<Team, Integer> otherStandings = other.getStandings();
@@ -68,4 +127,7 @@ public class Standings {
         }
         return true;
 	}
+	*/
+	
+	
 }

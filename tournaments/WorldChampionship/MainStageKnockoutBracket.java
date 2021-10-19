@@ -69,21 +69,18 @@ public class MainStageKnockoutBracket extends Bracket {
 		M2.setTeamA(poolOne.Draw());
 		M3.setTeamA(poolOne.Draw());
 		M4.setTeamA(poolOne.Draw());
-		
 		M1.setTeamB(poolTwo.DrawWithSameSideRule(M1, M2, poolTwo, new ArrayList<Team>(), matches, groups));
 		M2.setTeamB(poolTwo.DrawWithSameSideRule(M2, M1, poolTwo, new ArrayList<Team>(), matches, groups));
 		M3.setTeamB(poolTwo.DrawWithSameSideRule(M3, M4, poolTwo, new ArrayList<Team>(), matches, groups));
 		M4.setTeamB(poolTwo.DrawWithSameSideRule(M4, M3, poolTwo, new ArrayList<Team>(), matches, groups));
-				
 		M1.Simulate();
 		M2.Simulate();
 		M3.Simulate();
 		M4.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 8);
-		standings.PlaceTeam(M2.getLoser(), 8);
-		standings.PlaceTeam(M3.getLoser(), 8);
-		standings.PlaceTeam(M4.getLoser(), 8);
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
@@ -91,16 +88,14 @@ public class MainStageKnockoutBracket extends Bracket {
 		M6.setTeamB(M4.getWinner());
 		M5.Simulate();
 		M6.Simulate();
-		
-		standings.PlaceTeam(M5.getLoser(), 4);
-		standings.PlaceTeam(M6.getLoser(), 4);
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
-		
-		standings.PlaceTeam(M7.getLoser(), 2);
-		standings.PlaceTeam(M7.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M7.getWinner(), true);
 		
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2, S3);

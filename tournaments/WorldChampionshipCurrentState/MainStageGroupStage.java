@@ -45,7 +45,7 @@ public class MainStageGroupStage extends GroupStage {
 		A.addResultToGameMatchup(Teams.FPX, Teams.C9, Teams.FPX, Teams.C9, true);
 		A.addResultToGameMatchup(Teams.DK, Teams.RGE, Teams.DK, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.FPX, Teams.RGE, Teams.FPX, Teams.RGE, true);
-		
+		//
 		A.addResultToGameMatchup(Teams.C9, Teams.FPX, Teams.C9, Teams.FPX, true);
 		A.addResultToGameMatchup(Teams.C9, Teams.RGE, Teams.C9, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.DK, Teams.C9, Teams.DK, Teams.C9, true);
@@ -53,11 +53,10 @@ public class MainStageGroupStage extends GroupStage {
 		A.addResultToGameMatchup(Teams.DK, Teams.RGE, Teams.DK, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, true);
 		
+		// 
 		A.addTiebreakerSeeding(Teams.DK, Teams.C9, Teams.RGE, Teams.FPX);
-		A.addPresetTiebreaker(super.getLabel(), Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, tracker);
-		A.addPresetTiebreaker(super.getLabel(), Teams.C9, Teams.RGE, Teams.C9, Teams.RGE, tracker);
-		
-		A.SimulatePresetMatches(super.getLabel(), tracker, true);
+		A.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX);
+		A.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.C9, Teams.RGE, Teams.C9, Teams.RGE);
 		
 		// 
 		B.SetupMatches(super.getLabel(), tracker);
@@ -67,7 +66,7 @@ public class MainStageGroupStage extends GroupStage {
 		B.addResultToGameMatchup(Teams.T1, Teams.DFM, Teams.T1, Teams.DFM, true);
 		B.addResultToGameMatchup(Teams.EDG, Teams.DFM, Teams.EDG, Teams.DFM, true);
 		B.addResultToGameMatchup(Teams.EDG, Teams.T1, Teams.EDG, Teams.T1, true);
-		
+		//
 		B.addResultToGameMatchup(Teams.T1, Teams.EDG, Teams.T1, Teams.EDG, true);
 		B.addResultToGameMatchup(Teams.T1, Teams.O100T, Teams.T1, Teams.O100T, true);
 		B.addResultToGameMatchup(Teams.T1, Teams.DFM, Teams.T1, Teams.DFM, true);
@@ -75,7 +74,10 @@ public class MainStageGroupStage extends GroupStage {
 		B.addResultToGameMatchup(Teams.EDG, Teams.DFM, Teams.EDG, Teams.DFM, true);
 		B.addResultToGameMatchup(Teams.DFM, Teams.O100T, Teams.O100T, Teams.DFM, true);
 		
+		// Before the group is resolved, call this method
 		B.SimulatePresetMatches(super.getLabel(), tracker, true);
+		
+		// After groups are resolved / heading into tiebreakers, use the methods in the same way as seen below group C
 		
 		//
 		C.SetupMatches(super.getLabel(), tracker);
@@ -85,7 +87,7 @@ public class MainStageGroupStage extends GroupStage {
 		C.addResultToGameMatchup(Teams.RNG, Teams.HLE, Teams.RNG, Teams.HLE, true);
 		C.addResultToGameMatchup(Teams.RNG, Teams.PSG, Teams.RNG, Teams.PSG, true);
 		C.addResultToGameMatchup(Teams.PSG, Teams.HLE, Teams.PSG, Teams.HLE, true);
-		
+		//
 		C.addResultToGameMatchup(Teams.PSG, Teams.FNC, Teams.PSG, Teams.FNC, true);
 		C.addResultToGameMatchup(Teams.HLE, Teams.FNC, Teams.HLE, Teams.FNC, true);
 		C.addResultToGameMatchup(Teams.RNG, Teams.FNC, Teams.FNC, Teams.RNG, true);
@@ -93,9 +95,12 @@ public class MainStageGroupStage extends GroupStage {
 		C.addResultToGameMatchup(Teams.RNG, Teams.PSG, Teams.RNG, Teams.PSG, true);
 		C.addResultToGameMatchup(Teams.PSG, Teams.HLE, Teams.HLE, Teams.PSG, true);
 		
-		C.addPresetTiebreaker(super.getLabel(), Teams.RNG, Teams.HLE, Teams.RNG, Teams.HLE, tracker);
+		// Tiebreakers
+		// Before the group is resolved, call this method
+		C.addTiebreakerSeeding(Teams.RNG, Teams.HLE, Teams.PSG, Teams.FNC);
 		
-		C.SimulatePresetMatches(super.getLabel(), tracker, true);
+		// After groups are resolved / heading into tiebreakers, use the following
+		C.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.RNG, Teams.HLE, Teams.RNG, Teams.HLE);
 		
 		//
 		D.SetupMatches(super.getLabel(), tracker);
@@ -105,60 +110,22 @@ public class MainStageGroupStage extends GroupStage {
 		D.addResultToGameMatchup(Teams.LNG, Teams.TL, Teams.LNG, Teams.TL, true);
 		D.addResultToGameMatchup(Teams.GEN, Teams.TL, Teams.GEN, Teams.TL, true);
 		D.addResultToGameMatchup(Teams.LNG, Teams.MAD, Teams.LNG, Teams.MAD, true);
-		D.SimulatePresetMatches(super.getLabel(), tracker, true);
+		//
+		D.addResultToGameMatchup(Teams.TL, Teams.MAD, Teams.MAD, Teams.TL, true);
+		D.addResultToGameMatchup(Teams.MAD, Teams.GEN, Teams.GEN, Teams.MAD, true);
+		D.addResultToGameMatchup(Teams.GEN, Teams.LNG, Teams.LNG, Teams.GEN, true);
+		D.addResultToGameMatchup(Teams.LNG, Teams.TL, Teams.TL, Teams.LNG, true);
+		D.addResultToGameMatchup(Teams.GEN, Teams.TL, Teams.TL, Teams.GEN, true);
+		D.addResultToGameMatchup(Teams.LNG, Teams.MAD, Teams.MAD, Teams.LNG, true);
 		
-		List<Team> GSQ = new ArrayList<Team>(
-				Arrays.asList(	A.GetTeamFromPlacement(1),
-								A.GetTeamFromPlacement(2),
-								B.GetTeamFromPlacement(1),
-								B.GetTeamFromPlacement(2),
-								C.GetTeamFromPlacement(1),
-								C.GetTeamFromPlacement(2),
-								D.GetTeamFromPlacement(1),
-								D.GetTeamFromPlacement(2)));
+		// Four Way Tiebreakers
+		D.addTiebreakerSeeding(Teams.GEN, Teams.MAD, Teams.LNG, Teams.TL);
+		D.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.GEN, Teams.TL, Teams.GEN, Teams.TL);
+		D.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.MAD, Teams.LNG, Teams.MAD, Teams.LNG);
+		D.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.MAD, Teams.GEN, Teams.GEN, Teams.MAD);
 	
-		SetQualified(groups, GSQ);
-		
-		// Place Teams
-		standings.PlaceTeam(A.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(B.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(C.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(D.GetTeamFromPlacement(4), 16);
-		//
-		standings.PlaceTeam(A.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(B.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(C.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(D.GetTeamFromPlacement(3), 12);
-		//
+		SetQualified(groups, standings);
 		
 		super.setGroups(groups);
-	}
-	
-	@Override
-	public void SetQualified(List<Group> groups, List<Team> teams) {
-		Group A = groups.get(0);
-		Group B = groups.get(1);
-		Group C = groups.get(2);
-		Group D = groups.get(3);
-		
-		Team A1 = teams.get(0);
-		A1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 1));
-		Team A2 = teams.get(1);
-		A2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 2));
-
-		Team B1 = teams.get(2);
-		B1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 1));
-		Team B2 = teams.get(3);
-		B2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 2));
-		
-		Team C1 = teams.get(4);
-		C1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 1));
-		Team C2 = teams.get(5);
-		C2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 2));
-		
-		Team D1 = teams.get(6);
-		D1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 1));
-		Team D2 = teams.get(7);
-		D2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 2));
 	}
 }

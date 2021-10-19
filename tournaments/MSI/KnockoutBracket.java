@@ -54,20 +54,16 @@ public class KnockoutBracket extends Bracket {
 		M2.setTeamA(poolTwo.Draw());
 		M1.setTeamB(poolOne.Draw());
 		M2.setTeamB(poolTwo.Draw());
-
 		M1.Simulate();
 		M2.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 4);
-		standings.PlaceTeam(M2.getLoser(), 4);
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		
 		M3.setTeamA(M1.getWinner());
 		M3.setTeamB(M2.getWinner());
-		
 		M3.Simulate();
-		
-		standings.PlaceTeam(M3.getLoser(), 2);
-		standings.PlaceTeam(M3.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M3.getWinner(), true);
 		
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2);

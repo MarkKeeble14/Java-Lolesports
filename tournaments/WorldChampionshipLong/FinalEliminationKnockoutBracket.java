@@ -77,31 +77,28 @@ public class FinalEliminationKnockoutBracket extends Bracket {
 		M4.setTeamB(poolTwo.DrawWithSameMatchRule(M4, poolTwo, new ArrayList<Team>(), matches, groups));
 				
 		M1.Simulate();
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
 		M2.Simulate();
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		M3.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
 		M4.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 8);
-		standings.PlaceTeam(M2.getLoser(), 8);
-		standings.PlaceTeam(M3.getLoser(), 8);
-		standings.PlaceTeam(M4.getLoser(), 8);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
 		M5.Simulate();
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
 		M6.Simulate();
-		
-		standings.PlaceTeam(M5.getLoser(), 4);
-		standings.PlaceTeam(M6.getLoser(), 4);
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
-		
-		standings.PlaceTeam(M7.getLoser(), 2);
-		standings.PlaceTeam(M7.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M7.getWinner(), true);
 		
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2, S3);

@@ -24,7 +24,7 @@ public class TournamentMSI extends Tournament {
 	Bracket knockoutBracket;
 	
 	public TournamentMSI() {
-		super(Strings.LMSI);
+		super(Strings.LMSI, 12);
 	}
 
 	int requiredNumberOfPools = 2;
@@ -43,9 +43,9 @@ public class TournamentMSI extends Tournament {
 		List<Pool> pools1 = new ArrayList<Pool>(Arrays.asList(P1, P2));
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, groupStage); 
-		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, groupStage); 
-		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, groupStage);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, 2, groupStage); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, 2, groupStage); 
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, 2, groupStage);
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C));
 		
 		SimulateCurrentGroupDraw(groups, pools1);
@@ -57,7 +57,7 @@ public class TournamentMSI extends Tournament {
 				B.GetTeamFromPlacement(1), B.GetTeamFromPlacement(2),
 				C.GetTeamFromPlacement(1), C.GetTeamFromPlacement(2)));
 		
-		Group Rumble = new Group(Strings.LRumble, 6, 2, 1, groupStage, Q);
+		Group Rumble = new Group(Strings.LRumble, 6, 2, 1, 4, groupStage, Q);
 		List<Group> RGroup = new ArrayList<Group>(Arrays.asList(Rumble));
 		
 		SimulateCurrentRumbleStage(RGroup);

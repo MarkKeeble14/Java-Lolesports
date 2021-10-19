@@ -83,11 +83,10 @@ public class MainStageKnockoutBracket2VS3 extends Bracket {
 		M2.Simulate();
 		M3.Simulate();
 		M4.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 12);
-		standings.PlaceTeam(M2.getLoser(), 12);
-		standings.PlaceTeam(M3.getLoser(), 12);
-		standings.PlaceTeam(M4.getLoser(), 12);
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -101,11 +100,10 @@ public class MainStageKnockoutBracket2VS3 extends Bracket {
 		M6.Simulate();
 		M7.Simulate();
 		M8.Simulate();
-		
-		standings.PlaceTeam(M5.getLoser(), 8);
-		standings.PlaceTeam(M6.getLoser(), 8);
-		standings.PlaceTeam(M7.getLoser(), 8);
-		standings.PlaceTeam(M8.getLoser(), 8);
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M8.getLoser(), false);
 		
 		M9.setTeamA(M5.getWinner());
 		M9.setTeamB(M6.getWinner());
@@ -113,16 +111,14 @@ public class MainStageKnockoutBracket2VS3 extends Bracket {
 		M10.setTeamB(M8.getWinner());
 		M9.Simulate();
 		M10.Simulate();
-		
-		standings.PlaceTeam(M9.getLoser(), 4);
-		standings.PlaceTeam(M10.getLoser(), 4);
+		standings.PlaceTeamDuringBacketStage(M9.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M10.getLoser(), false);
 		
 		M11.setTeamA(M9.getWinner());
 		M11.setTeamB(M10.getWinner());
 		M11.Simulate();
-		
-		standings.PlaceTeam(M11.getLoser(), 2);
-		standings.PlaceTeam(M11.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M11.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M11.getWinner(), true);
 		
 		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M11);

@@ -2,26 +2,17 @@ package WorldChampionshipDoubleElim;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import DefiningMatches.Game;
-import DefiningMatches.Series;
-import DefiningQualificationDetails.QualifiedThroughGroupPlacement;
-import DefiningQualificationDetails.QualifiedThroughSeriesWin;
 import DefiningTeams.Team;
 import StaticVariables.Strings;
-import StaticVariables.Teams;
-import Stats.Standings;
 import TournamentComponents.Bracket;
 import TournamentComponents.DrawStructure;
 import TournamentComponents.Group;
 import TournamentComponents.GroupStage;
 import TournamentComponents.Pool;
 import TournamentComponents.Tournament;
-import Utility.Util;
 import WorldChampionship.MainStageGroupDraw;
 import WorldChampionship.PIStageGroupDraw;
 import WorldChampionship.MainStageGroupStage;
@@ -39,7 +30,7 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 	Bracket MKnockoutBracket;
 	
 	public TournamentWorldChampionshipDoubleElim(String label) {
-		super(Strings.LWC);
+		super(Strings.LWC, 22);
 	}
 
 	@Override
@@ -56,8 +47,8 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 		List<Pool> PIPools = new ArrayList<Pool>(Arrays.asList(PIPoolOne, PIPoolTwo));
 		
 		// Setting up PI Groups
-		Group PA = new Group(Strings.LFirstGroup, 5, 1, 1, PIGroupStage); 
-		Group PB = new Group(Strings.LSecondGroup, 5, 1, 1, PIGroupStage);
+		Group PA = new Group(Strings.LFirstGroup, 5, 1, 1, 4, PIGroupStage); 
+		Group PB = new Group(Strings.LSecondGroup, 5, 1, 1, 4, PIGroupStage);
 		List<Group> PIGroups = new ArrayList<Group>(Arrays.asList(PA, PB));
 	  
 		SimulateCurrentPIGroupDraw(PIGroups, PIPools);
@@ -79,10 +70,10 @@ public class TournamentWorldChampionshipDoubleElim extends Tournament {
 		List<Pool> pools1 = new ArrayList<Pool>(Arrays.asList(PI, P1, P2, P3)); 
 		
 		// Setting up groups
-		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, MGroupStage); 
-		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, MGroupStage);
-		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, MGroupStage); 
-		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, MGroupStage);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, 3, MGroupStage); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, 3, MGroupStage);
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, 3, MGroupStage); 
+		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, 3, MGroupStage);
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		
 		SimulateCurrentGroupDraw(groups, pools1);

@@ -19,7 +19,7 @@ public class SummerLEC extends Tournament {
 	Bracket KO;
 	
 	public SummerLEC() {
-		super(Strings.LSummerLEC);
+		super(Strings.LSummerLEC, 10);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,24 +28,12 @@ public class SummerLEC extends Tournament {
 		Setup();
 		
 		// Setting up Groups
-		Group A = new Group(Strings.RegularSeason, 10, 2, 1, RR, pools.get(0).getPool()); 
+		Group A = new Group(Strings.RegularSeason, 10, 2, 1, 6, RR, pools.get(0).getPool()); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A));
 		
 		SimulateGroupStage(groups);
 		
-		eots.PlaceTeam(A.GetTeamFromPlacement(10), 10);
-		eots.PlaceTeam(A.GetTeamFromPlacement(9), 9);
-		eots.PlaceTeam(A.GetTeamFromPlacement(8), 8);
-		eots.PlaceTeam(A.GetTeamFromPlacement(7), 7);
-		
 		SimulateKnockoutStage(groups);
-		
-		eots.PlaceTeam(KO.getSeries(3).getLoser(), 6);
-		eots.PlaceTeam(KO.getSeries(4).getLoser(), 5);
-		eots.PlaceTeam(KO.getSeries(5).getLoser(), 4);
-		eots.PlaceTeam(KO.getSeries(7).getLoser(), 3);
-		eots.PlaceTeam(KO.getSeries(8).getLoser(), 2);
-		eots.PlaceTeam(KO.getSeries(8).getWinner(), 1);
 		
 		ConcludeTournament();
 	}

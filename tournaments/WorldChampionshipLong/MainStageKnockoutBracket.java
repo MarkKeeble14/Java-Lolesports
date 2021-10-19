@@ -66,25 +66,23 @@ public class MainStageKnockoutBracket extends Bracket {
 		
 		M1.setTeamA(A.GetTeamFromPlacement(3));
 		M1.setTeamB(A.GetTeamFromPlacement(4));
+		M1.Simulate();
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
 		
 		M2.setTeamA(B.GetTeamFromPlacement(3));
 		M2.setTeamB(B.GetTeamFromPlacement(4));
+		M2.Simulate();
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		
 		M3.setTeamA(C.GetTeamFromPlacement(3));
 		M3.setTeamB(C.GetTeamFromPlacement(4));
+		M3.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
 		
 		M4.setTeamA(D.GetTeamFromPlacement(3));
 		M4.setTeamB(D.GetTeamFromPlacement(4));
-		
-		M1.Simulate();
-		M2.Simulate();
-		M3.Simulate();
 		M4.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 16);
-		standings.PlaceTeam(M2.getLoser(), 16);
-		standings.PlaceTeam(M3.getLoser(), 16);
-		standings.PlaceTeam(M4.getLoser(), 16);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -94,15 +92,15 @@ public class MainStageKnockoutBracket extends Bracket {
 		M6.setTeamA(poolOne.DrawWithSameMatchRule(M6, poolOne, new ArrayList<Team>(), matchups, groups));
 		M7.setTeamA(poolOne.DrawWithSameMatchRule(M7, poolOne, new ArrayList<Team>(), matchups, groups));
 		M8.setTeamA(poolOne.DrawWithSameMatchRule(M8, poolOne, new ArrayList<Team>(), matchups, groups));
-		M5.Simulate();
-		M6.Simulate();
-		M7.Simulate();
-		M8.Simulate();
 		
-		standings.PlaceTeam(M5.getLoser(), 12);
-		standings.PlaceTeam(M6.getLoser(), 12);
-		standings.PlaceTeam(M7.getLoser(), 12);
-		standings.PlaceTeam(M8.getLoser(), 12);
+		M5.Simulate();
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
+		M6.Simulate();
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
+		M7.Simulate();
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), false);
+		M8.Simulate();
+		standings.PlaceTeamDuringBacketStage(M8.getLoser(), false);
 		
 		super.addBracketSections(S1, S2);
 	}

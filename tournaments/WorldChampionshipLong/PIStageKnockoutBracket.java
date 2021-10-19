@@ -47,19 +47,17 @@ public class PIStageKnockoutBracket extends Bracket {
 		S1.addSeries(M1, M2);
 		M1.Simulate();
 		M2.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 24);
-		standings.PlaceTeam(M2.getLoser(), 24);
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		
 		Series M3 = new Series(3, 5, A.GetTeamFromPlacement(3), M1.getWinner(), tracker);
 		Series M4 = new Series(4, 5, B.GetTeamFromPlacement(3), M2.getWinner(), tracker);
 		S2.addSeries(M3, M4);
 		M3.Simulate();
 		M4.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
-		standings.PlaceTeam(M3.getLoser(), 22);
-		standings.PlaceTeam(M4.getLoser(), 22);
-
 		super.addBracketSections(S1, S2);
 	}
 

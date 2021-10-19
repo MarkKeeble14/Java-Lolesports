@@ -48,16 +48,22 @@ public class LockinKOBracket extends Bracket {
 		M1.setTeamA(A.GetTeamFromPlacement(1));
 		M1.setTeamB(B.GetTeamFromPlacement(4));
 		M1.Simulate();
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		
 		M2.setTeamA(A.GetTeamFromPlacement(3));
 		M2.setTeamB(B.GetTeamFromPlacement(2));
 		M2.Simulate();
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		
 		M3.setTeamA(B.GetTeamFromPlacement(1));
 		M3.setTeamB(A.GetTeamFromPlacement(4));
 		M3.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
+		
 		M4.setTeamA(B.GetTeamFromPlacement(3));
 		M4.setTeamB(A.GetTeamFromPlacement(2));
 		M4.Simulate();
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
@@ -65,22 +71,14 @@ public class LockinKOBracket extends Bracket {
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
 		M6.Simulate();
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
 		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 6);
-		standings.PlaceTeam(M2.getLoser(), 6);
-		
-		standings.PlaceTeam(M3.getLoser(), 6);
-		standings.PlaceTeam(M4.getLoser(), 6);
-		
-		standings.PlaceTeam(M5.getLoser(), 4);
-		standings.PlaceTeam(M6.getLoser(), 4);
-		
-		standings.PlaceTeam(M7.getLoser(), 2);
-		standings.PlaceTeam(M7.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M7.getWinner(), true);
 		
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2, S3);

@@ -18,7 +18,7 @@ public class LCSLockin extends Tournament {
 	Bracket KOStage;
 	
 	public LCSLockin() {
-		super(Strings.LLockin);
+		super(Strings.LLockin, 10);
 	}
 	
 	@Override
@@ -28,8 +28,8 @@ public class LCSLockin extends Tournament {
 		Pool p = pools.get(0);
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 5, 1, 1, GS); 
-		Group B = new Group(Strings.LSecondGroup, 5, 1, 1, GS); 
+		Group A = new Group(Strings.LFirstGroup, 5, 1, 1, 4, GS); 
+		Group B = new Group(Strings.LSecondGroup, 5, 1, 1, 4, GS); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B));
 		
 		A.Add(p.Draw());

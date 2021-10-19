@@ -46,8 +46,8 @@ public class DomesticDriver {
 		
 		// LoopTournament(numberOfSims);
 		
-		SimulateLockinLCS().PrintInfo(true, false, true, true);
-		// SimulateSpringLCS().PrintInfo(true, false, true, true);
+		// SimulateLockinLCS().PrintInfo(true, false, true, true);
+		SimulateSpringLCS().PrintInfo(true, false, true, true);
 		// SimulateSummerLCS().PrintInfo(true, false, true, true);
 		
 		// SimulateSpringLEC().PrintInfo(true, false, true, true);

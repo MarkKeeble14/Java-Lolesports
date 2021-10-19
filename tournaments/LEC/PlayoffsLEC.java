@@ -5,6 +5,7 @@ import java.util.List;
 import DefiningMatches.Series;
 import StaticVariables.Strings;
 import Stats.ResultsTracker;
+import Stats.Standings;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
 import TournamentComponents.Group;
@@ -25,6 +26,7 @@ public class PlayoffsLEC extends Bracket {
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
 		ResultsTracker tracker = super.getPartOf().getT();
+		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -58,6 +60,8 @@ public class PlayoffsLEC extends Bracket {
 		M3.setTeamA(A.GetTeamFromPlacement(5));
 		M3.setTeamB(A.GetTeamFromPlacement(6));
 		M3.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), true);
+		
 		if (M1.getLoser() == A.GetTeamFromPlacement(4)) {
 			M4.setTeamA(M1.getLoser());
 		} else {
@@ -65,6 +69,8 @@ public class PlayoffsLEC extends Bracket {
 		}
 		M4.setTeamB(M3.getWinner());
 		M4.Simulate();
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), true);
+		
 		if (M1.getLoser() == A.GetTeamFromPlacement(4)) {
 			M5.setTeamA(M2.getLoser());
 		} else {
@@ -72,15 +78,22 @@ public class PlayoffsLEC extends Bracket {
 		}
 		M5.setTeamB(M4.getWinner());
 		M5.Simulate();
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
+		
 		M6.setTeamA(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
 		M6.Simulate();
+		
 		M7.setTeamA(M5.getWinner());
 		M7.setTeamB(M6.getLoser());
 		M7.Simulate();
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), true);
+		
 		M8.setTeamA(M6.getWinner());
 		M8.setTeamB(M7.getWinner());
 		M8.Simulate();
+		standings.PlaceTeamDuringBacketStage(M8.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M8.getWinner(), true);
 		
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2, S3, S4, S5);

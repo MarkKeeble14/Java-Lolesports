@@ -41,57 +41,9 @@ public class MainStageGroupStage extends GroupStage {
 		B.FullSimulate(super.getLabel(), tracker, true);
 		C.FullSimulate(super.getLabel(), tracker, true);
 		D.FullSimulate(super.getLabel(), tracker, true);
-		
-		standings.PlaceTeam(A.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(B.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(C.GetTeamFromPlacement(4), 16);
-		standings.PlaceTeam(D.GetTeamFromPlacement(4), 16);
-		
-		standings.PlaceTeam(A.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(B.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(C.GetTeamFromPlacement(3), 12);
-		standings.PlaceTeam(D.GetTeamFromPlacement(3), 12);
-		
-		List<Team> GSQ = new ArrayList<Team>(
-				Arrays.asList(	A.GetTeamFromPlacement(1),
-								A.GetTeamFromPlacement(2),
-								B.GetTeamFromPlacement(1),
-								B.GetTeamFromPlacement(2),
-								C.GetTeamFromPlacement(1),
-								C.GetTeamFromPlacement(2),
-								D.GetTeamFromPlacement(1),
-								D.GetTeamFromPlacement(2)));
 	
-		SetQualified(groups, GSQ);
+		SetQualified(groups, standings);
 		
 		super.setGroups(groups);
-	}
-	
-	@Override
-	public void SetQualified(List<Group> groups, List<Team> teams) {
-		Group A = groups.get(0);
-		Group B = groups.get(1);
-		Group C = groups.get(2);
-		Group D = groups.get(3);
-		
-		Team A1 = teams.get(0);
-		A1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 1));
-		Team A2 = teams.get(1);
-		A2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, A, 2));
-
-		Team B1 = teams.get(2);
-		B1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 1));
-		Team B2 = teams.get(3);
-		B2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, B, 2));
-		
-		Team C1 = teams.get(4);
-		C1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 1));
-		Team C2 = teams.get(5);
-		C2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, C, 2));
-		
-		Team D1 = teams.get(6);
-		D1.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 1));
-		Team D2 = teams.get(7);
-		D2.setNewQD(new QualifiedThroughGroupPlacement(Strings.MSGS, D, 2));
 	}
 }

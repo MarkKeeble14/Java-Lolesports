@@ -81,22 +81,4 @@ public class Util {
 			i++;
 		}
 	}
-	
-	public static void NicePrintStandings(Map<Team, Integer> map) {
-		System.out.println();
-		
-		ArrayList<Team> keys = new ArrayList<Team>(map.keySet());
-        for(int i=keys.size()-1; i>=0;i--){
-        	Team t = keys.get(i);
-        	Record top = t.getTopRecord();
-        	
-        	if (i == 0) {
-        		System.out.println(t.getTag() + ": Finished - " + map.get(t) + " | Run Ended During: " 
-            	        + top.getLabel());
-        	} else {
-        		System.out.println(t.getTag() + ": Finished - " + map.get(t) + " | Run Ended During: " 
-            	        + top.getLabel() + "\n");	
-        	}
-        }
-	}
 }

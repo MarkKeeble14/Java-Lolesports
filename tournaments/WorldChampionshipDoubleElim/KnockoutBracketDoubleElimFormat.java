@@ -97,11 +97,10 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M2.Simulate();
 		M3.Simulate();
 		M4.Simulate();
-		
-		standings.PlaceTeam(M1.getLoser(), 12);
-		standings.PlaceTeam(M2.getLoser(), 12);
-		standings.PlaceTeam(M3.getLoser(), 12);
-		standings.PlaceTeam(M4.getLoser(), 12);
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamB(M1.getWinner());
 		M6.setTeamB(M2.getWinner());
@@ -122,9 +121,8 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M10.setTeamB(M8.getLoser());
 		M9.Simulate();
 		M10.Simulate();
-		
-		standings.PlaceTeam(M9.getLoser(), 8);
-		standings.PlaceTeam(M10.getLoser(), 8);
+		standings.PlaceTeamDuringBacketStage(M9.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M10.getLoser(), false);
 		
 		M11.setTeamA(M5.getWinner());
 		M11.setTeamB(M6.getWinner());
@@ -139,9 +137,8 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M14.setTeamB(M10.getWinner());
 		M13.Simulate();
 		M14.Simulate();
-		
-		standings.PlaceTeam(M13.getLoser(), 6);
-		standings.PlaceTeam(M14.getLoser(), 6);
+		standings.PlaceTeamDuringBacketStage(M13.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M14.getLoser(), false);
 		
 		M15.setTeamA(M11.getWinner());
 		M15.setTeamB(M12.getWinner());
@@ -150,20 +147,18 @@ public class KnockoutBracketDoubleElimFormat extends Bracket {
 		M16.setTeamA(M13.getWinner());
 		M16.setTeamB(M14.getWinner());
 		M16.Simulate();
+		standings.PlaceTeamDuringBacketStage(M16.getLoser(), true);
 		
 		M17.setTeamA(M15.getLoser());
 		M17.setTeamB(M16.getWinner());
 		M17.Simulate();
-		
-		standings.PlaceTeam(M16.getLoser(), 4);
-		standings.PlaceTeam(M17.getLoser(), 3);
+		standings.PlaceTeamDuringBacketStage(M17.getLoser(), true);
 		
 		M18.setTeamA(M15.getWinner());
 		M18.setTeamB(M17.getWinner());
 		M18.Simulate();
-		
-		standings.PlaceTeam(M18.getLoser(), 2);
-		standings.PlaceTeam(M18.getWinner(), 1);
+		standings.PlaceTeamDuringBacketStage(M18.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M18.getWinner(), true);
 		
 		super.addBracketSections(S1, S2, S3, S4, S5);
 		super.setChampionshipSeries(M18);

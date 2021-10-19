@@ -23,37 +23,20 @@ public class SummerLCS extends Tournament {
 	Bracket MSS;
 	
 	public SummerLCS() {
-		super(Strings.LSummerLCS);
+		super(Strings.LSummerLCS, 10);
 	}
 
 	@Override
 	public void Simulate(List<Pool> pools) throws Exception {
-		Standings eots = super.getEots();
-		
 		Setup();
 		
 		// Setting up Groups
-		Group A = new Group(Strings.LFirstGroup, 10, 3, 1, RR, pools.get(0).getPool()); 
+		Group A = new Group(Strings.LFirstGroup, 10, 3, 1, 8, RR, pools.get(0).getPool()); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A));
 		
 		SimulateGroupStage(groups);
 		
-		eots.PlaceTeam(A.GetTeamFromPlacement(10), 10);
-		eots.PlaceTeam(A.GetTeamFromPlacement(9), 9);
-		
 		SimulateKnockoutStage(groups);
-		
-		eots.PlaceTeam(MSS.getSeries(3).getLoser(), 8);
-		eots.PlaceTeam(MSS.getSeries(4).getLoser(), 8);
-		
-		eots.PlaceTeam(MSS.getSeries(7).getLoser(), 6);
-		eots.PlaceTeam(MSS.getSeries(8).getLoser(), 6);
-		
-		eots.PlaceTeam(MSS.getSeries(10).getLoser(), 4);
-		eots.PlaceTeam(MSS.getSeries(11).getLoser(), 4);
-		
-		eots.PlaceTeam(MSS.getSeries(12).getLoser(), 2);
-		eots.PlaceTeam(MSS.getSeries(12).getWinner(), 1);
 		
 		ConcludeTournament();
 	}

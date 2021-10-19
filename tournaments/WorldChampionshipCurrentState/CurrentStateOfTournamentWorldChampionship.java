@@ -26,7 +26,7 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 	Bracket MKnockoutBracket;
 	
 	public CurrentStateOfTournamentWorldChampionship(String label) {
-		super(label);
+		super(label, 16);
 	}
 
 	@Override
@@ -36,10 +36,10 @@ public class CurrentStateOfTournamentWorldChampionship extends Tournament {
 		Standings eots = super.getEots();
 		
 		// Setting up groups
-		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, MGroupStage, Teams.DK, Teams.FPX, Teams.RGE, Teams.C9); 
-		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, MGroupStage, Teams.EDG, Teams.T1, Teams.O100T, Teams.DFM);
-		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, MGroupStage, Teams.FNC, Teams.RNG, Teams.HLE, Teams.PSG); 
-		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, MGroupStage, Teams.TL, Teams.MAD, Teams.LNG, Teams.GEN);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, 2, MGroupStage, Teams.DK, Teams.FPX, Teams.RGE, Teams.C9); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, 2, MGroupStage, Teams.EDG, Teams.T1, Teams.O100T, Teams.DFM);
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, 2, MGroupStage, Teams.FNC, Teams.RNG, Teams.HLE, Teams.PSG); 
+		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, 2, MGroupStage, Teams.TL, Teams.MAD, Teams.LNG, Teams.GEN);
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		
 		SimulateCurrentGroupStage(groups);

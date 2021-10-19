@@ -3,6 +3,7 @@ package TournamentComponents;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +13,12 @@ import CustomExceptions.GroupExceedingCapacityException;
 import DefiningMatches.Game;
 import DefiningMatches.Matchup;
 import DefiningMatches.Series;
+import DefiningQualificationDetails.QualifiedThroughGroupPlacement;
 import DefiningTeams.Team;
 import StaticVariables.Strings;
 import Stats.Record;
 import Stats.ResultsTracker;
+import Stats.Standings;
 import Utility.Util;
 import Utility.UtilMaps;
 
@@ -33,6 +36,7 @@ public class Group {
 	private GroupStage partOf;
 	private int gamesPerRoundRobin;
 	private int matchesAreBOX;
+	private int topXEscape;
 	
 	// private List<Matchup> matchups = new ArrayList<Matchup>();
 	private Map<Team, Map<Team, List<Matchup>>> matchups = new HashMap<Team, Map<Team, List<Matchup>>>();
@@ -72,12 +76,13 @@ public class Group {
 	* @param capacity The number of teams in the group
 	* @param teams The teams in the group
 	*/
-	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, GroupStage partOf, Team ...groupTeams) {
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, int topXEscape, GroupStage partOf, Team ...groupTeams) {
 		this.label = label;
 		this.capacity = capacity;
 		this.gamesPerRoundRobin = gamesPerRoundRobin;
 		this.matchesAreBOX = matchesAreBOX;
 		this.partOf = partOf;
+		this.topXEscape = topXEscape;
 		teams = new ArrayList<Team>();
 		for (Team t : groupTeams) {
 			teams.add(t);
@@ -89,20 +94,22 @@ public class Group {
 	* @param label A label for the group, i.e., A, B, C, D, etc
 	* @param capacity The number of teams in the group
 	*/
-	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, int numGamesPerMatch, GroupStage partOf) {
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, int topXEscape, int numGamesPerMatch, GroupStage partOf) {
 		this.label = label;
 		this.capacity = capacity;
 		this.gamesPerRoundRobin = gamesPerRoundRobin;
 		this.matchesAreBOX = matchesAreBOX;
+		this.topXEscape = topXEscape;
 		this.partOf = partOf;
 		teams = new ArrayList<Team>();
 	}
 	
-	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, GroupStage partOf, List<Team> teams) {
+	public Group(String label, int capacity, int gamesPerRoundRobin, int matchesAreBOX, int topXEscape, GroupStage partOf, List<Team> teams) {
 		this.label = label;
 		this.capacity = capacity;
 		this.gamesPerRoundRobin = gamesPerRoundRobin;
 		this.matchesAreBOX = matchesAreBOX;
+		this.topXEscape = topXEscape;
 		this.partOf = partOf;
 		this.teams = new ArrayList<Team>();
 		for (Team t: teams) {
@@ -120,12 +127,17 @@ public class Group {
 		this.gamesPerRoundRobin = g.getGamesPerRoundRobin();
 		this.matchesAreBOX = g.getMatchesAreBOX();
 		this.partOf = g.getPartOf();
+		this.topXEscape = g.getTopXEscape();
 		teams = new ArrayList<Team>();
 		for (Team t: g.getGroup()) {
 			teams.add(t);
 		}
 	}
 	
+	public int getTopXEscape() {
+		return topXEscape;
+	}
+
 	public boolean Contains(Team team) {
 		return teams.contains(team);
 	}
@@ -188,7 +200,7 @@ public class Group {
 	
 	public void SetupMatches(String stageLabel, ResultsTracker tracker) throws Exception {
 		// Make a copy of the initial Group
-		Group copy = new Group("Copy", capacity, gamesPerRoundRobin, matchesAreBOX, partOf);
+		Group copy = new Group("Copy", capacity, gamesPerRoundRobin, matchesAreBOX, topXEscape, partOf);
 		for (Team t : teams) {
 			t.setNewRecord(stageLabel);
 			copy.Add(t);
@@ -408,6 +420,46 @@ public class Group {
 		}
 		
 		postTBStandings = UtilMaps.sortByIntegerValue(fs);
+	}
+	
+	public void ManuallySimulatePresetTiebreaker(String stageLabel, ResultsTracker tracker, Team A, Team B, Team winner, Team loser) {
+		Map<Team, Integer> fs = new HashMap<Team, Integer>();
+		Object[] a = null;
+		if (presetTiebreakerSeeding != null) {
+			a = presetTiebreakerSeeding.toArray();
+		} else {
+			a = preTBStandings.keySet().toArray();	
+		}
+		List<Object> ks = new ArrayList<Object>(Arrays.asList(a));
+		
+		Game presetTB = new Game(stageLabel, gamesInOrder.size() + 1 + tiebreakers.size(), A, B, tracker);
+		presetTB.setResult(winner, loser);
+		tiebreakers.add(presetTB);
+		
+		int indexWinner = ks.indexOf(winner);
+		int indexLoser = ks.indexOf(loser);
+			
+		if (indexWinner > indexLoser) {
+			a[indexLoser] = winner;
+			a[indexWinner] = loser;
+		}
+		
+		// Place teams into the final standings
+		for (int i = 0; i < a.length; i++) {
+			fs.put((Team)a[i], i + 1);
+		}
+		
+		postTBStandings = UtilMaps.sortByIntegerValue(fs);
+		presetTiebreakerSeeding = convObjectArrayToTeamList(a);
+	}
+	
+	private List<Team> convObjectArrayToTeamList(Object[] a) {
+		List<Team> res = new ArrayList<Team>();
+		for (Object o : a) {
+			Team t = (Team) o;
+			res.add(t);
+		}
+		return res;
 	}
 	
 	private Map<Team, Integer> SortStandingsPreTiebreakers() {
@@ -635,5 +687,16 @@ public class Group {
 			x++;
 		}
 		return s;
+	}
+	
+	public void SetQualified(String qualifiedThrough, Standings standings, int numTeamsPerTier) {
+		for (int i = 1; i < topXEscape + 1; i++) {
+			Team t = GetTeamFromPlacement(i);
+			t.setNewQD(new QualifiedThroughGroupPlacement(partOf.getLabel(), this, i));
+		}
+		for (int i = capacity; i > topXEscape; i--) {
+			Team t = GetTeamFromPlacement(i);
+			standings.PlaceTeamDuringGroupStage(t, (capacity - i) * numTeamsPerTier);
+		}
 	}
 }

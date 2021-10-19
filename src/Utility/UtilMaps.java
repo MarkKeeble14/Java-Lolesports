@@ -1,5 +1,6 @@
 package Utility;
 
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,17 @@ public class UtilMaps {
 		    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 		return sortedMap;
     }
-
+	
+	public static <V> Map<Integer, V> sortByIntegerKey(Map<Integer, V> unsortMap)
+    {
+		LinkedHashMap<Integer, V> sortedMap = new LinkedHashMap<>();
+		 
+		unsortMap.entrySet()
+		    .stream()
+		    .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+		    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+		return sortedMap;
+    }
 	
 	public static Map<Team, Record> sortByRecordValue(Map<Team, Record> unsortMap)
     {

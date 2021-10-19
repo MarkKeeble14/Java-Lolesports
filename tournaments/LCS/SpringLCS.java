@@ -23,7 +23,7 @@ public class SpringLCS extends Tournament {
 	Bracket MSS;
 	
 	public SpringLCS() {
-		super(Strings.LSpringLCS);
+		super(Strings.LSpringLCS, 10);
 	}
 
 	@Override
@@ -32,26 +32,12 @@ public class SpringLCS extends Tournament {
 		
 		// Setting up Groups
 		// Setting up Groups
-		Group A = new Group(Strings.RegularSeason, 10, 2, 1, RR, pools.get(0).getPool()); 
+		Group A = new Group(Strings.RegularSeason, 10, 2, 1, 6, RR, pools.get(0).getPool()); 
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A));
 		
 		SimulateGroupStage(groups);
 		
-		eots.PlaceTeam(A.GetTeamFromPlacement(10), 10);
-		eots.PlaceTeam(A.GetTeamFromPlacement(9), 9);
-		eots.PlaceTeam(A.GetTeamFromPlacement(8), 8);
-		eots.PlaceTeam(A.GetTeamFromPlacement(7), 7);
-		
 		SimulateKnockoutStage(groups);
-		
-		eots.PlaceTeam(MSS.getSeries(3).getLoser(), 6);
-		eots.PlaceTeam(MSS.getSeries(4).getLoser(), 6);
-		
-		eots.PlaceTeam(MSS.getSeries(6).getLoser(), 4);
-		eots.PlaceTeam(MSS.getSeries(7).getLoser(), 4);
-		
-		eots.PlaceTeam(MSS.getSeries(8).getLoser(), 2);
-		eots.PlaceTeam(MSS.getSeries(8).getWinner(), 1);
 		
 		ConcludeTournament();
 	}

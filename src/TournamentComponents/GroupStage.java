@@ -1,16 +1,10 @@
 package TournamentComponents;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import DefiningMatches.Game;
-import DefiningTeams.Team;
-import Drivers.DomesticDriver;
 import StaticVariables.Settings;
 import StaticVariables.Strings;
-import Utility.Util;
+import Stats.Standings;
 
 public abstract class GroupStage extends TournamentComponent {
 	private List<Group> groups;
@@ -25,7 +19,15 @@ public abstract class GroupStage extends TournamentComponent {
 
 	public abstract void Simulate(List<Group> groups) throws Exception;
 	
-	public abstract void SetQualified(List<Group> groups, List<Team> teams);
+	public void SetQualified(List<Group> groups, Standings standings) {
+		for (Group g : groups) {
+			g.SetQualified(getLabel(), standings, groups.size());
+		}
+		
+		// Set the remaining number of teams for the standings
+		int teamsThisStage = groups.size() * (groups.get(0).getCapacity() - groups.get(0).getTopXEscape());
+		standings.subtractTeams(teamsThisStage);
+	}
 	
 	public List<Group> getGroups() {
 		return groups;

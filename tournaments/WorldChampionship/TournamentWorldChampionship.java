@@ -35,7 +35,7 @@ public class TournamentWorldChampionship extends Tournament {
 	Bracket MKnockoutBracket;
 	
 	public TournamentWorldChampionship(String label) {
-		super(Strings.LWC);
+		super(Strings.LWC, 22);
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class TournamentWorldChampionship extends Tournament {
 		List<Pool> PIPools = new ArrayList<Pool>(Arrays.asList(PIPoolOne, PIPoolTwo));
 		
 		// Setting up PI Groups
-		Group PA = new Group(Strings.LFirstGroup, 5, 1, 1, PIGroupStage); 
-		Group PB = new Group(Strings.LSecondGroup, 5, 1, 1, PIGroupStage);
+		Group PA = new Group(Strings.LFirstGroup, 5, 1, 1, 4, PIGroupStage); 
+		Group PB = new Group(Strings.LSecondGroup, 5, 1, 1, 4, PIGroupStage);
 		List<Group> PIGroups = new ArrayList<Group>(Arrays.asList(PA, PB));
 	  
 		SimulateCurrentPIGroupDraw(PIGroups, PIPools);
@@ -75,10 +75,10 @@ public class TournamentWorldChampionship extends Tournament {
 		List<Pool> pools1 = new ArrayList<Pool>(Arrays.asList(PI, P1, P2, P3)); 
 		
 		// Setting up groups
-		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, MGroupStage); 
-		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, MGroupStage);
-		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, MGroupStage); 
-		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, MGroupStage);
+		Group A = new Group(Strings.LFirstGroup, 4, 2, 1, 2, MGroupStage); 
+		Group B = new Group(Strings.LSecondGroup, 4, 2, 1, 2, MGroupStage);
+		Group C = new Group(Strings.LThirdGroup, 4, 2, 1, 2, MGroupStage); 
+		Group D = new Group(Strings.LFourthGroup, 4, 2, 1, 2, MGroupStage);
 		List<Group> groups = new ArrayList<Group>(Arrays.asList(A, B, C, D));
 		
 		SimulateCurrentGroupDraw(groups, pools1);

@@ -6,6 +6,7 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import DefiningMatches.Series;
 import StaticVariables.Strings;
 import Stats.ResultsTracker;
+import Stats.Standings;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
 import TournamentComponents.Group;
@@ -26,6 +27,7 @@ public class MidSeasonShowdown extends Bracket {
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
 		ResultsTracker tracker = super.getPartOf().getT();
+		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups
 		Group A = groups.get(0);
@@ -61,6 +63,8 @@ public class MidSeasonShowdown extends Bracket {
 		M4.setTeamA(A.GetTeamFromPlacement(5));
 		M4.setTeamB(M1.getLoser());
 		M4.Simulate();
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamA(M1.getWinner());
 		M5.setTeamB(M2.getWinner());
@@ -68,15 +72,18 @@ public class MidSeasonShowdown extends Bracket {
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
 		M6.Simulate();
+		standings.PlaceTeamDuringBacketStage(M6.getLoser(), true);
 		
 		M7.setTeamA(M5.getLoser());
 		M7.setTeamB(M6.getWinner());
 		M7.Simulate();
+		standings.PlaceTeamDuringBacketStage(M7.getLoser(), true);
 		
 		M8.setTeamA(M5.getWinner());
 		M8.setTeamB(M7.getWinner());
 		M8.Simulate();
-		
+		standings.PlaceTeamDuringBacketStage(M8.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M8.getWinner(), true);
 		// General Tracking Stuff
 		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M8);

@@ -16,7 +16,7 @@ public abstract class Tournament {
 	private Team runnerUp;
 	
 	public ResultsTracker t = new ResultsTracker();
-	public Standings eots = new Standings();
+	public Standings eots;
 	
 	private List<TournamentComponent> tComps = new ArrayList<TournamentComponent>();
 	
@@ -24,8 +24,9 @@ public abstract class Tournament {
 	private List<DrawStructure> draws = new ArrayList<DrawStructure>();
 	private List<GroupStage> grpStages = new ArrayList<GroupStage>();
 	
-	public Tournament(String label) {
+	public Tournament(String label, int numTeams) {
 		this.label = label;
+		eots = new Standings(numTeams);
 	}
 	
 	public String getLabel() {
