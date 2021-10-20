@@ -38,19 +38,19 @@ public class InternationalDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		Settings.setEloScaling(ELO_SCALING_TYPE.REASONABLE);
+		Settings.setEloScaling(ELO_SCALING_TYPE.PURE);
 		
 		// SimulateCurrentWorldsState().PrintInfo(true, true, true, true);
 		// SimulateStandardWC().PrintInfo(true, true, true, true);
 		
-		// SimulateDoubleElimWC().PrintInfo(true, true, true, true);
+		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
 		// Simulate2VS3WC().PrintInfo(true, true, true, true);
 		
 		// SimulateStandardMSI().PrintInfo(true, true, true, true);
 		
-		// SimulateLongWC().PrintInfo(true, true, true, true);
+		// SimulateLongWC().PrintInfo(false, false, false, true);
 		
-		// LoopTournament(numberOfSims);
+		LoopTournament(numberOfSims);
 	}
 
 	private static List<Pool> getLongWCPools() {
@@ -141,7 +141,7 @@ public class InternationalDriver {
 		for (int i = 0; i < x; i++) {
 			
 			// Change this to specifiy which tournament to simulate
-			Tournament T = SimulateStandardMSI();
+			Tournament T = SimulateStandardWC();
 			
 			tournamentMap.put(tournamentMap.size(), T);
 			Team champion = T.getWinner();

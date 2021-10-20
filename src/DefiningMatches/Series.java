@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import DefiningQualificationDetails.QualifiedThroughGroupPlacement;
+import DefiningQualificationDetails.QualifiedThroughSeriesWin;
 import DefiningTeams.Team;
 import StaticVariables.Settings;
+import StaticVariables.Strings;
 import Stats.ResultsTracker;
+import Stats.Standings;
 
 public class Series extends Matchup  {
 	private String stageLabel;
@@ -19,9 +23,6 @@ public class Series extends Matchup  {
 	
 	private Team A;
 	private Team B;
-	
-	private Team winner;
-	private Team loser;
 	
 	private ResultsTracker WLT;
 	
@@ -78,17 +79,16 @@ public class Series extends Matchup  {
 				TeamWin(A, B);
 				
 				if (gamescore.get(A) == goal) {
-					winner = A;
-					loser = B;
-					
+					super.setWinner(A);
+					super.setLoser(B);
 					break;
 				}
 			} else { // Team B Wins the game
 				TeamWin(B, A);
 				
 				if (gamescore.get(B) == goal) {
-					winner = B;
-					loser = A;
+					super.setWinner(B);
+					super.setLoser(A);
 					
 					break;
 				}
@@ -128,20 +128,12 @@ public class Series extends Matchup  {
 			matches.add(m);
 		}
 		if (t1GS == goal) {
-			winner = t1;
-			loser = t2;
+			super.setWinner(t1);
+			super.setLoser(t2);
 		} else {
-			winner = t2;
-			loser = t1;
+			super.setWinner(t2);
+			super.setLoser(t1);
 		}
-	}
-	
-	public Team getWinner() {
-		return winner;
-	}
-
-	public Team getLoser() {
-		return loser;
 	}
 
 	public int getLabel() {
@@ -206,24 +198,16 @@ public class Series extends Matchup  {
 		gamescore.put(b, 0);
 	}
 
-	public void setWinner(Team winner) {
-		winner = winner;
-	}
-
-	public void setLoser(Team loser) {
-		loser = loser;
-	}
-
 	public void setWLT(ResultsTracker wLT) {
 		WLT = wLT;
 	}
 
 	@Override
 	public String toString() {
-		if (winner == null) {
+		if (super.getWinner() == null) {
 			return matchLabel + ": " + A.getTag() + " VS " + B.getTag() + " - Bo" + numGames;
 		} else {
-			if (Settings.PRINT_DETAILED_SERIES_SUMMARY && gamescore.size() > 1) {
+			if (Settings.PRINT_DETAILED_SERIES_SUMMARRIES && gamescore.size() > 1) {
 				String s = matches.get(0).getMatchDetails();
 				int aWins = 0, bWins = 0;
 				
@@ -261,7 +245,7 @@ public class Series extends Matchup  {
 				return s;
 			} else {
 				String s = matchLabel + ": " + A + " VS " + B + "\n";
-				if (winner == A) {
+				if (super.getWinner() == A) {
 					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " > " + B.getTag();
 				} else {
 					s += gamescore.get(A) + ":" + gamescore.get(B) + "; " + A.getTag() + " < " + B.getTag();
@@ -273,6 +257,15 @@ public class Series extends Matchup  {
 	
 	@Override
 	public boolean resultDetermined() {
-		return winner != null;
+		return super.getWinner() != null;
+	}
+
+	public void SetQualified(String label, Standings standings) {
+		Team t = getWinner();
+		t.setNewQD(new QualifiedThroughSeriesWin(label, this));
+	}
+	
+	public String getFullLabel() {
+		return matchLabel + ": " + stageLabel;
 	}
 }

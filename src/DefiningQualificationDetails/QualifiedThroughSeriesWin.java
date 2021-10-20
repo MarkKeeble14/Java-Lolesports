@@ -1,22 +1,29 @@
 package DefiningQualificationDetails;
 
-import DefiningMatches.Game;
+import java.util.Map;
+
+import DefiningMatches.Series;
+import DefiningTeams.Team;
 import Enums.REASON_FOR_QUALIFICATION;
+import StaticVariables.Strings;
 
 public class QualifiedThroughSeriesWin extends QualificationDetails {
-	private Game m;
+	private Series series;
 	
-	public QualifiedThroughSeriesWin(String label, Game m) {
+	public QualifiedThroughSeriesWin(String label, Series s) {
 		super.setLabel(label);
 		super.setQualificationReason(REASON_FOR_QUALIFICATION.WonSeries);
-		this.m = m;
+		this.series = s;
 	}
 	
 	@Override
 	public String Print() {
-		String s = super.getLabel() + " - " + super.getT().getTag() 
-				+ ": Reason For Qualification: " + super.getQualificationReason() 
-				+ "\nOpponant: " + m.getLoser().getTag();
+		Map<Team, Integer> gamescore = series.getGamescore();
+		String s = series.getWinner().getTag() + " - " 
+				+ series.getFullLabel()
+				+ "\nReason For Qualification: " + super.getQualificationReason() 
+				+ "; Defeated " + series.getLoser().getTag() 
+				+ " | Score: " + gamescore.get(series.getWinner()) + "-" + gamescore.get(series.getLoser());
 		return s;
 	}
 

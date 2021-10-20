@@ -82,7 +82,7 @@ public class Standings {
             	        + top.getLabel() + "\n";
 			}
 		}
-		return s;
+		return s.substring(0, s.length() - 1);
 	}
 	
 	/*

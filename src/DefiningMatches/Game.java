@@ -15,9 +15,6 @@ public class Game extends Matchup {
 	private Team teamA;
 	private Team teamB;
 	
-	private Team winner;
-	private Team loser;
-	
 	private Random rand = new Random();
 	private ResultsTracker WLT;
 	
@@ -28,18 +25,18 @@ public class Game extends Matchup {
 		
 		double random = rand.nextDouble() * 100;
 		if (random > 0 && random < oddsTeamAWins) {
-			winner = teamA;
-			loser = teamB;
+			super.setWinner(teamA);
+			super.setLoser(teamB);
 		} else {
-			winner = teamB;
-			loser = teamA;
+			super.setWinner(teamB);
+			super.setLoser(teamA);
 		}
 		
 		// Update Teams Records
-		winner.getRecord(stageLabel).MatchWin(loser);
-		loser.getRecord(stageLabel).MatchLoss(winner);
+		super.getWinner().getRecord(stageLabel).MatchWin(super.getLoser());
+		super.getLoser().getRecord(stageLabel).MatchLoss(super.getWinner());
 		
-		WLT.Update(winner, loser);
+		WLT.Update(super.getWinner(), super.getLoser());
 	}
 	
 	public void TBSimulate() {
@@ -47,18 +44,18 @@ public class Game extends Matchup {
 		
 		double random = rand.nextDouble() * 100;
 		if (random > 0 && random < oddsTeamAWins) {
-			winner = teamA;
-			loser = teamB;
+			super.setWinner(teamA);
+			super.setLoser(teamB);
 		} else {
-			winner = teamB;
-			loser = teamA;
+			super.setWinner(teamB);
+			super.setLoser(teamA);
 		}
 		
 		// Update Teams Records
-		winner.getRecord(stageLabel).TiebreakerWin(loser);
-		loser.getRecord(stageLabel).TiebreakerLoss(winner);
+		super.getWinner().getRecord(stageLabel).TiebreakerWin(super.getLoser());
+		super.getLoser().getRecord(stageLabel).TiebreakerLoss(super.getWinner());
 		
-		WLT.Update(winner, loser);
+		WLT.Update(super.getWinner(), super.getLoser());
 	}
 	
 	/**
@@ -106,37 +103,37 @@ public class Game extends Matchup {
 	}
 	
 	public void setResult(Team t1, Team t2) {
-		winner = t1;
-		loser = t2;
+		super.setWinner(t1);
+		super.setLoser(t2);
 		
 		// Update Teams Records
-		winner.getRecord(stageLabel).MatchWin(loser);
-		loser.getRecord(stageLabel).MatchLoss(winner);
+		super.getWinner().getRecord(stageLabel).MatchWin(super.getLoser());
+		super.getLoser().getRecord(stageLabel).MatchLoss(super.getWinner());
 		
-		WLT.Update(winner, loser);
+		WLT.Update(super.getWinner(), super.getLoser());
 		
 		setManually = true;
 	}
 	
 	public void setTBResult(Team t1, Team t2) {
-		winner = t1;
-		loser = t2;
+		super.setWinner(t1);
+		super.setLoser(t2);
 		
 		// Update Teams Records
-		winner.getRecord(stageLabel).TiebreakerWin(loser);
-		loser.getRecord(stageLabel).TiebreakerLoss(winner);
+		super.getWinner().getRecord(stageLabel).TiebreakerWin(super.getLoser());
+		super.getLoser().getRecord(stageLabel).TiebreakerLoss(super.getWinner());
 		
-		WLT.Update(winner, loser);
+		WLT.Update(super.getWinner(), super.getLoser());
 		
 		setManually = true;
 	}
 	
 	public Team getWinner() {
-		return winner;
+		return super.getWinner();
 	}
 
 	public Team getLoser() {
-		return loser;
+		return super.getLoser();
 	}
 
 	public Team getTeamA() {
@@ -161,11 +158,11 @@ public class Game extends Matchup {
 	
 	@Override
 	public String toString() {
-		if (winner == null) {
+		if (super.getWinner() == null) {
 			return getMatchDetails();
 		} else {
 			String s = getMatchDetails();
-			if (winner == teamA) {
+			if (super.getWinner() == teamA) {
 				s += teamA.getTag() + " > " + teamB.getTag();
 			} else {
 				s += teamA.getTag() + " < " + teamB.getTag();
@@ -195,6 +192,6 @@ public class Game extends Matchup {
 
 	@Override
 	public boolean resultDetermined() {
-		return winner != null;
+		return super.getWinner() != null;
 	}
 }

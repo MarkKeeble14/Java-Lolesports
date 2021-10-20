@@ -103,6 +103,8 @@ public class MainStageKnockoutBracket extends Bracket {
 		standings.PlaceTeamDuringBacketStage(M8.getLoser(), false);
 		
 		super.addBracketSections(S1, S2);
+		super.setChampionshipSeries(M5, M6, M7, M8);
+		SetQualified(standings);
 	}
 
 	@Override

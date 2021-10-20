@@ -59,6 +59,8 @@ public class PIStageKnockoutBracket extends Bracket {
 		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		super.addBracketSections(S1, S2);
+		super.setChampionshipSeries(M3, M4);
+		SetQualified(standings);
 	}
 
 	@Override

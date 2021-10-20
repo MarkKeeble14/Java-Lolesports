@@ -84,7 +84,7 @@ public class MidSeasonShowdown extends Bracket {
 		M8.Simulate();
 		standings.PlaceTeamDuringBacketStage(M8.getLoser(), true);
 		standings.PlaceTeamDuringBacketStage(M8.getWinner(), true);
-		// General Tracking Stuff
+		
 		super.addBracketSections(S1, S2, S3, S4);
 		super.setChampionshipSeries(M8);
 	}

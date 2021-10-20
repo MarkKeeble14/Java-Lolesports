@@ -21,9 +21,7 @@ import StaticVariables.Strings;
 public abstract class Bracket extends TournamentComponent {
 	private Map<String, BracketSlice> bracketSections = new HashMap<String, BracketSlice>();
 	
-	private Series championshipMatch;
-	private Team champion;
-	private Team runnerUp;
+	private List<Series> championshipMatches = new ArrayList<Series>();
 	
 	private Tournament partOf;
 	
@@ -49,6 +47,12 @@ public abstract class Bracket extends TournamentComponent {
 	public abstract void Simulate(List<Group> groups) throws Exception;
 	
 	public abstract void Simulate(Bracket b, List<Group> groups) throws Exception;
+	
+	public void SetQualified(Standings standings) {
+		for (Series s : championshipMatches) {
+			s.SetQualified(getLabel(), standings);
+		}
+	}
 	
 	public BracketSlice getBracketSection(String label) {
 		return bracketSections.get(label);
@@ -76,30 +80,10 @@ public abstract class Bracket extends TournamentComponent {
 		}
 	}
 	
-	public void setChampionshipSeries(Series s) {
-		championshipMatch = s;
-		setChampion(s.getWinner());
-		setRunnerUp(s.getLoser());
-	}
-	
-	public Series getChampionshipSeries() {
-		return championshipMatch;
-	}
-
-	public void setChampion(Team champion) {
-		this.champion = champion;
-	}
-	
-	public Team getChampion() {
-		return champion;
-	}
-
-	public Team getRunnerUp() {
-		return runnerUp;
-	}
-
-	public void setRunnerUp(Team runnerUp) {
-		this.runnerUp = runnerUp;
+	public void setChampionshipSeries(Series... series) {
+		for (Series s : series) {
+			championshipMatches.add(s);	
+		}
 	}
 
 	public Tournament getPartOf() {
@@ -157,7 +141,7 @@ public abstract class Bracket extends TournamentComponent {
 					seenTeams.add(b);
 				}
 			}
-			if (Settings.PRINT_SERIES_SUMMARY) {
+			if (Settings.PRINT_SERIES_SUMMARRIES) {
 				if (x == listOfSeries.size() - 1) {
 					s += "\n" + m.toString();
 				} else {
@@ -168,13 +152,13 @@ public abstract class Bracket extends TournamentComponent {
 			x++;
 		}
 		
-		if (!Settings.PRINT_SERIES_SUMMARY) {
+		if (!Settings.PRINT_SERIES_SUMMARRIES) {
 			s += "\nPrint Bracket Summary set to false";
 		}
 		
 		// PRINTING BRACKET SUMMARY
 		if (Settings.PRINT_BRACKET_SUMMARY) {
-			s += "\n" + Strings.LargeLineBreak + "\n\nBracket Summary";
+			s += "\n" + Strings.LargeLineBreak + "\n\nBracket Summary: " + super.getLabel();
 			s += "\n" + Strings.SmallLineBreak + "\n" + "\n";
 			
 			int mostEntriesVertical = 0;
@@ -208,6 +192,7 @@ public abstract class Bracket extends TournamentComponent {
 			for (int i = 0; i < convSections.size(); i++) {
 				BracketSlice bs = convSections.get(i);
 				s += String.format(Strings.BracketSeriesFormatSingle, bs.getStageLabel()); 
+				s += String.format(Strings.BracketSeriesFormatGamescore, "");
 			}
 			s += String.format(Strings.BracketSeriesFormatSingle, Strings.WNNRS);
 			s += "\n";
@@ -220,16 +205,28 @@ public abstract class Bracket extends TournamentComponent {
 					Series[] column = bracketSummary[p];
 					Series series = column[q];
 					if (series != null) {
+						Map<Team, Integer> gamescore = series.getGamescore();
+						int teamAScore = gamescore.get(series.getTeamA());
+						int teamBScore = gamescore.get(series.getTeamB());
 						s += String.format(Strings.BracketSeriesFormatSingle, 
 								series.getTeamA().getTag() + " : " + series.getTeamB().getTag());
+						s += String.format(Strings.BracketSeriesFormatGamescore, " | " + teamAScore + "-" + teamBScore);
 					} else if (p == horizontalEntries - 1) {
 						if (q < lastSliceSeries.size()) {
-							s += String.format(Strings.BracketSeriesFormatSingle, lastSliceSeries.get(q).getWinner().getTag()); 
+							boolean contained = false;
+							for (Series cMatch : championshipMatches) {
+								if (cMatch.getWinner().getTag().compareTo(lastSliceSeries.get(q).getWinner().getTag()) == 0) {
+									contained = true;
+								}
+							}
+							s += String.format(Strings.BracketSeriesFormatSingle, 
+									contained ? lastSliceSeries.get(q).getWinner().getTag() : ""); 
 						} else {
 							s += String.format(Strings.BracketSeriesFormatSingle, ""); 	
 						}
 					} else {
 						s += String.format(Strings.BracketSeriesFormatSingle, ""); 
+						s += String.format(Strings.BracketSeriesFormatGamescore, "");
 					}
 					if (p == horizontalEntries - 1) {
 						q++;
@@ -269,5 +266,9 @@ public abstract class Bracket extends TournamentComponent {
 				return lhs.getOrder() < rhs.getOrder() ? -1 : (lhs.getOrder() < rhs.getOrder()) ? 1 : 0;
 			}
 		});
+	}
+
+	public List<Series> getChampionshipMatches() {
+		return championshipMatches;
 	}
 }

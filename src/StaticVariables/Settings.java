@@ -20,24 +20,30 @@ public class Settings {
 	private static int PURE_ELO_SCALING = 500;
 	private static int WACKY_ELO_SCALING = 50;
 	
+	// Basic Win/Loss Settings
 	public static final boolean SHOW_REGIONAL_WL_WITH_0_GAMES = false;
-	
-	public static final boolean PRINT_SERIES_SUMMARY = false;
-	public static final boolean PRINT_DETAILED_SERIES_SUMMARY = true;
-	
-	public static final boolean PRINT_QUALIFICATION_REASONS = false;
-	
-	public static final boolean PRINT_GROUP_STAGE_GAMES = false;
-	
-	public static final boolean PRINT_GROUP_STAGE_SUMMARY = true;
-	
 	public static final boolean PRINT_OVERALL_WL = true;
 	public static final boolean PRINT_INDIVIDUAL_WL = true;
+	
+	// Regional Win/Loss Settings
 	public static final boolean PRINT_MAJOR_REGIONAL_WL = true;
 	public static final boolean PRINT_MINOR_REGIONAL_WL = true;
+	
+	// Series Settings
+	public static final boolean PRINT_SERIES_SUMMARRIES = true;
+	public static final boolean PRINT_DETAILED_SERIES_SUMMARRIES = true;
+	
+	// Qualification Reasons Settings
+	public static final boolean PRINT_QUALIFICATION_REASONS = false;
+	
+	// Group Stage Settings
+	public static final boolean PRINT_GROUP_STAGE_GAMES = false;
+	public static final boolean PRINT_GROUP_STAGE_SUMMARY = false;
 
+	// Bracket Settings
 	public static final boolean PRINT_BRACKET_SUMMARY = true;
 
+	// Tournament Stats Settings
 	public static final boolean PRINT_TOURNAMENT_STATS = true;
 	
 	public static void setEloScaling(ELO_SCALING_TYPE type) {

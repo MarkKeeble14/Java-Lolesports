@@ -3,6 +3,7 @@ package TournamentComponents;
 import java.util.ArrayList;
 import java.util.List;
 
+import DefiningMatches.Series;
 import DefiningTeams.Team;
 import StaticVariables.Settings;
 import StaticVariables.Strings;
@@ -12,8 +13,7 @@ import Utility.Util;
 
 public abstract class Tournament {
 	private String label;
-	private Team winner;
-	private Team runnerUp;
+	private Bracket championshipBracket;
 	
 	public ResultsTracker t = new ResultsTracker();
 	public Standings eots;
@@ -42,10 +42,7 @@ public abstract class Tournament {
 	public abstract void Setup();
 	
 	public void ConcludeTournament() {
-		Bracket b = brackets.get(brackets.size() - 1);
-		
-		winner = b.getChampion();
-		runnerUp = b.getRunnerUp();
+		championshipBracket = brackets.get(brackets.size() - 1);
 	}
 	
 	public void PrintLists() {
@@ -90,25 +87,33 @@ public abstract class Tournament {
 	
 	public void PrintChampionshipStats() {
 		String s = "";
-		if (winner.hasQDs()) {
-			s += "\n" + winner.qdLog() + "\n" + Strings.MediumLineBreak;
-			if (winner.getCurrentRecordIndex() > 0) {
-				s += "\n";
+		for (Series match : championshipBracket.getChampionshipMatches()) {
+			Team winner = match.getWinner();
+			Team runnerUp = match.getLoser();
+			if (winner.hasQDs()) {
+				s += "\n" + winner.qdLog() + "\n" + Strings.MediumLineBreak;
+				if (winner.getCurrentRecordIndex() > 0) {
+					s += "\n";
+				}
 			}
+			if (winner.hasRecords()) {
+				s += "\n" + winner.recordLog() + Strings.MediumLineBreak + "\n";
+			}
+			s += "\n" + winner.getTag() + " has Won " + label + "; Runner Up: " + runnerUp.getTag();
 		}
-		if (winner.hasRecords()) {
-			s += "\n" + winner.recordLog() + Strings.MediumLineBreak + "\n";
-		}
-		s += "\n" + winner.getTag() + " has Won " + label + "; Runner Up: " + runnerUp.getTag();
 		System.out.println(s);
 	}
 
 	public Team getWinner() {
-		return winner;
+		return 	championshipBracket.getChampionshipMatches()
+				.get(championshipBracket.getChampionshipMatches().size() - 1)
+				.getWinner();
 	}
 
 	public Team getRunnerUp() {
-		return runnerUp;
+		return 	championshipBracket.getChampionshipMatches()
+				.get(championshipBracket.getChampionshipMatches().size() - 1)
+				.getLoser();
 	}
 	
 	public ResultsTracker getT() {

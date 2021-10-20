@@ -20,7 +20,8 @@ public class Strings {
 	public static final String RecordTableFormat = "%-50s %-10s %-12s %-20s%n";
 	public static final String TableFormat = "%-15s %-7s %-12s %-20s%n";
 	public static final String StandingFormat = "%-50s %-20s";
-	public static final String BracketSeriesFormatSingle = "%-20s";
+	public static final String BracketSeriesFormatSingle = "%-12s";
+	public static final String BracketSeriesFormatGamescore = "%-10s";
 	
 	// Stages
 	public static final String PIGD = "PI Group Draw";
