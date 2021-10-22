@@ -4,17 +4,17 @@ import DefiningTeams.RosterDefinedTeam;
 import DefiningTeams.Team;
 import Enums.REGION;
 
-public class TeamsWithPlayers {
+public class TeamsWithPlayersOffseason {
 	// LCS
 	public static final Team TSM = new RosterDefinedTeam("TSM", REGION.NA, 
 			Players.Huni, 
 			Players.Spica, 
-			Players.PowerOfEvil, 
-			Players.Lost, 
+			Players.Bjergsen, 
+			Players.Rekkles, 
 			Players.SwordArt);
 	public static final Team TL = new RosterDefinedTeam("TL", REGION.NA, 
 			Players.Alphari, 
-			Players.Santorin, 
+			Players.Razork, 
 			Players.Jensen, 
 			Players.Tactical, 
 			Players.CoreJJ);
@@ -32,40 +32,40 @@ public class TeamsWithPlayers {
 			Players.Huhi);
 	public static final Team EG = new RosterDefinedTeam("EG", REGION.NA, 
 			Players.Impact, 
-			Players.Contractz, 
-			Players.Jiizuke, 
+			Players.Santorin, 
+			Players.PowerOfEvil, 
 			Players.Danny, 
 			Players.IgNar);
 	public static final Team IMT = new RosterDefinedTeam("IMT", REGION.NA, 
 			Players.Revenge, 
 			Players.Xerxe, 
 			Players.Insanity, 
-			Players.Raes, 
+			Players.Prismal, 
 			Players.Destiny);
 	public static final Team GG = new RosterDefinedTeam("GG", REGION.NA, 
 			Players.Licorice,
-			Players.Iconic, 
+			Players.Kenvi, 
 			Players.AblazeOlive, 
-			Players.Stixxay, 
-			Players.Chime);
+			Players.Luger, 
+			Players.Poome);
 	public static final Team DIG = new RosterDefinedTeam("DIG", REGION.NA, 
-			Players.FakeGod, 
+			Players.Cabochard, 
 			Players.Akaadian, 
-			Players.Yusui, 
+			Players.MagiFelix, 
 			Players.Neo, 
 			Players.Aphromoo);
 	public static final Team CLG = new RosterDefinedTeam("CLG", REGION.NA, 
-			Players.Finn, 
-			Players.Broxah, 
-			Players.Damonte,
-			Players.WildTurtle,
-			Players.Smoothie);
+			Players.Finn,
+			Players.Contractz, 
+			Players.Jiizuke, 
+			Players.Yeon, 
+			Players.Eyla);
 	public static final Team FLY = new RosterDefinedTeam("FLY", REGION.NA, 
-			Players.Kumo, 
-			Players.Josedeodo, 
+			Players.Kryze, 
+			Players.Svenskeren, 
 			Players.Palafox, 
 			Players.Johnsun,
-			Players.Dreams);
+			Players.Mikyx);
 
 	// LEC
 	public static final Team G2 = new RosterDefinedTeam("G2", REGION.EU, 

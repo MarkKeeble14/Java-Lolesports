@@ -48,9 +48,9 @@ public class InternationalDriver {
 		
 		// SimulateStandardMSI().PrintInfo(true, true, true, true);
 		
-		// SimulateLongWC().PrintInfo(false, false, false, true);
+		SimulateLongWC().PrintInfo(true, true, true, true);
 		
-		LoopTournament(numberOfSims);
+		// LoopTournament(numberOfSims);
 	}
 
 	private static List<Pool> getLongWCPools() {

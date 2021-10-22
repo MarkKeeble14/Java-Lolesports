@@ -68,6 +68,20 @@ public class Players {
 	public static final Player Johnsun = new Player("Johnsun", 0.75f, ROLE.Bottom, REGION.NA, false);
 	public static final Player Dreams = new Player("Dreams", 0.73f, ROLE.Support, REGION.KR, true);
 	
+	// NA Academy as of October 21st, 2021
+	public static final Player Bjergsen = new Player("Bjergsen", 0.96f, ROLE.Mid, REGION.EU, false);
+	
+	public static final Player Yeon = new Player("Yeon", 0.80f, ROLE.Bottom, REGION.NA, false);
+	public static final Player Eyla = new Player("Eyla", 0.81f, ROLE.Support, REGION.OCE, false);
+	
+	public static final Player Kenvi = new Player("Kenvi", 0.81f, ROLE.Jungle, REGION.NA, false);
+	public static final Player Luger = new Player("Luger", 0.85f, ROLE.Bottom, REGION.EU, true);
+	public static final Player Poome = new Player("Poome", 0.81f, ROLE.Support, REGION.NA, false);
+	
+	public static final Player Cabochard = new Player("Cabochard", 0.89f, ROLE.Top, REGION.EU, true);
+	
+	public static final Player Prismal = new Player("Prismal", 0.82f, ROLE.Bottom, REGION.NA, false);
+	
 	// LEC as of October 10th, 2021
 	public static final Player Wunder = new Player("Wunder", 0.86f, ROLE.Top, REGION.EU, false);
 	public static final Player Jankos = new Player("Jankos", 0.95f, ROLE.Jungle, REGION.EU, false);
@@ -128,4 +142,12 @@ public class Players {
 	public static final Player Nukeduck = new Player("Nukeduck", 0.83f, ROLE.Mid, REGION.EU, false);
 	public static final Player Patrik = new Player("Patrik", 0.88f, ROLE.Bottom, REGION.EU, false);
 	public static final Player Advienne = new Player("Advienne", 0.82f, ROLE.Support, REGION.EU, false);
+	
+	/*
+	public static final Player = new Player("", 0.00, ROLE.Top, REGION.NA, false);
+	public static final Player = new Player("", 0.00, ROLE.Jungle, REGION.NA, false);
+	public static final Player = new Player("", 0.00, ROLE.Middle, REGION.NA, false);
+	public static final Player = new Player("", 0.00, ROLE.Bottom, REGION.NA, false);
+	public static final Player = new Player("", 0.00, ROLE.Support, REGION.NA, false);
+	*/
 }

@@ -105,6 +105,87 @@ public abstract class Bracket extends TournamentComponent {
 		}
 		sortSLListByLabel(listOfSeries);
 		
+		// PRINTING BRACKET SUMMARY
+		if (Settings.PRINT_PRE_BRACKET_SUMMARY) {
+			s += Strings.LargeLineBreak + "\n\nPre-Bracket Summary: " + super.getLabel();
+			s += "\n" + Strings.SmallLineBreak + "\n" + "\n";
+			
+			int mostEntriesVertical = 0;
+			int horizontalEntries = 1;
+			Object[] toConv = bracketSections.values().toArray();
+			List<BracketSlice> convSections = convertObjectArrayToBracketSectionList(toConv);			
+			sortBSListByLabel(convSections);
+			
+			for (int i = 0; i < convSections.size(); i++) {
+				List<Series> seriesList = convSections.get(i).getSeriesList();
+				if (seriesList.size() > mostEntriesVertical) {
+					mostEntriesVertical = seriesList.size();
+				}
+				horizontalEntries++;
+			}
+			
+			Series[][] bracketSummary = new Series[horizontalEntries][mostEntriesVertical];
+			int y = 0;
+			for (int i = 0; i < convSections.size(); i++) {
+				BracketSlice bs = convSections.get(i);
+				List<Series> seriesList = bs.getSeriesList();
+				for (int p = 0; p < seriesList.size(); p++) {
+					int xIndex = y;
+					int yIndex = p;
+					bracketSummary[xIndex][yIndex] = seriesList.get(p);
+				}
+				y++;
+			}
+			
+			
+			for (int i = 0; i < convSections.size(); i++) {
+				BracketSlice bs = convSections.get(i);
+				s += String.format(Strings.BracketSeriesFormatSingle, bs.getStageLabel()); 
+				s += String.format(Strings.BracketSeriesFormatGamescore, "");
+			}
+			s += "\n";
+			
+			int q = 0;
+			BracketSlice lastSlice = convSections.get(convSections.size() - 1);
+			List<Series> lastSliceSeries = lastSlice.getSeriesList();
+			while (q < mostEntriesVertical) {
+				for (int p = 0; p < horizontalEntries; p++) {
+					Series[] column = bracketSummary[p];
+					Series series = column[q];
+					if (series != null) {
+						s += String.format(Strings.BracketSeriesFormatSingle, 
+								series.getTeamA().getTag() + " : " + series.getTeamB().getTag());
+						s += String.format(Strings.BracketSeriesFormatGamescore, "");
+					} else if (p == horizontalEntries - 1) {
+						if (q < lastSliceSeries.size()) {
+							boolean contained = false;
+							for (Series cMatch : championshipMatches) {
+								if (cMatch.getWinner().getTag().compareTo(lastSliceSeries.get(q).getWinner().getTag()) == 0) {
+									contained = true;
+								}
+							}
+							s += String.format(Strings.BracketSeriesFormatSingle, ""); 
+							s += String.format(Strings.BracketSeriesFormatGamescore, "");
+						} else {
+							s += String.format(Strings.BracketSeriesFormatSingle, ""); 
+							s += String.format(Strings.BracketSeriesFormatGamescore, "");
+						}
+					} else {
+						s += String.format(Strings.BracketSeriesFormatSingle, ""); 
+						s += String.format(Strings.BracketSeriesFormatGamescore, "");
+					}
+					if (p == horizontalEntries - 1) {
+						q++;
+						if (q != mostEntriesVertical) {
+							s += "\n";	
+						}
+					}
+				}	
+			}
+		}
+		// PRINTING BRACKET SUMMARY
+		s += "\n" + Strings.LargeLineBreak + "\n";
+		
 		int x = 0;
 		for (int i = 0; i < listOfSeries.size(); i++) {
 			Series m = listOfSeries.get(i);
@@ -157,8 +238,8 @@ public abstract class Bracket extends TournamentComponent {
 		}
 		
 		// PRINTING BRACKET SUMMARY
-		if (Settings.PRINT_BRACKET_SUMMARY) {
-			s += "\n" + Strings.LargeLineBreak + "\n\nBracket Summary: " + super.getLabel();
+		if (Settings.PRINT_END_OF_BRACKET_SUMMARY) {
+			s += "\n" + Strings.LargeLineBreak + "\n\nEnd of Bracket Summary: " + super.getLabel();
 			s += "\n" + Strings.SmallLineBreak + "\n" + "\n";
 			
 			int mostEntriesVertical = 0;

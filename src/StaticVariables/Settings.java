@@ -41,7 +41,8 @@ public class Settings {
 	public static final boolean PRINT_GROUP_STAGE_SUMMARY = false;
 
 	// Bracket Settings
-	public static final boolean PRINT_BRACKET_SUMMARY = true;
+	public static final boolean PRINT_END_OF_BRACKET_SUMMARY = true;
+	public static final boolean PRINT_PRE_BRACKET_SUMMARY = true;
 
 	// Tournament Stats Settings
 	public static final boolean PRINT_TOURNAMENT_STATS = true;

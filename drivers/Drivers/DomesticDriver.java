@@ -21,6 +21,7 @@ import StaticVariables.Settings;
 import StaticVariables.Strings;
 import StaticVariables.Teams;
 import StaticVariables.TeamsWithPlayers;
+import StaticVariables.TeamsWithPlayersOffseason;
 import TournamentComponents.Pool;
 import TournamentComponents.Tournament;
 import Utility.Util;
@@ -56,21 +57,21 @@ public class DomesticDriver {
 	
 	public static Tournament SimulateSpringLCS() throws Exception {
 		Tournament WC = new SpringLCS();
-		Pool p = getPoolOfLCSTeams();
+		Pool p = getPoolOfLCSTeamsOffseason();
 		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	
 	public static Tournament SimulateSummerLCS() throws Exception {
 		Tournament WC = new SummerLCS();
-		Pool p = getPoolOfLCSTeams();
+		Pool p = getPoolOfLCSTeamsOffseason();
 		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
 	
 	public static Tournament SimulateLockinLCS() throws Exception {
 		Tournament WC = new LCSLockin();
-		Pool p = getPoolOfLCSTeams();
+		Pool p = getPoolOfLCSTeamsOffseason();
 		WC.Simulate(new ArrayList<Pool>(Arrays.asList(p)));
 		return WC;
 	}
@@ -96,6 +97,17 @@ public class DomesticDriver {
 				new RatingDefinedTeam(TeamsWithPlayers.FLY), new RatingDefinedTeam(TeamsWithPlayers.GG), 
 				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
 				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
+		Pool p = new Pool(Strings.LCSTeams, teams);
+		return p;
+	}
+	
+	public static Pool getPoolOfLCSTeamsOffseason() {
+		List<Team> teams = new ArrayList<Team>(Arrays.asList(
+				new RatingDefinedTeam(TeamsWithPlayersOffseason.TSM), new RatingDefinedTeam(TeamsWithPlayersOffseason.C9), 
+				new RatingDefinedTeam(TeamsWithPlayersOffseason.TL), new RatingDefinedTeam(TeamsWithPlayersOffseason.EG), 
+				new RatingDefinedTeam(TeamsWithPlayersOffseason.FLY), new RatingDefinedTeam(TeamsWithPlayersOffseason.GG), 
+				new RatingDefinedTeam(TeamsWithPlayersOffseason.CLG), new RatingDefinedTeam(TeamsWithPlayersOffseason.DIG), 
+				new RatingDefinedTeam(TeamsWithPlayersOffseason.O100), new RatingDefinedTeam(TeamsWithPlayersOffseason.IMT)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
 		return p;
 	}
