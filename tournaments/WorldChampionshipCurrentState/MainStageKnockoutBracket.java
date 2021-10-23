@@ -1,11 +1,8 @@
-package WorldChampionshipLong;
+package WorldChampionshipCurrentState;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import CustomExceptions.MismatchedNumberOfGroupsException;
-import DefiningMatches.Game;
 import DefiningMatches.Series;
 import DefiningTeams.Team;
 import StaticVariables.Strings;
@@ -14,26 +11,26 @@ import Stats.MatchStats;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
 import TournamentComponents.Group;
-import TournamentComponents.Pool;
 import TournamentComponents.Tournament;
 
-// 4 Group Double Elim Bracket
-public class FinalEliminationKnockoutBracket extends Bracket {
-	public FinalEliminationKnockoutBracket(String label, Tournament partOf) {
+// 4 Group Bracket
+public class MainStageKnockoutBracket extends Bracket {
+	public MainStageKnockoutBracket(String label, Tournament partOf) {
 		super(label, partOf);
 	}
 
-	public FinalEliminationKnockoutBracket(String label, Tournament partOf, String fedThrough) {
-		super(label, partOf, fedThrough);
-	}
-	
-	int requiredNumberOfGroups = 4;
-	
-	public void Simulate(List<Group> groups) throws Exception {
+	public MainStageKnockoutBracket(String label, Tournament tournamentWorldChampionship, String msgs) {
+		super(label, tournamentWorldChampionship, msgs);
 	}
 
+	int requiredNumberOfGroups = 4;
+	
 	@Override
-	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+	public void Simulate(List<Group> groups) throws Exception {
+		if (groups.size() != requiredNumberOfGroups) {
+			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
+		}
+		
 		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
@@ -42,12 +39,6 @@ public class FinalEliminationKnockoutBracket extends Bracket {
 		Group B = groups.get(1);
 		Group C = groups.get(2);
 		Group D = groups.get(3);
-		
-		Pool poolOne = new Pool(Strings.LPoolTwo, A.GetTeamFromPlacement(1), B.GetTeamFromPlacement(1), 
-				C.GetTeamFromPlacement(1), D.GetTeamFromPlacement(1));
-		
-		Pool poolTwo = new Pool(Strings.LPoolOne, b.getSeries(5).getWinner(), b.getSeries(6).getWinner(), 
-				b.getSeries(7).getWinner(), b.getSeries(8).getWinner());
 		
 		BracketSlice S1 = new BracketSlice(super.getLabel(), Strings.QFS, 1);
 		BracketSlice S2 = new BracketSlice(super.getLabel(), Strings.SFS, 2);
@@ -64,25 +55,38 @@ public class FinalEliminationKnockoutBracket extends Bracket {
 		Series M7 = new Series(7, 5, tracker);
 		S3.addSeries(M7);
 		
-		ArrayList<Series> matches = new ArrayList<Series>(Arrays.asList(M1, M2, M3, M4));
+		// Qualified Teams
+		Team DK = A.GetTeamFromPlacement(1);
+		Team C9 = A.GetTeamFromPlacement(2);
+		Team T1 = B.GetTeamFromPlacement(1);
+		Team EDG = B.GetTeamFromPlacement(2);
+		Team RNG = C.GetTeamFromPlacement(1);
+		Team HLE = C.GetTeamFromPlacement(2);
+		Team GEN = D.GetTeamFromPlacement(1);
+		Team MAD = D.GetTeamFromPlacement(2);
 		
-		M1.setTeamA(poolOne.Draw());
-		M2.setTeamA(poolOne.Draw());
-		M3.setTeamA(poolOne.Draw());
-		M4.setTeamA(poolOne.Draw());
+		M1.setTeamA(RNG);
+		M2.setTeamA(GEN);
+		M3.setTeamA(T1);
+		M4.setTeamA(DK);
+		M1.setTeamB(EDG);
+		M2.setTeamB(C9);
+		M3.setTeamB(HLE);
+		M4.setTeamB(MAD);
 		
-		M1.setTeamB(poolTwo.DrawWithSameMatchRule(M1,  poolTwo, new ArrayList<Team>(), matches, groups));
-		M2.setTeamB(poolTwo.DrawWithSameMatchRule(M2, poolTwo, new ArrayList<Team>(), matches, groups));
-		M3.setTeamB(poolTwo.DrawWithSameMatchRule(M3, poolTwo, new ArrayList<Team>(), matches, groups));
-		M4.setTeamB(poolTwo.DrawWithSameMatchRule(M4, poolTwo, new ArrayList<Team>(), matches, groups));
-				
-		M1.Simulate();
-		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		// M1.Simulate();
+		M1.setResult(EDG, RNG, 3, 2);
+		
 		M2.Simulate();
-		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
-		M3.Simulate();
-		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
+		
+		// M3.Simulate();
+		M3.setResult(T1, HLE, 3, 0);
+		
 		M4.Simulate();
+		
+		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
+		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
+		standings.PlaceTeamDuringBacketStage(M3.getLoser(), false);
 		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		
 		M5.setTeamA(M1.getWinner());
@@ -90,8 +94,8 @@ public class FinalEliminationKnockoutBracket extends Bracket {
 		M6.setTeamA(M3.getWinner());
 		M6.setTeamB(M4.getWinner());
 		M5.Simulate();
-		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
 		M6.Simulate();
+		standings.PlaceTeamDuringBacketStage(M5.getLoser(), true);
 		standings.PlaceTeamDuringBacketStage(M6.getLoser(), false);
 		
 		M7.setTeamA(M5.getWinner());
@@ -104,4 +108,11 @@ public class FinalEliminationKnockoutBracket extends Bracket {
 		super.addBracketSections(S1, S2, S3);
 		super.setChampionshipSeries(M7);
 	}
+
+	@Override
+	public void Simulate(Bracket b, List<Group> groups) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

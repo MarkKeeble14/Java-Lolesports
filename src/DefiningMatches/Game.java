@@ -7,7 +7,7 @@ import DefiningTeams.Team;
 import Drivers.DomesticDriver;
 import Drivers.InternationalDriver;
 import StaticVariables.Settings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 
 public class Game extends Matchup {
 	private String stageLabel;
@@ -16,7 +16,7 @@ public class Game extends Matchup {
 	private Team teamB;
 	
 	private Random rand = new Random();
-	private ResultsTracker WLT;
+	private MatchStats WLT;
 	
 	private boolean setManually = false;
 	
@@ -36,7 +36,7 @@ public class Game extends Matchup {
 		super.getWinner().getRecord(stageLabel).MatchWin(super.getLoser());
 		super.getLoser().getRecord(stageLabel).MatchLoss(super.getWinner());
 		
-		WLT.Update(super.getWinner(), super.getLoser());
+		WLT.Update(stageLabel, this);
 	}
 	
 	public void TBSimulate() {
@@ -55,7 +55,7 @@ public class Game extends Matchup {
 		super.getWinner().getRecord(stageLabel).TiebreakerWin(super.getLoser());
 		super.getLoser().getRecord(stageLabel).TiebreakerLoss(super.getWinner());
 		
-		WLT.Update(super.getWinner(), super.getLoser());
+		WLT.Update(stageLabel, this);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Game extends Matchup {
 	* @param A Combatant A 
 	* @param B Combatant B
 	*/
-	public Game(String sl, int l, Team A, Team B, ResultsTracker t) {
+	public Game(String sl, int l, Team A, Team B, MatchStats t) {
 		stageLabel = sl;
 		matchLabel = l;
 		teamA = A;
@@ -76,7 +76,7 @@ public class Game extends Matchup {
 	* Constructor
 	* @param label The match id/number of the match, i.e., M1, M2, M3, etc
 	*/
-	public Game(String sl, int l, ResultsTracker t) {
+	public Game(String sl, int l, MatchStats t) {
 		stageLabel = sl;
 		matchLabel = l;
 		WLT = t;
@@ -110,7 +110,7 @@ public class Game extends Matchup {
 		super.getWinner().getRecord(stageLabel).MatchWin(super.getLoser());
 		super.getLoser().getRecord(stageLabel).MatchLoss(super.getWinner());
 		
-		WLT.Update(super.getWinner(), super.getLoser());
+		WLT.Update(stageLabel, this);
 		
 		setManually = true;
 	}
@@ -123,7 +123,7 @@ public class Game extends Matchup {
 		super.getWinner().getRecord(stageLabel).TiebreakerWin(super.getLoser());
 		super.getLoser().getRecord(stageLabel).TiebreakerLoss(super.getWinner());
 		
-		WLT.Update(super.getWinner(), super.getLoser());
+		WLT.Update(stageLabel, this);
 		
 		setManually = true;
 	}
@@ -193,5 +193,9 @@ public class Game extends Matchup {
 	@Override
 	public boolean resultDetermined() {
 		return super.getWinner() != null;
+	}
+
+	public boolean getSetManually() {
+		return setManually;
 	}
 }

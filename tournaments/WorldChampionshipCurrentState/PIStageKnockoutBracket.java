@@ -1,4 +1,4 @@
-package WorldChampionshipLong;
+package WorldChampionshipCurrentState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.List;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import DefiningMatches.Game;
 import DefiningMatches.Series;
+import DefiningTeams.Team;
 import StaticVariables.Strings;
 import Stats.Standings;
 import Stats.MatchStats;
@@ -42,19 +43,30 @@ public class PIStageKnockoutBracket extends Bracket {
 		Group A = groups.get(0);
 		Group B = groups.get(1);
 		
-		Series M1 = new Series(1, 5, A.GetTeamFromPlacement(4), A.GetTeamFromPlacement(5), tracker);
-		Series M2 = new Series(2, 5, B.GetTeamFromPlacement(4), B.GetTeamFromPlacement(5), tracker);
+		Team C9 = B.GetTeamFromPlacement(2);
+		Team GS = B.GetTeamFromPlacement(3);
+		Team BYG = B.GetTeamFromPlacement(4);
+		Team HLE = A.GetTeamFromPlacement(2);
+		Team PCE = A.GetTeamFromPlacement(3);
+		Team RED = A.GetTeamFromPlacement(4);
+		
+		Series M1 = new Series(1, 5, PCE, RED, tracker);
+		Series M2 = new Series(2, 5, GS, BYG, tracker);
 		S1.addSeries(M1, M2);
-		M1.Simulate();
-		M2.Simulate();
+		
+		M1.setResult(PCE, RED, 3, 2);
+		M2.setResult(GS, BYG, 2, 3);
+		
 		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
 		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);
 		
-		Series M3 = new Series(3, 5, A.GetTeamFromPlacement(3), M1.getWinner(), tracker);
-		Series M4 = new Series(4, 5, B.GetTeamFromPlacement(3), M2.getWinner(), tracker);
+		Series M3 = new Series(3, 5, C9, M1.getWinner(), tracker);
+		Series M4 = new Series(4, 5, HLE, M2.getWinner(), tracker);
 		S2.addSeries(M3, M4);
-		M3.Simulate();
-		M4.Simulate();
+		
+		M3.setResult(C9, PCE, 3, 0);
+		M4.setResult(HLE, BYG, 3, 0);
+		
 		standings.PlaceTeamDuringBacketStage(M3.getLoser(), true);
 		standings.PlaceTeamDuringBacketStage(M4.getLoser(), false);
 		

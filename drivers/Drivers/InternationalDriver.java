@@ -38,17 +38,17 @@ public class InternationalDriver {
 	
 	// Main
 	public static void main(String[] args) throws Exception {
-		Settings.setEloScaling(ELO_SCALING_TYPE.PURE);
+		Settings.setEloScaling(ELO_SCALING_TYPE.REASONABLE);
 		
-		// SimulateCurrentWorldsState().PrintInfo(true, true, true, true);
-		// SimulateStandardWC().PrintInfo(true, true, true, true);
+		SimulateCurrentWorldsState().PrintInfo(true, true, true, false, true);
+		// SimulateStandardWC().PrintInfo(true, true, true, false, true);
 		
-		// SimulateDoubleElimWC().PrintInfo(false, false, false, true);
-		// Simulate2VS3WC().PrintInfo(true, true, true, true);
+		// SimulateDoubleElimWC().PrintInfo(true, true, false, true, true);
+		// Simulate2VS3WC().PrintInfo(true, true, true, false, true);
 		
-		// SimulateStandardMSI().PrintInfo(true, true, true, true);
+		// SimulateStandardMSI().PrintInfo(true, true, true, false, true);
 		
-		SimulateLongWC().PrintInfo(true, true, true, true);
+		// SimulateLongWC().PrintInfo(true, true, true, false, true);
 		
 		// LoopTournament(numberOfSims);
 	}
@@ -189,17 +189,20 @@ public class InternationalDriver {
 					System.out.println("Print Tournament Progression?: ");
 					boolean printTProg = GetYN(scan);
 					
-					System.out.println("Print Tournament Champion Records?: ");
+					System.out.println("Print Champions Records?: ");
 					boolean printCRec = GetYN(scan);
-					
-					System.out.println("Print W/L?: ");
-					boolean printRWL = GetYN(scan);
 					
 					System.out.println("Print Tournament Standings?: ");
 					boolean printTStand = GetYN(scan);
 					
+					System.out.println("Print W/L?: ");
+					boolean printRWL = GetYN(scan);
+					
+					System.out.println("Print Tournament Stats?: ");
+					boolean printTStats = GetYN(scan);
+					
 					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
-					tournamentMap.get(index).PrintInfo(printCRec, printRWL, printTStand, printTProg);
+					tournamentMap.get(index).PrintInfo(printTProg, printCRec, printTStand, printRWL, printTStats);
 				} else {
 					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
 				}

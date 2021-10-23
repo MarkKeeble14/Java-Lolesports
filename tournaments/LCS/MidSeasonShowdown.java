@@ -5,7 +5,7 @@ import java.util.List;
 import CustomExceptions.MismatchedNumberOfGroupsException;
 import DefiningMatches.Series;
 import StaticVariables.Strings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import Stats.Standings;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
@@ -26,7 +26,7 @@ public class MidSeasonShowdown extends Bracket {
 
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups

@@ -37,7 +37,7 @@ public class Settings {
 	public static final boolean PRINT_QUALIFICATION_REASONS = false;
 	
 	// Group Stage Settings
-	public static final boolean PRINT_GROUP_STAGE_GAMES = false;
+	public static final boolean PRINT_GROUP_STAGE_GAMES = true;
 	public static final boolean PRINT_GROUP_STAGE_SUMMARY = false;
 
 	// Bracket Settings

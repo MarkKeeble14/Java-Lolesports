@@ -1,7 +1,6 @@
 package TournamentComponents;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,33 +16,29 @@ import DefiningQualificationDetails.QualifiedThroughGroupPlacement;
 import DefiningTeams.Team;
 import StaticVariables.Strings;
 import Stats.Record;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import Stats.Standings;
-import Utility.Util;
 import Utility.UtilMaps;
 
 import java.util.Set;
 
 public class Group {
 	private String label;
+	private GroupStage partOf;
 	private int capacity;
-	
+	private int gamesPerRoundRobin;
+	private int matchesAreBOX;
+	private int topXEscape;
 	private List<Team> teams;
 	
 	private Map<Team, Integer> preTBStandings = new HashMap<Team, Integer>();
 	private Map<Team, Integer> postTBStandings = new HashMap<Team, Integer>();
 	
-	private GroupStage partOf;
-	private int gamesPerRoundRobin;
-	private int matchesAreBOX;
-	private int topXEscape;
-	
-	// private List<Matchup> matchups = new ArrayList<Matchup>();
 	private Map<Team, Map<Team, List<Matchup>>> matchups = new HashMap<Team, Map<Team, List<Matchup>>>();
-	private Map<Integer, Matchup> gamesInOrder = new HashMap<Integer, Matchup>();
 	private List<Matchup> tiebreakers = new ArrayList<Matchup>();
 	
-	private List<Game> presetTiebreakers = new ArrayList<Game>();
+	private Map<Integer, Matchup> gamesInOrder = new HashMap<Integer, Matchup>();
+	
 	private List<Team> presetTiebreakerSeeding;
 	
 	public int getNumTiebreakers() { 
@@ -198,7 +193,7 @@ public class Group {
 		preTBStandings = UtilMaps.sortByIntegerValue(preTBStandings);
 	}
 	
-	public void SetupMatches(String stageLabel, ResultsTracker tracker) throws Exception {
+	public void SetupMatches(String stageLabel, MatchStats tracker) throws Exception {
 		// Make a copy of the initial Group
 		Group copy = new Group("Copy", capacity, gamesPerRoundRobin, matchesAreBOX, topXEscape, partOf);
 		for (Team t : teams) {
@@ -229,7 +224,7 @@ public class Group {
 		}	
 	}
 	
-	public void SimulatePresetMatches(String stageLabel, ResultsTracker tracker, boolean simulateTiebreakers) throws Exception {
+	public void SimulatePresetMatches(String stageLabel, MatchStats tracker, boolean simulateTiebreakers) throws Exception {
 		// Simulate Matches
 		Set<Entry<Team, Map<Team, List<Matchup>>>> set = matchups.entrySet();
 		for (Entry<Team, Map<Team, List<Matchup>>> entry : set) {
@@ -254,7 +249,7 @@ public class Group {
 		}
 	}
 	
-	public void FullSimulate(String stageLabel, ResultsTracker tracker, boolean simulateTiebreakers) throws Exception {
+	public void FullSimulate(String stageLabel, MatchStats tracker, boolean simulateTiebreakers) throws Exception {
 		SetupMatches(stageLabel, tracker);
 		SimulatePresetMatches(stageLabel, tracker, simulateTiebreakers);
 	}
@@ -344,21 +339,7 @@ public class Group {
 		}
 		return false;
 	}
-	
-	public void addPresetTiebreaker(String stageLabel, Team A, Team B, Team winner, Team loser, ResultsTracker tracker) {
-		Game g = new Game(stageLabel, gamesInOrder.size() + 1, A, B, tracker);
-		g.setTBResult(winner, loser);	
-		presetTiebreakers.add(g);
-	}
-	
-	private Game getPresetTiebreaker(Team A, Team B) {
-		for (Game g : presetTiebreakers) {
-			if (g.getTeamA() == A && g.getTeamB() == B || g.getTeamA() == B && g.getTeamB() == A) {
-				return g;
-			}
-		}
-		return null;
-	}
+
 	
 	public void addTiebreakerSeeding(Team... teams) {
 		presetTiebreakerSeeding = new ArrayList<Team>();
@@ -367,7 +348,7 @@ public class Group {
 		}
 	}
 	
-	private void SimulateTiebreakers(String stageLabel, ResultsTracker tracker) {
+	private void SimulateTiebreakers(String stageLabel, MatchStats tracker) {
 		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		Object[] a = null;
 		if (presetTiebreakerSeeding != null) {
@@ -384,32 +365,19 @@ public class Group {
 			Record t2r = t2.getRecord();
 			
 			if (t1r.getWins(false) == t2r.getWins(false)) {
-				Game presetTB = getPresetTiebreaker(t1, t2);
-				if (presetTB != null) {
-					tiebreakers.add(presetTB);
-					
-					if (presetTB.getWinner() == t1) {
-						// Swap the two teams
-						a[i] = t2;
-						a[i - 1] = t1;
-					} else {
-						// Teams are already in correct order
-					}
+				Game M = new Game(stageLabel, gamesInOrder.size() + 1 + tiebreakers.size(), t1, t2, tracker);
+				
+				M.TBSimulate();
+				tiebreakers.add(M);
+				
+				Team winner = M.getWinner();
+				
+				if (winner == t1) {
+					// Swap the two teams
+					a[i] = t2;
+					a[i - 1] = t1;
 				} else {
-					Game M = new Game(stageLabel, gamesInOrder.size() + 1 + tiebreakers.size(), t1, t2, tracker);
-					
-					M.TBSimulate();
-					tiebreakers.add(M);
-					
-					Team winner = M.getWinner();
-					
-					if (winner == t1) {
-						// Swap the two teams
-						a[i] = t2;
-						a[i - 1] = t1;
-					} else {
-						// Teams are already in correct order
-					}
+					// Teams are already in correct order
 				}
 			}
 		}
@@ -422,7 +390,7 @@ public class Group {
 		postTBStandings = UtilMaps.sortByIntegerValue(fs);
 	}
 	
-	public void ManuallySimulatePresetTiebreaker(String stageLabel, ResultsTracker tracker, Team A, Team B, Team winner, Team loser) {
+	public void ManuallySimulatePresetTiebreaker(String stageLabel, MatchStats tracker, Team A, Team B, Team winner, Team loser) {
 		Map<Team, Integer> fs = new HashMap<Team, Integer>();
 		Object[] a = null;
 		if (presetTiebreakerSeeding != null) {
@@ -433,7 +401,7 @@ public class Group {
 		List<Object> ks = new ArrayList<Object>(Arrays.asList(a));
 		
 		Game presetTB = new Game(stageLabel, gamesInOrder.size() + 1 + tiebreakers.size(), A, B, tracker);
-		presetTB.setResult(winner, loser);
+		presetTB.setTBResult(winner, loser);
 		tiebreakers.add(presetTB);
 		
 		int indexWinner = ks.indexOf(winner);

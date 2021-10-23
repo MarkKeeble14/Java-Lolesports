@@ -21,14 +21,14 @@ public class Standings {
 	private int teamsRemaining;
 	private int lastPlaced;
 	
-	public void subtractTeams(int n) {
-		teamsRemaining = totalTeams - n;
-	}
-	
 	public Standings(int totalTeams) {
 		super();
 		this.totalTeams = totalTeams;
 		teamsRemaining = totalTeams;
+	}
+	
+	public void subtractTeams(int n) {
+		teamsRemaining = totalTeams - n;
 	}
 	
 	public void PlaceTeamDuringBacketStage(Team t, boolean newPlacing) {

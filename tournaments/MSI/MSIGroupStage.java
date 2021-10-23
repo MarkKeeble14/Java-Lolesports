@@ -9,7 +9,7 @@ import DefiningQualificationDetails.QualifiedThroughGroupPlacement;
 import DefiningTeams.Team;
 import StaticVariables.Strings;
 import Stats.Standings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import TournamentComponents.Group;
 import TournamentComponents.GroupStage;
 import TournamentComponents.Tournament;
@@ -27,7 +27,7 @@ public class MSIGroupStage extends GroupStage {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups

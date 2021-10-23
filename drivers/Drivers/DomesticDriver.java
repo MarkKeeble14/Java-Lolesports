@@ -47,12 +47,12 @@ public class DomesticDriver {
 		
 		// LoopTournament(numberOfSims);
 		
-		// SimulateLockinLCS().PrintInfo(true, false, true, true);
-		SimulateSpringLCS().PrintInfo(true, false, true, true);
-		// SimulateSummerLCS().PrintInfo(true, false, true, true);
+		// SimulateLockinLCS().PrintInfo(true, true, true, false, true);
+		// SimulateSpringLCS().PrintInfo(true, true, true, false, true);
+		// SimulateSummerLCS().PrintInfo(true, true, true, false, true);
 		
-		// SimulateSpringLEC().PrintInfo(true, false, true, true);
-		// SimulateSummerLEC().PrintInfo(true, false, true, true);
+		// SimulateSpringLEC().PrintInfo(true, true, true, false, true);
+		// SimulateSummerLEC().PrintInfo(true, true, true, false, true);
 	}
 	
 	public static Tournament SimulateSpringLCS() throws Exception {
@@ -181,14 +181,17 @@ public class DomesticDriver {
 					System.out.println("Print Tournament Progression?: ");
 					boolean printTProg = GetYN(scan);
 					
-					System.out.println("Print Tournament Champion Records?: ");
+					System.out.println("Print Champions Records?: ");
 					boolean printCRec = GetYN(scan);
 					
 					System.out.println("Print Tournament Standings?: ");
 					boolean printTStand = GetYN(scan);
 					
+					System.out.println("Print Tournament Stats?: ");
+					boolean printTStats = GetYN(scan);
+					
 					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
-					tournamentMap.get(index).PrintInfo(printCRec, false, printTStand, printTProg);
+					tournamentMap.get(index).PrintInfo(printTProg, printCRec, printTStand, false, printTStats);
 				} else {
 					System.out.println("No more saved simulations where " + input + " Wins; Run again if you'd like");
 				}

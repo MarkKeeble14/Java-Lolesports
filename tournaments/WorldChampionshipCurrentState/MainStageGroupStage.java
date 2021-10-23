@@ -10,7 +10,7 @@ import DefiningTeams.Team;
 import StaticVariables.Strings;
 import StaticVariables.Teams;
 import Stats.Standings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import TournamentComponents.Group;
 import TournamentComponents.GroupStage;
 import TournamentComponents.Tournament;
@@ -28,7 +28,7 @@ public class MainStageGroupStage extends GroupStage {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups
@@ -52,6 +52,8 @@ public class MainStageGroupStage extends GroupStage {
 		A.addResultToGameMatchup(Teams.DK, Teams.FPX, Teams.DK, Teams.FPX, true);
 		A.addResultToGameMatchup(Teams.DK, Teams.RGE, Teams.DK, Teams.RGE, true);
 		A.addResultToGameMatchup(Teams.RGE, Teams.FPX, Teams.RGE, Teams.FPX, true);
+		
+		A.SimulatePresetMatches(super.getLabel(), tracker, false);
 		
 		// 
 		A.addTiebreakerSeeding(Teams.DK, Teams.C9, Teams.RGE, Teams.FPX);
@@ -97,6 +99,7 @@ public class MainStageGroupStage extends GroupStage {
 		
 		// Tiebreakers
 		// Before the group is resolved, call this method
+		C.SimulatePresetMatches(super.getLabel(), tracker, false);
 		C.addTiebreakerSeeding(Teams.RNG, Teams.HLE, Teams.PSG, Teams.FNC);
 		
 		// After groups are resolved / heading into tiebreakers, use the following
@@ -118,7 +121,8 @@ public class MainStageGroupStage extends GroupStage {
 		D.addResultToGameMatchup(Teams.GEN, Teams.TL, Teams.TL, Teams.GEN, true);
 		D.addResultToGameMatchup(Teams.LNG, Teams.MAD, Teams.MAD, Teams.LNG, true);
 		
-		// Four Way Tiebreakers
+		// Tiebreakers
+		D.SimulatePresetMatches(super.getLabel(), tracker, false);
 		D.addTiebreakerSeeding(Teams.GEN, Teams.MAD, Teams.LNG, Teams.TL);
 		D.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.GEN, Teams.TL, Teams.GEN, Teams.TL);
 		D.ManuallySimulatePresetTiebreaker(super.getLabel(), tracker, Teams.MAD, Teams.LNG, Teams.MAD, Teams.LNG);

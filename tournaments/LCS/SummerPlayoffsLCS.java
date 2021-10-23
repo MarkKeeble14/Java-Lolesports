@@ -4,7 +4,7 @@ import java.util.List;
 
 import DefiningMatches.Series;
 import StaticVariables.Strings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import Stats.Standings;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
@@ -25,7 +25,7 @@ public class SummerPlayoffsLCS extends Bracket {
 	@Override
 	public void Simulate(List<Group> groups) throws Exception {
 		// TODO Auto-generated method stub
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups

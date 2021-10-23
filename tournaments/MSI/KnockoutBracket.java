@@ -8,7 +8,7 @@ import CustomExceptions.MismatchedNumberOfGroupsException;
 import DefiningMatches.Series;
 import StaticVariables.Strings;
 import Stats.Standings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
 import TournamentComponents.Group;
@@ -32,7 +32,7 @@ public class KnockoutBracket extends Bracket {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		// Set Groups

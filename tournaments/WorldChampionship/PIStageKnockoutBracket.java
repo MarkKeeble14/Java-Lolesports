@@ -9,7 +9,7 @@ import DefiningMatches.Game;
 import DefiningMatches.Series;
 import StaticVariables.Strings;
 import Stats.Standings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import TournamentComponents.Bracket;
 import TournamentComponents.BracketSlice;
 import TournamentComponents.Group;
@@ -32,7 +32,7 @@ public class PIStageKnockoutBracket extends Bracket {
 			throw new MismatchedNumberOfGroupsException(requiredNumberOfGroups, groups.size());
 		}
 		
-		ResultsTracker tracker = super.getPartOf().getT();
+		MatchStats tracker = super.getPartOf().getT();
 		Standings standings = super.getPartOf().getEots();
 		
 		BracketSlice S1 = new BracketSlice(super.getLabel(), Strings.S1, 1);

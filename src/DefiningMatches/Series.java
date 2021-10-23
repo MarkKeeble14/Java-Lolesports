@@ -10,7 +10,7 @@ import DefiningQualificationDetails.QualifiedThroughSeriesWin;
 import DefiningTeams.Team;
 import StaticVariables.Settings;
 import StaticVariables.Strings;
-import Stats.ResultsTracker;
+import Stats.MatchStats;
 import Stats.Standings;
 
 public class Series extends Matchup  {
@@ -24,9 +24,9 @@ public class Series extends Matchup  {
 	private Team A;
 	private Team B;
 	
-	private ResultsTracker WLT;
+	private MatchStats WLT;
 	
-	public Series(String stageLabel, int matchLabel, int numGames, Team a, Team b, ResultsTracker t) {
+	public Series(String stageLabel, int matchLabel, int numGames, Team a, Team b, MatchStats t) {
 		super();
 		this.stageLabel = stageLabel;
 		this.matchLabel = matchLabel;
@@ -36,7 +36,7 @@ public class Series extends Matchup  {
 		WLT = t;
 	}
 	
-	public Series(int matchLabel, int numGames, Team a, Team b, ResultsTracker t) {
+	public Series(int matchLabel, int numGames, Team a, Team b, MatchStats t) {
 		super();
 		this.matchLabel = matchLabel;
 		this.numGames = numGames;
@@ -45,7 +45,7 @@ public class Series extends Matchup  {
 		WLT = t;
 	}
 	
-	public Series(String stageLabel, int matchLabel, int numGames, ResultsTracker t) {
+	public Series(String stageLabel, int matchLabel, int numGames, MatchStats t) {
 		super();
 		this.stageLabel = stageLabel;
 		this.matchLabel = matchLabel;
@@ -53,7 +53,7 @@ public class Series extends Matchup  {
 		WLT = t;
 	}
 	
-	public Series(int matchLabel, int numGames, ResultsTracker t) {
+	public Series(int matchLabel, int numGames, MatchStats t) {
 		super();
 		this.matchLabel = matchLabel;
 		this.numGames = numGames;
@@ -116,16 +116,18 @@ public class Series extends Matchup  {
 		int goal = (int) Math.ceil((double) numGames / 2);
 		
 		// Simulate the games
-		for (int i = 1; i < t1GS; i++) {
+		for (int i = 1; i < t1GS + 1; i++) {
 			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
 			m.setResult(t1, t2);
 			matches.add(m);
+			UpdateGamescore(t1);
 		}	
 		// Simulate the games
-		for (int i = 1; i < t2GS; i++) {
+		for (int i = 1; i < t2GS + 1; i++) {
 			Game m = new Game(stageLabel, matchLabel, A, B, WLT);
 			m.setResult(t2, t1);
 			matches.add(m);
+			UpdateGamescore(t2);
 		}
 		if (t1GS == goal) {
 			super.setWinner(t1);
@@ -160,7 +162,7 @@ public class Series extends Matchup  {
 		return B;
 	}
 
-	public ResultsTracker getWLT() {
+	public MatchStats getWLT() {
 		return WLT;
 	}
 
@@ -198,7 +200,7 @@ public class Series extends Matchup  {
 		gamescore.put(b, 0);
 	}
 
-	public void setWLT(ResultsTracker wLT) {
+	public void setWLT(MatchStats wLT) {
 		WLT = wLT;
 	}
 
@@ -208,41 +210,68 @@ public class Series extends Matchup  {
 			return matchLabel + ": " + A.getTag() + " VS " + B.getTag() + " - Bo" + numGames;
 		} else {
 			if (Settings.PRINT_DETAILED_SERIES_SUMMARRIES && gamescore.size() > 1) {
-				String s = matches.get(0).getMatchDetails();
-				int aWins = 0, bWins = 0;
-				
-				for (int i = 0; i < matches.size(); i++) {
-					Game m = matches.get(i);
-					Team won = m.getWinner();
+				if (matches.get(0).getSetManually()) {
+					String s = matches.get(0).getMatchDetails();
 					
-					if (won == A) {
-						aWins++;
-					} else if (won == B) {
-						bWins++;
+					int aWins = 0, bWins = 0;
+					
+					for (int i = 0; i < matches.size(); i++) {
+						Game m = matches.get(i);
+						Team won = m.getWinner();
+						
+						if (won == A) {
+							aWins++;
+						} else if (won == B) {
+							bWins++;
+						}
 					}
-					
-					s += "Game #" + i + ": " + won.getTag() + " Win \t";
 					
 					if (aWins > bWins) {
-						s += aWins + "-" + bWins + " for: " + A.getTag();
-					} else if (aWins < bWins) {
-						s += bWins + "-" + aWins + " for: " + B.getTag();
+						s += A.getTag() + " Beats " + B.getTag() + ": " + aWins + "-" + bWins;
 					} else {
-						s += "Tied at: " + aWins + "-" + bWins;
+						s += B.getTag() + " Beats " + A.getTag() + ": " + bWins + "-" + aWins;
 					}
 					
-					s += "\n";	
-				}
-				
-				s += "\n";
-				
-				if (aWins > bWins) {
-					s += A.getTag() + " Beats " + B.getTag() + ": " + aWins + "-" + bWins;
+					s += "\n\nSet Manually";
+					
+					return s;
 				} else {
-					s += B.getTag() + " Beats " + A.getTag() + ": " + bWins + "-" + aWins;
+					String s = matches.get(0).getMatchDetails();
+					int aWins = 0, bWins = 0;
+					
+					for (int i = 0; i < matches.size(); i++) {
+						Game m = matches.get(i);
+						Team won = m.getWinner();
+						
+						if (won == A) {
+							aWins++;
+						} else if (won == B) {
+							bWins++;
+						}
+						
+						s += "Game #" + i + ": " + won.getTag() + " Win \t";
+						
+						if (aWins > bWins) {
+							s += aWins + "-" + bWins + " for: " + A.getTag();
+						} else if (aWins < bWins) {
+							s += bWins + "-" + aWins + " for: " + B.getTag();
+						} else {
+							s += "Tied at: " + aWins + "-" + bWins;
+						}
+						
+						s += "\n";	
+					}
+					
+					s += "\n";
+					
+					if (aWins > bWins) {
+						s += A.getTag() + " Beats " + B.getTag() + ": " + aWins + "-" + bWins;
+					} else {
+						s += B.getTag() + " Beats " + A.getTag() + ": " + bWins + "-" + aWins;
+					}
+					
+					return s;
 				}
-				
-				return s;
 			} else {
 				String s = matchLabel + ": " + A + " VS " + B + "\n";
 				if (super.getWinner() == A) {

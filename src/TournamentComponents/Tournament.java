@@ -8,15 +8,15 @@ import DefiningTeams.Team;
 import StaticVariables.Settings;
 import StaticVariables.Strings;
 import Stats.Standings;
-import Stats.ResultsTracker;
+import Stats.TournamentStats;
+import Stats.MatchStats;
 import Utility.Util;
 
 public abstract class Tournament {
 	private String label;
 	private Bracket championshipBracket;
 	
-	public ResultsTracker t = new ResultsTracker();
-	public Standings eots;
+	public TournamentStats tStats;
 	
 	private List<TournamentComponent> tComps = new ArrayList<TournamentComponent>();
 	
@@ -26,7 +26,7 @@ public abstract class Tournament {
 	
 	public Tournament(String label, int numTeams) {
 		this.label = label;
-		eots = new Standings(numTeams);
+		tStats = new TournamentStats(numTeams);
 	}
 	
 	public String getLabel() {
@@ -45,7 +45,7 @@ public abstract class Tournament {
 		championshipBracket = brackets.get(brackets.size() - 1);
 	}
 	
-	public void PrintLists() {
+	public void PrintTournamentComponents() {
 		Util.PrintSectionBreak("Printing Results of Tournement");
 		for (TournamentComponent t : tComps) {
 			Util.PrintSectionBreak(t.getLabel());
@@ -53,38 +53,61 @@ public abstract class Tournament {
 		}
 	}
 	
-	public void PrintInfo(
-			boolean printWinner, boolean printRegionalWL, 
-			boolean printFinalStandings, boolean printTComps) {
+	public void PrintWinnerStats() {
+		Util.PrintSectionBreak("Champion Stats/Records");
+		PrintChampionshipStats();	
+	}
+	
+	public void PrintWinLossStats() {
+		MatchStats mStats = tStats.getMatchStats();
 		
-		if (printTComps) {
-			PrintLists();
+		Util.PrintSectionBreak("Win/Loss Records");
+		if (Settings.PRINT_MAJOR_REGIONAL_WL) {
+			 mStats.PrintMajorRegionWL();		
 		}
-		
-		if (printWinner) {
-			Util.PrintSectionBreak("Championship Stats");
-			PrintChampionshipStats();	
-		}
-		
-		if (printRegionalWL) {
-			Util.PrintSectionBreak("Win/Loss Records");
-			if (Settings.PRINT_TOURNAMENT_STATS) {
-				t.PrintTournamentStats();		
-			}
-			if (Settings.PRINT_MAJOR_REGIONAL_WL) {
-				t.NicePrintMajor();		
-			}
-			if (Settings.PRINT_MINOR_REGIONAL_WL) {
-				t.NicePrintMinor();	
-			}
-		}
-		
-		if (printFinalStandings) {
-			Util.PrintSectionBreak("Tournament Standings");
-			eots.Print();	
+		if (Settings.PRINT_MINOR_REGIONAL_WL) {
+			 mStats.PrintMinorRegionWL();	
 		}
 	}
 	
+	public void PrintStandings() {
+		Standings standings = tStats.getStandings();
+		
+		Util.PrintSectionBreak("Tournament Standings");
+		standings.Print();	
+	}
+	
+	private void PrintTournamentStats() throws Exception {
+		Util.PrintSectionBreak("Tournament Stats");
+		tStats.Print();
+	}
+	
+	public void PrintInfo(
+			boolean printTComps, boolean printWinner, 
+			boolean printFinalStandings, boolean printWL, 
+			boolean printTournamentStats) throws Exception {
+		
+		if (printTComps) {
+			PrintTournamentComponents();
+		}
+		
+		if (printWinner) {
+			PrintWinnerStats();
+		}
+		
+		if (printWL) {
+			PrintWinLossStats();
+		}
+		
+		if (printFinalStandings) {
+			PrintStandings();
+		}
+		
+		if (printTournamentStats) {
+			PrintTournamentStats();
+		}
+	}
+
 	public void PrintChampionshipStats() {
 		String s = "";
 		for (Series match : championshipBracket.getChampionshipMatches()) {
@@ -116,12 +139,12 @@ public abstract class Tournament {
 				.getLoser();
 	}
 	
-	public ResultsTracker getT() {
-		return t;
+	public MatchStats getT() {
+		return tStats.getMatchStats();
 	}
 
 	public Standings getEots() {
-		return eots;
+		return tStats.getStandings();
 	}
 	
 	public void addBracket(Bracket b) {
