@@ -45,7 +45,7 @@ public class DomesticDriver {
 	public static void main(String[] args) throws Exception {
 		Settings.setEloScaling(ELO_SCALING_TYPE.RIGID);
 		
-		// LoopTournament(numberOfSims);
+		LoopTournament(numberOfSims);
 		
 		// SimulateLockinLCS().PrintInfo(true, true, true, false, true);
 		// SimulateSpringLCS().PrintInfo(true, true, true, false, true);
@@ -132,7 +132,7 @@ public class DomesticDriver {
 		for (int i = 0; i < x; i++) {
 			
 			// Change this
-			Tournament T = SimulateSummerLCS();
+			Tournament T = SimulateLockinLCS();
 			//
 			
 			tournamentMap.put(tournamentMap.size(), T);

@@ -74,15 +74,13 @@ public class MainStageKnockoutBracket extends Bracket {
 		M3.setTeamB(HLE);
 		M4.setTeamB(MAD);
 		
-		// M1.Simulate();
-		M1.setResult(EDG, RNG, 3, 2);
+		M1.setResult(RNG, EDG, 2, 3);
 		
-		M2.Simulate();
+		M2.setResult(GEN, C9, 3, 0);
 		
-		// M3.Simulate();
 		M3.setResult(T1, HLE, 3, 0);
 		
-		M4.Simulate();
+		M4.setResult(DK, MAD, 3, 0);
 		
 		standings.PlaceTeamDuringBacketStage(M1.getLoser(), true);
 		standings.PlaceTeamDuringBacketStage(M2.getLoser(), false);

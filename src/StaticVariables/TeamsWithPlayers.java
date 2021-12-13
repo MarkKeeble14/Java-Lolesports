@@ -9,21 +9,21 @@ public class TeamsWithPlayers {
 	public static final Team TSM = new RosterDefinedTeam("TSM", REGION.NA, 
 			Players.Huni, 
 			Players.Spica, 
-			Players.PowerOfEvil, 
-			Players.Lost, 
-			Players.SwordArt);
-	public static final Team TL = new RosterDefinedTeam("TL", REGION.NA, 
-			Players.Alphari, 
-			Players.Santorin, 
-			Players.Jensen, 
+			Players.Keaiduo, 
 			Players.Tactical, 
+			Players.Shenyi);
+	public static final Team TL = new RosterDefinedTeam("TL", REGION.NA, 
+			Players.Bwipo, 
+			Players.Santorin, 
+			Players.Bjergsen, 
+			Players.HansSama, 
 			Players.CoreJJ);
 	public static final Team C9 = new RosterDefinedTeam("C9", REGION.NA, 
-			Players.Fudge,
+			Players.Summit,
 			Players.Blaber, 
-			Players.Perkz, 
-			Players.Zven, 
-			Players.Vulcan);
+			Players.Fudge, 
+			Players.Berserker, 
+			Players.Winsome);
 	public static final Team O100 = new RosterDefinedTeam("100T", REGION.NA, 
 			Players.Ssumday, 
 			Players.Closer, 
@@ -32,74 +32,74 @@ public class TeamsWithPlayers {
 			Players.Huhi);
 	public static final Team EG = new RosterDefinedTeam("EG", REGION.NA, 
 			Players.Impact, 
-			Players.Contractz, 
-			Players.Jiizuke, 
+			Players.Inspired, 
+			Players.Jojopyun, 
 			Players.Danny, 
-			Players.IgNar);
+			Players.Vulcan);
 	public static final Team IMT = new RosterDefinedTeam("IMT", REGION.NA, 
 			Players.Revenge, 
 			Players.Xerxe, 
-			Players.Insanity, 
-			Players.Raes, 
+			Players.PowerOfEvil, 
+			Players.WildTurtle, 
 			Players.Destiny);
 	public static final Team GG = new RosterDefinedTeam("GG", REGION.NA, 
 			Players.Licorice,
-			Players.Iconic, 
+			Players.Pridestalkr, 
 			Players.AblazeOlive, 
-			Players.Stixxay, 
-			Players.Chime);
+			Players.Lost, 
+			Players.Olleh);
 	public static final Team DIG = new RosterDefinedTeam("DIG", REGION.NA, 
 			Players.FakeGod, 
-			Players.Akaadian, 
-			Players.Yusui, 
+			Players.River, 
+			Players.Blue, 
 			Players.Neo, 
-			Players.Aphromoo);
+			Players.Biofrost);
 	public static final Team CLG = new RosterDefinedTeam("CLG", REGION.NA, 
-			Players.Finn, 
-			Players.Broxah, 
-			Players.Damonte,
-			Players.WildTurtle,
-			Players.Smoothie);
+			Players.Jenkins, 
+			Players.Contractz, 
+			Players.Palafox,
+			Players.Luger,
+			Players.Poome);
 	public static final Team FLY = new RosterDefinedTeam("FLY", REGION.NA, 
 			Players.Kumo, 
 			Players.Josedeodo, 
-			Players.Palafox, 
+			Players.Toucouille, 
 			Players.Johnsun,
-			Players.Dreams);
+			Players.Aphromoo);
 
 	// LEC
 	public static final Team G2 = new RosterDefinedTeam("G2", REGION.EU, 
-			Players.Wunder, 
+			Players.BrokenBlade, 
 			Players.Jankos, 
 			Players.Caps, 
-			Players.Rekkles,
-			Players.Mikyx);
+			Players.Flakked,
+			Players.Targamas);
 	public static final Team FNC = new RosterDefinedTeam("FNC", REGION.EU, 
-			Players.Adam, 
-			Players.Bwipo, 
-			Players.Nisqy, 
+			Players.Wunder, 
+			Players.Razork, 
+			Players.Humanoid, 
 			Players.Upset, 
 			Players.Hyllisang);
 	public static final Team RGE = new RosterDefinedTeam("RGE", REGION.EU, 
 			Players.Odoamne, 
-			Players.Inspired, 
+			Players.Malrang, 
 			Players.Larssen, 
-			Players.HansSama, 
+			Players.Comp, 
 			Players.Trymbi);
 	public static final Team MSF = new RosterDefinedTeam("MSF", REGION.EU, 
 			Players.HiRit, 
-			Players.Razork, 
+			Players.Shaltan, 
 			Players.Vetheo, 
-			Players.Kobbe, 
+			Players.Neon, 
 			Players.Vander);
 	public static final Team SK = new RosterDefinedTeam("SK", REGION.EU, 
 			Players.Jenax, 
-			Players.Treatz, 
-			Players.Blue, 
+			Players.Gilius, 
+			Players.Sertuss, 
 			Players.Jezu, 
-			Players.Lillip);
+			Players.Treatz);
 	public static final Team XL = new RosterDefinedTeam("XL", REGION.EU, 
-			Players.Kryze, 
+			Players.Finn, 
 			Players.Markoon, 
 			Players.Nukeduck, 
 			Players.Patrik, 
@@ -107,26 +107,26 @@ public class TeamsWithPlayers {
 	public static final Team AST = new RosterDefinedTeam("AST", REGION.EU, 
 			Players.WhiteKnight,
 			Players.Zanzarah, 
-			Players.MagiFelix, 
-			Players.Jeskla, 
+			Players.Dajor, 
+			Players.Kobbe, 
 			Players.Promisq);
 	public static final Team BDS = new RosterDefinedTeam("BDS", REGION.EU, 
-			Players.BrokenBlade, 
-			Players.Kirei, 
+			Players.Adam, 
+			Players.Cinkrof, 
 			Players.NuclearInt,
-			Players.Neon, 
+			Players.xMatty, 
 			Players.Limit);
 	public static final Team VIT = new RosterDefinedTeam("VIT", REGION.EU, 
-			Players.Szygenda, 
+			Players.Alphari, 
 			Players.Selfmade, 
-			Players.LIDER, 
-			Players.Crownshot, 
+			Players.Perkz, 
+			Players.Carzzy, 
 			Players.Labrov);
 	public static final Team MAD = new RosterDefinedTeam("MAD", REGION.EU, 
 			Players.Armut, 
 			Players.Elyoya,
-			Players.Humanoid, 
-			Players.Carzzy, 
+			Players.RKR, 
+			Players.UNFORG1VEN, 
 			Players.Kaiser);
 
 }
