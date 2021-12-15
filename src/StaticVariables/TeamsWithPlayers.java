@@ -7,126 +7,126 @@ import Enums.REGION;
 public class TeamsWithPlayers {
 	// LCS
 	public static final Team TSM = new RosterDefinedTeam("TSM", REGION.NA, 
-			Players.Huni, 
-			Players.Spica, 
-			Players.Keaiduo, 
-			Players.Tactical, 
-			Players.Shenyi);
+			LCSPlayers.Huni, 
+			LCSPlayers.Spica, 
+			LCSPlayers.Keaiduo, 
+			LCSPlayers.Tactical, 
+			LCSPlayers.Shenyi);
 	public static final Team TL = new RosterDefinedTeam("TL", REGION.NA, 
-			Players.Bwipo, 
-			Players.Santorin, 
-			Players.Bjergsen, 
-			Players.HansSama, 
-			Players.CoreJJ);
+			LCSPlayers.Bwipo, 
+			LCSPlayers.Santorin, 
+			LCSPlayers.Bjergsen, 
+			LCSPlayers.HansSama, 
+			LCSPlayers.CoreJJ);
 	public static final Team C9 = new RosterDefinedTeam("C9", REGION.NA, 
-			Players.Summit,
-			Players.Blaber, 
-			Players.Fudge, 
-			Players.Berserker, 
-			Players.Winsome);
+			LCSPlayers.Summit,
+			LCSPlayers.Blaber, 
+			LCSPlayers.Fudge, 
+			LCSPlayers.Berserker, 
+			LCSPlayers.Winsome);
 	public static final Team O100 = new RosterDefinedTeam("100T", REGION.NA, 
-			Players.Ssumday, 
-			Players.Closer, 
-			Players.Abbedagge, 
-			Players.FBI, 
-			Players.Huhi);
+			LCSPlayers.Ssumday, 
+			LCSPlayers.Closer, 
+			LCSPlayers.Abbedagge, 
+			LCSPlayers.FBI, 
+			LCSPlayers.Huhi);
 	public static final Team EG = new RosterDefinedTeam("EG", REGION.NA, 
-			Players.Impact, 
-			Players.Inspired, 
-			Players.Jojopyun, 
-			Players.Danny, 
-			Players.Vulcan);
+			LCSPlayers.Impact, 
+			LCSPlayers.Inspired, 
+			LCSPlayers.Jojopyun, 
+			LCSPlayers.Danny, 
+			LCSPlayers.Vulcan);
 	public static final Team IMT = new RosterDefinedTeam("IMT", REGION.NA, 
-			Players.Revenge, 
-			Players.Xerxe, 
-			Players.PowerOfEvil, 
-			Players.WildTurtle, 
-			Players.Destiny);
+			LCSPlayers.Revenge, 
+			LCSPlayers.Xerxe, 
+			LCSPlayers.PowerOfEvil, 
+			LCSPlayers.WildTurtle, 
+			LCSPlayers.Destiny);
 	public static final Team GG = new RosterDefinedTeam("GG", REGION.NA, 
-			Players.Licorice,
-			Players.Pridestalkr, 
-			Players.AblazeOlive, 
-			Players.Lost, 
-			Players.Olleh);
+			LCSPlayers.Licorice,
+			LCSPlayers.Pridestalkr, 
+			LCSPlayers.AblazeOlive, 
+			LCSPlayers.Lost, 
+			LCSPlayers.Olleh);
 	public static final Team DIG = new RosterDefinedTeam("DIG", REGION.NA, 
-			Players.FakeGod, 
-			Players.River, 
-			Players.Blue, 
-			Players.Neo, 
-			Players.Biofrost);
+			LCSPlayers.FakeGod, 
+			LCSPlayers.River, 
+			LCSPlayers.Blue, 
+			LCSPlayers.Neo, 
+			LCSPlayers.Biofrost);
 	public static final Team CLG = new RosterDefinedTeam("CLG", REGION.NA, 
-			Players.Jenkins, 
-			Players.Contractz, 
-			Players.Palafox,
-			Players.Luger,
-			Players.Poome);
+			LCSPlayers.Jenkins, 
+			LCSPlayers.Contractz, 
+			LCSPlayers.Palafox,
+			LCSPlayers.Luger,
+			LCSPlayers.Poome);
 	public static final Team FLY = new RosterDefinedTeam("FLY", REGION.NA, 
-			Players.Kumo, 
-			Players.Josedeodo, 
-			Players.Toucouille, 
-			Players.Johnsun,
-			Players.Aphromoo);
+			LCSPlayers.Kumo, 
+			LCSPlayers.Josedeodo, 
+			LCSPlayers.Toucouille, 
+			LCSPlayers.Johnsun,
+			LCSPlayers.Aphromoo);
 
 	// LEC
 	public static final Team G2 = new RosterDefinedTeam("G2", REGION.EU, 
-			Players.BrokenBlade, 
-			Players.Jankos, 
-			Players.Caps, 
-			Players.Flakked,
-			Players.Targamas);
+			LECPlayers.BrokenBlade, 
+			LECPlayers.Jankos, 
+			LECPlayers.Caps, 
+			LECPlayers.Flakked,
+			LECPlayers.Targamas);
 	public static final Team FNC = new RosterDefinedTeam("FNC", REGION.EU, 
-			Players.Wunder, 
-			Players.Razork, 
-			Players.Humanoid, 
-			Players.Upset, 
-			Players.Hyllisang);
+			LECPlayers.Wunder, 
+			LECPlayers.Razork, 
+			LECPlayers.Humanoid, 
+			LECPlayers.Upset, 
+			LECPlayers.Hyllisang);
 	public static final Team RGE = new RosterDefinedTeam("RGE", REGION.EU, 
-			Players.Odoamne, 
-			Players.Malrang, 
-			Players.Larssen, 
-			Players.Comp, 
-			Players.Trymbi);
+			LECPlayers.Odoamne, 
+			LECPlayers.Malrang, 
+			LECPlayers.Larssen, 
+			LECPlayers.Comp, 
+			LECPlayers.Trymbi);
 	public static final Team MSF = new RosterDefinedTeam("MSF", REGION.EU, 
-			Players.HiRit, 
-			Players.Shaltan, 
-			Players.Vetheo, 
-			Players.Neon, 
-			Players.Vander);
+			LECPlayers.HiRit, 
+			LECPlayers.Shaltan, 
+			LECPlayers.Vetheo, 
+			LECPlayers.Neon, 
+			LECPlayers.Vander);
 	public static final Team SK = new RosterDefinedTeam("SK", REGION.EU, 
-			Players.Jenax, 
-			Players.Gilius, 
-			Players.Sertuss, 
-			Players.Jezu, 
-			Players.Treatz);
+			LECPlayers.Jenax, 
+			LECPlayers.Gilius, 
+			LECPlayers.Sertuss, 
+			LECPlayers.Jezu, 
+			LECPlayers.Treatz);
 	public static final Team XL = new RosterDefinedTeam("XL", REGION.EU, 
-			Players.Finn, 
-			Players.Markoon, 
-			Players.Nukeduck, 
-			Players.Patrik, 
-			Players.Advienne);
+			LECPlayers.Finn, 
+			LECPlayers.Markoon, 
+			LECPlayers.Nukeduck, 
+			LECPlayers.Patrik, 
+			LECPlayers.Advienne);
 	public static final Team AST = new RosterDefinedTeam("AST", REGION.EU, 
-			Players.WhiteKnight,
-			Players.Zanzarah, 
-			Players.Dajor, 
-			Players.Kobbe, 
-			Players.Promisq);
+			LECPlayers.WhiteKnight,
+			LECPlayers.Zanzarah, 
+			LECPlayers.Dajor, 
+			LECPlayers.Kobbe, 
+			LECPlayers.Promisq);
 	public static final Team BDS = new RosterDefinedTeam("BDS", REGION.EU, 
-			Players.Adam, 
-			Players.Cinkrof, 
-			Players.NuclearInt,
-			Players.xMatty, 
-			Players.Limit);
+			LECPlayers.Adam, 
+			LECPlayers.Cinkrof, 
+			LECPlayers.NuclearInt,
+			LECPlayers.xMatty, 
+			LECPlayers.Limit);
 	public static final Team VIT = new RosterDefinedTeam("VIT", REGION.EU, 
-			Players.Alphari, 
-			Players.Selfmade, 
-			Players.Perkz, 
-			Players.Carzzy, 
-			Players.Labrov);
+			LECPlayers.Alphari, 
+			LECPlayers.Selfmade, 
+			LECPlayers.Perkz, 
+			LECPlayers.Carzzy, 
+			LECPlayers.Labrov);
 	public static final Team MAD = new RosterDefinedTeam("MAD", REGION.EU, 
-			Players.Armut, 
-			Players.Elyoya,
-			Players.RKR, 
-			Players.UNFORG1VEN, 
-			Players.Kaiser);
+			LECPlayers.Armut, 
+			LECPlayers.Elyoya,
+			LECPlayers.RKR, 
+			LECPlayers.UNFORG1VEN, 
+			LECPlayers.Kaiser);
 
 }

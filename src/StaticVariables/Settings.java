@@ -6,12 +6,9 @@ import Enums.DRIVER_TYPE;
 import Enums.ELO_SCALING_TYPE;
 
 public class Settings {
-	private static DRIVER_TYPE CURRENT_DRIVER;
-	
 	// Variables / Tuning
 	// Higher means rating matters more, i.e, Upsets are LESS likely
 	// A scale of 1 makes most matchups 50/50
-	
 	// 300 means upsets are reasonably likely; Works well for international competitions
 	// 75 is very rigid; Works well for domestic competitions
 	public static int ELO_SCALING;
