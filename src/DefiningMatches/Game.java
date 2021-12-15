@@ -4,8 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 import DefiningTeams.Team;
-import Drivers.DomesticDriver;
-import Drivers.InternationalDriver;
+import Drivers.Driver;
 import StaticVariables.Settings;
 import Stats.MatchStats;
 

@@ -1,7 +1,6 @@
 package StaticVariables;
 
-import Drivers.DomesticDriver;
-import Drivers.InternationalDriver;
+import Drivers.Driver;
 import Enums.DRIVER_TYPE;
 import Enums.ELO_SCALING_TYPE;
 
