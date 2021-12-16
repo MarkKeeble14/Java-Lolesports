@@ -14,7 +14,7 @@ Once you've made your selection, you'll then be prompted with which tournament f
 
 Once you've selected your tournament, the program will automatically simulate that tournament 10,000 (This number is currently hard coded. It's a good balence between speed & sample size) times before asking you for the tricode (TSM, C9, TL, 100T, etc) of whatever team you'd like to see win in a simulation. You can also type "any" at this point to get a random simulation.
 
-### There's a couple of options which determine what aspects of a simulation are printed out. They are as follows:
+#### There's a couple of options which determine what aspects of a simulation are printed out. You'll be given a Yes/No prompt for each of them. Their effects are as follows:
 
 - **Tournament Progression** - Will show the stage by stage breakdown of what occurred, i.e., will print out group stage game results, series results in playoffs, etc.
 
