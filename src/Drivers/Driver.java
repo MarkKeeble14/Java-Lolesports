@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 import DefiningTeams.RatingDefinedTeam;
@@ -115,7 +116,7 @@ public class Driver {
 			
 			input = scan.nextLine().toUpperCase();
 			if (input.compareTo(sentinal) == 0) {
-				System.out.println("\nOk");
+				System.out.println("\nExit");
 				break;
 			}
 			
@@ -175,7 +176,7 @@ public class Driver {
 			
 			input = scan.nextLine().toUpperCase();
 			if (input.compareTo(sentinal) == 0) {
-				System.out.println("\nOk");
+				System.out.println("\nExit");
 				break;
 			}
 			
@@ -222,7 +223,7 @@ public class Driver {
 			
 			input = scan.nextLine().toUpperCase();
 			if (input.compareTo(sentinal) == 0) {
-				System.out.println("\nOk");
+				System.out.println("\nExit");
 				break;
 			}
 			
@@ -267,7 +268,7 @@ public class Driver {
 			
 			input = scan.nextLine().toUpperCase();
 			if (input.compareTo(sentinal) == 0) {
-				System.out.println("\nOk");
+				System.out.println("\nExit");
 				break;
 			}
 			
@@ -390,11 +391,17 @@ public class Driver {
 			input = scan.nextLine().toUpperCase();
 			
 			if (input.compareTo(sentinal) == 0) {
-				System.out.println("\nOk");
+				System.out.println("\nExit");
 				break;
 			}
-			
+
 			// Print out possible numbers
+			if (input.compareTo("ANY") == 0) {
+				Random rand = new Random();
+				int rNum = rand.nextInt(indexOfTeamWins.size());
+				input = (String) indexOfTeamWins.keySet().toArray()[rNum]; 
+			}
+			
 			if (indexOfTeamWins.containsKey(input)) {
 				List<Integer> options = indexOfTeamWins.get(input);
 				
