@@ -1,11 +1,13 @@
-"# LoL esports Tournament Simulator"
+# LoL esports Tournament Simulator
 
-## Uploaded in Decenmber 2021
+### Uploaded in Decenmber 2021
 
+## Running
 You can either open the project in an IDE like Eclipse or run it on the command line by navigating to the \src directory then inputting the following commands:
 - javac Drivers/Driver.java
 - java Drivers/Driver.java
 
+## Walkthrough
 You'll first be prompted with which league you'd like to simulate a tournament from (current options are LCS, LEC, and International Events).
 
 Once you've made your selection, you'll then be prompted with which tournament from that league you'd like to simulate (such as LCS Lockin, LEC Summer, MSI, etc).
@@ -17,5 +19,3 @@ Once you've selected your tournament, the program will automatically simulate th
 **Champion Records** - Will show the path that the champion (winner) of the tournament took, i.e., in Group A they had a record of B-C. In Quarterfinals they beat team D with a gamescore of E-F, etc.
 **Tournament Standings** - Will show the complete standings as of the end of the tournament and where each of the teams tournament runs ended.
 **Tournament Stats** - Will show stats relating to the format of the tournament, such as the number of games played in each individual stage.
-
-Apoligies for any formatting issues if you find any!
