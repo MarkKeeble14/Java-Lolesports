@@ -16,10 +16,10 @@ Once you've selected your tournament, the program will automatically simulate th
 
 ### There's a couple of options which determine what aspects of a simulation are printed out. They are as follows:
 
-**Tournament Progression** - Will show the stage by stage breakdown of what occurred, i.e., will print out group stage game results, series results in playoffs, etc.
+- **Tournament Progression** - Will show the stage by stage breakdown of what occurred, i.e., will print out group stage game results, series results in playoffs, etc.
 
-**Champion Records** - Will show the path that the champion (winner) of the tournament took, i.e., in Group A they had a record of B-C. In Quarterfinals they beat team D with a gamescore of E-F, etc.
+- **Champion Records** - Will show the path that the champion (winner) of the tournament took, i.e., in Group A they had a record of B-C. In Quarterfinals they beat team D with a gamescore of E-F, etc.
 
-**Tournament Standings** - Will show the complete standings as of the end of the tournament and where each of the teams tournament runs ended.
+- **Tournament Standings** - Will show the complete standings as of the end of the tournament and where each of the teams tournament runs ended.
 
-**Tournament Stats** - Will show stats relating to the format of the tournament, such as the number of games played in each individual stage.
+- **Tournament Stats** - Will show stats relating to the format of the tournament, such as the number of games played in each individual stage.
