@@ -1,6 +1,6 @@
 # LoL esports Tournament Simulator
 
-### Uploaded in Decenmber 2021
+### Uploaded in December 2021
 
 ## Running
 You can either open the project in an IDE like Eclipse or run it on the command line by navigating to the \src directory then inputting the following commands:
