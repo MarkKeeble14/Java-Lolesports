@@ -23,3 +23,5 @@ Once you've selected your tournament, the program will automatically simulate th
 - **Tournament Standings** - Will show the complete standings as of the end of the tournament and where each of the teams tournament runs ended.
 
 - **Tournament Stats** - Will show stats relating to the format of the tournament, such as the number of games played in each individual stage.
+
+#### The strength of teams is based on my personal ratings. Eventually I might consider giving teams/players ratings based on previous history or something along those lines.
