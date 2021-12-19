@@ -53,7 +53,7 @@ public class Driver {
 	public static void main(String[] args) throws Exception {
 		Settings.setEloScaling(ELO_SCALING_TYPE.PURE);
 		
-		FileOutputStream file = new FileOutputStream("output.txt");
+		FileOutputStream file = new FileOutputStream("example-output.txt");
 	    TeePrintStream tee = new TeePrintStream(file, System.out);
 	    System.setOut(tee);
 		
@@ -64,7 +64,7 @@ public class Driver {
 		String sentinal = "EXIT";
 		String input = "";
 		String exitPrompt = "\nDo You Want to Simulate another Tournament or Exit?: "
-				+ "\nEntering anything other than the phrase 'exit' will continue the program.\n";
+				+ "\nEntering anything other than the phrase 'Exit' will continue the program: ";
 		
 		// Program
 		System.out.println("Welcome to my Tournament Simulator!");
@@ -93,6 +93,8 @@ public class Driver {
 			System.out.print(exitPrompt);
 			input = scan.nextLine().toUpperCase();
 		}
+		
+		System.out.println("\nExit");
 		
 		scan.close();
 		
@@ -387,7 +389,7 @@ public class Driver {
 			timesTeamWonMap = UtilMaps.sortByIntegerValue(timesTeamWonMap);
 			Util.NicePrintResults(timesTeamWonMap, x);
 			
-			System.out.print("\nShow me a World where X Wins: ");
+			System.out.print("\nShow me a World where X Wins (Type 'Any' for a random Team): ");
 			input = scan.nextLine().toUpperCase();
 			
 			if (input.compareTo(sentinal) == 0) {
@@ -410,7 +412,7 @@ public class Driver {
 					options.remove(0);
 					indexOfTeamWins.put(input, options);
 					
-					System.out.println("Print Tournament Progression?: ");
+					System.out.println("\nPrint Tournament Progression?: ");
 					boolean printTProg = GetYN(scan);
 					System.out.println();
 					System.out.println("Print Champions Records?: ");
@@ -421,7 +423,6 @@ public class Driver {
 					System.out.println();
 					System.out.println("Print Tournament Stats?: ");
 					boolean printTStats = GetYN(scan);
-					System.out.println();
 					
 					Util.PrintSectionBreak("Printing out Results of: Simulation #" + index + " -");
 					tournamentMap.get(index).PrintInfo(printTProg, printCRec, printTStand, false, printTStats);

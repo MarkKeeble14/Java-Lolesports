@@ -2,17 +2,16 @@ package StaticVariables;
 
 public class Strings {
 	// Formatting/Output
-	public static final String SmallLineBreak = "\n----------------------------------------";
-	public static final String MediumLineBreak = "\n---------------------------------------"
-			+ "----------------------------------------";
-	public static final String LargeLineBreak = "\n----------------------------------------"
-			+ "--------------------------------------------------------------------------------";
-	
-	public static final String SmallLineBreakNoNL = "----------------------------------------";
-	public static final String MediumLineBreakNoNL = "---------------------------------------"
-			+ "----------------------------------------";
-	public static final String LargeLineBreakNoNL = "----------------------------------------"
-			+ "--------------------------------------------------------------------------------";
+	public static final String SmallLineBreak = "\n------------------------";		
+	public static final String MediumLineBreak = "\n-----------------------"
+			+ "------------------------";
+	public static final String LargeLineBreak = "\n------------------------"
+			+ "----------------------------------------------------------------";
+	public static final String SmallLineBreakNoNL = "------------------------";
+	public static final String MediumLineBreakNoNL = "-----------------------"
+			+ "------------------------";
+	public static final String LargeLineBreakNoNL = "------------------------"
+			+ "----------------------------------------------------------------";
 	
 	public static final String BasicBridge = "-";
 	public static final String BasicBridgeWSpace = " - ";
