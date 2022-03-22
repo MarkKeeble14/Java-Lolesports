@@ -9,7 +9,7 @@ public class TeamsWithPlayers {
 	public static final Team TSM = new RosterDefinedTeam("TSM", REGION.NA, 
 			LCSPlayers.Huni, 
 			LCSPlayers.Spica, 
-			LCSPlayers.Keaiduo, 
+			LCSPlayers.Takeover, 
 			LCSPlayers.Tactical, 
 			LCSPlayers.Shenyi);
 	public static final Team TL = new RosterDefinedTeam("TL", REGION.NA, 
@@ -40,7 +40,7 @@ public class TeamsWithPlayers {
 			LCSPlayers.Revenge, 
 			LCSPlayers.Xerxe, 
 			LCSPlayers.PowerOfEvil, 
-			LCSPlayers.WildTurtle, 
+			LCSPlayers.Arrow, 
 			LCSPlayers.Destiny);
 	public static final Team GG = new RosterDefinedTeam("GG", REGION.NA, 
 			LCSPlayers.Licorice,

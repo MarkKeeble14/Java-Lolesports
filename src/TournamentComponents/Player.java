@@ -5,7 +5,7 @@ import Enums.ROLE;
 
 public class Player {
 	private String name;
-	private float ratingOutOf1; // 1.00 is a perfect score, think of it as a scale out of 100, just divided by 100
+	private float ratingOutOf1; // 1.00 is a perfect score; Think of it as a scale out of 100, just divided by 100
 	private REGION region;
 	private boolean isImport;
 	private ROLE role;

@@ -261,7 +261,7 @@ public class Driver {
 			System.out.print("\nWhich International Tournament do you want to Simulate?: ");
 			System.out.print("\nOptions");
 			System.out.print("\n1 - [Standard] World Championship");
-			System.out.print("\n2 - [Long World] Championship");
+			System.out.print("\n2 - [Long] World Championship");
 			System.out.print("\n3 - [Double Elim] World Championship");
 			System.out.print("\n4 - World Championship with Round of [2 VS 3]");
 			System.out.print("\n5 - [Current State] of the World Championship");

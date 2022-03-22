@@ -32,7 +32,7 @@ public class TournamentStats {
 	}
 	
 	public void PrintNumGames() throws Exception {
-		Util.PrintSectionBreak("Nuber of Games Analysis");
+		Util.PrintSectionBreak("Number of Games Analysis");
 		System.out.println(matchStats.stringifyNumGamesByStage() + Strings.SmallLineBreak 
 				+ "\n\nTotal Number of Games: " + matchStats.getTotalNumGames() + "\n" + Strings.MediumLineBreak);
 	}
