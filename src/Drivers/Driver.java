@@ -488,7 +488,7 @@ public class Driver {
 				new RatingDefinedTeam(TeamsWithPlayers.TL), new RatingDefinedTeam(TeamsWithPlayers.EG), 
 				new RatingDefinedTeam(TeamsWithPlayers.FLY), new RatingDefinedTeam(TeamsWithPlayers.GG), 
 				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
-				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
+				new RatingDefinedTeam(TeamsWithPlayers.x100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
 		return p;
 	}
@@ -499,7 +499,7 @@ public class Driver {
 				new RatingDefinedTeam(TeamsWithPlayers.TL), new RatingDefinedTeam(TeamsWithPlayers.EG), 
 				new RatingDefinedTeam(TeamsWithPlayers.FLY), new RatingDefinedTeam(TeamsWithPlayers.GG), 
 				new RatingDefinedTeam(TeamsWithPlayers.CLG), new RatingDefinedTeam(TeamsWithPlayers.DIG), 
-				new RatingDefinedTeam(TeamsWithPlayers.O100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
+				new RatingDefinedTeam(TeamsWithPlayers.x100), new RatingDefinedTeam(TeamsWithPlayers.IMT)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
 		return p;
 	}
@@ -509,8 +509,8 @@ public class Driver {
 				new RatingDefinedTeam(TeamsWithPlayers.G2), new RatingDefinedTeam(TeamsWithPlayers.XL), 
 				new RatingDefinedTeam(TeamsWithPlayers.MAD), new RatingDefinedTeam(TeamsWithPlayers.FNC), 
 				new RatingDefinedTeam(TeamsWithPlayers.AST), new RatingDefinedTeam(TeamsWithPlayers.VIT), 
-				new RatingDefinedTeam(TeamsWithPlayers.RGE), new RatingDefinedTeam(TeamsWithPlayers.SK), 
-				new RatingDefinedTeam(TeamsWithPlayers.BDS), new RatingDefinedTeam(TeamsWithPlayers.MSF)));
+				new RatingDefinedTeam(TeamsWithPlayers.KOI), new RatingDefinedTeam(TeamsWithPlayers.SK), 
+				new RatingDefinedTeam(TeamsWithPlayers.BDS), new RatingDefinedTeam(TeamsWithPlayers.HRTS)));
 		Pool p = new Pool(Strings.LCSTeams, teams);
 		return p;
 	}

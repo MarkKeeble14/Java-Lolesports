@@ -7,2218 +7,6 @@ Options:
 2 - LEC
 3 - International
 
-Which LEC Tournament do you want to Simulate?: 
-Options
-1 - Spring
-2 - Summer
-
-----------------------------------------------------------------------------------------
-
-Result's of Simulating: LEC_Spring
-
-----------------------------------------------------------------------------------------
-
------------------------------------------------
-
-# of Times X Team Won; Results from 10000 Simulations
-
------------------------------------------------
-
-BDS, 1: Percent - 0.01%
-
-MSF, 9: Percent - 0.09%
-
-XL, 10: Percent - 0.10%
-
-RGE, 287: Percent - 2.87%
-
-G2, 882: Percent - 8.82%
-
-VIT, 1488: Percent - 14.88%
-
-MAD, 1536: Percent - 15.36%
-
-FNC, 5787: Percent - 57.87%
-
-Show me a World where X Wins (Type 'Any' for a random Team): 
-Print Tournament Progression?: 
-Y or N?: 
-Print Champions Records?: 
-Y or N?: 
-Print Tournament Standings?: 
-Y or N?: 
-Print Tournament Stats?: 
-Y or N?: 
-----------------------------------------------------------------------------------------
-
-Printing out Results of: Simulation #1 -
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Printing Results of Tournement
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Regular Season
-
-----------------------------------------------------------------------------------------
-
-Group Regular Season
-
-Team [tag=G2, region=EU, rating=4.40000]
-Team [tag=XL, region=EU, rating=4.17000]
-Team [tag=MAD, region=EU, rating=4.44000]
-Team [tag=FNC, region=EU, rating=4.59000]
-Team [tag=AST, region=EU, rating=3.85000]
-Team [tag=VIT, region=EU, rating=4.44000]
-Team [tag=RGE, region=EU, rating=4.33000]
-Team [tag=SK, region=EU, rating=4.11000]
-Team [tag=BDS, region=EU, rating=4.08000]
-Team [tag=MSF, region=EU, rating=4.17000]
-
------------------------------------------------
-
-Group Regular Season Games
-
------------------------------------------------
-
-1: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=XL, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-XL: 34.03% Chance to Win
-
-G2 > XL
-
-------------------------
-
-2: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=XL, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-XL: 34.03% Chance to Win
-
-G2 < XL
-
-------------------------
-
-3: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MAD, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-MAD: 52.88% Chance to Win
-
-G2 > MAD
-
-------------------------
-
-4: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MAD, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-MAD: 52.88% Chance to Win
-
-G2 < MAD
-
-------------------------
-
-5: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=FNC, region=EU, rating=4.59000]
-G2: 36.66% Chance to Win
-FNC: 63.34% Chance to Win
-
-G2 < FNC
-
-------------------------
-
-6: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=FNC, region=EU, rating=4.59000]
-G2: 36.66% Chance to Win
-FNC: 63.34% Chance to Win
-
-G2 > FNC
-
-------------------------
-
-7: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=AST, region=EU, rating=3.85000]
-G2: 82.96% Chance to Win
-AST: 17.04% Chance to Win
-
-G2 > AST
-
-------------------------
-
-8: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=AST, region=EU, rating=3.85000]
-G2: 82.96% Chance to Win
-AST: 17.04% Chance to Win
-
-G2 > AST
-
-------------------------
-
-9: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=VIT, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-VIT: 52.88% Chance to Win
-
-G2 < VIT
-
-------------------------
-
-10: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=VIT, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-VIT: 52.88% Chance to Win
-
-G2 > VIT
-
-------------------------
-
-11: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=RGE, region=EU, rating=4.33000]
-G2: 55.02% Chance to Win
-RGE: 44.98% Chance to Win
-
-G2 < RGE
-
-------------------------
-
-12: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=RGE, region=EU, rating=4.33000]
-G2: 55.02% Chance to Win
-RGE: 44.98% Chance to Win
-
-G2 > RGE
-
-------------------------
-
-13: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=SK, region=EU, rating=4.11000]
-G2: 69.73% Chance to Win
-SK: 30.27% Chance to Win
-
-G2 < SK
-
-------------------------
-
-14: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=SK, region=EU, rating=4.11000]
-G2: 69.73% Chance to Win
-SK: 30.27% Chance to Win
-
-G2 < SK
-
-------------------------
-
-15: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=BDS, region=EU, rating=4.08000]
-G2: 71.53% Chance to Win
-BDS: 28.47% Chance to Win
-
-G2 > BDS
-
-------------------------
-
-16: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=BDS, region=EU, rating=4.08000]
-G2: 71.53% Chance to Win
-BDS: 28.47% Chance to Win
-
-G2 < BDS
-
-------------------------
-
-17: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MSF, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-MSF: 34.03% Chance to Win
-
-G2 > MSF
-
-------------------------
-
-18: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MSF, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-MSF: 34.03% Chance to Win
-
-G2 > MSF
-
-------------------------
-
-19: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MAD, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-MAD: 68.51% Chance to Win
-
-XL < MAD
-
-------------------------
-
-20: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MAD, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-MAD: 68.51% Chance to Win
-
-XL < MAD
-
-------------------------
-
-21: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=FNC, region=EU, rating=4.59000]
-XL: 22.99% Chance to Win
-FNC: 77.01% Chance to Win
-
-XL > FNC
-
-------------------------
-
-22: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=FNC, region=EU, rating=4.59000]
-XL: 22.99% Chance to Win
-FNC: 77.01% Chance to Win
-
-XL < FNC
-
-------------------------
-
-23: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=AST, region=EU, rating=3.85000]
-XL: 71.53% Chance to Win
-AST: 28.47% Chance to Win
-
-XL > AST
-
-------------------------
-
-24: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=AST, region=EU, rating=3.85000]
-XL: 71.53% Chance to Win
-AST: 28.47% Chance to Win
-
-XL > AST
-
-------------------------
-
-25: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=VIT, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-VIT: 68.51% Chance to Win
-
-XL < VIT
-
-------------------------
-
-26: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=VIT, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-VIT: 68.51% Chance to Win
-
-XL < VIT
-
-------------------------
-
-27: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=RGE, region=EU, rating=4.33000]
-XL: 38.69% Chance to Win
-RGE: 61.31% Chance to Win
-
-XL < RGE
-
-------------------------
-
-28: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=RGE, region=EU, rating=4.33000]
-XL: 38.69% Chance to Win
-RGE: 61.31% Chance to Win
-
-XL < RGE
-
-------------------------
-
-29: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=SK, region=EU, rating=4.11000]
-XL: 54.31% Chance to Win
-SK: 45.69% Chance to Win
-
-XL > SK
-
-------------------------
-
-30: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=SK, region=EU, rating=4.11000]
-XL: 54.31% Chance to Win
-SK: 45.69% Chance to Win
-
-XL > SK
-
-------------------------
-
-31: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=BDS, region=EU, rating=4.08000]
-XL: 56.44% Chance to Win
-BDS: 43.56% Chance to Win
-
-XL < BDS
-
-------------------------
-
-32: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=BDS, region=EU, rating=4.08000]
-XL: 56.44% Chance to Win
-BDS: 43.56% Chance to Win
-
-XL > BDS
-
-------------------------
-
-33: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MSF, region=EU, rating=4.17000]
-XL: 50.00% Chance to Win
-MSF: 50.00% Chance to Win
-
-XL > MSF
-
-------------------------
-
-34: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MSF, region=EU, rating=4.17000]
-XL: 50.00% Chance to Win
-MSF: 50.00% Chance to Win
-
-XL > MSF
-
-------------------------
-
-35: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=FNC, region=EU, rating=4.59000]
-MAD: 39.37% Chance to Win
-FNC: 60.63% Chance to Win
-
-MAD > FNC
-
-------------------------
-
-36: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=FNC, region=EU, rating=4.59000]
-MAD: 39.37% Chance to Win
-FNC: 60.63% Chance to Win
-
-MAD < FNC
-
-------------------------
-
-37: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=AST, region=EU, rating=3.85000]
-MAD: 84.53% Chance to Win
-AST: 15.47% Chance to Win
-
-MAD > AST
-
-------------------------
-
-38: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=AST, region=EU, rating=3.85000]
-MAD: 84.53% Chance to Win
-AST: 15.47% Chance to Win
-
-MAD > AST
-
-------------------------
-
-39: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=VIT, region=EU, rating=4.44000]
-MAD: 50.00% Chance to Win
-VIT: 50.00% Chance to Win
-
-MAD < VIT
-
-------------------------
-
-40: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=VIT, region=EU, rating=4.44000]
-MAD: 50.00% Chance to Win
-VIT: 50.00% Chance to Win
-
-MAD < VIT
-
-------------------------
-
-41: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD > RGE
-
-------------------------
-
-42: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD < RGE
-
-------------------------
-
-43: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-MAD: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-MAD < SK
-
-------------------------
-
-44: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-MAD: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-MAD < SK
-
-------------------------
-
-45: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-MAD: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-MAD > BDS
-
-------------------------
-
-46: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-MAD: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-MAD > BDS
-
-------------------------
-
-47: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-MAD: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-MAD > MSF
-
-------------------------
-
-48: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-MAD: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-MAD > MSF
-
-------------------------
-
-49: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=AST, region=EU, rating=3.85000]
-FNC: 89.38% Chance to Win
-AST: 10.62% Chance to Win
-
-FNC > AST
-
-------------------------
-
-50: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=AST, region=EU, rating=3.85000]
-FNC: 89.38% Chance to Win
-AST: 10.62% Chance to Win
-
-FNC > AST
-
-------------------------
-
-51: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=VIT, region=EU, rating=4.44000]
-FNC: 60.63% Chance to Win
-VIT: 39.37% Chance to Win
-
-FNC < VIT
-
-------------------------
-
-52: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=VIT, region=EU, rating=4.44000]
-FNC: 60.63% Chance to Win
-VIT: 39.37% Chance to Win
-
-FNC > VIT
-
-------------------------
-
-53: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-FNC < RGE
-
-------------------------
-
-54: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-FNC < RGE
-
-------------------------
-
-55: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=SK, region=EU, rating=4.11000]
-FNC: 79.92% Chance to Win
-SK: 20.08% Chance to Win
-
-FNC < SK
-
-------------------------
-
-56: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=SK, region=EU, rating=4.11000]
-FNC: 79.92% Chance to Win
-SK: 20.08% Chance to Win
-
-FNC < SK
-
-------------------------
-
-57: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=BDS, region=EU, rating=4.08000]
-FNC: 81.27% Chance to Win
-BDS: 18.73% Chance to Win
-
-FNC > BDS
-
-------------------------
-
-58: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=BDS, region=EU, rating=4.08000]
-FNC: 81.27% Chance to Win
-BDS: 18.73% Chance to Win
-
-FNC < BDS
-
-------------------------
-
-59: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=MSF, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-MSF: 22.99% Chance to Win
-
-FNC > MSF
-
-------------------------
-
-60: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=MSF, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-MSF: 22.99% Chance to Win
-
-FNC > MSF
-
-------------------------
-
-61: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=VIT, region=EU, rating=4.44000]
-AST: 15.47% Chance to Win
-VIT: 84.53% Chance to Win
-
-AST < VIT
-
-------------------------
-
-62: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=VIT, region=EU, rating=4.44000]
-AST: 15.47% Chance to Win
-VIT: 84.53% Chance to Win
-
-AST < VIT
-
-------------------------
-
-63: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=RGE, region=EU, rating=4.33000]
-AST: 20.08% Chance to Win
-RGE: 79.92% Chance to Win
-
-AST < RGE
-
-------------------------
-
-64: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=RGE, region=EU, rating=4.33000]
-AST: 20.08% Chance to Win
-RGE: 79.92% Chance to Win
-
-AST < RGE
-
-------------------------
-
-65: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=SK, region=EU, rating=4.11000]
-AST: 32.12% Chance to Win
-SK: 67.88% Chance to Win
-
-AST < SK
-
-------------------------
-
-66: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=SK, region=EU, rating=4.11000]
-AST: 32.12% Chance to Win
-SK: 67.88% Chance to Win
-
-AST < SK
-
-------------------------
-
-67: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=BDS, region=EU, rating=4.08000]
-AST: 34.03% Chance to Win
-BDS: 65.97% Chance to Win
-
-AST > BDS
-
-------------------------
-
-68: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=BDS, region=EU, rating=4.08000]
-AST: 34.03% Chance to Win
-BDS: 65.97% Chance to Win
-
-AST > BDS
-
-------------------------
-
-69: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=MSF, region=EU, rating=4.17000]
-AST: 28.47% Chance to Win
-MSF: 71.53% Chance to Win
-
-AST < MSF
-
-------------------------
-
-70: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=MSF, region=EU, rating=4.17000]
-AST: 28.47% Chance to Win
-MSF: 71.53% Chance to Win
-
-AST > MSF
-
-------------------------
-
-71: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-VIT < RGE
-
-------------------------
-
-72: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-VIT > RGE
-
-------------------------
-
-73: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-VIT: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-VIT > SK
-
-------------------------
-
-74: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-VIT: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-VIT > SK
-
-------------------------
-
-75: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-VIT: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-VIT < BDS
-
-------------------------
-
-76: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-VIT: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-VIT > BDS
-
-------------------------
-
-77: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-VIT > MSF
-
-------------------------
-
-78: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-VIT < MSF
-
-------------------------
-
-79: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=SK, region=EU, rating=4.11000]
-RGE: 65.32% Chance to Win
-SK: 34.68% Chance to Win
-
-RGE > SK
-
-------------------------
-
-80: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=SK, region=EU, rating=4.11000]
-RGE: 65.32% Chance to Win
-SK: 34.68% Chance to Win
-
-RGE < SK
-
-------------------------
-
-81: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=BDS, region=EU, rating=4.08000]
-RGE: 67.25% Chance to Win
-BDS: 32.75% Chance to Win
-
-RGE < BDS
-
-------------------------
-
-82: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=BDS, region=EU, rating=4.08000]
-RGE: 67.25% Chance to Win
-BDS: 32.75% Chance to Win
-
-RGE < BDS
-
-------------------------
-
-83: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MSF, region=EU, rating=4.17000]
-RGE: 61.31% Chance to Win
-MSF: 38.69% Chance to Win
-
-RGE > MSF
-
-------------------------
-
-84: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MSF, region=EU, rating=4.17000]
-RGE: 61.31% Chance to Win
-MSF: 38.69% Chance to Win
-
-RGE < MSF
-
-------------------------
-
-85: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=BDS, region=EU, rating=4.08000]
-SK: 52.16% Chance to Win
-BDS: 47.84% Chance to Win
-
-SK < BDS
-
-------------------------
-
-86: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=BDS, region=EU, rating=4.08000]
-SK: 52.16% Chance to Win
-BDS: 47.84% Chance to Win
-
-SK > BDS
-
-------------------------
-
-87: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=MSF, region=EU, rating=4.17000]
-SK: 45.69% Chance to Win
-MSF: 54.31% Chance to Win
-
-SK < MSF
-
-------------------------
-
-88: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=MSF, region=EU, rating=4.17000]
-SK: 45.69% Chance to Win
-MSF: 54.31% Chance to Win
-
-SK < MSF
-
-------------------------
-
-89: Regular Season - Team [tag=BDS, region=EU, rating=4.08000] VS Team [tag=MSF, region=EU, rating=4.17000]
-BDS: 43.56% Chance to Win
-MSF: 56.44% Chance to Win
-
-BDS < MSF
-
-------------------------
-
-90: Regular Season - Team [tag=BDS, region=EU, rating=4.08000] VS Team [tag=MSF, region=EU, rating=4.17000]
-BDS: 43.56% Chance to Win
-MSF: 56.44% Chance to Win
-
-BDS < MSF
-
------------------------------------------------
-
-Group Regular Season: Pre-Tiebreakers
-
-1 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 13-5     
-2 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 11-7     
-3 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 11-7     
-4 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 10-8     
-5 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 10-8     
-6 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 9-9      
-7 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 9-9      
-8 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 7-11     
-9 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 7-11     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 3-15     
-
------------------------------------------------
-
-Group Regular Season Tiebreakers
-
-91: Regular Season - Team [tag=MSF, region=EU, rating=4.17000] VS Team [tag=BDS, region=EU, rating=4.08000]
-MSF: 56.44% Chance to Win
-BDS: 43.56% Chance to Win
-
-MSF < BDS
-
-------------------------
-
-92: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=XL, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-XL: 22.99% Chance to Win
-
-FNC > XL
-
-------------------------
-
-93: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=G2, region=EU, rating=4.40000]
-SK: 30.27% Chance to Win
-G2: 69.73% Chance to Win
-
-SK > G2
-
-------------------------
-
-94: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD < RGE
-
------------------------------------------------
-
-Group Regular Season: Post-Tiebreakers
-
-1 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 13-5     
-2 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 12-7     
-3 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 11-8     
-4 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 11-8     
-5 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 10-9     
-6 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 10-9     
-7 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 9-10     
-8 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 8-11     
-9 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 7-12     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 3-15     
-
-----------------------------------------------------------------------------------------
-
-LEC Playoffs
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Pre-Bracket Summary: LEC Playoffs
-
-------------------------
-
-Stage 1               Stage 2               Stage 3               Semifinals            Finals                
-VIT : SK              SK : FNC              MAD : FNC             VIT : RGE             VIT : RGE                                   
-RGE : MAD                                                         FNC : RGE                                                         
-G2 : FNC                                                                                                                            
-
-----------------------------------------------------------------------------------------
-
-1: LEC Playoffs - Stage 1 - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-VIT: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-Game #0: VIT Win 	1-0 for: VIT
-Game #1: VIT Win 	2-0 for: VIT
-Game #2: VIT Win 	3-0 for: VIT
-
-VIT Beats SK: 3-0
-
-------------------------
-
-2: LEC Playoffs - Stage 1 - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MAD, region=EU, rating=4.44000]
-RGE: 42.15% Chance to Win
-MAD: 57.85% Chance to Win
-
-Game #0: RGE Win 	1-0 for: RGE
-Game #1: RGE Win 	2-0 for: RGE
-Game #2: MAD Win 	2-1 for: RGE
-Game #3: MAD Win 	Tied at: 2-2
-Game #4: RGE Win 	3-2 for: RGE
-
-RGE Beats MAD: 3-2
-
-------------------------
-
-3: LEC Playoffs - Stage 1 - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=FNC, region=EU, rating=4.59000]
-G2: 36.66% Chance to Win
-FNC: 63.34% Chance to Win
-
-Game #0: FNC Win 	1-0 for: FNC
-Game #1: G2 Win 	Tied at: 1-1
-Game #2: FNC Win 	2-1 for: FNC
-Game #3: G2 Win 	Tied at: 2-2
-Game #4: FNC Win 	3-2 for: FNC
-
-FNC Beats G2: 3-2
-
-------------------------
-
-4: LEC Playoffs - Stage 2 - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=FNC, region=EU, rating=4.59000]
-SK: 20.08% Chance to Win
-FNC: 79.92% Chance to Win
-
-Game #0: FNC Win 	1-0 for: FNC
-Game #1: FNC Win 	2-0 for: FNC
-Game #2: FNC Win 	3-0 for: FNC
-
-FNC Beats SK: 3-0
-
-------------------------
-
-5: LEC Playoffs - Stage 3 - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=FNC, region=EU, rating=4.59000]
-MAD: 39.37% Chance to Win
-FNC: 60.63% Chance to Win
-
-Game #0: MAD Win 	1-0 for: MAD
-Game #1: MAD Win 	2-0 for: MAD
-Game #2: FNC Win 	2-1 for: MAD
-Game #3: FNC Win 	Tied at: 2-2
-Game #4: FNC Win 	3-2 for: FNC
-
-FNC Beats MAD: 3-2
-
-------------------------
-
-6: LEC Playoffs - Semifinals - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-Game #0: VIT Win 	1-0 for: VIT
-Game #1: VIT Win 	2-0 for: VIT
-Game #2: VIT Win 	3-0 for: VIT
-
-VIT Beats RGE: 3-0
-
-------------------------
-
-7: LEC Playoffs - Semifinals - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-Game #0: RGE Win 	1-0 for: RGE
-Game #1: FNC Win 	Tied at: 1-1
-Game #2: RGE Win 	2-1 for: RGE
-Game #3: FNC Win 	Tied at: 2-2
-Game #4: RGE Win 	3-2 for: RGE
-
-RGE Beats FNC: 3-2
-
-------------------------
-
-8: LEC Playoffs - Finals - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-Game #0: VIT Win 	1-0 for: VIT
-Game #1: VIT Win 	2-0 for: VIT
-Game #2: RGE Win 	2-1 for: VIT
-Game #3: VIT Win 	3-1 for: VIT
-
-VIT Beats RGE: 3-1
-
-----------------------------------------------------------------------------------------
-
-End of Bracket Summary: LEC Playoffs
-
-------------------------
-
-Stage 1               Stage 2               Stage 3               Semifinals            Finals                Winner(s)   
-VIT : SK     | 3-0    SK : FNC     | 0-3    MAD : FNC    | 2-3    VIT : RGE    | 3-0    VIT : RGE    | 3-1    VIT         
-RGE : MAD    | 3-2                                                FNC : RGE    | 2-3                                      
-G2 : FNC     | 2-3                                                                                                        
-
-----------------------------------------------------------------------------------------
-
-Champion Stats/Records
-
-----------------------------------------------------------------------------------------
-
-Qualification Logs for: VIT
-
------------------------------------------------
-
-VIT - Regular Season
-Reason For Qualification: GroupPlacement; Placed: 1
-Group Regular Season: Post-Tiebreakers
-
-1 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 13-5     
-2 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 12-7     
-3 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 11-8     
-4 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 11-8     
-5 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 10-9     
-6 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 10-9     
-7 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 9-10     
-8 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 8-11     
-9 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 7-12     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 3-15     
-
------------------------------------------------
-
-Record Logs for: VIT
-
------------------------------------------------
-
-Regular Season                                     | Wins=13  | Losses=5   | Percent - 72.22%  
-Team [tag=G2, region=EU, rating=4.40000]           | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=BDS, region=EU, rating=4.08000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=AST, region=EU, rating=3.85000]          | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=XL, region=EU, rating=4.17000]           | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=RGE, region=EU, rating=4.33000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=SK, region=EU, rating=4.11000]           | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=MSF, region=EU, rating=4.17000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=MAD, region=EU, rating=4.44000]          | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=FNC, region=EU, rating=4.59000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-
-LEC Playoffs - Stage 1                             | Wins=3   | Losses=0   | Percent - 100.00% 
-Team [tag=SK, region=EU, rating=4.11000]           | Wins=3   | Losses=0   | Percent - 100.00% 
-
-LEC Playoffs - Semifinals                          | Wins=3   | Losses=0   | Percent - 100.00% 
-Team [tag=RGE, region=EU, rating=4.33000]          | Wins=3   | Losses=0   | Percent - 100.00% 
-
-LEC Playoffs - Finals                              | Wins=3   | Losses=1   | Percent - 75.00%  
-Team [tag=RGE, region=EU, rating=4.33000]          | Wins=3   | Losses=1   | Percent - 75.00%  
-
------------------------------------------------
-
-VIT has Won LEC Spring; Runner Up: RGE
-
-----------------------------------------------------------------------------------------
-
-Tournament Standings
-
-----------------------------------------------------------------------------------------
-
-AST: Finished - 10 | Run Ended During: Regular Season
-
-MSF: Finished - 9 | Run Ended During: Regular Season
-
-BDS: Finished - 8 | Run Ended During: Regular Season
-
-XL: Finished - 7 | Run Ended During: Regular Season
-
-G2: Finished - 6 | Run Ended During: LEC Playoffs - Stage 1
-
-SK: Finished - 5 | Run Ended During: LEC Playoffs - Stage 2
-
-MAD: Finished - 4 | Run Ended During: LEC Playoffs - Stage 3
-
-RGE: Finished - 3 | Run Ended During: LEC Playoffs - Finals
-
-RGE: Finished - 2 | Run Ended During: LEC Playoffs - Finals
-
-VIT: Finished - 1 | Run Ended During: LEC Playoffs - Finals
-
-----------------------------------------------------------------------------------------
-
-Tournament Stats
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Nuber of Games Analysis
-
-----------------------------------------------------------------------------------------
-
-Regular Season: 94
-LEC Playoffs - Stage 1: 13
-LEC Playoffs - Stage 2: 3
-LEC Playoffs - Stage 3: 5
-LEC Playoffs - Semifinals: 8
-LEC Playoffs - Finals: 4
-
-------------------------
-
-Total Number of Games: 127
-
------------------------------------------------
-
------------------------------------------------
-
-# of Times X Team Won; Results from 10000 Simulations
-
------------------------------------------------
-
-BDS, 1: Percent - 0.01%
-
-MSF, 9: Percent - 0.09%
-
-XL, 10: Percent - 0.10%
-
-RGE, 287: Percent - 2.87%
-
-G2, 882: Percent - 8.82%
-
-VIT, 1488: Percent - 14.88%
-
-MAD, 1536: Percent - 15.36%
-
-FNC, 5787: Percent - 57.87%
-
-Show me a World where X Wins (Type 'Any' for a random Team): 
-Print Tournament Progression?: 
-Y or N?: 
-Print Champions Records?: 
-Y or N?: 
-Print Tournament Standings?: 
-Y or N?: 
-Print Tournament Stats?: 
-Y or N?: 
-----------------------------------------------------------------------------------------
-
-Printing out Results of: Simulation #841 -
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Printing Results of Tournement
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Regular Season
-
-----------------------------------------------------------------------------------------
-
-Group Regular Season
-
-Team [tag=G2, region=EU, rating=4.40000]
-Team [tag=XL, region=EU, rating=4.17000]
-Team [tag=MAD, region=EU, rating=4.44000]
-Team [tag=FNC, region=EU, rating=4.59000]
-Team [tag=AST, region=EU, rating=3.85000]
-Team [tag=VIT, region=EU, rating=4.44000]
-Team [tag=RGE, region=EU, rating=4.33000]
-Team [tag=SK, region=EU, rating=4.11000]
-Team [tag=BDS, region=EU, rating=4.08000]
-Team [tag=MSF, region=EU, rating=4.17000]
-
------------------------------------------------
-
-Group Regular Season Games
-
------------------------------------------------
-
-1: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=XL, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-XL: 34.03% Chance to Win
-
-G2 > XL
-
-------------------------
-
-2: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=XL, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-XL: 34.03% Chance to Win
-
-G2 < XL
-
-------------------------
-
-3: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MAD, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-MAD: 52.88% Chance to Win
-
-G2 < MAD
-
-------------------------
-
-4: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MAD, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-MAD: 52.88% Chance to Win
-
-G2 > MAD
-
-------------------------
-
-5: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=FNC, region=EU, rating=4.59000]
-G2: 36.66% Chance to Win
-FNC: 63.34% Chance to Win
-
-G2 > FNC
-
-------------------------
-
-6: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=FNC, region=EU, rating=4.59000]
-G2: 36.66% Chance to Win
-FNC: 63.34% Chance to Win
-
-G2 < FNC
-
-------------------------
-
-7: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=AST, region=EU, rating=3.85000]
-G2: 82.96% Chance to Win
-AST: 17.04% Chance to Win
-
-G2 > AST
-
-------------------------
-
-8: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=AST, region=EU, rating=3.85000]
-G2: 82.96% Chance to Win
-AST: 17.04% Chance to Win
-
-G2 > AST
-
-------------------------
-
-9: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=VIT, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-VIT: 52.88% Chance to Win
-
-G2 < VIT
-
-------------------------
-
-10: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=VIT, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-VIT: 52.88% Chance to Win
-
-G2 > VIT
-
-------------------------
-
-11: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=RGE, region=EU, rating=4.33000]
-G2: 55.02% Chance to Win
-RGE: 44.98% Chance to Win
-
-G2 < RGE
-
-------------------------
-
-12: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=RGE, region=EU, rating=4.33000]
-G2: 55.02% Chance to Win
-RGE: 44.98% Chance to Win
-
-G2 > RGE
-
-------------------------
-
-13: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=SK, region=EU, rating=4.11000]
-G2: 69.73% Chance to Win
-SK: 30.27% Chance to Win
-
-G2 > SK
-
-------------------------
-
-14: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=SK, region=EU, rating=4.11000]
-G2: 69.73% Chance to Win
-SK: 30.27% Chance to Win
-
-G2 < SK
-
-------------------------
-
-15: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=BDS, region=EU, rating=4.08000]
-G2: 71.53% Chance to Win
-BDS: 28.47% Chance to Win
-
-G2 > BDS
-
-------------------------
-
-16: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=BDS, region=EU, rating=4.08000]
-G2: 71.53% Chance to Win
-BDS: 28.47% Chance to Win
-
-G2 > BDS
-
-------------------------
-
-17: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MSF, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-MSF: 34.03% Chance to Win
-
-G2 > MSF
-
-------------------------
-
-18: Regular Season - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=MSF, region=EU, rating=4.17000]
-G2: 65.97% Chance to Win
-MSF: 34.03% Chance to Win
-
-G2 > MSF
-
-------------------------
-
-19: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MAD, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-MAD: 68.51% Chance to Win
-
-XL > MAD
-
-------------------------
-
-20: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MAD, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-MAD: 68.51% Chance to Win
-
-XL < MAD
-
-------------------------
-
-21: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=FNC, region=EU, rating=4.59000]
-XL: 22.99% Chance to Win
-FNC: 77.01% Chance to Win
-
-XL < FNC
-
-------------------------
-
-22: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=FNC, region=EU, rating=4.59000]
-XL: 22.99% Chance to Win
-FNC: 77.01% Chance to Win
-
-XL < FNC
-
-------------------------
-
-23: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=AST, region=EU, rating=3.85000]
-XL: 71.53% Chance to Win
-AST: 28.47% Chance to Win
-
-XL > AST
-
-------------------------
-
-24: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=AST, region=EU, rating=3.85000]
-XL: 71.53% Chance to Win
-AST: 28.47% Chance to Win
-
-XL > AST
-
-------------------------
-
-25: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=VIT, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-VIT: 68.51% Chance to Win
-
-XL < VIT
-
-------------------------
-
-26: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=VIT, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-VIT: 68.51% Chance to Win
-
-XL > VIT
-
-------------------------
-
-27: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=RGE, region=EU, rating=4.33000]
-XL: 38.69% Chance to Win
-RGE: 61.31% Chance to Win
-
-XL > RGE
-
-------------------------
-
-28: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=RGE, region=EU, rating=4.33000]
-XL: 38.69% Chance to Win
-RGE: 61.31% Chance to Win
-
-XL > RGE
-
-------------------------
-
-29: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=SK, region=EU, rating=4.11000]
-XL: 54.31% Chance to Win
-SK: 45.69% Chance to Win
-
-XL < SK
-
-------------------------
-
-30: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=SK, region=EU, rating=4.11000]
-XL: 54.31% Chance to Win
-SK: 45.69% Chance to Win
-
-XL > SK
-
-------------------------
-
-31: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=BDS, region=EU, rating=4.08000]
-XL: 56.44% Chance to Win
-BDS: 43.56% Chance to Win
-
-XL < BDS
-
-------------------------
-
-32: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=BDS, region=EU, rating=4.08000]
-XL: 56.44% Chance to Win
-BDS: 43.56% Chance to Win
-
-XL > BDS
-
-------------------------
-
-33: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MSF, region=EU, rating=4.17000]
-XL: 50.00% Chance to Win
-MSF: 50.00% Chance to Win
-
-XL > MSF
-
-------------------------
-
-34: Regular Season - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=MSF, region=EU, rating=4.17000]
-XL: 50.00% Chance to Win
-MSF: 50.00% Chance to Win
-
-XL > MSF
-
-------------------------
-
-35: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=FNC, region=EU, rating=4.59000]
-MAD: 39.37% Chance to Win
-FNC: 60.63% Chance to Win
-
-MAD < FNC
-
-------------------------
-
-36: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=FNC, region=EU, rating=4.59000]
-MAD: 39.37% Chance to Win
-FNC: 60.63% Chance to Win
-
-MAD > FNC
-
-------------------------
-
-37: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=AST, region=EU, rating=3.85000]
-MAD: 84.53% Chance to Win
-AST: 15.47% Chance to Win
-
-MAD > AST
-
-------------------------
-
-38: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=AST, region=EU, rating=3.85000]
-MAD: 84.53% Chance to Win
-AST: 15.47% Chance to Win
-
-MAD > AST
-
-------------------------
-
-39: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=VIT, region=EU, rating=4.44000]
-MAD: 50.00% Chance to Win
-VIT: 50.00% Chance to Win
-
-MAD < VIT
-
-------------------------
-
-40: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=VIT, region=EU, rating=4.44000]
-MAD: 50.00% Chance to Win
-VIT: 50.00% Chance to Win
-
-MAD < VIT
-
-------------------------
-
-41: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD < RGE
-
-------------------------
-
-42: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD > RGE
-
-------------------------
-
-43: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-MAD: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-MAD > SK
-
-------------------------
-
-44: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-MAD: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-MAD > SK
-
-------------------------
-
-45: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-MAD: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-MAD > BDS
-
-------------------------
-
-46: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-MAD: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-MAD < BDS
-
-------------------------
-
-47: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-MAD: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-MAD > MSF
-
-------------------------
-
-48: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-MAD: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-MAD < MSF
-
-------------------------
-
-49: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=AST, region=EU, rating=3.85000]
-FNC: 89.38% Chance to Win
-AST: 10.62% Chance to Win
-
-FNC > AST
-
-------------------------
-
-50: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=AST, region=EU, rating=3.85000]
-FNC: 89.38% Chance to Win
-AST: 10.62% Chance to Win
-
-FNC > AST
-
-------------------------
-
-51: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=VIT, region=EU, rating=4.44000]
-FNC: 60.63% Chance to Win
-VIT: 39.37% Chance to Win
-
-FNC > VIT
-
-------------------------
-
-52: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=VIT, region=EU, rating=4.44000]
-FNC: 60.63% Chance to Win
-VIT: 39.37% Chance to Win
-
-FNC < VIT
-
-------------------------
-
-53: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-FNC > RGE
-
-------------------------
-
-54: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-FNC < RGE
-
-------------------------
-
-55: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=SK, region=EU, rating=4.11000]
-FNC: 79.92% Chance to Win
-SK: 20.08% Chance to Win
-
-FNC < SK
-
-------------------------
-
-56: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=SK, region=EU, rating=4.11000]
-FNC: 79.92% Chance to Win
-SK: 20.08% Chance to Win
-
-FNC > SK
-
-------------------------
-
-57: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=BDS, region=EU, rating=4.08000]
-FNC: 81.27% Chance to Win
-BDS: 18.73% Chance to Win
-
-FNC > BDS
-
-------------------------
-
-58: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=BDS, region=EU, rating=4.08000]
-FNC: 81.27% Chance to Win
-BDS: 18.73% Chance to Win
-
-FNC > BDS
-
-------------------------
-
-59: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=MSF, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-MSF: 22.99% Chance to Win
-
-FNC > MSF
-
-------------------------
-
-60: Regular Season - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=MSF, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-MSF: 22.99% Chance to Win
-
-FNC > MSF
-
-------------------------
-
-61: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=VIT, region=EU, rating=4.44000]
-AST: 15.47% Chance to Win
-VIT: 84.53% Chance to Win
-
-AST < VIT
-
-------------------------
-
-62: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=VIT, region=EU, rating=4.44000]
-AST: 15.47% Chance to Win
-VIT: 84.53% Chance to Win
-
-AST < VIT
-
-------------------------
-
-63: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=RGE, region=EU, rating=4.33000]
-AST: 20.08% Chance to Win
-RGE: 79.92% Chance to Win
-
-AST < RGE
-
-------------------------
-
-64: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=RGE, region=EU, rating=4.33000]
-AST: 20.08% Chance to Win
-RGE: 79.92% Chance to Win
-
-AST > RGE
-
-------------------------
-
-65: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=SK, region=EU, rating=4.11000]
-AST: 32.12% Chance to Win
-SK: 67.88% Chance to Win
-
-AST > SK
-
-------------------------
-
-66: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=SK, region=EU, rating=4.11000]
-AST: 32.12% Chance to Win
-SK: 67.88% Chance to Win
-
-AST > SK
-
-------------------------
-
-67: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=BDS, region=EU, rating=4.08000]
-AST: 34.03% Chance to Win
-BDS: 65.97% Chance to Win
-
-AST > BDS
-
-------------------------
-
-68: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=BDS, region=EU, rating=4.08000]
-AST: 34.03% Chance to Win
-BDS: 65.97% Chance to Win
-
-AST < BDS
-
-------------------------
-
-69: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=MSF, region=EU, rating=4.17000]
-AST: 28.47% Chance to Win
-MSF: 71.53% Chance to Win
-
-AST < MSF
-
-------------------------
-
-70: Regular Season - Team [tag=AST, region=EU, rating=3.85000] VS Team [tag=MSF, region=EU, rating=4.17000]
-AST: 28.47% Chance to Win
-MSF: 71.53% Chance to Win
-
-AST < MSF
-
-------------------------
-
-71: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-VIT < RGE
-
-------------------------
-
-72: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-VIT: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-VIT > RGE
-
-------------------------
-
-73: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-VIT: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-VIT > SK
-
-------------------------
-
-74: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=SK, region=EU, rating=4.11000]
-VIT: 72.11% Chance to Win
-SK: 27.89% Chance to Win
-
-VIT < SK
-
-------------------------
-
-75: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-VIT: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-VIT > BDS
-
-------------------------
-
-76: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=BDS, region=EU, rating=4.08000]
-VIT: 73.81% Chance to Win
-BDS: 26.19% Chance to Win
-
-VIT < BDS
-
-------------------------
-
-77: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-VIT > MSF
-
-------------------------
-
-78: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=MSF, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-MSF: 31.49% Chance to Win
-
-VIT < MSF
-
-------------------------
-
-79: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=SK, region=EU, rating=4.11000]
-RGE: 65.32% Chance to Win
-SK: 34.68% Chance to Win
-
-RGE > SK
-
-------------------------
-
-80: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=SK, region=EU, rating=4.11000]
-RGE: 65.32% Chance to Win
-SK: 34.68% Chance to Win
-
-RGE > SK
-
-------------------------
-
-81: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=BDS, region=EU, rating=4.08000]
-RGE: 67.25% Chance to Win
-BDS: 32.75% Chance to Win
-
-RGE > BDS
-
-------------------------
-
-82: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=BDS, region=EU, rating=4.08000]
-RGE: 67.25% Chance to Win
-BDS: 32.75% Chance to Win
-
-RGE > BDS
-
-------------------------
-
-83: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MSF, region=EU, rating=4.17000]
-RGE: 61.31% Chance to Win
-MSF: 38.69% Chance to Win
-
-RGE < MSF
-
-------------------------
-
-84: Regular Season - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MSF, region=EU, rating=4.17000]
-RGE: 61.31% Chance to Win
-MSF: 38.69% Chance to Win
-
-RGE > MSF
-
-------------------------
-
-85: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=BDS, region=EU, rating=4.08000]
-SK: 52.16% Chance to Win
-BDS: 47.84% Chance to Win
-
-SK > BDS
-
-------------------------
-
-86: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=BDS, region=EU, rating=4.08000]
-SK: 52.16% Chance to Win
-BDS: 47.84% Chance to Win
-
-SK < BDS
-
-------------------------
-
-87: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=MSF, region=EU, rating=4.17000]
-SK: 45.69% Chance to Win
-MSF: 54.31% Chance to Win
-
-SK > MSF
-
-------------------------
-
-88: Regular Season - Team [tag=SK, region=EU, rating=4.11000] VS Team [tag=MSF, region=EU, rating=4.17000]
-SK: 45.69% Chance to Win
-MSF: 54.31% Chance to Win
-
-SK < MSF
-
-------------------------
-
-89: Regular Season - Team [tag=BDS, region=EU, rating=4.08000] VS Team [tag=MSF, region=EU, rating=4.17000]
-BDS: 43.56% Chance to Win
-MSF: 56.44% Chance to Win
-
-BDS < MSF
-
-------------------------
-
-90: Regular Season - Team [tag=BDS, region=EU, rating=4.08000] VS Team [tag=MSF, region=EU, rating=4.17000]
-BDS: 43.56% Chance to Win
-MSF: 56.44% Chance to Win
-
-BDS < MSF
-
------------------------------------------------
-
-Group Regular Season: Pre-Tiebreakers
-
-1 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 13-5     
-2 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 12-6     
-3 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 11-7     
-4 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 11-7     
-5 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 10-8     
-6 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 10-8     
-7 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 8-10     
-8 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 6-12     
-9 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 5-13     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 4-14     
-
------------------------------------------------
-
-Group Regular Season Tiebreakers
-
-91: Regular Season - Team [tag=MAD, region=EU, rating=4.44000] VS Team [tag=RGE, region=EU, rating=4.33000]
-MAD: 57.85% Chance to Win
-RGE: 42.15% Chance to Win
-
-MAD < RGE
-
-------------------------
-
-92: Regular Season - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=XL, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-XL: 31.49% Chance to Win
-
-VIT > XL
-
------------------------------------------------
-
-Group Regular Season: Post-Tiebreakers
-
-1 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 13-5     
-2 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 12-6     
-3 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 12-7     
-4 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 11-8     
-5 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 11-8     
-6 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 10-9     
-7 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 8-10     
-8 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 6-12     
-9 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 5-13     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 4-14     
-
-----------------------------------------------------------------------------------------
-
-LEC Playoffs
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Pre-Bracket Summary: LEC Playoffs
-
-------------------------
-
-Stage 1               Stage 2               Stage 3               Semifinals            Finals                
-FNC : XL              G2 : RGE              FNC : RGE             XL : VIT              VIT : XL                                    
-G2 : VIT                                                          FNC : XL                                                          
-RGE : MAD                                                                                                                           
-
-----------------------------------------------------------------------------------------
-
-1: LEC Playoffs - Stage 1 - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=XL, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-XL: 22.99% Chance to Win
-
-Game #0: XL Win 	1-0 for: XL
-Game #1: FNC Win 	Tied at: 1-1
-Game #2: XL Win 	2-1 for: XL
-Game #3: XL Win 	3-1 for: XL
-
-XL Beats FNC: 3-1
-
-------------------------
-
-2: LEC Playoffs - Stage 1 - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=VIT, region=EU, rating=4.44000]
-G2: 47.12% Chance to Win
-VIT: 52.88% Chance to Win
-
-Game #0: VIT Win 	1-0 for: VIT
-Game #1: G2 Win 	Tied at: 1-1
-Game #2: VIT Win 	2-1 for: VIT
-Game #3: G2 Win 	Tied at: 2-2
-Game #4: VIT Win 	3-2 for: VIT
-
-VIT Beats G2: 3-2
-
-------------------------
-
-3: LEC Playoffs - Stage 1 - Team [tag=RGE, region=EU, rating=4.33000] VS Team [tag=MAD, region=EU, rating=4.44000]
-RGE: 42.15% Chance to Win
-MAD: 57.85% Chance to Win
-
-Game #0: RGE Win 	1-0 for: RGE
-Game #1: MAD Win 	Tied at: 1-1
-Game #2: RGE Win 	2-1 for: RGE
-Game #3: RGE Win 	3-1 for: RGE
-
-RGE Beats MAD: 3-1
-
-------------------------
-
-4: LEC Playoffs - Stage 2 - Team [tag=G2, region=EU, rating=4.40000] VS Team [tag=RGE, region=EU, rating=4.33000]
-G2: 55.02% Chance to Win
-RGE: 44.98% Chance to Win
-
-Game #0: RGE Win 	1-0 for: RGE
-Game #1: G2 Win 	Tied at: 1-1
-Game #2: RGE Win 	2-1 for: RGE
-Game #3: G2 Win 	Tied at: 2-2
-Game #4: RGE Win 	3-2 for: RGE
-
-RGE Beats G2: 3-2
-
-------------------------
-
-5: LEC Playoffs - Stage 3 - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=RGE, region=EU, rating=4.33000]
-FNC: 67.88% Chance to Win
-RGE: 32.12% Chance to Win
-
-Game #0: FNC Win 	1-0 for: FNC
-Game #1: FNC Win 	2-0 for: FNC
-Game #2: RGE Win 	2-1 for: FNC
-Game #3: FNC Win 	3-1 for: FNC
-
-FNC Beats RGE: 3-1
-
-------------------------
-
-6: LEC Playoffs - Semifinals - Team [tag=XL, region=EU, rating=4.17000] VS Team [tag=VIT, region=EU, rating=4.44000]
-XL: 31.49% Chance to Win
-VIT: 68.51% Chance to Win
-
-Game #0: VIT Win 	1-0 for: VIT
-Game #1: VIT Win 	2-0 for: VIT
-Game #2: VIT Win 	3-0 for: VIT
-
-VIT Beats XL: 3-0
-
-------------------------
-
-7: LEC Playoffs - Semifinals - Team [tag=FNC, region=EU, rating=4.59000] VS Team [tag=XL, region=EU, rating=4.17000]
-FNC: 77.01% Chance to Win
-XL: 22.99% Chance to Win
-
-Game #0: XL Win 	1-0 for: XL
-Game #1: XL Win 	2-0 for: XL
-Game #2: XL Win 	3-0 for: XL
-
-XL Beats FNC: 3-0
-
-------------------------
-
-8: LEC Playoffs - Finals - Team [tag=VIT, region=EU, rating=4.44000] VS Team [tag=XL, region=EU, rating=4.17000]
-VIT: 68.51% Chance to Win
-XL: 31.49% Chance to Win
-
-Game #0: XL Win 	1-0 for: XL
-Game #1: XL Win 	2-0 for: XL
-Game #2: XL Win 	3-0 for: XL
-
-XL Beats VIT: 3-0
-
-----------------------------------------------------------------------------------------
-
-End of Bracket Summary: LEC Playoffs
-
-------------------------
-
-Stage 1               Stage 2               Stage 3               Semifinals            Finals                Winner(s)   
-FNC : XL     | 1-3    G2 : RGE     | 2-3    FNC : RGE    | 3-1    XL : VIT     | 0-3    VIT : XL     | 0-3    XL          
-G2 : VIT     | 2-3                                                FNC : XL     | 0-3                                      
-RGE : MAD    | 3-1                                                                                                        
-
-----------------------------------------------------------------------------------------
-
-Champion Stats/Records
-
-----------------------------------------------------------------------------------------
-
-Qualification Logs for: XL
-
------------------------------------------------
-
-XL - Regular Season
-Reason For Qualification: GroupPlacement; Placed: 4
-Group Regular Season: Post-Tiebreakers
-
-1 : Team [tag=FNC, region=EU, rating=4.59000]       | Record: 13-5     
-2 : Team [tag=G2, region=EU, rating=4.40000]        | Record: 12-6     
-3 : Team [tag=VIT, region=EU, rating=4.44000]       | Record: 12-7     
-4 : Team [tag=XL, region=EU, rating=4.17000]        | Record: 11-8     
-5 : Team [tag=RGE, region=EU, rating=4.33000]       | Record: 11-8     
-6 : Team [tag=MAD, region=EU, rating=4.44000]       | Record: 10-9     
-7 : Team [tag=MSF, region=EU, rating=4.17000]       | Record: 8-10     
-8 : Team [tag=SK, region=EU, rating=4.11000]        | Record: 6-12     
-9 : Team [tag=BDS, region=EU, rating=4.08000]       | Record: 5-13     
-10 : Team [tag=AST, region=EU, rating=3.85000]      | Record: 4-14     
-
------------------------------------------------
-
-Record Logs for: XL
-
------------------------------------------------
-
-Regular Season                                     | Wins=11  | Losses=8   | Percent - 57.89%  
-Team [tag=RGE, region=EU, rating=4.33000]          | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=BDS, region=EU, rating=4.08000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=VIT, region=EU, rating=4.44000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=G2, region=EU, rating=4.40000]           | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=AST, region=EU, rating=3.85000]          | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=SK, region=EU, rating=4.11000]           | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=MAD, region=EU, rating=4.44000]          | Wins=1   | Losses=1   | Percent - 50.00%  
-Team [tag=MSF, region=EU, rating=4.17000]          | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=FNC, region=EU, rating=4.59000]          | Wins=0   | Losses=2   | Percent - 0.00%   
-
-Regular Season: Tiebreakers
-Team [tag=VIT, region=EU, rating=4.44000]          | Wins=0   | Losses=1   | Percent - 0.00%   
-
-LEC Playoffs - Stage 1                             | Wins=3   | Losses=1   | Percent - 75.00%  
-Team [tag=FNC, region=EU, rating=4.59000]          | Wins=3   | Losses=1   | Percent - 75.00%  
-
-LEC Playoffs - Semifinals                          | Wins=3   | Losses=3   | Percent - 50.00%  
-Team [tag=VIT, region=EU, rating=4.44000]          | Wins=0   | Losses=3   | Percent - 0.00%   
-Team [tag=FNC, region=EU, rating=4.59000]          | Wins=3   | Losses=0   | Percent - 100.00% 
-
-LEC Playoffs - Semifinals                          | Wins=0   | Losses=0   | Percent - NaN%    
-
-LEC Playoffs - Finals                              | Wins=3   | Losses=0   | Percent - 100.00% 
-Team [tag=VIT, region=EU, rating=4.44000]          | Wins=3   | Losses=0   | Percent - 100.00% 
-
------------------------------------------------
-
-XL has Won LEC Spring; Runner Up: VIT
-
-----------------------------------------------------------------------------------------
-
-Tournament Standings
-
-----------------------------------------------------------------------------------------
-
-AST: Finished - 10 | Run Ended During: Regular Season
-
-BDS: Finished - 9 | Run Ended During: Regular Season
-
-SK: Finished - 8 | Run Ended During: Regular Season
-
-MSF: Finished - 7 | Run Ended During: Regular Season
-
-MAD: Finished - 6 | Run Ended During: LEC Playoffs - Stage 1
-
-G2: Finished - 5 | Run Ended During: LEC Playoffs - Stage 2
-
-RGE: Finished - 4 | Run Ended During: LEC Playoffs - Stage 3
-
-XL: Finished - 3 | Run Ended During: LEC Playoffs - Finals
-
-VIT: Finished - 2 | Run Ended During: LEC Playoffs - Finals
-
-XL: Finished - 1 | Run Ended During: LEC Playoffs - Finals
-
-----------------------------------------------------------------------------------------
-
-Tournament Stats
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Nuber of Games Analysis
-
-----------------------------------------------------------------------------------------
-
-Regular Season: 92
-LEC Playoffs - Stage 1: 13
-LEC Playoffs - Stage 2: 5
-LEC Playoffs - Stage 3: 4
-LEC Playoffs - Semifinals: 6
-LEC Playoffs - Finals: 3
-
-------------------------
-
-Total Number of Games: 123
-
------------------------------------------------
-
------------------------------------------------
-
-# of Times X Team Won; Results from 10000 Simulations
-
------------------------------------------------
-
-BDS, 1: Percent - 0.01%
-
-MSF, 9: Percent - 0.09%
-
-XL, 10: Percent - 0.10%
-
-RGE, 287: Percent - 2.87%
-
-G2, 882: Percent - 8.82%
-
-VIT, 1488: Percent - 14.88%
-
-MAD, 1536: Percent - 15.36%
-
-FNC, 5787: Percent - 57.87%
-
-Show me a World where X Wins (Type 'Any' for a random Team): 
-Exit
-
-----------------------------------------------------------------------------------------
-
-Do You Want to Simulate another Tournament or Exit?: 
-Entering anything other than the phrase 'Exit' will continue the program: 
-Which League do you want to Simulate?: 
-Options: 
-1 - LCS
-2 - LEC
-3 - International
-
 Which LCS Tournament do you want to Simulate?: 
 Options: 
 1 - Lockin
@@ -2237,25 +25,25 @@ Result's of Simulating: LCS_Lockin
 
 -----------------------------------------------
 
-FLY, 8: Percent - 0.08%
+IMT, 74: Percent - 0.74%
 
-DIG, 15: Percent - 0.15%
+CLG, 339: Percent - 3.39%
 
-CLG, 30: Percent - 0.30%
+TSM, 486: Percent - 4.86%
 
-GG, 47: Percent - 0.47%
+GG, 506: Percent - 5.06%
 
-IMT, 77: Percent - 0.77%
+DIG, 720: Percent - 7.20%
 
-C9, 654: Percent - 6.54%
+x100, 845: Percent - 8.45%
 
-EG, 770: Percent - 7.70%
+TL, 1311: Percent - 13.11%
 
-TSM, 1273: Percent - 12.73%
+C9, 1574: Percent - 15.74%
 
-100T, 2737: Percent - 27.37%
+FLY, 1860: Percent - 18.60%
 
-TL, 4389: Percent - 43.89%
+EG, 2285: Percent - 22.85%
 
 Show me a World where X Wins (Type 'Any' for a random Team): 
 Print Tournament Progression?: 
@@ -2268,7 +56,7 @@ Print Tournament Stats?:
 Y or N?: 
 ----------------------------------------------------------------------------------------
 
-Printing out Results of: Simulation #0 -
+Printing out Results of: Simulation #2 -
 
 ----------------------------------------------------------------------------------------
 
@@ -2286,11 +74,11 @@ Group Stage
 
 Group A
 
-Team [tag=CLG, region=NA, rating=3.85000]
-Team [tag=FLY, region=NA, rating=3.76000]
-Team [tag=GG, region=NA, rating=3.87000]
-Team [tag=C9, region=NA, rating=4.09000]
-Team [tag=DIG, region=NA, rating=3.78000]
+Team [tag=GG, region=NA, rating=4.19000]
+Team [tag=C9, region=NA, rating=4.31000]
+Team [tag=EG, region=NA, rating=4.36000]
+Team [tag=DIG, region=NA, rating=4.22000]
+Team [tag=CLG, region=NA, rating=4.16000]
 
 -----------------------------------------------
 
@@ -2298,131 +86,131 @@ Group A Games
 
 -----------------------------------------------
 
-1: Group Stage - Team [tag=CLG, region=NA, rating=3.85000] VS Team [tag=FLY, region=NA, rating=3.76000]
-CLG: 56.44% Chance to Win
-FLY: 43.56% Chance to Win
+1: Group Stage - Team [tag=GG, region=NA, rating=4.19000] VS Team [tag=C9, region=NA, rating=4.31000]
+GG: 41.45% Chance to Win
+C9: 58.55% Chance to Win
 
-CLG > FLY
-
-------------------------
-
-2: Group Stage - Team [tag=CLG, region=NA, rating=3.85000] VS Team [tag=GG, region=NA, rating=3.87000]
-CLG: 48.56% Chance to Win
-GG: 51.44% Chance to Win
-
-CLG < GG
+GG > C9
 
 ------------------------
 
-3: Group Stage - Team [tag=CLG, region=NA, rating=3.85000] VS Team [tag=C9, region=NA, rating=4.09000]
-CLG: 33.39% Chance to Win
-C9: 66.61% Chance to Win
+2: Group Stage - Team [tag=GG, region=NA, rating=4.19000] VS Team [tag=EG, region=NA, rating=4.36000]
+GG: 38.01% Chance to Win
+EG: 61.99% Chance to Win
 
-CLG > C9
-
-------------------------
-
-4: Group Stage - Team [tag=CLG, region=NA, rating=3.85000] VS Team [tag=DIG, region=NA, rating=3.78000]
-CLG: 55.02% Chance to Win
-DIG: 44.98% Chance to Win
-
-CLG > DIG
+GG < EG
 
 ------------------------
 
-5: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=GG, region=NA, rating=3.87000]
-FLY: 42.15% Chance to Win
-GG: 57.85% Chance to Win
-
-FLY < GG
-
-------------------------
-
-6: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=C9, region=NA, rating=4.09000]
-FLY: 27.89% Chance to Win
-C9: 72.11% Chance to Win
-
-FLY < C9
-
-------------------------
-
-7: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=DIG, region=NA, rating=3.78000]
-FLY: 48.56% Chance to Win
-DIG: 51.44% Chance to Win
-
-FLY < DIG
-
-------------------------
-
-8: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=C9, region=NA, rating=4.09000]
-GG: 34.68% Chance to Win
-C9: 65.32% Chance to Win
-
-GG < C9
-
-------------------------
-
-9: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=DIG, region=NA, rating=3.78000]
-GG: 56.44% Chance to Win
-DIG: 43.56% Chance to Win
+3: Group Stage - Team [tag=GG, region=NA, rating=4.19000] VS Team [tag=DIG, region=NA, rating=4.22000]
+GG: 47.84% Chance to Win
+DIG: 52.16% Chance to Win
 
 GG > DIG
 
 ------------------------
 
-10: Group Stage - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=DIG, region=NA, rating=3.78000]
-C9: 70.94% Chance to Win
-DIG: 29.06% Chance to Win
+4: Group Stage - Team [tag=GG, region=NA, rating=4.19000] VS Team [tag=CLG, region=NA, rating=4.16000]
+GG: 52.16% Chance to Win
+CLG: 47.84% Chance to Win
 
-C9 < DIG
+GG > CLG
 
------------------------------------------------
+------------------------
 
-Group A: Pre-Tiebreakers
+5: Group Stage - Team [tag=C9, region=NA, rating=4.31000] VS Team [tag=EG, region=NA, rating=4.36000]
+C9: 46.41% Chance to Win
+EG: 53.59% Chance to Win
 
-1 : Team [tag=CLG, region=NA, rating=3.85000]       | Record: 3-1      
-2 : Team [tag=GG, region=NA, rating=3.87000]        | Record: 3-1      
-3 : Team [tag=DIG, region=NA, rating=3.78000]       | Record: 2-2      
-4 : Team [tag=C9, region=NA, rating=4.09000]        | Record: 2-2      
-5 : Team [tag=FLY, region=NA, rating=3.76000]       | Record: 0-4      
+C9 < EG
 
------------------------------------------------
+------------------------
 
-Group A Tiebreakers
-
-11: Group Stage - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=DIG, region=NA, rating=3.78000]
-C9: 70.94% Chance to Win
-DIG: 29.06% Chance to Win
+6: Group Stage - Team [tag=C9, region=NA, rating=4.31000] VS Team [tag=DIG, region=NA, rating=4.22000]
+C9: 56.44% Chance to Win
+DIG: 43.56% Chance to Win
 
 C9 > DIG
 
 ------------------------
 
-12: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=CLG, region=NA, rating=3.85000]
-GG: 51.44% Chance to Win
-CLG: 48.56% Chance to Win
+7: Group Stage - Team [tag=C9, region=NA, rating=4.31000] VS Team [tag=CLG, region=NA, rating=4.16000]
+C9: 60.63% Chance to Win
+CLG: 39.37% Chance to Win
 
-GG > CLG
+C9 > CLG
+
+------------------------
+
+8: Group Stage - Team [tag=EG, region=NA, rating=4.36000] VS Team [tag=DIG, region=NA, rating=4.22000]
+EG: 59.94% Chance to Win
+DIG: 40.06% Chance to Win
+
+EG < DIG
+
+------------------------
+
+9: Group Stage - Team [tag=EG, region=NA, rating=4.36000] VS Team [tag=CLG, region=NA, rating=4.16000]
+EG: 64.01% Chance to Win
+CLG: 35.99% Chance to Win
+
+EG < CLG
+
+------------------------
+
+10: Group Stage - Team [tag=DIG, region=NA, rating=4.22000] VS Team [tag=CLG, region=NA, rating=4.16000]
+DIG: 54.31% Chance to Win
+CLG: 45.69% Chance to Win
+
+DIG > CLG
+
+-----------------------------------------------
+
+Group A: Pre-Tiebreakers
+
+1 : Team [tag=GG, region=NA, rating=4.19000]        | Record: 3-1      
+2 : Team [tag=C9, region=NA, rating=4.31000]        | Record: 2-2      
+3 : Team [tag=DIG, region=NA, rating=4.22000]       | Record: 2-2      
+4 : Team [tag=EG, region=NA, rating=4.36000]        | Record: 2-2      
+5 : Team [tag=CLG, region=NA, rating=4.16000]       | Record: 1-3      
+
+-----------------------------------------------
+
+Group A Tiebreakers
+
+11: Group Stage - Team [tag=EG, region=NA, rating=4.36000] VS Team [tag=DIG, region=NA, rating=4.22000]
+EG: 59.94% Chance to Win
+DIG: 40.06% Chance to Win
+
+EG > DIG
+
+------------------------
+
+12: Group Stage - Team [tag=EG, region=NA, rating=4.36000] VS Team [tag=C9, region=NA, rating=4.31000]
+EG: 53.59% Chance to Win
+C9: 46.41% Chance to Win
+
+EG > C9
 
 -----------------------------------------------
 
 Group A: Post-Tiebreakers
 
-1 : Team [tag=GG, region=NA, rating=3.87000]        | Record: 4-1      
-2 : Team [tag=CLG, region=NA, rating=3.85000]       | Record: 3-2      
-3 : Team [tag=C9, region=NA, rating=4.09000]        | Record: 3-2      
-4 : Team [tag=DIG, region=NA, rating=3.78000]       | Record: 2-3      
-5 : Team [tag=FLY, region=NA, rating=3.76000]       | Record: 0-4      
+1 : Team [tag=GG, region=NA, rating=4.19000]        | Record: 3-1      
+2 : Team [tag=EG, region=NA, rating=4.36000]        | Record: 4-2      
+3 : Team [tag=C9, region=NA, rating=4.31000]        | Record: 2-3      
+4 : Team [tag=DIG, region=NA, rating=4.22000]       | Record: 2-3      
+5 : Team [tag=CLG, region=NA, rating=4.16000]       | Record: 1-3      
 
 ----------------------------------------------------------------------------------------
 
 Group B
 
-Team [tag=EG, region=NA, rating=4.11000]
-Team [tag=100T, region=NA, rating=4.27000]
-Team [tag=IMT, region=NA, rating=3.90000]
-Team [tag=TL, region=NA, rating=4.34000]
-Team [tag=TSM, region=NA, rating=4.17000]
+Team [tag=TSM, region=NA, rating=4.19000]
+Team [tag=x100, region=NA, rating=4.24000]
+Team [tag=TL, region=NA, rating=4.29000]
+Team [tag=IMT, region=NA, rating=4.04000]
+Team [tag=FLY, region=NA, rating=4.33000]
 
 -----------------------------------------------
 
@@ -2430,121 +218,121 @@ Group B Games
 
 -----------------------------------------------
 
-1: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=100T, region=NA, rating=4.27000]
-EG: 38.69% Chance to Win
-100T: 61.31% Chance to Win
+1: Group Stage - Team [tag=TSM, region=NA, rating=4.19000] VS Team [tag=x100, region=NA, rating=4.24000]
+TSM: 46.41% Chance to Win
+x100: 53.59% Chance to Win
 
-EG > 100T
-
-------------------------
-
-2: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=IMT, region=NA, rating=3.90000]
-EG: 64.67% Chance to Win
-IMT: 35.33% Chance to Win
-
-EG < IMT
+TSM > x100
 
 ------------------------
 
-3: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=TL, region=NA, rating=4.34000]
-EG: 34.03% Chance to Win
-TL: 65.97% Chance to Win
-
-EG < TL
-
-------------------------
-
-4: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=TSM, region=NA, rating=4.17000]
-EG: 45.69% Chance to Win
-TSM: 54.31% Chance to Win
-
-EG > TSM
-
-------------------------
-
-5: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=IMT, region=NA, rating=3.90000]
-100T: 74.36% Chance to Win
-IMT: 25.64% Chance to Win
-
-100T > IMT
-
-------------------------
-
-6: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=TL, region=NA, rating=4.34000]
-100T: 44.98% Chance to Win
-TL: 55.02% Chance to Win
-
-100T < TL
-
-------------------------
-
-7: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=TSM, region=NA, rating=4.17000]
-100T: 57.15% Chance to Win
+2: Group Stage - Team [tag=TSM, region=NA, rating=4.19000] VS Team [tag=TL, region=NA, rating=4.29000]
 TSM: 42.85% Chance to Win
+TL: 57.15% Chance to Win
 
-100T > TSM
-
-------------------------
-
-8: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=TL, region=NA, rating=4.34000]
-IMT: 21.99% Chance to Win
-TL: 78.01% Chance to Win
-
-IMT < TL
+TSM > TL
 
 ------------------------
 
-9: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=TSM, region=NA, rating=4.17000]
-IMT: 31.49% Chance to Win
-TSM: 68.51% Chance to Win
+3: Group Stage - Team [tag=TSM, region=NA, rating=4.19000] VS Team [tag=IMT, region=NA, rating=4.04000]
+TSM: 60.63% Chance to Win
+IMT: 39.37% Chance to Win
 
-IMT > TSM
+TSM < IMT
 
 ------------------------
 
-10: Group Stage - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=TSM, region=NA, rating=4.17000]
-TL: 61.99% Chance to Win
-TSM: 38.01% Chance to Win
+4: Group Stage - Team [tag=TSM, region=NA, rating=4.19000] VS Team [tag=FLY, region=NA, rating=4.33000]
+TSM: 40.06% Chance to Win
+FLY: 59.94% Chance to Win
 
-TL < TSM
+TSM < FLY
+
+------------------------
+
+5: Group Stage - Team [tag=x100, region=NA, rating=4.24000] VS Team [tag=TL, region=NA, rating=4.29000]
+x100: 46.41% Chance to Win
+TL: 53.59% Chance to Win
+
+x100 > TL
+
+------------------------
+
+6: Group Stage - Team [tag=x100, region=NA, rating=4.24000] VS Team [tag=IMT, region=NA, rating=4.04000]
+x100: 64.01% Chance to Win
+IMT: 35.99% Chance to Win
+
+x100 > IMT
+
+------------------------
+
+7: Group Stage - Team [tag=x100, region=NA, rating=4.24000] VS Team [tag=FLY, region=NA, rating=4.33000]
+x100: 43.56% Chance to Win
+FLY: 56.44% Chance to Win
+
+x100 < FLY
+
+------------------------
+
+8: Group Stage - Team [tag=TL, region=NA, rating=4.29000] VS Team [tag=IMT, region=NA, rating=4.04000]
+TL: 67.25% Chance to Win
+IMT: 32.75% Chance to Win
+
+TL > IMT
+
+------------------------
+
+9: Group Stage - Team [tag=TL, region=NA, rating=4.29000] VS Team [tag=FLY, region=NA, rating=4.33000]
+TL: 47.12% Chance to Win
+FLY: 52.88% Chance to Win
+
+TL > FLY
+
+------------------------
+
+10: Group Stage - Team [tag=IMT, region=NA, rating=4.04000] VS Team [tag=FLY, region=NA, rating=4.33000]
+IMT: 30.27% Chance to Win
+FLY: 69.73% Chance to Win
+
+IMT < FLY
 
 -----------------------------------------------
 
 Group B: Pre-Tiebreakers
 
-1 : Team [tag=TL, region=NA, rating=4.34000]        | Record: 3-1      
-2 : Team [tag=EG, region=NA, rating=4.11000]        | Record: 2-2      
-3 : Team [tag=100T, region=NA, rating=4.27000]      | Record: 2-2      
-4 : Team [tag=IMT, region=NA, rating=3.90000]       | Record: 2-2      
-5 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 1-3      
+1 : Team [tag=FLY, region=NA, rating=4.33000]       | Record: 3-1      
+2 : Team [tag=TSM, region=NA, rating=4.19000]       | Record: 2-2      
+3 : Team [tag=TL, region=NA, rating=4.29000]        | Record: 2-2      
+4 : Team [tag=x100, region=NA, rating=4.24000]      | Record: 2-2      
+5 : Team [tag=IMT, region=NA, rating=4.04000]       | Record: 1-3      
 
 -----------------------------------------------
 
 Group B Tiebreakers
 
-11: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=100T, region=NA, rating=4.27000]
-IMT: 25.64% Chance to Win
-100T: 74.36% Chance to Win
+11: Group Stage - Team [tag=x100, region=NA, rating=4.24000] VS Team [tag=TL, region=NA, rating=4.29000]
+x100: 46.41% Chance to Win
+TL: 53.59% Chance to Win
 
-IMT < 100T
+x100 > TL
 
 ------------------------
 
-12: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=EG, region=NA, rating=4.11000]
-100T: 61.31% Chance to Win
-EG: 38.69% Chance to Win
+12: Group Stage - Team [tag=x100, region=NA, rating=4.24000] VS Team [tag=TSM, region=NA, rating=4.19000]
+x100: 53.59% Chance to Win
+TSM: 46.41% Chance to Win
 
-100T > EG
+x100 > TSM
 
 -----------------------------------------------
 
 Group B: Post-Tiebreakers
 
-1 : Team [tag=TL, region=NA, rating=4.34000]        | Record: 3-1      
-2 : Team [tag=100T, region=NA, rating=4.27000]      | Record: 4-2      
-3 : Team [tag=EG, region=NA, rating=4.11000]        | Record: 2-3      
-4 : Team [tag=IMT, region=NA, rating=3.90000]       | Record: 2-3      
-5 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 1-3      
+1 : Team [tag=FLY, region=NA, rating=4.33000]       | Record: 3-1      
+2 : Team [tag=x100, region=NA, rating=4.24000]      | Record: 4-2      
+3 : Team [tag=TSM, region=NA, rating=4.19000]       | Record: 2-3      
+4 : Team [tag=TL, region=NA, rating=4.29000]        | Record: 2-3      
+5 : Team [tag=IMT, region=NA, rating=4.04000]       | Record: 1-3      
 
 ----------------------------------------------------------------------------------------
 
@@ -2559,94 +347,97 @@ Pre-Bracket Summary: KO Stage
 ------------------------
 
 Quaterfinals          Semifinals            Finals                
-GG : IMT              GG : 100T             100T : TL                                   
-C9 : 100T             TL : CLG                                                          
-TL : DIG                                                                                
-EG : CLG                                                                                
+GG : TL               TL : C9               C9 : TSM                                    
+C9 : x100             FLY : TSM                                                         
+FLY : DIG                                                                               
+TSM : EG                                                                                
 
 ----------------------------------------------------------------------------------------
 
-1: KO Stage - Quaterfinals - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=IMT, region=NA, rating=3.90000]
-GG: 47.84% Chance to Win
-IMT: 52.16% Chance to Win
-
-Game #0: GG Win 	1-0 for: GG
-Game #1: GG Win 	2-0 for: GG
-
-GG Beats IMT: 2-0
-
-------------------------
-
-2: KO Stage - Quaterfinals - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=100T, region=NA, rating=4.27000]
-C9: 37.33% Chance to Win
-100T: 62.67% Chance to Win
-
-Game #0: 100T Win 	1-0 for: 100T
-Game #1: C9 Win 	Tied at: 1-1
-Game #2: 100T Win 	2-1 for: 100T
-
-100T Beats C9: 2-1
-
-------------------------
-
-3: KO Stage - Quaterfinals - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=DIG, region=NA, rating=3.78000]
-TL: 83.37% Chance to Win
-DIG: 16.63% Chance to Win
+1: KO Stage - Quaterfinals - Team [tag=GG, region=NA, rating=4.19000] VS Team [tag=TL, region=NA, rating=4.29000]
+GG: 42.85% Chance to Win
+TL: 57.15% Chance to Win
 
 Game #0: TL Win 	1-0 for: TL
-Game #1: TL Win 	2-0 for: TL
-
-TL Beats DIG: 2-0
-
-------------------------
-
-4: KO Stage - Quaterfinals - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=CLG, region=NA, rating=3.85000]
-EG: 67.88% Chance to Win
-CLG: 32.12% Chance to Win
-
-Game #0: EG Win 	1-0 for: EG
-Game #1: CLG Win 	Tied at: 1-1
-Game #2: CLG Win 	2-1 for: CLG
-
-CLG Beats EG: 2-1
-
-------------------------
-
-5: KO Stage - Semifinals - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=100T, region=NA, rating=4.27000]
-GG: 24.03% Chance to Win
-100T: 75.97% Chance to Win
-
-Game #0: 100T Win 	1-0 for: 100T
 Game #1: GG Win 	Tied at: 1-1
-Game #2: 100T Win 	2-1 for: 100T
-Game #3: 100T Win 	3-1 for: 100T
+Game #2: TL Win 	2-1 for: TL
 
-100T Beats GG: 3-1
+TL Beats GG: 2-1
 
 ------------------------
 
-6: KO Stage - Semifinals - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=CLG, region=NA, rating=3.85000]
-TL: 80.38% Chance to Win
-CLG: 19.62% Chance to Win
+2: KO Stage - Quaterfinals - Team [tag=C9, region=NA, rating=4.31000] VS Team [tag=x100, region=NA, rating=4.24000]
+C9: 55.02% Chance to Win
+x100: 44.98% Chance to Win
+
+Game #0: C9 Win 	1-0 for: C9
+Game #1: C9 Win 	2-0 for: C9
+
+C9 Beats x100: 2-0
+
+------------------------
+
+3: KO Stage - Quaterfinals - Team [tag=FLY, region=NA, rating=4.33000] VS Team [tag=DIG, region=NA, rating=4.22000]
+FLY: 57.85% Chance to Win
+DIG: 42.15% Chance to Win
+
+Game #0: FLY Win 	1-0 for: FLY
+Game #1: FLY Win 	2-0 for: FLY
+
+FLY Beats DIG: 2-0
+
+------------------------
+
+4: KO Stage - Quaterfinals - Team [tag=TSM, region=NA, rating=4.19000] VS Team [tag=EG, region=NA, rating=4.36000]
+TSM: 38.01% Chance to Win
+EG: 61.99% Chance to Win
+
+Game #0: TSM Win 	1-0 for: TSM
+Game #1: EG Win 	Tied at: 1-1
+Game #2: TSM Win 	2-1 for: TSM
+
+TSM Beats EG: 2-1
+
+------------------------
+
+5: KO Stage - Semifinals - Team [tag=TL, region=NA, rating=4.29000] VS Team [tag=C9, region=NA, rating=4.31000]
+TL: 48.56% Chance to Win
+C9: 51.44% Chance to Win
 
 Game #0: TL Win 	1-0 for: TL
 Game #1: TL Win 	2-0 for: TL
-Game #2: TL Win 	3-0 for: TL
+Game #2: C9 Win 	2-1 for: TL
+Game #3: C9 Win 	Tied at: 2-2
+Game #4: C9 Win 	3-2 for: C9
 
-TL Beats CLG: 3-0
+C9 Beats TL: 3-2
 
 ------------------------
 
-7: KO Stage - Finals - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=TL, region=NA, rating=4.34000]
-100T: 44.98% Chance to Win
-TL: 55.02% Chance to Win
+6: KO Stage - Semifinals - Team [tag=FLY, region=NA, rating=4.33000] VS Team [tag=TSM, region=NA, rating=4.19000]
+FLY: 59.94% Chance to Win
+TSM: 40.06% Chance to Win
 
-Game #0: TL Win 	1-0 for: TL
-Game #1: 100T Win 	Tied at: 1-1
-Game #2: TL Win 	2-1 for: TL
-Game #3: TL Win 	3-1 for: TL
+Game #0: FLY Win 	1-0 for: FLY
+Game #1: TSM Win 	Tied at: 1-1
+Game #2: TSM Win 	2-1 for: TSM
+Game #3: TSM Win 	3-1 for: TSM
 
-TL Beats 100T: 3-1
+TSM Beats FLY: 3-1
+
+------------------------
+
+7: KO Stage - Finals - Team [tag=C9, region=NA, rating=4.31000] VS Team [tag=TSM, region=NA, rating=4.19000]
+C9: 58.55% Chance to Win
+TSM: 41.45% Chance to Win
+
+Game #0: TSM Win 	1-0 for: TSM
+Game #1: C9 Win 	Tied at: 1-1
+Game #2: TSM Win 	2-1 for: TSM
+Game #3: C9 Win 	Tied at: 2-2
+Game #4: TSM Win 	3-2 for: TSM
+
+TSM Beats C9: 3-2
 
 ----------------------------------------------------------------------------------------
 
@@ -2655,10 +446,10 @@ End of Bracket Summary: KO Stage
 ------------------------
 
 Quaterfinals          Semifinals            Finals                Winner(s)   
-GG : IMT     | 2-0    GG : 100T    | 1-3    100T : TL    | 1-3    TL          
-C9 : 100T    | 1-2    TL : CLG     | 3-0                                      
-TL : DIG     | 2-0                                                            
-EG : CLG     | 1-2                                                            
+GG : TL      | 1-2    TL : C9      | 2-3    C9 : TSM     | 2-3    TSM         
+C9 : x100    | 2-0    FLY : TSM    | 1-3                                      
+FLY : DIG    | 2-0                                                            
+TSM : EG     | 2-1                                                            
 
 ----------------------------------------------------------------------------------------
 
@@ -2666,44 +457,47 @@ Champion Stats/Records
 
 ----------------------------------------------------------------------------------------
 
-Qualification Logs for: TL
+Qualification Logs for: TSM
 
 -----------------------------------------------
 
-TL - Group Stage
-Reason For Qualification: GroupPlacement; Placed: 1
+TSM - Group Stage
+Reason For Qualification: GroupPlacement; Placed: 3
 Group B: Post-Tiebreakers
 
-1 : Team [tag=TL, region=NA, rating=4.34000]        | Record: 3-1      
-2 : Team [tag=100T, region=NA, rating=4.27000]      | Record: 4-2      
-3 : Team [tag=EG, region=NA, rating=4.11000]        | Record: 2-3      
-4 : Team [tag=IMT, region=NA, rating=3.90000]       | Record: 2-3      
-5 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 1-3      
+1 : Team [tag=FLY, region=NA, rating=4.33000]       | Record: 3-1      
+2 : Team [tag=x100, region=NA, rating=4.24000]      | Record: 4-2      
+3 : Team [tag=TSM, region=NA, rating=4.19000]       | Record: 2-3      
+4 : Team [tag=TL, region=NA, rating=4.29000]        | Record: 2-3      
+5 : Team [tag=IMT, region=NA, rating=4.04000]       | Record: 1-3      
 
 -----------------------------------------------
 
-Record Logs for: TL
+Record Logs for: TSM
 
 -----------------------------------------------
 
-Group Stage                                        | Wins=3   | Losses=1   | Percent - 75.00%  
-Team [tag=EG, region=NA, rating=4.11000]           | Wins=1   | Losses=0   | Percent - 100.00% 
-Team [tag=100T, region=NA, rating=4.27000]         | Wins=1   | Losses=0   | Percent - 100.00% 
-Team [tag=IMT, region=NA, rating=3.90000]          | Wins=1   | Losses=0   | Percent - 100.00% 
-Team [tag=TSM, region=NA, rating=4.17000]          | Wins=0   | Losses=1   | Percent - 0.00%   
+Group Stage                                        | Wins=2   | Losses=3   | Percent - 40.00%  
+Team [tag=IMT, region=NA, rating=4.04000]          | Wins=0   | Losses=1   | Percent - 0.00%   
+Team [tag=FLY, region=NA, rating=4.33000]          | Wins=0   | Losses=1   | Percent - 0.00%   
+Team [tag=TL, region=NA, rating=4.29000]           | Wins=1   | Losses=0   | Percent - 100.00% 
+Team [tag=x100, region=NA, rating=4.24000]         | Wins=1   | Losses=0   | Percent - 100.00% 
 
-KO Stage - Quaterfinals                            | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=DIG, region=NA, rating=3.78000]          | Wins=2   | Losses=0   | Percent - 100.00% 
+Group Stage: Tiebreakers
+Team [tag=x100, region=NA, rating=4.24000]         | Wins=0   | Losses=1   | Percent - 0.00%   
 
-KO Stage - Semifinals                              | Wins=3   | Losses=0   | Percent - 100.00% 
-Team [tag=CLG, region=NA, rating=3.85000]          | Wins=3   | Losses=0   | Percent - 100.00% 
+KO Stage - Quaterfinals                            | Wins=2   | Losses=1   | Percent - 66.67%  
+Team [tag=EG, region=NA, rating=4.36000]           | Wins=2   | Losses=1   | Percent - 66.67%  
 
-KO Stage - Finals                                  | Wins=3   | Losses=1   | Percent - 75.00%  
-Team [tag=100T, region=NA, rating=4.27000]         | Wins=3   | Losses=1   | Percent - 75.00%  
+KO Stage - Semifinals                              | Wins=3   | Losses=1   | Percent - 75.00%  
+Team [tag=FLY, region=NA, rating=4.33000]          | Wins=3   | Losses=1   | Percent - 75.00%  
+
+KO Stage - Finals                                  | Wins=3   | Losses=2   | Percent - 60.00%  
+Team [tag=C9, region=NA, rating=4.31000]           | Wins=3   | Losses=2   | Percent - 60.00%  
 
 -----------------------------------------------
 
-TL has Won LCS Lockin; Runner Up: 100T
+TSM has Won LCS Lockin; Runner Up: C9
 
 ----------------------------------------------------------------------------------------
 
@@ -2711,25 +505,25 @@ Tournament Standings
 
 ----------------------------------------------------------------------------------------
 
-FLY: Finished - 10 | Run Ended During: Group Stage
+CLG: Finished - 10 | Run Ended During: Group Stage
 
-TSM: Finished - 10 | Run Ended During: Group Stage
+IMT: Finished - 10 | Run Ended During: Group Stage
 
-IMT: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
+GG: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
 
-C9: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
+x100: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
 
 DIG: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
 
 EG: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
 
-GG: Finished - 4 | Run Ended During: KO Stage - Semifinals
+TL: Finished - 4 | Run Ended During: KO Stage - Semifinals
 
-CLG: Finished - 4 | Run Ended During: KO Stage - Semifinals
+FLY: Finished - 4 | Run Ended During: KO Stage - Semifinals
 
-100T: Finished - 2 | Run Ended During: KO Stage - Finals
+C9: Finished - 2 | Run Ended During: KO Stage - Finals
 
-TL: Finished - 1 | Run Ended During: KO Stage - Finals
+TSM: Finished - 1 | Run Ended During: KO Stage - Finals
 
 ----------------------------------------------------------------------------------------
 
@@ -2739,468 +533,13 @@ Tournament Stats
 
 ----------------------------------------------------------------------------------------
 
-Nuber of Games Analysis
+Number of Games Analysis
 
 ----------------------------------------------------------------------------------------
 
 Group Stage: 24
 KO Stage - Quaterfinals: 10
-KO Stage - Semifinals: 7
-KO Stage - Finals: 4
-
-------------------------
-
-Total Number of Games: 45
-
------------------------------------------------
-
------------------------------------------------
-
-# of Times X Team Won; Results from 10000 Simulations
-
------------------------------------------------
-
-FLY, 8: Percent - 0.08%
-
-DIG, 15: Percent - 0.15%
-
-CLG, 30: Percent - 0.30%
-
-GG, 47: Percent - 0.47%
-
-IMT, 77: Percent - 0.77%
-
-C9, 654: Percent - 6.54%
-
-EG, 770: Percent - 7.70%
-
-TSM, 1273: Percent - 12.73%
-
-100T, 2737: Percent - 27.37%
-
-TL, 4389: Percent - 43.89%
-
-Show me a World where X Wins (Type 'Any' for a random Team): 
-Print Tournament Progression?: 
-Y or N?: 
-Print Champions Records?: 
-Y or N?: 
-Print Tournament Standings?: 
-Y or N?: 
-Print Tournament Stats?: 
-Y or N?: 
-----------------------------------------------------------------------------------------
-
-Printing out Results of: Simulation #44 -
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Printing Results of Tournement
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Group Stage
-
-----------------------------------------------------------------------------------------
-
-Group A
-
-Team [tag=100T, region=NA, rating=4.27000]
-Team [tag=GG, region=NA, rating=3.87000]
-Team [tag=IMT, region=NA, rating=3.90000]
-Team [tag=C9, region=NA, rating=4.09000]
-Team [tag=DIG, region=NA, rating=3.78000]
-
------------------------------------------------
-
-Group A Games
-
------------------------------------------------
-
-1: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=GG, region=NA, rating=3.87000]
-100T: 75.97% Chance to Win
-GG: 24.03% Chance to Win
-
-100T > GG
-
-------------------------
-
-2: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=IMT, region=NA, rating=3.90000]
-100T: 74.36% Chance to Win
-IMT: 25.64% Chance to Win
-
-100T < IMT
-
-------------------------
-
-3: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=C9, region=NA, rating=4.09000]
-100T: 62.67% Chance to Win
-C9: 37.33% Chance to Win
-
-100T < C9
-
-------------------------
-
-4: Group Stage - Team [tag=100T, region=NA, rating=4.27000] VS Team [tag=DIG, region=NA, rating=3.78000]
-100T: 80.38% Chance to Win
-DIG: 19.62% Chance to Win
-
-100T > DIG
-
-------------------------
-
-5: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=IMT, region=NA, rating=3.90000]
-GG: 47.84% Chance to Win
-IMT: 52.16% Chance to Win
-
-GG > IMT
-
-------------------------
-
-6: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=C9, region=NA, rating=4.09000]
-GG: 34.68% Chance to Win
-C9: 65.32% Chance to Win
-
-GG < C9
-
-------------------------
-
-7: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=DIG, region=NA, rating=3.78000]
-GG: 56.44% Chance to Win
-DIG: 43.56% Chance to Win
-
-GG < DIG
-
-------------------------
-
-8: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=C9, region=NA, rating=4.09000]
-IMT: 36.66% Chance to Win
-C9: 63.34% Chance to Win
-
-IMT < C9
-
-------------------------
-
-9: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=DIG, region=NA, rating=3.78000]
-IMT: 58.55% Chance to Win
-DIG: 41.45% Chance to Win
-
-IMT > DIG
-
-------------------------
-
-10: Group Stage - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=DIG, region=NA, rating=3.78000]
-C9: 70.94% Chance to Win
-DIG: 29.06% Chance to Win
-
-C9 > DIG
-
------------------------------------------------
-
-Group A: Pre-Tiebreakers
-
-1 : Team [tag=C9, region=NA, rating=4.09000]        | Record: 4-0      
-2 : Team [tag=100T, region=NA, rating=4.27000]      | Record: 2-2      
-3 : Team [tag=IMT, region=NA, rating=3.90000]       | Record: 2-2      
-4 : Team [tag=DIG, region=NA, rating=3.78000]       | Record: 1-3      
-5 : Team [tag=GG, region=NA, rating=3.87000]        | Record: 1-3      
-
------------------------------------------------
-
-Group A Tiebreakers
-
-11: Group Stage - Team [tag=GG, region=NA, rating=3.87000] VS Team [tag=DIG, region=NA, rating=3.78000]
-GG: 56.44% Chance to Win
-DIG: 43.56% Chance to Win
-
-GG < DIG
-
-------------------------
-
-12: Group Stage - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=100T, region=NA, rating=4.27000]
-IMT: 25.64% Chance to Win
-100T: 74.36% Chance to Win
-
-IMT < 100T
-
------------------------------------------------
-
-Group A: Post-Tiebreakers
-
-1 : Team [tag=C9, region=NA, rating=4.09000]        | Record: 4-0      
-2 : Team [tag=100T, region=NA, rating=4.27000]      | Record: 3-2      
-3 : Team [tag=IMT, region=NA, rating=3.90000]       | Record: 2-3      
-4 : Team [tag=DIG, region=NA, rating=3.78000]       | Record: 2-3      
-5 : Team [tag=GG, region=NA, rating=3.87000]        | Record: 1-4      
-
-----------------------------------------------------------------------------------------
-
-Group B
-
-Team [tag=EG, region=NA, rating=4.11000]
-Team [tag=TL, region=NA, rating=4.34000]
-Team [tag=FLY, region=NA, rating=3.76000]
-Team [tag=TSM, region=NA, rating=4.17000]
-Team [tag=CLG, region=NA, rating=3.85000]
-
------------------------------------------------
-
-Group B Games
-
------------------------------------------------
-
-1: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=TL, region=NA, rating=4.34000]
-EG: 34.03% Chance to Win
-TL: 65.97% Chance to Win
-
-EG > TL
-
-------------------------
-
-2: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=FLY, region=NA, rating=3.76000]
-EG: 73.25% Chance to Win
-FLY: 26.75% Chance to Win
-
-EG > FLY
-
-------------------------
-
-3: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=TSM, region=NA, rating=4.17000]
-EG: 45.69% Chance to Win
-TSM: 54.31% Chance to Win
-
-EG < TSM
-
-------------------------
-
-4: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=CLG, region=NA, rating=3.85000]
-EG: 67.88% Chance to Win
-CLG: 32.12% Chance to Win
-
-EG > CLG
-
-------------------------
-
-5: Group Stage - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=FLY, region=NA, rating=3.76000]
-TL: 84.15% Chance to Win
-FLY: 15.85% Chance to Win
-
-TL > FLY
-
-------------------------
-
-6: Group Stage - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=TSM, region=NA, rating=4.17000]
-TL: 61.99% Chance to Win
-TSM: 38.01% Chance to Win
-
-TL < TSM
-
-------------------------
-
-7: Group Stage - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=CLG, region=NA, rating=3.85000]
-TL: 80.38% Chance to Win
-CLG: 19.62% Chance to Win
-
-TL > CLG
-
-------------------------
-
-8: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=TSM, region=NA, rating=4.17000]
-FLY: 23.50% Chance to Win
-TSM: 76.50% Chance to Win
-
-FLY > TSM
-
-------------------------
-
-9: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=CLG, region=NA, rating=3.85000]
-FLY: 43.56% Chance to Win
-CLG: 56.44% Chance to Win
-
-FLY < CLG
-
-------------------------
-
-10: Group Stage - Team [tag=TSM, region=NA, rating=4.17000] VS Team [tag=CLG, region=NA, rating=3.85000]
-TSM: 71.53% Chance to Win
-CLG: 28.47% Chance to Win
-
-TSM > CLG
-
------------------------------------------------
-
-Group B: Pre-Tiebreakers
-
-1 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 3-1      
-2 : Team [tag=EG, region=NA, rating=4.11000]        | Record: 3-1      
-3 : Team [tag=TL, region=NA, rating=4.34000]        | Record: 2-2      
-4 : Team [tag=CLG, region=NA, rating=3.85000]       | Record: 1-3      
-5 : Team [tag=FLY, region=NA, rating=3.76000]       | Record: 1-3      
-
------------------------------------------------
-
-Group B Tiebreakers
-
-11: Group Stage - Team [tag=FLY, region=NA, rating=3.76000] VS Team [tag=CLG, region=NA, rating=3.85000]
-FLY: 43.56% Chance to Win
-CLG: 56.44% Chance to Win
-
-FLY > CLG
-
-------------------------
-
-12: Group Stage - Team [tag=EG, region=NA, rating=4.11000] VS Team [tag=TSM, region=NA, rating=4.17000]
-EG: 45.69% Chance to Win
-TSM: 54.31% Chance to Win
-
-EG < TSM
-
------------------------------------------------
-
-Group B: Post-Tiebreakers
-
-1 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 4-1      
-2 : Team [tag=EG, region=NA, rating=4.11000]        | Record: 3-2      
-3 : Team [tag=TL, region=NA, rating=4.34000]        | Record: 2-2      
-4 : Team [tag=FLY, region=NA, rating=3.76000]       | Record: 2-3      
-5 : Team [tag=CLG, region=NA, rating=3.85000]       | Record: 1-4      
-
-----------------------------------------------------------------------------------------
-
-KO Stage
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Pre-Bracket Summary: KO Stage
-
-------------------------
-
-Quaterfinals          Semifinals            Finals                
-C9 : FLY              C9 : IMT              IMT : TSM                                   
-IMT : EG              TSM : TL                                                          
-TSM : DIG                                                                               
-TL : 100T                                                                               
-
-----------------------------------------------------------------------------------------
-
-1: KO Stage - Quaterfinals - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=FLY, region=NA, rating=3.76000]
-C9: 72.11% Chance to Win
-FLY: 27.89% Chance to Win
-
-Game #0: C9 Win 	1-0 for: C9
-Game #1: C9 Win 	2-0 for: C9
-
-C9 Beats FLY: 2-0
-
-------------------------
-
-2: KO Stage - Quaterfinals - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=EG, region=NA, rating=4.11000]
-IMT: 35.33% Chance to Win
-EG: 64.67% Chance to Win
-
-Game #0: IMT Win 	1-0 for: IMT
-Game #1: IMT Win 	2-0 for: IMT
-
-IMT Beats EG: 2-0
-
-------------------------
-
-3: KO Stage - Quaterfinals - Team [tag=TSM, region=NA, rating=4.17000] VS Team [tag=DIG, region=NA, rating=3.78000]
-TSM: 75.45% Chance to Win
-DIG: 24.55% Chance to Win
-
-Game #0: TSM Win 	1-0 for: TSM
-Game #1: TSM Win 	2-0 for: TSM
-
-TSM Beats DIG: 2-0
-
-------------------------
-
-4: KO Stage - Quaterfinals - Team [tag=TL, region=NA, rating=4.34000] VS Team [tag=100T, region=NA, rating=4.27000]
-TL: 55.02% Chance to Win
-100T: 44.98% Chance to Win
-
-Game #0: TL Win 	1-0 for: TL
-Game #1: 100T Win 	Tied at: 1-1
-Game #2: TL Win 	2-1 for: TL
-
-TL Beats 100T: 2-1
-
-------------------------
-
-5: KO Stage - Semifinals - Team [tag=C9, region=NA, rating=4.09000] VS Team [tag=IMT, region=NA, rating=3.90000]
-C9: 63.34% Chance to Win
-IMT: 36.66% Chance to Win
-
-Game #0: C9 Win 	1-0 for: C9
-Game #1: C9 Win 	2-0 for: C9
-Game #2: IMT Win 	2-1 for: C9
-Game #3: IMT Win 	Tied at: 2-2
-Game #4: IMT Win 	3-2 for: IMT
-
-IMT Beats C9: 3-2
-
-------------------------
-
-6: KO Stage - Semifinals - Team [tag=TSM, region=NA, rating=4.17000] VS Team [tag=TL, region=NA, rating=4.34000]
-TSM: 38.01% Chance to Win
-TL: 61.99% Chance to Win
-
-Game #0: TSM Win 	1-0 for: TSM
-Game #1: TSM Win 	2-0 for: TSM
-Game #2: TL Win 	2-1 for: TSM
-Game #3: TL Win 	Tied at: 2-2
-Game #4: TSM Win 	3-2 for: TSM
-
-TSM Beats TL: 3-2
-
-------------------------
-
-7: KO Stage - Finals - Team [tag=IMT, region=NA, rating=3.90000] VS Team [tag=TSM, region=NA, rating=4.17000]
-IMT: 31.49% Chance to Win
-TSM: 68.51% Chance to Win
-
-Game #0: IMT Win 	1-0 for: IMT
-Game #1: TSM Win 	Tied at: 1-1
-Game #2: TSM Win 	2-1 for: TSM
-Game #3: IMT Win 	Tied at: 2-2
-Game #4: IMT Win 	3-2 for: IMT
-
-IMT Beats TSM: 3-2
-
-----------------------------------------------------------------------------------------
-
-End of Bracket Summary: KO Stage
-
-------------------------
-
-Quaterfinals          Semifinals            Finals                Winner(s)   
-C9 : FLY     | 2-0    C9 : IMT     | 2-3    IMT : TSM    | 3-2    IMT         
-IMT : EG     | 2-0    TSM : TL     | 3-2                                      
-TSM : DIG    | 2-0                                                            
-TL : 100T    | 2-1                                                            
-
-----------------------------------------------------------------------------------------
-
-Tournament Stats
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Nuber of Games Analysis
-
-----------------------------------------------------------------------------------------
-
-Group Stage: 24
-KO Stage - Quaterfinals: 9
-KO Stage - Semifinals: 10
+KO Stage - Semifinals: 9
 KO Stage - Finals: 5
 
 ------------------------
@@ -3215,147 +554,24 @@ Total Number of Games: 48
 
 -----------------------------------------------
 
-FLY, 8: Percent - 0.08%
+IMT, 74: Percent - 0.74%
 
-DIG, 15: Percent - 0.15%
+CLG, 339: Percent - 3.39%
 
-CLG, 30: Percent - 0.30%
+TSM, 486: Percent - 4.86%
 
-GG, 47: Percent - 0.47%
+GG, 506: Percent - 5.06%
 
-IMT, 77: Percent - 0.77%
+DIG, 720: Percent - 7.20%
 
-C9, 654: Percent - 6.54%
+x100, 845: Percent - 8.45%
 
-EG, 770: Percent - 7.70%
+TL, 1311: Percent - 13.11%
 
-TSM, 1273: Percent - 12.73%
+C9, 1574: Percent - 15.74%
 
-100T, 2737: Percent - 27.37%
+FLY, 1860: Percent - 18.60%
 
-TL, 4389: Percent - 43.89%
-
-Show me a World where X Wins (Type 'Any' for a random Team): 
-Print Tournament Progression?: 
-Y or N?: 
-Print Champions Records?: 
-Y or N?: 
-Print Tournament Standings?: 
-Y or N?: 
-Print Tournament Stats?: 
-Y or N?: 
-----------------------------------------------------------------------------------------
-
-Printing out Results of: Simulation #4 -
-
-----------------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------------
-
-Champion Stats/Records
-
-----------------------------------------------------------------------------------------
-
-Qualification Logs for: TSM
-
------------------------------------------------
-
-TSM - Group Stage
-Reason For Qualification: GroupPlacement; Placed: 3
-Group A: Post-Tiebreakers
-
-1 : Team [tag=C9, region=NA, rating=4.09000]        | Record: 4-1      
-2 : Team [tag=FLY, region=NA, rating=3.76000]       | Record: 3-2      
-3 : Team [tag=TSM, region=NA, rating=4.17000]       | Record: 2-2      
-4 : Team [tag=CLG, region=NA, rating=3.85000]       | Record: 2-3      
-5 : Team [tag=DIG, region=NA, rating=3.78000]       | Record: 1-4      
-
------------------------------------------------
-
-Record Logs for: TSM
-
------------------------------------------------
-
-Group Stage                                        | Wins=2   | Losses=2   | Percent - 50.00%  
-Team [tag=FLY, region=NA, rating=3.76000]          | Wins=0   | Losses=1   | Percent - 0.00%   
-Team [tag=CLG, region=NA, rating=3.85000]          | Wins=1   | Losses=0   | Percent - 100.00% 
-Team [tag=C9, region=NA, rating=4.09000]           | Wins=0   | Losses=1   | Percent - 0.00%   
-Team [tag=DIG, region=NA, rating=3.78000]          | Wins=1   | Losses=0   | Percent - 100.00% 
-
-KO Stage - Quaterfinals                            | Wins=2   | Losses=0   | Percent - 100.00% 
-Team [tag=GG, region=NA, rating=3.87000]           | Wins=2   | Losses=0   | Percent - 100.00% 
-
-KO Stage - Semifinals                              | Wins=3   | Losses=1   | Percent - 75.00%  
-Team [tag=IMT, region=NA, rating=3.90000]          | Wins=3   | Losses=1   | Percent - 75.00%  
-
-KO Stage - Finals                                  | Wins=3   | Losses=2   | Percent - 60.00%  
-Team [tag=TL, region=NA, rating=4.34000]           | Wins=3   | Losses=2   | Percent - 60.00%  
-
------------------------------------------------
-
-TSM has Won LCS Lockin; Runner Up: TL
-
-----------------------------------------------------------------------------------------
-
-Tournament Standings
-
-----------------------------------------------------------------------------------------
-
-DIG: Finished - 10 | Run Ended During: Group Stage
-
-100T: Finished - 10 | Run Ended During: Group Stage
-
-C9: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
-
-GG: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
-
-CLG: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
-
-FLY: Finished - 8 | Run Ended During: KO Stage - Quaterfinals
-
-IMT: Finished - 4 | Run Ended During: KO Stage - Semifinals
-
-EG: Finished - 4 | Run Ended During: KO Stage - Semifinals
-
-TL: Finished - 2 | Run Ended During: KO Stage - Finals
-
-TSM: Finished - 1 | Run Ended During: KO Stage - Finals
-
------------------------------------------------
-
-# of Times X Team Won; Results from 10000 Simulations
-
------------------------------------------------
-
-FLY, 8: Percent - 0.08%
-
-DIG, 15: Percent - 0.15%
-
-CLG, 30: Percent - 0.30%
-
-GG, 47: Percent - 0.47%
-
-IMT, 77: Percent - 0.77%
-
-C9, 654: Percent - 6.54%
-
-EG, 770: Percent - 7.70%
-
-TSM, 1273: Percent - 12.73%
-
-100T, 2737: Percent - 27.37%
-
-TL, 4389: Percent - 43.89%
+EG, 2285: Percent - 22.85%
 
 Show me a World where X Wins (Type 'Any' for a random Team): 
-Exit
-
-----------------------------------------------------------------------------------------
-
-Do You Want to Simulate another Tournament or Exit?: 
-Entering anything other than the phrase 'Exit' will continue the program: 
-Exit
-
-----------------------------------------------------------------------------------------
-
-Thanks for Simulating!
